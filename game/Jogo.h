@@ -1,14 +1,16 @@
 #pragma once
+
 #include <iostream>
-using namespace std;
 #include <SFML/Graphics.hpp>
+#include "Jogador.h"
+using namespace std;
 using namespace sf;
 
 class Jogo
 {
 private:
 	RenderWindow window;
-	RectangleShape shape;
+	Jogador Jogador1;
 
 public:
 	Jogo();

@@ -1,9 +1,9 @@
 #include "Jogo.h"
 
-Jogo::Jogo() : window(VideoMode(800, 600), "Jogo"), shape(Vector2f(100.f, 100.f))
+Jogo::Jogo() : window(VideoMode(800, 600), "Jogo")
 {
-    shape.setFillColor(Color::Magenta);
 
+    Jogador1.setWindow(&window);
     executar();
 }
 
@@ -30,28 +30,9 @@ void Jogo::executar()
                 window.close();
         }
 
-        if (Keyboard::isKeyPressed(Keyboard::D))
-        {
-            shape.move(Vector2f(0.1f, 0.0f));
-        }
-
-        if (Keyboard::isKeyPressed(Keyboard::S))
-        {
-            shape.move(Vector2f(0.0f, 0.1f));
-        }
-        if (Keyboard::isKeyPressed(Keyboard::A))
-        {
-            shape.move(Vector2f(-0.1f, 0.0f));
-        }
-
-        if (Keyboard::isKeyPressed(Keyboard::W))
-        {
-            shape.move(Vector2f(0.0f, -0.1f));
-        }
-
-
         window.clear();
-        window.draw(shape);
+        Jogador1.drawWindow();
+        Jogador1.Executar();
         window.display();
     }
 }
