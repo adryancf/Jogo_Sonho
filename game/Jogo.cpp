@@ -3,6 +3,7 @@
 Jogo::Jogo() : window(VideoMode(800, 600), "Jogo")
 {
     Jogador1.setWindow(&window);
+    Inimigo1.setWindow(&window);
     executar();
 }
 
@@ -34,6 +35,9 @@ void Jogo::executar()
 
         Jogador1.drawWindow();
         Jogador1.Executar();
+
+        Inimigo1.drawWindow();
+        Inimigo1.Executar();
 
         window.display();
     }

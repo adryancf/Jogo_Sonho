@@ -19,7 +19,6 @@ public:
 	//Recebe a janela do jogo
 	void setWindow(RenderWindow* w);
 	void drawWindow();
-	void setSizeShape(float x, float y);
 
 	virtual void Executar() = 0;
 
