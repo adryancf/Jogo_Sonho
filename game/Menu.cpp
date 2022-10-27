@@ -5,8 +5,10 @@ int main()
 {
     Jogo jogo;
 
+    return 0;
 
-    /*
+    //MENU DE SELEÇÃO
+    /* 
     int op_menu = -1;
 
     while (op_menu != 2)
@@ -35,7 +37,7 @@ int main()
     }
     */
 
-    return 0;
+    
 }
 
 

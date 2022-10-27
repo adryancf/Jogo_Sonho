@@ -3,6 +3,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "Jogador.h"
+
 using namespace std;
 using namespace sf;
 

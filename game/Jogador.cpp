@@ -1,10 +1,14 @@
 #include "Jogador.h"
 
-Jogador::Jogador(){}
+Jogador::Jogador(const int v, const int d)
+{
+    vida = v;
+    dano = d;
+}
 
 Jogador::~Jogador(){}
 
-void Jogador::mover()
+void Jogador::Mover()
 {
  
     if (Keyboard::isKeyPressed(Keyboard::D))
@@ -30,15 +34,5 @@ void Jogador::mover()
 
 void Jogador::Executar()
 {
-    mover();
-}
-
-void Jogador::setName(const string a)
-{
-	nome = a;
-}
-
-const string Jogador::getName() const
-{
-	return nome;
+    Mover();
 }

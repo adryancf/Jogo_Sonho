@@ -2,7 +2,6 @@
 
 Jogo::Jogo() : window(VideoMode(800, 600), "Jogo")
 {
-
     Jogador1.setWindow(&window);
     executar();
 }
@@ -21,6 +20,7 @@ void Jogo::executar()
     //window.setSize(Vector2u(800, 600));
     //window.setTitle(sf::String("Jogo"));
     
+    //LOOP DE EXECUÇÃO DO PROGRAMA
     while (window.isOpen())
     {
         Event event;
@@ -31,8 +31,10 @@ void Jogo::executar()
         }
 
         window.clear();
+
         Jogador1.drawWindow();
         Jogador1.Executar();
+
         window.display();
     }
 }

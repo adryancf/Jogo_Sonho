@@ -1,20 +1,17 @@
 #pragma once
-#include "Entidade.h"
+#include "Personagens.h"
 
 class Jogador :
-    public Entidade
+    public Personagens
 {
 private:
-    string nome;
-
+    
 public:
-    Jogador();
+    Jogador(const int v = 100, const int d = 10);
     ~Jogador();
     
-    void mover();
+    virtual void Mover();
     virtual void Executar();
 
-    void setName(const string a);
-    const string getName() const;
 };
 
