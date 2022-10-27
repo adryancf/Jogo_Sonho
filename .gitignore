@@ -1,0 +1,9 @@
+
+*.pdb
+*.tlog
+game/Debug/Jogador.obj
+*.vsidx
+*.vsidx
+game/.vs/game/FileContentIndex/b4bb5090-f511-4e5e-82c2-d76ff5b7d992.vsidx
+game/.vs/game/FileContentIndex/7334c3ff-51fb-4279-9154-66e7362f8652.vsidx
+game/.vs/game/FileContentIndex/f76e308e-c54e-4606-a4f2-fa89dae54aad.vsidx
