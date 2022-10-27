@@ -1,8 +1,12 @@
 
 #include <iostream>
+
+using namespace std;
+
 #include <SFML/Graphics.hpp>
 
 using namespace sf;
+
 
 int main()
 {
@@ -10,19 +14,10 @@ int main()
 
     //Vector2f -> Vetor de duas posições (x,y) float
  
-    RectangleShape shape(Vector2f(100.f, 100.f)); //TODAS AS FORMAS DO JOGO VAO SER RETANGULOS
+    RectangleShape c; //TODAS AS FORMAS DO JOGO VAO SER RETANGULOS
 
     //VISUAL DO OBJETO
     shape.setFillColor(Color::Magenta);
-
-    //Adcionando textura no objeto....
-    /*
-    Texture tex;
-    tex.loadFromFile(); // Importando
-    shape.setTexture(); // Colocando no Objeto
-    */
-
-
 
     //A cada iteração, é um frame
     while (window.isOpen())
