@@ -14,7 +14,7 @@ int main()
 
     //Vector2f -> Vetor de duas posições (x,y) float
  
-    RectangleShape c; //TODAS AS FORMAS DO JOGO VAO SER RETANGULOS
+    RectangleShape shape; //TODAS AS FORMAS DO JOGO VAO SER RETANGULOS
 
     //VISUAL DO OBJETO
     shape.setFillColor(Color::Magenta);
