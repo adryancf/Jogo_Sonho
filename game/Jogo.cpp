@@ -2,13 +2,22 @@
 
 Jogo::Jogo() : window(VideoMode(800, 600), "Jogo")
 {
-    Jogador1.setWindow(&window);
-    Inimigo1.setWindow(&window);
+    //Alocando ele dinamicâmente (O NEW É O EQUIVALENTE AO MALLOC EM C)
+    Jogador1 = new Jogador();
+
+    Jogador1->setWindow(&window);
+
+    fase1 = new Fase(Jogador1, &window);
+    //CONHENCENDO A LISTA DE ENTIDADES
+    l1 = fase1->getListaEntidades();
+
+    
     executar();
 }
 
 Jogo::~Jogo()
 {
+    delete Jogador1;
 }
 
 void Jogo::executar()
@@ -33,11 +42,13 @@ void Jogo::executar()
 
         window.clear();
 
-        Jogador1.drawWindow();
-        Jogador1.Executar();
-
-        Inimigo1.drawWindow();
-        Inimigo1.Executar();
+        for (int i = 0; i < l1->listEnt.getTamanho(); i++)
+        {
+            Entidade* aux = l1->listEnt.getItem(i);
+            aux->drawWindow();
+            aux->Executar();
+        }
+        
 
         window.display();
     }

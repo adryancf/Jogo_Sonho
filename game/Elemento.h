@@ -6,7 +6,7 @@ template<class TIPO>
 class Elemento
 {
 private:
-	Elemento<TIPO*> pProx;
+	Elemento<TIPO>* pProx;
 	TIPO* item;
 
 public:
@@ -21,11 +21,11 @@ public:
 		///A FAZER...
 	}
 
-	void setProximo(Elemento<TIPO*> p) { this->pProx = p; }
-	const Elemento<TIPO*> getProximo() { return pProx; }
+	void setProximo(Elemento<TIPO>* p) { this->pProx = p; }
+	Elemento<TIPO>* getProximo() { return pProx; }
 
 	void setItem(TIPO* i) { this->item = i; }
-	const TIPO* getItem() { return item; }
+	TIPO* getItem() { return item; }
 
 
 };

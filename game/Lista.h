@@ -14,7 +14,7 @@ private:
 
 public:
 
-	Lista() { pUltimo = nullptr; pPrimeiro = nullptr; num = 0; }
+	Lista() { pUltimo = nullptr; pPrimeiro = nullptr; tamanho = 0; }
 	~Lista()
 	{
 	}
@@ -24,7 +24,7 @@ public:
 
 	const int getTamanho() { return tamanho; }
 
-	const TIPO* getItem(int posicao)
+	TIPO* getItem(int posicao)
 	{
 		Elemento<TIPO>* aux = pPrimeiro;
 		if (posicao == 0)
@@ -45,7 +45,7 @@ public:
 		if (pPrimeiro == nullptr) {
 			pPrimeiro = new Elemento<TIPO>;
 
-			pPrimeiro.setItem(add);
+			pPrimeiro->setItem(add);
 			pUltimo = pPrimeiro;
 
 		}
@@ -55,7 +55,7 @@ public:
 			Elemento<TIPO>* aux = new Elemento<TIPO>;
 
 			aux->setItem(add);
-			pUltimo->setProximo(add);
+			pUltimo->setProximo(aux);
 			pUltimo = aux;
 		}
 		tamanho++;
