@@ -14,12 +14,14 @@ private:
 
 	sf::RenderWindow* window;
 
-	void inicializa_elementos();
+	void criar_entidades();
 
 public:
 	Fase(Jogador *j, sf::RenderWindow* w);
 
 	~Fase();
+
+	
 
 	ListaEntidades* getListaEntidades();
 	

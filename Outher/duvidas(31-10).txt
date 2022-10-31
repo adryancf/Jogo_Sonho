@@ -1,0 +1,4 @@
+PERGUNTAS PARA MONITORIA
+
+JANELA DO SFML TA ESTRANHA
+	Quando eu compilo o programa a janela fica meio lagada e só fica normal quando eu passo o mouse em cima.

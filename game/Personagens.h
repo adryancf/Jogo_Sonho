@@ -11,8 +11,10 @@ protected:
     int vida; //PODE TER MAIS DE UMA VIDA (?)
     int dano;
 
+    float velocidade;
+
 public:
-    Personagens(const int vida = 100, const int dano = 10);
+    Personagens(const int vida = 100, const int dano = 10, const float velocidade = 5);
     ~Personagens();
 
     /* Nao precicso de set pois inicializo os argumentos na construtora da classe herdada */

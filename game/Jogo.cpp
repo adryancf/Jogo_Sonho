@@ -1,13 +1,17 @@
 #include "Jogo.h"
 
-Jogo::Jogo() : window(VideoMode(800, 600), "Jogo")
+Jogo::Jogo() : window(VideoMode(1280, 720), "Jogo")
 {
+
+    window.setVerticalSyncEnabled(true);
+
     //Alocando ele dinamicâmente (O NEW É O EQUIVALENTE AO MALLOC EM C)
     Jogador1 = new Jogador();
 
     Jogador1->setWindow(&window);
 
     fase1 = new Fase(Jogador1, &window);
+
     //CONHENCENDO A LISTA DE ENTIDADES
     l1 = fase1->getListaEntidades();
 
@@ -36,29 +40,29 @@ void Jogo::executar()
         Event event;
         while (window.pollEvent(event))
         {
+            
+            /*
             if ((event.type == Event::Closed) or (event.type == sf::Event::KeyPressed) and (event.key.code
                 == sf::Keyboard::Escape)) {
 
                 window.close();
             }
-            
+            */
 
-            /*if (event.type == Event::Closed) {
+            if (event.type == Event::Closed) {
 
                 window.close();
             }
-            */
-
+            
             window.clear();
-
+            
             for (int i = 0; i < l1->listEnt.getTamanho(); i++)
             {
                 Entidade* aux = l1->listEnt.getItem(i);
                 aux->drawWindow();
                 aux->Executar();
             }
-
-
+            
             window.display();
 
         }
