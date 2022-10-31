@@ -5,9 +5,11 @@ class Jogador :
     public Personagens
 {
 private:
-    
+    //atributo especificos (?)
+    //Projetil/arma
+
 public:
-    Jogador(const int v = 100, const int d = 10);
+    Jogador();
     ~Jogador();
     
     virtual void Mover();

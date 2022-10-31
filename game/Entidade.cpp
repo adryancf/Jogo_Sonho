@@ -1,6 +1,6 @@
 #include "Entidade.h"
 
-Entidade::Entidade(): corpo(Vector2f(100.f, 100.f)), janela(NULL) {}
+Entidade::Entidade(): corpo(Vector2f(100.f, 100.f)), janela(nullptr) {}
 
 Entidade::~Entidade(){}
 

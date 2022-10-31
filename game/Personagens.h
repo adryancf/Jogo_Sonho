@@ -6,12 +6,13 @@ class Personagens :
     public Entidade
 {
 protected:
+    //Acho que nao precisa do nome nos personagens
     string nome;
-    int vida;
+    int vida; //PODE TER MAIS DE UMA VIDA (?)
     int dano;
 
 public:
-    Personagens();
+    Personagens(const int vida = 100, const int dano = 10);
     ~Personagens();
 
     /* Nao precicso de set pois inicializo os argumentos na construtora da classe herdada */
@@ -28,5 +29,6 @@ public:
     virtual void Executar() = 0;
     virtual void Mover() = 0;
 
+    //metodo -> atualizar vida (implementar)
 };
 

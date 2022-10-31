@@ -1,9 +1,7 @@
 #include "Jogador.h"
 
-Jogador::Jogador(const int v, const int d)
+Jogador::Jogador():Personagens()
 {
-    vida = v;
-    dano = d;
 }
 
 Jogador::~Jogador(){}

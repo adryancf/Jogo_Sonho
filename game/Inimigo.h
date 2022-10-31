@@ -6,7 +6,7 @@ class Inimigo :
 private:
 
 public:
-    Inimigo(const int v = 100, const int d = 10);
+    Inimigo();
     ~Inimigo();
 
     virtual void Mover();

@@ -1,10 +1,10 @@
 #include "Personagens.h"
 
-Personagens::Personagens()
+Personagens::Personagens(const int vida, const int dano)
 {
     /* NAO SEI SE PRECISA */
-    vida = 0;
-    dano = 0;
+    this->vida = vida;
+    this->dano = dano;
 }
 
 Personagens::~Personagens()

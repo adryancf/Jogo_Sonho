@@ -6,7 +6,8 @@
 using namespace std;
 using namespace sf;
 
-class Entidade
+
+class Entidade // :pulic sf::Drawable (?)
 {
 protected:
 	RectangleShape corpo;
@@ -14,6 +15,8 @@ protected:
 
 public:
 	Entidade();
+
+	//PODE SER DESTRUTORA VIRTUAL PURA?
 	~Entidade();
 
 	//Recebe a janela do jogo
