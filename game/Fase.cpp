@@ -17,6 +17,10 @@ Fase::~Fase()
 	delete lista_entidades;
 }
 
+void Fase::Executar()
+{
+}
+
 void Fase::criar_entidades()
 {
 	//Implementação de mais de um inimigo (terminar depois)
@@ -33,7 +37,7 @@ void Fase::criar_entidades()
 	}
 	/*/
 
-	i1 = new Inimigo;
+	i1 = new Inimigo(j1);
 	i1->setWindow(window);
 	lista_entidades->listEnt.push(i1);
 

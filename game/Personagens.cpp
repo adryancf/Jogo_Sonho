@@ -1,11 +1,13 @@
 #include "Personagens.h"
 
-Personagens::Personagens(const int vida, const int dano, const float velocidade)
+Personagens::Personagens(Vector2f pos, const int vida, const int dano, Vector2f velocidade)
 {
     /* NAO SEI SE PRECISA */
     this->vida = vida;
     this->dano = dano;
-    this->velocidade = velocidade;
+    this->speed = velocidade;
+    this->q_vida = 1;
+    corpo.setPosition(pos);
 }
 
 Personagens::~Personagens()

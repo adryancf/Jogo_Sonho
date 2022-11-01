@@ -6,15 +6,18 @@ class Personagens :
     public Entidade
 {
 protected:
+
     //Acho que nao precisa do nome nos personagens
     string nome;
+
     int vida; //PODE TER MAIS DE UMA VIDA (?)
     int dano;
+    int q_vida;
 
-    float velocidade;
+    sf::Vector2f speed;
 
 public:
-    Personagens(const int vida = 100, const int dano = 10, const float velocidade = 5);
+    Personagens(Vector2f pos = Vector2f(30.f, 500.f), const int vida = 100, const int dano = 10, Vector2f velocidade = Vector2f(2.0f, 2.0f));
     ~Personagens();
 
     /* Nao precicso de set pois inicializo os argumentos na construtora da classe herdada */

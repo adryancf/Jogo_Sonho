@@ -2,16 +2,15 @@
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
-
+#include "Ente.h"
 using namespace std;
 using namespace sf;
 
-
-class Entidade // :pulic sf::Drawable (?)
+// :pulic sf::Drawable (?)
+class Entidade : public Ente
 {
 protected:
 	RectangleShape corpo;
-	RenderWindow *janela;
 
 public:
 	Entidade();
@@ -23,6 +22,8 @@ public:
 	void setWindow(RenderWindow* w);
 	void drawWindow();
 
+	RectangleShape getCorpo();
+	
 	virtual void Executar() = 0;
 
 };

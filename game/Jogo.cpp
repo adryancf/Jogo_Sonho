@@ -16,7 +16,7 @@ Jogo::Jogo() : window(VideoMode(1280, 720), "Jogo")
     l1 = fase1->getListaEntidades();
 
     
-    executar();
+    Executar();
 }
 
 Jogo::~Jogo()
@@ -24,7 +24,7 @@ Jogo::~Jogo()
     delete Jogador1;
 }
 
-void Jogo::executar()
+void Jogo::Executar()
 {
     
     //COMO FAZER PARA ISSO FUNCIONAR???
@@ -40,27 +40,28 @@ void Jogo::executar()
         Event event;
         while (window.pollEvent(event))
         {
-            
-            /*
-            if ((event.type == Event::Closed) or (event.type == sf::Event::KeyPressed) and (event.key.code
-                == sf::Keyboard::Escape)) {
+
+            if (event.type == Event::Closed) 
+            {
 
                 window.close();
             }
-            */
+            else if (event.type == Event::KeyPressed) 
+            {
 
-            if (event.type == Event::Closed) {
+                if (event.key.code == Keyboard::Escape)
+                    window.close();
 
-                window.close();
             }
-            
+
             window.clear();
             
             for (int i = 0; i < l1->listEnt.getTamanho(); i++)
             {
                 Entidade* aux = l1->listEnt.getItem(i);
-                aux->drawWindow();
                 aux->Executar();
+                aux->drawWindow();
+                
             }
             
             window.display();

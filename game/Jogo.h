@@ -5,13 +5,12 @@
 #include "Jogador.h"
 #include "Inimigo.h"
 #include "Fase.h"
-
 #include "ListaEntidades.h"
 
 using namespace std;
 using namespace sf;
 
-class Jogo
+class Jogo: public Ente
 {
 private:
 	RenderWindow window;
@@ -25,7 +24,7 @@ public:
 	Jogo();
 	~Jogo();
 
-	void executar();
+	void Executar();
 
 
 };

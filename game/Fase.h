@@ -3,16 +3,17 @@
 #include "ListaEntidades.h"
 #include "Inimigo.h"
 #include <SFML\Graphics.hpp>
+#include "Ente.h"
 
 
-class Fase
+class Fase: public Ente
 {
 private:
 	ListaEntidades* lista_entidades;
 	Inimigo* i1;
 	Jogador* j1;
 
-	sf::RenderWindow* window;
+	//sf::RenderWindow* window;
 
 	void criar_entidades();
 
@@ -21,7 +22,7 @@ public:
 
 	~Fase();
 
-	
+	void Executar();
 
 	ListaEntidades* getListaEntidades();
 	
