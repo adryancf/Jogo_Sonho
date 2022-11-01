@@ -4,7 +4,6 @@ Jogo::Jogo() : window(VideoMode(1280, 720), "Jogo")
 {
 
     window.setVerticalSyncEnabled(true);
-
     //Alocando ele dinamicâmente (O NEW É O EQUIVALENTE AO MALLOC EM C)
     Jogador1 = new Jogador();
 

@@ -3,7 +3,7 @@
 Fase::Fase(Jogador *j, sf::RenderWindow* w)
 {
 	j1 = j;
-	window = w;
+	windows = w;
 	lista_entidades = new ListaEntidades;
 	lista_entidades->listEnt.push(j1);
 	
@@ -30,7 +30,7 @@ void Fase::criar_entidades()
 	int num_inimigos = 3 + rand() % 10;
 
 	for (int i = 0; i < num_inimigos; i++) {
-		aux = new Inimigo;
+		aux = new Inimigo(j1);
 		aux->setWindow(window);
 		lista_entidades->listEnt.push(aux);
 		delete aux;

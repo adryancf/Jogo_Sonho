@@ -8,6 +8,11 @@ Ente::Ente()
 Ente::~Ente()
 {
 }
+/*
+void Ente::setWindow(RenderWindow* w)
+{	this->window = w;
+}
+*/
 
 void Ente::Print()
 {

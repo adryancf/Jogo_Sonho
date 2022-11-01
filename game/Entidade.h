@@ -1,8 +1,9 @@
 #pragma once
+#include "Ente.h"
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include "Ente.h"
+
 using namespace std;
 using namespace sf;
 
@@ -20,6 +21,8 @@ public:
 
 	//Recebe a janela do jogo
 	void setWindow(RenderWindow* w);
+	//Isso ja ta proposto na classe Ente
+
 	void drawWindow();
 
 	RectangleShape getCorpo();

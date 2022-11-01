@@ -9,16 +9,22 @@
 class Fase: public Ente
 {
 private:
+	
 	ListaEntidades* lista_entidades;
+	
+	//Nao precisa desse ponteiro para inimigo
 	Inimigo* i1;
+	
 	Jogador* j1;
 
-	//sf::RenderWindow* window;
+	sf::RenderWindow* windows;
 
+	//Cria as entidades da fase
 	void criar_entidades();
 
 public:
 	Fase(Jogador *j, sf::RenderWindow* w);
+	//Fase(Jogador* j);
 
 	~Fase();
 
