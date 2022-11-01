@@ -3,6 +3,13 @@
 Jogador::Jogador():Personagens()
 {
     q_vida = 3;
+    
+}
+
+Jogador::Jogador(sf::RenderWindow* w)
+{
+    q_vida = 3;
+    window = w;
 }
 
 Jogador::~Jogador(){}

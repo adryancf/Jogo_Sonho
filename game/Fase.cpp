@@ -4,10 +4,12 @@ Fase::Fase(Jogador *j, sf::RenderWindow* w)
 {
 	j1 = j;
 	window = w;
+
+	/* CRIA A LISTA DE ENTIDADES DA FASE */
 	lista_entidades = new ListaEntidades;
 	lista_entidades->listEnt.push(j1);
 	
-	//Inicializa as entidades da fase
+	//INICIALIZA as entidades da fase
 	criar_entidades();
 }
 
@@ -40,9 +42,6 @@ void Fase::criar_entidades()
 	i1 = new Inimigo(j1);
 	i1->setWindow(window);
 	lista_entidades->listEnt.push(i1);
-
-
-
 
 }
 

@@ -1,15 +1,11 @@
 #pragma once
-
-#include <SFML/Graphics.hpp>
-#include <iostream>
 #include "Ente.h"
-using namespace std;
-using namespace sf;
 
-// :pulic sf::Drawable (?)
+//:pulic sf::Drawable (?)
 class Entidade : public Ente
 {
 protected:
+	//Toda entidade tem um shape
 	RectangleShape corpo;
 
 public:
@@ -18,10 +14,10 @@ public:
 	//PODE SER DESTRUTORA VIRTUAL PURA?
 	~Entidade();
 
-	//Recebe a janela do jogo
-	void setWindow(RenderWindow* w);
+	//Função para desenhar a entidade 
 	void drawWindow();
 
+	//Retorna o shape da entidade
 	RectangleShape getCorpo();
 	
 	virtual void Executar() = 0;

@@ -1,11 +1,5 @@
 #pragma once
-
-#include <iostream>
-#include <SFML/Graphics.hpp>
-#include "Jogador.h"
-#include "Inimigo.h"
 #include "Fase.h"
-#include "ListaEntidades.h"
 
 using namespace std;
 using namespace sf;
@@ -16,6 +10,7 @@ private:
 	RenderWindow window;
 	Jogador* Jogador1;
 
+	//Conhece a lista de entidades da fase para realizar a impressao na tela
 	ListaEntidades* l1;
 	
 	Fase* fase1;

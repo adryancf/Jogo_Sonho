@@ -10,6 +10,9 @@ private:
 
 public:
     Jogador();
+
+    Jogador(sf::RenderWindow* w);
+
     ~Jogador();
     
     virtual void Mover();

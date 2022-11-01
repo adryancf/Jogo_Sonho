@@ -1,8 +1,9 @@
 #pragma once
+
 #include "Jogador.h"
-#include "ListaEntidades.h"
 #include "Inimigo.h"
-#include <SFML\Graphics.hpp>
+
+#include "ListaEntidades.h"
 #include "Ente.h"
 
 
@@ -13,13 +14,11 @@ private:
 	Inimigo* i1;
 	Jogador* j1;
 
-	//sf::RenderWindow* window;
-
+	//Cria as entidades presentes na fase (Inimigos, Obstaculos) e adciona na lista de entidades
 	void criar_entidades();
 
 public:
 	Fase(Jogador *j, sf::RenderWindow* w);
-
 	~Fase();
 
 	void Executar();

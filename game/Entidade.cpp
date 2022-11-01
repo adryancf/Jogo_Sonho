@@ -1,16 +1,15 @@
 #include "Entidade.h"
 
-Entidade::Entidade(): corpo(Vector2f(100.f, 100.f)){}
+Entidade::Entidade(): corpo(Vector2f(100.f, 100.f))
+{
+    //Posicao padrao de todas as entidades
+    corpo.setPosition(Vector2f(30.f, 500.f));
+}
 
 Entidade::~Entidade(){}
 
-void Entidade::setWindow(RenderWindow* w) { this->window = w; }
-
 void Entidade::drawWindow() { window->draw(corpo); }
 
-RectangleShape Entidade::getCorpo()
-{
-    return corpo;
-}
+RectangleShape Entidade::getCorpo(){ return corpo; }
 
 

@@ -6,16 +6,12 @@ Jogo::Jogo() : window(VideoMode(1280, 720), "Jogo")
     window.setVerticalSyncEnabled(true);
 
     //Alocando ele dinamicâmente (O NEW É O EQUIVALENTE AO MALLOC EM C)
-    Jogador1 = new Jogador();
-
-    Jogador1->setWindow(&window);
-
+    Jogador1 = new Jogador(&window);
     fase1 = new Fase(Jogador1, &window);
-
+    
     //CONHENCENDO A LISTA DE ENTIDADES
     l1 = fase1->getListaEntidades();
 
-    
     Executar();
 }
 
@@ -26,14 +22,6 @@ Jogo::~Jogo()
 
 void Jogo::Executar()
 {
-    
-    //COMO FAZER PARA ISSO FUNCIONAR???
-
-    /* Quero inicializar a janela fora da construtora */
-    
-    //window.setSize(Vector2u(800, 600));
-    //window.setTitle(sf::String("Jogo"));
-    
     //LOOP DE EXECUÇÃO DO PROGRAMA
     while (window.isOpen())
     {
