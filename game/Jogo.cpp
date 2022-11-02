@@ -2,7 +2,7 @@
 
 Jogo::Jogo() : window(VideoMode(1280, 720), "Jogo")
 {
-
+   
     window.setVerticalSyncEnabled(true);
 
     //Alocando ele dinamicâmente (O NEW É O EQUIVALENTE AO MALLOC EM C)
@@ -22,9 +22,28 @@ Jogo::~Jogo()
 
 void Jogo::Executar()
 {
+    const float FPS = 60.0;
+    float dt;
+    sf::Clock clock;
+
     //LOOP DE EXECUÇÃO DO PROGRAMA
     while (window.isOpen())
     {
+        /*
+        dt = clock.getElapsedTime().asSeconds();
+        if (dt < (1.0 / FPS))
+        {
+            Time t = seconds((1.0f / FPS) - dt);
+            sleep(t);
+            dt = 1.0f / FPS;
+        }
+        else { cout << "FPS" << endl; }
+        clock.restart();
+
+        window.display();
+
+        */
+
         Event event;
         while (window.pollEvent(event))
         {
@@ -49,10 +68,10 @@ void Jogo::Executar()
                 Entidade* aux = l1->listEnt.getItem(i);
                 aux->Executar();
                 aux->drawWindow();
-                
             }
-            
+
             window.display();
+            
 
         }
     }
