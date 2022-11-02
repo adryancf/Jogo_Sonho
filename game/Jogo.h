@@ -1,5 +1,6 @@
 #pragma once
 #include "Fase.h"
+#include "GerenciadorGrafico.h"
 
 using namespace std;
 using namespace sf;
@@ -7,7 +8,7 @@ using namespace sf;
 class Jogo: public Ente
 {
 private:
-	RenderWindow window;
+	GerenciadorGrafico* pGerenciadorGrafico;
 	Jogador* Jogador1;
 
 	//Conhece a lista de entidades da fase para realizar a impressao na tela

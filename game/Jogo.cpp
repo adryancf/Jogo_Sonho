@@ -1,13 +1,13 @@
 #include "Jogo.h"
 
-Jogo::Jogo() : window(VideoMode(1280, 720), "Jogo")
+Jogo::Jogo() : pGerenciadorGrafico(pGerenciadorGrafico->getGerenciadorGrafico())
 {
    
-    window.setVerticalSyncEnabled(true);
+    pGerenciadorGrafico->getWindow()->setVerticalSyncEnabled(true);
 
     //Alocando ele dinamicâmente (O NEW É O EQUIVALENTE AO MALLOC EM C)
-    Jogador1 = new Jogador(&window);
-    fase1 = new Fase(Jogador1, &window);
+    Jogador1 = new Jogador(pGerenciadorGrafico->getWindow());
+    fase1 = new Fase(Jogador1, pGerenciadorGrafico->getWindow());
     
     //CONHENCENDO A LISTA DE ENTIDADES
     l1 = fase1->getListaEntidades();
@@ -27,7 +27,7 @@ void Jogo::Executar()
     sf::Clock clock;
 
     //LOOP DE EXECUÇÃO DO PROGRAMA
-    while (window.isOpen())
+    while (pGerenciadorGrafico->isWindowOpen())
     {
         /*
         dt = clock.getElapsedTime().asSeconds();
@@ -45,23 +45,23 @@ void Jogo::Executar()
         */
 
         Event event;
-        while (window.pollEvent(event))
+        while (pGerenciadorGrafico->getWindow()->pollEvent(event))
         {
 
             if (event.type == Event::Closed) 
             {
 
-                window.close();
+                pGerenciadorGrafico->fecharJanela();
             }
             else if (event.type == Event::KeyPressed) 
             {
 
                 if (event.key.code == Keyboard::Escape)
-                    window.close();
+                    pGerenciadorGrafico->fecharJanela();
 
             }
 
-            window.clear();
+            pGerenciadorGrafico->limpar();
             
             for (int i = 0; i < l1->listEnt.getTamanho(); i++)
             {
@@ -70,7 +70,7 @@ void Jogo::Executar()
                 aux->drawWindow();
             }
 
-            window.display();
+            pGerenciadorGrafico->mostrar();
             
 
         }
