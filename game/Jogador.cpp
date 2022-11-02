@@ -6,11 +6,13 @@ Jogador::Jogador():Personagens()
     
 }
 
-Jogador::Jogador(sf::RenderWindow* w)
+
+Jogador::Jogador(GerenciadorGrafico* pG)
 {
     q_vida = 3;
-    window = w;
+    pGrafico = pG;
 }
+
 
 Jogador::~Jogador(){}
 

@@ -18,7 +18,7 @@ private:
 	void criar_entidades();
 
 public:
-	Fase(Jogador *j, sf::RenderWindow* w);
+	Fase(Jogador *j, GerenciadorGrafico* pG);
 	~Fase();
 
 	void Executar();

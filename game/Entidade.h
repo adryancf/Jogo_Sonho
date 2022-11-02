@@ -10,12 +10,9 @@ protected:
 
 public:
 	Entidade();
-
+	
 	//PODE SER DESTRUTORA VIRTUAL PURA?
 	~Entidade();
-
-	//Função para desenhar a entidade 
-	void drawWindow();
 
 	//Retorna o shape da entidade
 	RectangleShape getCorpo();

@@ -11,7 +11,9 @@ private:
 public:
     Jogador();
 
-    Jogador(sf::RenderWindow* w);
+    //alterar (colocar esse parâmetro na entidade)
+    Jogador(GerenciadorGrafico* pG);
+
 
     ~Jogador();
     

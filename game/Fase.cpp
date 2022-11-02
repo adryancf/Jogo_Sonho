@@ -1,10 +1,9 @@
 #include "Fase.h"
 
-Fase::Fase(Jogador *j, sf::RenderWindow* w)
+Fase::Fase(Jogador *j, GerenciadorGrafico* pG): Ente(pG)
 {
 	j1 = j;
-	window = w;
-
+	
 	/* CRIA A LISTA DE ENTIDADES DA FASE */
 	lista_entidades = new ListaEntidades;
 	lista_entidades->listEnt.push(j1);
@@ -40,7 +39,7 @@ void Fase::criar_entidades()
 	/*/
 
 	i1 = new Inimigo(j1);
-	i1->setWindow(window);
+	i1->setWindow(pGrafico);
 	lista_entidades->listEnt.push(i1);
 
 }

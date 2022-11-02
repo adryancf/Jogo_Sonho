@@ -1,15 +1,25 @@
 #include "Ente.h"
 
-Ente::Ente()
+Ente::Ente(): pGrafico(pGrafico->getGerenciadorGrafico())
 {
-	window = nullptr;
+	pGrafico->getWindow()->setVerticalSyncEnabled(true);
+}
+
+Ente::Ente(GerenciadorGrafico* pG)
+{
+	pGrafico = pG;
 }
 
 Ente::~Ente()
 {
 }
 
-void Ente::setWindow(RenderWindow* w) { window = w; }
+void Ente::setWindow(GerenciadorGrafico* pG) { pGrafico = pG; }
+
+GerenciadorGrafico* Ente::getGrafico()
+{
+	return pGrafico;
+}
 
 void Ente::Print()
 {
