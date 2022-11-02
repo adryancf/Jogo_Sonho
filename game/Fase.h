@@ -24,6 +24,8 @@ public:
 	void Executar();
 
 	ListaEntidades* getListaEntidades();
+
+
 	
 
 };

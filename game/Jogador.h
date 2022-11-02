@@ -16,6 +16,8 @@ public:
 
 
     ~Jogador();
+
+    void andar(int i);
     
     virtual void Mover();
     virtual void Executar();

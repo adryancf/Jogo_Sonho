@@ -16,7 +16,7 @@ protected:
     sf::Vector2f speed;
 
 public:
-    Personagens(const int vida = 100, const int dano = 10, Vector2f velocidade = Vector2f(2.0f, 2.0f));
+    Personagens(const int vida = 100, const int dano = 10, Vector2f velocidade = Vector2f(10.0f, 10.0f));
     ~Personagens();
 
     /* Nao precicso de set pois inicializo os argumentos na construtora da classe herdada */

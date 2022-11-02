@@ -3,7 +3,7 @@
 Fase::Fase(Jogador *j, GerenciadorGrafico* pG): Ente(pG)
 {
 	j1 = j;
-	
+
 	/* CRIA A LISTA DE ENTIDADES DA FASE */
 	lista_entidades = new ListaEntidades;
 	lista_entidades->listEnt.push(j1);

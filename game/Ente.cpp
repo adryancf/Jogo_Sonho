@@ -10,6 +10,8 @@ Ente::Ente(GerenciadorGrafico* pG)
 	pGrafico = pG;
 }
 
+
+
 Ente::~Ente()
 {
 }
@@ -20,6 +22,8 @@ GerenciadorGrafico* Ente::getGrafico()
 {
 	return pGrafico;
 }
+
+
 
 void Ente::Print()
 {

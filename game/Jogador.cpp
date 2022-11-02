@@ -16,28 +16,32 @@ Jogador::Jogador(GerenciadorGrafico* pG)
 
 Jogador::~Jogador(){}
 
-void Jogador::Mover()
+void Jogador::andar(int i)
 {
- 
-    if (Keyboard::isKeyPressed(Keyboard::D))
+    std::cout << i << endl;
+    if (i == 1)
     {
-        corpo.move(Vector2f(speed.x, 0));
+        corpo.move(Vector2f(0, -speed.y));
     }
-
-    if (Keyboard::isKeyPressed(Keyboard::S))
-    {
-        corpo.move(Vector2f(0, speed.y));
-    }
-    if (Keyboard::isKeyPressed(Keyboard::A))
+    else if (i == 2)
     {
         corpo.move(Vector2f(-speed.x, 0));
     }
 
-    if (Keyboard::isKeyPressed(Keyboard::W))
+    else if (i == 3)
     {
-        corpo.move(Vector2f(0, -speed.y));
+        corpo.move(Vector2f(0, speed.y));
+    }
+    else if (i == 4)
+    {
+        corpo.move(Vector2f(speed.x, 0));
     }
 
+}
+
+void Jogador::Mover()
+{
+   
 }
 
 void Jogador::Executar()
