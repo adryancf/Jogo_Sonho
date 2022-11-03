@@ -44,14 +44,16 @@ void Inimigo::PersegueJogador(Vector2f posJogador, Vector2f posInimigo)
     //Jogador esquerda = Inimigo para esquerda
     else{ corpo.move(-speed.x, 0.0f); }
 
+    
+
     /* Essa parte acho q da para tirar depois, devido ao pulo | NAO QUERO Q O INIMIGO IMITE MEUS PULOS, POIS TORNA MT DIFICIL DE DESVIAR */
 
     //Jogador cima = inimigo para cima
-    if ((posJogador.y - posInimigo.y) > 0.0f) { corpo.move(0.0f, speed.y); }
+    //if ((posJogador.y - posInimigo.y) > 0.0f) { corpo.move(0.0f, speed.y); }
 
     //Jogador baixo = Inimigo para baixo
-    else { corpo.move(0.0f, -speed.y); }
-        
+    //else { corpo.move(0.0f, -speed.y); }
+    
 }
 
 void Inimigo::movAleatorio()
@@ -62,13 +64,14 @@ void Inimigo::movAleatorio()
         corpo.move(speed.x, 0.f);
     else if (movRandom == 2)
         corpo.move(-speed.x, 0.f);
+    /*
     else if (movRandom == 3)
         corpo.move(0.f, speed.y);
     else
         corpo.move(0.f, -speed.y);
-
+    */
     float dt = time.getElapsedTime().asSeconds();
-    if (dt >= 1.0f) {
+    if (dt >= 0.6f) {
         movRandom = rand() % 4;
         time.restart();
     }

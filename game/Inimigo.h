@@ -4,8 +4,8 @@
 #include "Jogador.h"
 
 
-#define RAIO_X 200.0f
-#define RAIO_Y 200.0f
+#define RAIO_X 150.0f
+#define RAIO_Y 150.0f
 
 class Inimigo :
     public Personagens
