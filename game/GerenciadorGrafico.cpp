@@ -24,7 +24,7 @@ GerenciadorGrafico::~GerenciadorGrafico()
 GerenciadorGrafico* GerenciadorGrafico::getGerenciadorGrafico()
 {
     if (pGrafico == nullptr) {
-        return pGrafico = new GerenciadorGrafico;
+        pGrafico = new GerenciadorGrafico;
     }
 
     return pGrafico;
