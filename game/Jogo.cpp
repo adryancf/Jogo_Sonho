@@ -10,7 +10,8 @@ Jogo::Jogo() : Ente(), pEvento(pEvento->getGerenciadorEvento())
     pEvento->setJogador(Jogador1);
     
     //CONHENCENDO A LISTA DE ENTIDADES
-    l1 = fase1->getListaEntidades();
+    lista_personagem = fase1->getListaPersonagem();
+    lista_obstaculos = fase1->getListaObstaculo();
 
     Executar();
 }
@@ -28,9 +29,9 @@ void Jogo::Executar()
     {
         pEvento->Executar();
         pGrafico->limpar();
-        for (int i = 0; i < l1->listEnt.getTamanho(); i++)
+        for (int i = 0; i < lista_personagem->listEnt.getTamanho(); i++)
         {
-            Entidade* aux = l1->listEnt.getItemLista(i);
+            Entidade* aux = lista_personagem->listEnt.getItemLista(i);
             aux->Executar();
             pGrafico->desenhar(aux->getCorpo());
         }

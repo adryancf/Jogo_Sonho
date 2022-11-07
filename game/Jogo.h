@@ -1,7 +1,7 @@
 #pragma once
 #include "Fase.h"
 #include "GerenciadorEventos.h"
-
+#include "GerenciadorColisoes.h"
 
 using namespace std;
 using namespace sf;
@@ -12,9 +12,11 @@ private:
 	Jogador* Jogador1;
 
 	//Conhece a lista de entidades da fase para realizar a impressao na tela
-	ListaEntidades* l1;
+	ListaEntidades* lista_personagem;
+	ListaEntidades* lista_obstaculos;
 	
 	GerenciadorEvento* pEvento;
+	GerenciadorColisoes* pColisoes;
 
 	Fase* fase1;
 

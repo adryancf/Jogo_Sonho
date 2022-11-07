@@ -5,8 +5,8 @@ Fase::Fase(Jogador *j)
 	j1 = j;
 
 	/* CRIA A LISTA DE ENTIDADES DA FASE */
-	lista_entidades = new ListaEntidades;
-	lista_entidades->listEnt.push(j1);
+	lista_personagem = new ListaEntidades;
+	lista_personagem->listEnt.push(j1);
 	
 	//INICIALIZA as entidades da fase
 	criar_entidades();
@@ -15,7 +15,8 @@ Fase::Fase(Jogador *j)
 Fase::~Fase()
 {
 	//Chama a destrutora da lista?
-	delete lista_entidades;
+	delete lista_personagem;
+	delete lista_obstaculos;
 }
 
 void Fase::Executar()
@@ -39,11 +40,17 @@ void Fase::criar_entidades()
 	/*/
 
 	i1 = new Inimigo(j1);
-	lista_entidades->listEnt.push(i1);
+	lista_personagem->listEnt.push(i1);
 
 }
 
-ListaEntidades* Fase::getListaEntidades()
+ListaEntidades* Fase::getListaPersonagem()
 {
-	return lista_entidades;
+	return lista_personagem;
+	
+}
+
+ListaEntidades* Fase::getListaObstaculo()
+{
+	return lista_obstaculos;
 }
