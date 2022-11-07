@@ -8,7 +8,6 @@ class Elemento
 private:
 	Elemento<TIPO>* pProx;
 	TIPO* item;
-
 public:
 	Elemento()
 	{

@@ -29,6 +29,7 @@ public:
 
     virtual void Executar() = 0;
     virtual void Mover() = 0;
+    virtual void Colisao(Entidade* entidade) = 0;
 
     //metodo -> atualizar vida (implementar)
 };

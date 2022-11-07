@@ -4,8 +4,9 @@ Jogo::Jogo() : Ente(), pEvento(pEvento->getGerenciadorEvento())
 {
 
     //Alocando ele dinamicâmente (O NEW É O EQUIVALENTE AO MALLOC EM C)
-    Jogador1 = new Jogador(pGrafico);
-    fase1 = new Fase(Jogador1, pGrafico);
+    //Jogador1 = new Jogador(pGrafico);
+    Jogador1 = new Jogador();
+    fase1 = new Fase(Jogador1);
     pEvento->setJogador(Jogador1);
     
     //CONHENCENDO A LISTA DE ENTIDADES
@@ -29,7 +30,7 @@ void Jogo::Executar()
         pGrafico->limpar();
         for (int i = 0; i < l1->listEnt.getTamanho(); i++)
         {
-            Entidade* aux = l1->listEnt.getItem(i);
+            Entidade* aux = l1->listEnt.getItemLista(i);
             aux->Executar();
             pGrafico->desenhar(aux->getCorpo());
         }
