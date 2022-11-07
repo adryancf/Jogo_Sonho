@@ -17,7 +17,7 @@ public:
 	~GerenciadorColisoes();
 
 	sf::Vector2f calculaColisoes(Entidade* ent1, Entidade* ent2);
-	bool verificaColisoes();
+	void verificaColisoes();
 
 
 };

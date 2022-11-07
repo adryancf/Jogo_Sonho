@@ -3,6 +3,7 @@
 Jogador::Jogador():Personagens()
 {
     q_vida = 3;
+    ID = 1;
     
 }
 
@@ -11,6 +12,7 @@ Jogador::Jogador(GerenciadorGrafico* pG)
 {
     q_vida = 3;
     pGrafico = pG;
+    ID = 1;
 }
 
 
@@ -47,4 +49,32 @@ void Jogador::Mover()
 void Jogador::Executar()
 {
     Mover();
+}
+
+void Jogador::Colisao(Entidade* entidade)
+{
+    //Se for com inimigo
+    if (entidade->getID() == 2)
+    {
+        //Se enconstar no inimigo o jogador vai para tras
+        this->getCorpo().move(Vector2f(-0.05f, 0.0f));
+
+        //Implementar dano
+
+
+    }
+
+    //Se for com plataforma
+    else if (entidade->getID() == 3)
+    {
+
+
+    }
+
+    else if (entidade->getID() == 4)
+    {
+
+
+
+    }
 }

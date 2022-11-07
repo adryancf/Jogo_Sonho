@@ -7,6 +7,8 @@ class Entidade : public Ente
 protected:
 	//Toda entidade tem um shape
 	RectangleShape corpo;
+	int ID;
+
 
 public:
 	Entidade();
@@ -16,8 +18,10 @@ public:
 
 	//Retorna o shape da entidade
 	RectangleShape getCorpo();
+	const int getID();
 	
 	virtual void Executar() = 0;
+	virtual void Colisao(Entidade* entidade) = 0;
 
 };
 

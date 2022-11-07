@@ -29,5 +29,7 @@ public:
             
     virtual void Mover();
     virtual void Executar();
+
+    virtual void Colisao(Entidade* entidade);
 };
 

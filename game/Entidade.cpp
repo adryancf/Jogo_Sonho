@@ -11,4 +11,9 @@ Entidade::~Entidade(){}
 
 RectangleShape Entidade::getCorpo(){ return corpo; }
 
+const int Entidade::getID()
+{
+    return ID;
+}
+
 

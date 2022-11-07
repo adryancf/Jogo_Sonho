@@ -8,6 +8,7 @@ Inimigo::Inimigo(Jogador* j):Personagens(50, 20, Vector2f(1.f, 1.f))
     corpo.setFillColor(Color::Blue);
     jogador = j;
     movRandom = rand() % 4;
+    ID = 2;
 }
 
 
@@ -82,4 +83,8 @@ void Inimigo::movAleatorio()
 void Inimigo::Executar()
 {
     Mover();
+}
+
+void Inimigo::Colisao(Entidade* entidade)
+{
 }

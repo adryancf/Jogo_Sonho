@@ -4,12 +4,18 @@ Jogo::Jogo() : Ente(), pEvento(pEvento->getGerenciadorEvento())
 {
 
     //Alocando ele dinamicâmente (O NEW É O EQUIVALENTE AO MALLOC EM C)
+    //Jogador1 = new Jogador(pGrafico);
     Jogador1 = new Jogador(pGrafico);
+    
     fase1 = new Fase(Jogador1, pGrafico);
+    
     pEvento->setJogador(Jogador1);
     
     //CONHENCENDO A LISTA DE ENTIDADES
-    l1 = fase1->getListaEntidades();
+    lista_personagem = fase1->getListaPersonagem();
+    lista_obstaculos = fase1->getListaObstaculos();
+
+    pColisoes = new GerenciadorColisoes(lista_personagem, lista_obstaculos);
 
     Executar();
 }
@@ -27,12 +33,13 @@ void Jogo::Executar()
     {
         pEvento->Executar();
         pGrafico->limpar();
-        for (int i = 0; i < l1->listEnt.getTamanho(); i++)
+        for (int i = 0; i < lista_personagem->listEnt.getTamanho(); i++)
         {
-            Entidade* aux = l1->listEnt.getItem(i);
+            Entidade* aux = lista_personagem->listEnt.getItemLista(i);
             aux->Executar();
             pGrafico->desenhar(aux->getCorpo());
         }
+        pColisoes->verificaColisoes();
         pGrafico->mostrar();
                
     }

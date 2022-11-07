@@ -10,7 +10,9 @@
 class Fase: public Ente
 {
 private:
-	ListaEntidades* lista_entidades;
+	ListaEntidades* lista_personagem;
+	ListaEntidades* lista_obstaculos;
+
 	Inimigo* i1;
 	Jogador* j1;
 
@@ -23,8 +25,8 @@ public:
 
 	void Executar();
 
-	ListaEntidades* getListaEntidades();
-
+	ListaEntidades* getListaPersonagem();
+	ListaEntidades* getListaObstaculos();
 
 	
 

@@ -35,10 +35,18 @@ sf::Vector2f GerenciadorColisoes::calculaColisoes(Entidade* e1, Entidade* e2)
 	return colisao;
 }
 
-bool GerenciadorColisoes::verificaColisoes()
+void GerenciadorColisoes::verificaColisoes()
 {
 	//COLISAO ENTRE PERSONAGEM E JOGADOR (FAZER ISSO)
-
+	Entidade* Jogador1 = lista_personagens->listEnt.getPrimeiro()->getItem();
+	for (int j = 1; j < lista_personagens->listEnt.getTamanho(); j++) {
+		Entidade* aux2 = lista_personagens->listEnt.getItemLista(j);
+		sf::Vector2f Colisao = calculaColisoes(Jogador1, aux2);
+		if (Colisao.x < 0.0f && Colisao.y < 0.0f)
+			Jogador1->Colisao(aux2);
+	}
+	
+	/*
 	//Verifico a colisão entre os personagens
 	for (int i = 0; i < lista_personagens->listEnt.getTamanho(); i++)
 	{
@@ -50,21 +58,21 @@ bool GerenciadorColisoes::verificaColisoes()
 				return true;
 		}
 	}
+	*/
 		
 	//Verifico a colisão entre os personagens e os obstaculos
 	for (int i = 0; i < lista_personagens->listEnt.getTamanho(); i++)
 	{
-		Entidade* aux1 = lista_personagens->listEnt.getItem(i);
+		Entidade* aux1 = lista_personagens->listEnt.getItemLista(i);
 		for (int j = 0; j < lista_obstaculos->listEnt.getTamanho(); j++) {
-			Entidade* aux2 = lista_obstaculos->listEnt.getItem(j);
+			Entidade* aux2 = lista_obstaculos->listEnt.getItemLista(j);
 			sf::Vector2f Colisao = calculaColisoes(aux1, aux2);
 			if (Colisao.x < 0.0f && Colisao.y < 0.0f)
-				return true;
+				aux1->Colisao(aux2);
 		}
 	}
 
 	//O retorno caso haja colisao é para uma das entidades, que recebe como parametro a entidade colidida e decide o que fazer conhecendo o tipo dessa entidade(
 
 
-	return false;
 }

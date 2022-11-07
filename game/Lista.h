@@ -19,12 +19,12 @@ public:
 	{
 	}
 
-	const Elemento<TIPO>* getUltimo() { return pUltimo; }
-	const Elemento<TIPO>* getPrimeiro() { return pPrimeiro; }
+	Elemento<TIPO>* getUltimo() { return pUltimo; }
+	Elemento<TIPO>* getPrimeiro() { return pPrimeiro; }
 
 	const int getTamanho() { return tamanho; }
 
-	TIPO* getItem(int posicao)
+	TIPO* getItemLista(int posicao)
 	{
 		Elemento<TIPO>* aux = pPrimeiro;
 		if (posicao == 0)
