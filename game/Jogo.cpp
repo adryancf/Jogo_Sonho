@@ -5,9 +5,9 @@ Jogo::Jogo() : Ente(), pEvento(pEvento->getGerenciadorEvento())
 
     //Alocando ele dinamicâmente (O NEW É O EQUIVALENTE AO MALLOC EM C)
     //Jogador1 = new Jogador(pGrafico);
-    Jogador1 = new Jogador(pGrafico);
+    Jogador1 = new Jogador();
     
-    fase1 = new Fase(Jogador1, pGrafico);
+    fase1 = new Fase(Jogador1);
     
     pEvento->setJogador(Jogador1);
     
@@ -15,7 +15,7 @@ Jogo::Jogo() : Ente(), pEvento(pEvento->getGerenciadorEvento())
     lista_personagem = fase1->getListaPersonagem();
     lista_obstaculos = fase1->getListaObstaculos();
 
-    pColisoes = new GerenciadorColisoes(lista_personagem, lista_obstaculos);
+    //pColisoes = new GerenciadorColisoes(lista_personagem, lista_obstaculos);
 
     Executar();
 }
@@ -39,7 +39,7 @@ void Jogo::Executar()
             aux->Executar();
             pGrafico->desenhar(aux->getCorpo());
         }
-        pColisoes->verificaColisoes();
+        //pColisoes->verificaColisoes();
         pGrafico->mostrar();
                
     }

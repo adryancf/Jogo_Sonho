@@ -20,7 +20,7 @@ private:
 	void criar_entidades();
 
 public:
-	Fase(Jogador *j, GerenciadorGrafico* pG);
+	Fase(Jogador *j);
 	~Fase();
 
 	void Executar();

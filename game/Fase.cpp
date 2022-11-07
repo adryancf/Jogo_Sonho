@@ -1,6 +1,6 @@
 #include "Fase.h"
 
-Fase::Fase(Jogador *j, GerenciadorGrafico* pG): Ente(pG)
+Fase::Fase(Jogador *j)
 {
 	j1 = j;
 

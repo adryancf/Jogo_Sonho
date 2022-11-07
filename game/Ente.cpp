@@ -3,6 +3,7 @@
 Ente::Ente(): pGrafico(pGrafico->getGerenciadorGrafico())
 {
 	pGrafico->getWindow()->setVerticalSyncEnabled(true);
+	std::cout << "CRIEI A JANELA!!" << endl;
 }
 
 Ente::Ente(GerenciadorGrafico* pG)
