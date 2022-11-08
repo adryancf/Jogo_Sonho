@@ -2,6 +2,9 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
+#define RESOLUCAO_X 1280
+#define RESOLUCAO_Y 720
+
 /* PADRAO DE PROJETO SINGLETON */
 //Esse padrão de projeto consiste em garantir que a classe GerenciadorGrafico só tenha uma instância
 //Uma construtora privada -> NENHUMA OUTRA CLASSE CONSEGUE INSTANCIAR ESSA CLASSE

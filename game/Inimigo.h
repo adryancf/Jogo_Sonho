@@ -1,6 +1,5 @@
 #pragma once
 #include <cmath>
-#include <time.h>
 #include "Jogador.h"
 
 

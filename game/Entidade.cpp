@@ -1,9 +1,9 @@
 #include "Entidade.h"
 
-Entidade::Entidade(): corpo(Vector2f(100.f, 100.f))
+Entidade::Entidade(): corpo(Vector2f(70.f, 70.f))
 {
     //Posicao padrao de todas as entidades
-    corpo.setPosition(Vector2f(30.f, 500.f));
+    corpo.setPosition(Vector2f(200.f, 500.f));
     ID = 0;
 }
 
@@ -15,6 +15,11 @@ RectangleShape Entidade::getCorpo(){ return corpo; }
 const int Entidade::getId()
 {
     return ID;
+}
+
+void Entidade::setPosEntidade(Vector2f pos)
+{
+    corpo.setPosition(pos);
 }
 
 

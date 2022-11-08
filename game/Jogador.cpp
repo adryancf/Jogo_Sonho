@@ -7,7 +7,6 @@ Jogador::Jogador():Personagens()
     
 }
 
-
 Jogador::Jogador(GerenciadorGrafico* pG)
 {
     q_vida = 3;
@@ -20,26 +19,23 @@ Jogador::~Jogador(){}
 
 void Jogador::andar(int i)
 {
-    std::cout << i << endl;
-    if (i == 1)
-    {
-        corpo.move(Vector2f(0, -speed.y));
-    }
-    else if (i == 2)
+    
+    std::cout << "Posicao em x:" << corpo.getPosition().x << endl;
+    std::cout << "Posicao em y:" << corpo.getPosition().y << endl;
+    
+    verificaPodeAndar();
+
+    if (i == 2 && podeAndarEsquerda)
     {
         corpo.move(Vector2f(-speed.x, 0));
     }
-
-    else if (i == 3)
-    {
-        corpo.move(Vector2f(0, speed.y));
-    }
-    else if (i == 4)
+    else if (i == 4 && podeAndarDireita)
     {
         corpo.move(Vector2f(speed.x, 0));
     }
-
+  
 }
+
 
 void Jogador::Mover()
 {
@@ -53,15 +49,21 @@ void Jogador::Executar()
 
 void Jogador::Colisao(Entidade* entidade)
 {
+    std::cout << "COLIDIU" << endl;
+
     //Se for com inimigo
     if (entidade->getId() == 2)
     {
+        Personagens* Inimigo = static_cast<Personagens*>(entidade);
+        float df = verificaFuturoMov(Vector2f(-50.f, 0.f));
         //Se enconstar no inimigo o jogador vai para tras
-        this->getCorpo().move(Vector2f(-0.05f, 0.0f));
-
-        //Implementar dano
-
-
+        if (podeAndarEsquerda) {
+            corpo.move(Vector2f(-50.0f, 0.0f));
+            Inimigo->movimentarPersonagem(Vector2f(50.f, 0.f));
+        }
+        else
+            corpo.move(Vector2f(-50.0f + df, 0.0f));
+            Inimigo->movimentarPersonagem(Vector2f(50.f, 0.f));
     }
 
     //Se for com plataforma

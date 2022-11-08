@@ -61,6 +61,8 @@ void GerenciadorColisoes::verificaColisoes()
 	}
 	*/
 
+	/*
+
 	//Verifico a colisão entre os personagens e os obstaculos
 	for (int i = 0; i < lista_personagens->listEnt.getTamanho(); i++)
 	{
@@ -72,5 +74,5 @@ void GerenciadorColisoes::verificaColisoes()
 				aux1->Colisao(aux2);
 		}
 	}
-	
+	*/
 }

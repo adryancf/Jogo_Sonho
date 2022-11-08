@@ -13,6 +13,8 @@ Jogo::Jogo() : Ente(), pEvento(pEvento->getGerenciadorEvento())
     lista_personagem = fase1->getListaPersonagem();
     lista_obstaculos = fase1->getListaObstaculo();
 
+    pColisoes = new GerenciadorColisoes(lista_personagem, lista_obstaculos);
+
     Executar();
 }
 
@@ -35,6 +37,7 @@ void Jogo::Executar()
             aux->Executar();
             pGrafico->desenhar(aux->getCorpo());
         }
+        pColisoes->verificaColisoes();
         pGrafico->mostrar();
                
     }
