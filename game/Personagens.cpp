@@ -1,6 +1,6 @@
 #include "Personagens.h"
 
-Personagens::Personagens(const int vida, const int dano, Vector2f velocidade): podeAndarDireita(true), podeAndarEsquerda(true), gravidade(true), noChao(false)
+Personagens::Personagens(const int vida, const int dano, Vector2f velocidade): podeAndarDireita(true), podeAndarEsquerda(true)
 {
     /* NAO SEI SE PRECISA */
     this->vida = vida;
@@ -13,10 +13,6 @@ Personagens::~Personagens()
 {
 }
 
-void Personagens::movimentarPersonagem(Vector2f mov)
-{
-    corpo.move(mov);
-}
 
 const int Personagens::getVida() const
 {
@@ -45,14 +41,6 @@ void Personagens::verificaPodeAndar()
         podeAndarDireita = true;
         podeAndarEsquerda = true;
     }
-}
-
-
-
-void Personagens::movGravidade()
-{
-    if(gravidade)
-        corpo.move(Vector2f(0.0f, GRAVIDADE));
 }
 
 

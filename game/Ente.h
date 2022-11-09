@@ -24,8 +24,6 @@ public:
 	void setWindow(GerenciadorGrafico* pG);
 	GerenciadorGrafico* getGrafico();
 
-	
-	
 	virtual void Executar() = 0;
 	void Print();
 

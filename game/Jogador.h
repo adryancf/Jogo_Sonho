@@ -12,11 +12,6 @@ private:
 
 public:
     Jogador();
-
-    //alterar (colocar esse parâmetro na entidade)
-    Jogador(GerenciadorGrafico* pG);
-
-
     ~Jogador();
 
     void andar(int i);

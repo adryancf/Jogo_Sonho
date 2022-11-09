@@ -1,8 +1,6 @@
 #pragma once
 #include "Entidade.h"
 
-#define GRAVIDADE 1.0f
-
 class Personagens :
     public Entidade
 {
@@ -19,17 +17,10 @@ protected:
     bool podeAndarDireita;
     bool podeAndarEsquerda;
 
-    bool gravidade;
-    bool noChao;
-
 
 public:
-    Personagens(const int vida = 100, const int dano = 10, Vector2f velocidade = Vector2f(10.0f, 10.0f));
+    Personagens(const int vida = 100, const int dano = 10, Vector2f velocidade = Vector2f(5.0f, 0.0f));
     ~Personagens();
-
-    void movimentarPersonagem(Vector2f mov);
-
-    /* Nao precicso de set pois inicializo os argumentos na construtora da classe herdada */
 
     //void setVida();
     const int getVida() const;
@@ -39,12 +30,7 @@ public:
 
     //Verifica se o Personagem pode Andar
     void verificaPodeAndar();
-    
-    //Verifica se o Personagem pode dar dano
-
-    void movGravidade();
-  
-    
+   
     virtual void Executar() = 0;
     virtual void Mover() = 0;
     virtual void Colisao(Entidade* entidade) = 0;

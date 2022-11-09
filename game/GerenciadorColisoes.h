@@ -4,7 +4,9 @@
 #include "ListaEntidades.h"
 #include "Personagens.h"
 
+#include <utility>
 #include <cmath>
+#include <iostream>
 
 class GerenciadorColisoes
 {

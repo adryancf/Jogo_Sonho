@@ -4,9 +4,11 @@ Jogo::Jogo() : Ente(), pEvento(pEvento->getGerenciadorEvento())
 {
 
     //Alocando ele dinamicâmente (O NEW É O EQUIVALENTE AO MALLOC EM C)
-    //Jogador1 = new Jogador(pGrafico);
+    
     Jogador1 = new Jogador();
+
     fase1 = new Fase(Jogador1);
+
     pEvento->setJogador(Jogador1);
     
     //CONHENCENDO A LISTA DE ENTIDADES
@@ -20,7 +22,13 @@ Jogo::Jogo() : Ente(), pEvento(pEvento->getGerenciadorEvento())
 
 Jogo::~Jogo()
 {
-    delete Jogador1;
+    //Jogador vai ser deletado na destrutora da lista
+
+    delete fase1;
+    delete pColisoes;
+
+    lista_obstaculos = nullptr;
+    lista_personagem = nullptr;
 }
 
 void Jogo::Executar()
@@ -30,7 +38,17 @@ void Jogo::Executar()
     while (pGrafico->isWindowOpen())
     {
         pEvento->Executar();
+
         pGrafico->limpar();
+
+        for (int j = 0; j < lista_obstaculos->listEnt.getTamanho(); j++)
+        {
+            Entidade* aux = lista_obstaculos->listEnt.getItemLista(j);
+            aux->Executar();
+            pGrafico->desenhar(aux->getCorpo());
+        }
+
+        //Implementar isso na classe da lista (se tiver tempo)
         for (int i = 0; i < lista_personagem->listEnt.getTamanho(); i++)
         {
             Entidade* aux = lista_personagem->listEnt.getItemLista(i);
@@ -38,15 +56,10 @@ void Jogo::Executar()
             pGrafico->desenhar(aux->getCorpo());
         }
         
-        for (int j = 0; j < lista_obstaculos->listEnt.getTamanho(); j++)
-        {
-            Entidade* aux = lista_obstaculos->listEnt.getItemLista(j);
-            aux->Executar();
-            pGrafico->desenhar(aux->getCorpo());
-        }
         
-
+        
         pColisoes->verificaColisoes();
+
         pGrafico->mostrar();
                
     }

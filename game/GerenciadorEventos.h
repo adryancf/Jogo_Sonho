@@ -14,9 +14,13 @@ class GerenciadorEvento
 private:
 	GerenciadorGrafico* pGrafico;
 	Jogador* Jogador1;
+
+	int tecla_pres;
 	
 	static GerenciadorEvento* pEvento;
 	GerenciadorEvento();
+
+
 public:
 	~GerenciadorEvento();
 

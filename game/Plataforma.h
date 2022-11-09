@@ -12,8 +12,6 @@ public:
     Plataforma();
     ~Plataforma();
 
-    void setColor(Color cor);
-
     virtual void Executar();
     virtual void Colisao(Entidade* entidade);
 

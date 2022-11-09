@@ -19,11 +19,6 @@ Plataforma::~Plataforma()
 {
 }
 
-void Plataforma::setColor(Color cor)
-{
-	corpo.setFillColor(cor);
-}
-
 void Plataforma::Executar()
 {
 }
