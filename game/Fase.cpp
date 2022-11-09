@@ -8,6 +8,7 @@ Fase::Fase(Jogador *j)
 	lista_personagem = new ListaEntidades;
 	lista_personagem->listEnt.push(j1);
 	
+	lista_obstaculos = new ListaEntidades;
 	//INICIALIZA as entidades da fase
 	criar_entidades();
 }
@@ -25,6 +26,14 @@ void Fase::Executar()
 
 void Fase::criar_entidades()
 {
+
+	Plataforma* p1 = new Plataforma(Vector2f(500.f, 40.f), Vector2f(0.f, 620.f));
+	
+	lista_obstaculos->listEnt.push(p1);
+
+	
+	//lista_obstaculos->listEnt.push(p2);
+
 	//Implementação de mais de um inimigo (terminar depois)
 
 	/*/

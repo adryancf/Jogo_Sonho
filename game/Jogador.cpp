@@ -19,10 +19,8 @@ Jogador::~Jogador(){}
 
 void Jogador::andar(int i)
 {
-    
     std::cout << "Posicao em x:" << corpo.getPosition().x << endl;
     std::cout << "Posicao em y:" << corpo.getPosition().y << endl;
-    
     verificaPodeAndar();
 
     if (i == 2 && podeAndarEsquerda)
@@ -39,12 +37,14 @@ void Jogador::andar(int i)
 
 void Jogador::Mover()
 {
-   
+    movGravidade();
 }
 
 void Jogador::Executar()
 {
     Mover();
+    if (colisao == false)
+        gravidade = true;
 }
 
 void Jogador::Colisao(Entidade* entidade)
@@ -55,28 +55,23 @@ void Jogador::Colisao(Entidade* entidade)
     if (entidade->getId() == 2)
     {
         Personagens* Inimigo = static_cast<Personagens*>(entidade);
-        float df = verificaFuturoMov(Vector2f(-50.f, 0.f));
         //Se enconstar no inimigo o jogador vai para tras
         if (podeAndarEsquerda) {
             corpo.move(Vector2f(-50.0f, 0.0f));
             Inimigo->movimentarPersonagem(Vector2f(50.f, 0.f));
         }
         else
-            corpo.move(Vector2f(-50.0f + df, 0.0f));
+            corpo.move(Vector2f(-50.0f, 0.0f));
             Inimigo->movimentarPersonagem(Vector2f(50.f, 0.f));
     }
 
-    //Se for com plataforma
-    else if (entidade->getId() == 3)
+    if (entidade->getId() == 3)
     {
-
-
+        gravidade = false;
+        noChao = true;
     }
 
-    else if (entidade->getId() == 4)
-    {
-
-    }
+    
 }
 
 

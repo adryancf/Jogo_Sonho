@@ -53,6 +53,7 @@ void Inimigo::movAleatorio()
     /* O movimento aleatorio se da por um valor sorteado entre 1 e 4 a cada 1s */
 
     verificaPodeAndar();
+    movGravidade();
 
     if (movRandom == 1 && podeAndarDireita)
         corpo.move(speed.x, 0.f);

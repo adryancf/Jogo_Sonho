@@ -3,6 +3,8 @@
 #include "Jogador.h"
 #include "Inimigo.h"
 
+#include "Plataforma.h"
+
 #include "ListaEntidades.h"
 #include "Ente.h"
 

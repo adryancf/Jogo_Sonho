@@ -37,6 +37,15 @@ void Jogo::Executar()
             aux->Executar();
             pGrafico->desenhar(aux->getCorpo());
         }
+        
+        for (int j = 0; j < lista_obstaculos->listEnt.getTamanho(); j++)
+        {
+            Entidade* aux = lista_obstaculos->listEnt.getItemLista(j);
+            aux->Executar();
+            pGrafico->desenhar(aux->getCorpo());
+        }
+        
+
         pColisoes->verificaColisoes();
         pGrafico->mostrar();
                

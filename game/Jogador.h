@@ -2,6 +2,7 @@
 #include "Personagens.h"
 #include <time.h>
 
+
 class Jogador :
     public Personagens
 {

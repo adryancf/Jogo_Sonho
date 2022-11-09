@@ -1,6 +1,7 @@
 #pragma once
 #include "Entidade.h"
 
+#define GRAVIDADE 1.0f
 
 class Personagens :
     public Entidade
@@ -17,6 +18,9 @@ protected:
 
     bool podeAndarDireita;
     bool podeAndarEsquerda;
+
+    bool gravidade;
+    bool noChao;
 
 
 public:
@@ -35,10 +39,12 @@ public:
 
     //Verifica se o Personagem pode Andar
     void verificaPodeAndar();
-    float verificaFuturoMov(Vector2f mov);
-    //Verifica se o Personagem pode dar dano
     
+    //Verifica se o Personagem pode dar dano
 
+    void movGravidade();
+  
+    
     virtual void Executar() = 0;
     virtual void Mover() = 0;
     virtual void Colisao(Entidade* entidade) = 0;

@@ -1,6 +1,6 @@
 #include "Personagens.h"
 
-Personagens::Personagens(const int vida, const int dano, Vector2f velocidade): podeAndarDireita(true), podeAndarEsquerda(true)
+Personagens::Personagens(const int vida, const int dano, Vector2f velocidade): podeAndarDireita(true), podeAndarEsquerda(true), gravidade(true), noChao(false)
 {
     /* NAO SEI SE PRECISA */
     this->vida = vida;
@@ -40,30 +40,23 @@ void Personagens::verificaPodeAndar()
         podeAndarDireita = false;
         podeAndarEsquerda = true;
     }
+ 
     else {
         podeAndarDireita = true;
         podeAndarEsquerda = true;
     }
 }
 
-float Personagens::verificaFuturoMov(Vector2f mov)
+
+
+void Personagens::movGravidade()
 {
-    //verifica se não está na borda
-    Vector2f pos_personagem = corpo.getPosition();
-    if (pos_personagem.x + mov.x <= 0.0f) {
-        podeAndarEsquerda = false;
-        podeAndarDireita = true;
-        return ((pos_personagem.x + mov.x) * -1.0f);
-    }
-    else if (pos_personagem.x + mov.x >= BORDA_X) {
-        podeAndarDireita = false;
-        podeAndarEsquerda = true;
-    }
-    else {
-        podeAndarDireita = true;
-        podeAndarEsquerda = true;
-    }
-
-
+    if(gravidade)
+        corpo.move(Vector2f(0.0f, GRAVIDADE));
 }
+
+
+
+
+
 

@@ -11,7 +11,7 @@ protected:
 	//Toda entidade tem um shape
 	RectangleShape corpo;
 	int ID;
-
+	bool colisao;
 
 public:
 	Entidade();
@@ -22,6 +22,7 @@ public:
 	//Retorna o shape da entidade
 	RectangleShape getCorpo();
 	const int getId();
+	void setColisao(bool a);
 
 	void setPosEntidade(Vector2f pos);
 	virtual void Executar() = 0;

@@ -2,6 +2,7 @@
 
 #include "SFML/Graphics.hpp"
 #include "ListaEntidades.h"
+#include "Personagens.h"
 
 #include <cmath>
 
