@@ -1,5 +1,10 @@
 #include "Jogador.h"
 
+void Jogador::iniciar()
+{
+
+}
+
 Jogador::Jogador():Personagens()
 {
     q_vida = 3;

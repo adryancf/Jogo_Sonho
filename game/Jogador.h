@@ -8,7 +8,10 @@ class Jogador :
 {
 private:
     //atributo especificos (?)
-    //Projetil/arma
+    
+    sf::Texture tex_jogador;
+    sf::Sprite sprite_jogador;
+    void iniciar();
 
 public:
     Jogador();

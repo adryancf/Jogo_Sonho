@@ -12,6 +12,7 @@ class Entidade : public Ente
 protected:
 	//Toda entidade tem um shape
 	RectangleShape corpo;
+ 
 	int ID;
 
 	bool colisao;

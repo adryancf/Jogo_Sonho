@@ -37,9 +37,6 @@ sf::Vector2f GerenciadorColisoes::calculaColisoes(Entidade* e1, Entidade* e2)
 
 void GerenciadorColisoes::verificaColisoes()
 {
-
-	
-
 	//COLISAO ENTRE PERSONAGEM E JOGADOR (FAZER ISSO)
 	Personagens* Jogador1 = static_cast <Personagens*>(lista_personagens->listEnt.getPrimeiro()->getItem());
 	for (int j = 1; j < lista_personagens->listEnt.getTamanho(); j++) {
@@ -74,13 +71,11 @@ void GerenciadorColisoes::verificaColisoes()
 			{
 				vector_colisoes.push_back(make_pair(aux1, aux2));
 			}
-		
+			
 			aux1->setColisao(false);
 			aux2->setColisao(false);
 			
 		}
-
-
 	}
 
 	for (int i = 0; i < vector_colisoes.size(); i++) {
