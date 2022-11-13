@@ -5,3 +5,4 @@ Problemas:
 	A maioria, se não todos, dos métodos Executar() não realiza tarefa nenhuma;
 	O menu é a parte gráfica de entrada, é no Jogo que deve ficar a inicialização;
 	É interessante criar uma main separada, o menu não é a main
+	Problema no fullscreen
