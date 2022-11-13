@@ -2,7 +2,7 @@
 
 Fase::Fase(Jogador *j)
 {
-	j1 = j;
+	j1 = j; //Ponteiro para o jogador
 
 	/* CRIA A LISTA DE ENTIDADES DA FASE */
 	lista_personagem = new ListaEntidades;
@@ -20,7 +20,7 @@ Fase::~Fase()
 	delete lista_personagem;
 	delete lista_obstaculos;
 
-	//Deletando ponteiros
+	//Aterrando ponteiros
 	i1 = nullptr;
 	j1 = nullptr;
 }
@@ -31,12 +31,20 @@ void Fase::Executar()
 
 void Fase::criar_entidades()
 {
-
+	//Criando as N plataformas
 	Plataforma* p1 = new Plataforma(Vector2f(700.f, 40.f), Vector2f(0.f, 620.f));
 	lista_obstaculos->listEnt.push(p1);
 
 	Plataforma* p2 = new Plataforma(Vector2f(650.f, 40.f), Vector2f(1280.f - 650.f, 400.f));
 	lista_obstaculos->listEnt.push(p2);
+
+	//Criando os N obstáculos
+
+	
+
+	//Criando os N inimigos
+
+
 
 
 	//Implementação de mais de um inimigo (terminar depois)
@@ -68,6 +76,7 @@ void Fase::criar_entidades()
 	}
 	*/
 	
+	//Aqui está errado pq não é o INIMIGO que deve ser instanciado
 	i1 = new Inimigo(j1);
 	i1->setColor(Color::Yellow);
 	lista_personagem->listEnt.push(i1);

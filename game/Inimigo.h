@@ -6,8 +6,8 @@
 #define RAIO_X 150.0f
 #define RAIO_Y 150.0f
 
-class Inimigo :
-    public Personagens
+//Depois devemos adicionar um virtual antes do public
+class Inimigo : public Personagens
 {
 private:
     Jogador* jogador;
@@ -25,7 +25,8 @@ public:
     
     //JOGADOR FORA DA RAND
     void movAleatorio();
-            
+           
+    //Quando colocar o virtual antes do public esses métodos devem ser comentados
     virtual void Mover();
     virtual void Executar();
     virtual void Colisao(Entidade* entidade);

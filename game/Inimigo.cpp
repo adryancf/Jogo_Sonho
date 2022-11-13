@@ -1,5 +1,5 @@
 
-#include "../../Projeto_Jogo/game/Inimigo.h"
+#include "Inimigo.h"
 
 
 Inimigo::Inimigo(Jogador* j):Personagens(50, 20, Vector2f(1.f, 0.f))
@@ -15,6 +15,8 @@ Inimigo::~Inimigo()
 {
 }
 
+//O inimigo é abstrata! Cada mob deve ter sua própria função mover!
+//dps de adicionar o virtual devemos comentar
 void Inimigo::Mover()
 {
     //Aplica a gravidade
@@ -23,7 +25,7 @@ void Inimigo::Mover()
     Vector2f posJogador = jogador->getCorpo().getPosition();
     Vector2f posInimigo = corpo.getPosition();
 
-    /* função fabs : MODULO DA DIFERENÇA */
+    //função fabs : MODULO DA DIFERENÇA
     
     //Isso so vai acontecer se o jogador bater pela primeira vez no inimigo -> IMPLEMENTAR MAIS PRA FRENTE
     //VERIFICA SE O JOGADOR ESTA NO RAIO DE DETECÇÃO
@@ -32,8 +34,6 @@ void Inimigo::Mover()
     }
     else
         movAleatorio();
-    
-
 }
 
 void Inimigo::PersegueJogador(Vector2f posJogador, Vector2f posInimigo)
@@ -68,12 +68,13 @@ void Inimigo::movAleatorio()
 }
 
 
-
+//dps de adicionar o virtual devemos comentar
 void Inimigo::Executar()
 {
     Mover();
 }
 
+//dps de adicionar o virtual devemos comentar
 void Inimigo::Colisao(Entidade* entidade)
 {
     cout << "INIMIGO COLIDIU" << entidade->getId() << endl;
