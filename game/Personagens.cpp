@@ -1,12 +1,13 @@
 #include "Personagens.h"
 
-Personagens::Personagens(const int vida, const int dano, Vector2f velocidade): podeAndarDireita(true), podeAndarEsquerda(true)
+Personagens::Personagens(const int q_vida, const int dano): 
+    podeAndarDireita(true), 
+    podeAndarEsquerda(true),
+    olhandoDireita(false),
+    olhandoEsquerda(false)
 {
-    /* NAO SEI SE PRECISA */
-    this->vida = vida;
     this->dano = dano;
-    this->speed = velocidade;
-    this->q_vida = 1;
+    this->q_vida = q_vida;
 }
 
 Personagens::~Personagens()
@@ -14,9 +15,14 @@ Personagens::~Personagens()
 }
 
 
+void Personagens::setVida(int q)
+{
+    this->q_vida = q;
+}
+
 const int Personagens::getVida() const
 {
-    return vida;
+    return q_vida;
 }
 
 const int Personagens::getDano() const

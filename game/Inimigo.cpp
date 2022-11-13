@@ -2,8 +2,11 @@
 #include "Inimigo.h"
 
 
-Inimigo::Inimigo(Jogador* j):Personagens(50, 20, Vector2f(1.f, 0.f))
+Inimigo::Inimigo(Jogador* j):Personagens()
 {
+
+    setVelocidade(Vector2f(1.0f, 0.0f));
+
     corpo.setPosition(Vector2f(500.f, 150.f));
     jogador = j;
     movRandom = rand() % 4;
@@ -75,8 +78,8 @@ void Inimigo::Executar()
 }
 
 //dps de adicionar o virtual devemos comentar
-void Inimigo::Colisao(Entidade* entidade)
+void Inimigo::Colisao(Entidade* entidade, Vector2f inter_colisao)
 {
-    cout << "INIMIGO COLIDIU" << entidade->getId() << endl;
+    corrigeColisoes(entidade, inter_colisao);
     verificaColisaoPlataforma(entidade);
 }

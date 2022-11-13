@@ -16,3 +16,7 @@ Caixa::Caixa(const sf::Vector2f tam, const sf::Vector2f pos)
 Caixa::~Caixa()
 {
 }
+
+void Caixa::Colisao(Entidade* entidade, Vector2f inter_colisao)
+{
+}

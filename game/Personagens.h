@@ -5,23 +5,21 @@ class Personagens : public Entidade
 {
 protected:
 
-    int vida;
+    //ATRIBUTOS COMUNS A TODOS OS PERSONAGENS
     int dano;
     int q_vida;
 
-    //Ideia para considerar quantidade de vidas: CRIAR uma classe vida, que contem o valor da vida. 
-
-    sf::Vector2f speed;
-
+    // CONTROLE DO MOVIMENTO
     bool podeAndarDireita;
+    bool olhandoDireita;
     bool podeAndarEsquerda;
-
+    bool olhandoEsquerda;
 
 public:
-    Personagens(const int vida = 100, const int dano = 10, Vector2f velocidade = Vector2f(5.0f, 0.0f));
+    Personagens(const int q_vida = 5, const int dano = 10);
     ~Personagens();
 
-    //void setVida();
+    void setVida(int q);
     const int getVida() const;
 
     //void setDano();
@@ -32,7 +30,7 @@ public:
    
     virtual void Executar() = 0;
     virtual void Mover() = 0;
-    virtual void Colisao(Entidade* entidade) = 0;
+    virtual void Colisao(Entidade* entidade, Vector2f inter_colisao) = 0;
 
     //metodo -> atualizar vida (implementar)
 };

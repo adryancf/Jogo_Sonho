@@ -11,6 +11,9 @@ protected:
 	//Toda entidade tem um shape
 	RectangleShape corpo;
  
+	//UTIL PARA O CALCULO DA GRAVIDADE
+	sf::Vector2f speed;
+
 	int ID;
 
 	bool colisao;
@@ -22,6 +25,11 @@ public:
 	Entidade();
 	~Entidade();
 
+	//ATRIBUTOS
+	void setVelocidade(Vector2f velocidade);
+	Vector2f* getVelocidade();
+
+
 	//CORPO
 	RectangleShape getCorpo();
 	void setColor(sf::Color cor);
@@ -32,10 +40,11 @@ public:
 	//COLISAO E GRAVIDADE
 	void setColisao(bool a);
 	void movGravidade();
+	void corrigeColisoes(Entidade* a, Vector2f inter);
 	void verificaColisaoPlataforma(Entidade* e);
 	
 	virtual void Executar() = 0;
-	virtual void Colisao(Entidade* entidade) = 0;
+	virtual void Colisao(Entidade* entidade, Vector2f inter_colisao) = 0;
 
 
 

@@ -23,6 +23,6 @@ void Plataforma::Executar()
 {
 }
 
-void Plataforma::Colisao(Entidade* entidade)
+void Plataforma::Colisao(Entidade* entidade, Vector2f inter_colisao)
 {
 }

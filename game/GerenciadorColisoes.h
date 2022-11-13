@@ -22,6 +22,9 @@ public:
 	sf::Vector2f calculaColisoes(Entidade* ent1, Entidade* ent2);
 	void verificaColisoes();
 
+	void colisaoPersonagens();
+	void colisaoPersonagemObstaculos();
+
 
 };
 

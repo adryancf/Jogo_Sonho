@@ -1,8 +1,12 @@
 #include "Entidade.h"
 
-#define GRAVIDADE 99.8
+#define GRAVIDADE 9.98
 
-Entidade::Entidade(): corpo(Vector2f(70.f, 70.f)), Ente(), colisao(false), gravidade(true), noChao(false), isMoving(false)
+Entidade::Entidade(): corpo(Vector2f(70.f, 70.f)), Ente(),
+    colisao(false), 
+    gravidade(true), 
+    noChao(false), 
+    isMoving(false)
 {
     //Posicao padrao de todas as entidades
     corpo.setPosition(Vector2f(200.f, 500.f));
@@ -11,6 +15,16 @@ Entidade::Entidade(): corpo(Vector2f(70.f, 70.f)), Ente(), colisao(false), gravi
 
 
 Entidade::~Entidade(){}
+
+void Entidade::setVelocidade(Vector2f velocidade)
+{
+    speed = velocidade;
+}
+
+Vector2f* Entidade::getVelocidade()
+{
+    return &speed;
+}
 
 RectangleShape Entidade::getCorpo(){ return corpo; }
 
@@ -35,12 +49,57 @@ void Entidade::movGravidade()
         gravidade = true;
 
     if (gravidade) {
-        //formula da gravidade
-        float velocidade = 0;
-        velocidade += (GRAVIDADE * GerenciadorGrafico::dt);
-        corpo.move(Vector2f(0.0f, velocidade));
-        std::cout << velocidade << endl;
+
+        //Equação horária da posição
+        //speed.y = (speed.y * GerenciadorGrafico::dt) + ((GRAVIDADE * GerenciadorGrafico::dt)/2);
+        
+        //Manipulação da integração de Euler = (Velocidade + posicao atual) + acelaracao
+        //Velocidade + posicao atual = corpo.move -> ele soma a posicao atual mais o valor da velocidade
+
+        float acelaracao = GRAVIDADE * GerenciadorGrafico::dt;
+        speed.y += acelaracao;
+        
+        corpo.move(Vector2f(0.0f, speed.y));
+
+        //std::cout << speed.y << endl;
     }
+}
+
+
+void Entidade::corrigeColisoes(Entidade* a, Vector2f inter)
+{
+    // Codigo baseado na video aula do monitor Matheus Burda:
+    // https://www.youtube.com/watch?v=mxZMK7ZqFtE&list=PLSPev71NbUEBIQlT2QCd-gN6l_mNVw1cJ&index=9
+
+    Vector2f aPos = a->getCorpo().getPosition();
+    if (inter.x > inter.y) { // colisao em x
+        if (corpo.getPosition().x < aPos.x)
+        {
+            corpo.move(Vector2f(inter.x, 0.0f));
+        }
+
+        else
+        {
+            corpo.move(Vector2f(-inter.x, 0.0f));
+        }
+
+        speed.x = 0.0f;
+
+    }
+
+    else // colisao em y
+    {
+        if(corpo.getPosition().y < aPos.y)
+            corpo.move(Vector2f(0.f, inter.y));
+        
+        else
+            corpo.move(Vector2f(0.f, -inter.y));
+
+        //cout << corpo.getPosition().y << endl;
+        speed.y = 0.0f;
+    }
+
+
 }
 
 void Entidade::verificaColisaoPlataforma(Entidade* e)
@@ -50,6 +109,9 @@ void Entidade::verificaColisaoPlataforma(Entidade* e)
     {
         gravidade = false;
         noChao = true;
+
+        //Zera a velocidade
+        speed.y = 0.0f;
     }
 }
 
