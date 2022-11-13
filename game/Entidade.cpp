@@ -1,6 +1,6 @@
 #include "Entidade.h"
 
-Entidade::Entidade(): corpo(Vector2f(70.f, 70.f)), Ente(), colisao(false), gravidade(true), noChao(false)
+Entidade::Entidade(): corpo(Vector2f(70.f, 70.f)), Ente(), colisao(false), gravidade(true), noChao(false), isMoving(false)
 {
     //Posicao padrao de todas as entidades
     corpo.setPosition(Vector2f(200.f, 500.f));

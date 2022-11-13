@@ -1,0 +1,4 @@
+Problemas:
+	Os IDS estão implementados de uma maneira errada;
+	O jogador consegue entrar dentro da plataforma;
+	A colisão jogador/inimigo funciona somente da esquerda para direita!

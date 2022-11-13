@@ -6,8 +6,8 @@
 
 #define GRAVIDADE 1.0f
 
-//:pulic sf::Drawable (?)
-class Entidade : public Ente
+//derivando como virtual public
+class Entidade : virtual public Ente
 {
 protected:
 	//Toda entidade tem um shape
@@ -17,6 +17,7 @@ protected:
 	bool colisao;
 	bool gravidade;
 	bool noChao;
+	bool isMoving;
 
 public:
 	Entidade();

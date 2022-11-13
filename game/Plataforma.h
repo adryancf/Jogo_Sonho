@@ -14,8 +14,5 @@ public:
 
     virtual void Executar();
     virtual void Colisao(Entidade* entidade);
-
-
-
 };
 
