@@ -9,7 +9,8 @@
 #include "Ente.h"
 
 
-class Fase: virtual public Ente
+//Posteriormente talvez seja inteligente alterar para um virtual public
+class Fase: public Ente
 {
 private:
 	//ListaEntidades* lista_entidades;

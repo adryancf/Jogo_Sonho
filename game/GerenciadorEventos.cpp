@@ -41,29 +41,27 @@ void GerenciadorEvento::verificaTeclaPressionada(sf::Keyboard::Key tecla)
         pGrafico->fecharJanela();
     }
     else if (tecla == sf::Keyboard::A) {
-        Jogador1->andar(2);
+        //Jogador1->andar(2);
         tecla_pres = 1;
     }
     else if (tecla == sf::Keyboard::D) {
-        Jogador1->andar(4);
+        //Jogador1->andar(4);
         tecla_pres = 2;
     }
-    /*
+
     if (tecla_pres == 1)
         Jogador1->andar(2);
 
     if (tecla_pres == 2)
         Jogador1->andar(4);
- */           
+            
 }
 
 void GerenciadorEvento::verificaTeclaSolta(sf::Keyboard::Key tecla)
 {
     //VERIFICAR SE A TECLA FOR SOLTA E ALTERAR A FLAG
-    /*
     if (tecla == sf::Keyboard::A || tecla == sf::Keyboard::D)
         tecla_pres = 0;
-        */
 
 }
 

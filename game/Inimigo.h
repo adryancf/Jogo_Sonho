@@ -6,13 +6,16 @@
 #define RAIO_X 150.0f
 #define RAIO_Y 150.0f
 
-//Depois devemos adicionar um virtual antes do public
-class Inimigo : public Personagens
+class Inimigo :
+    public Personagens
 {
 private:
     Jogador* jogador;
     sf::Clock time;
     int movRandom;
+    //Futuramente uma sprite
+    //sf::Texture j_textura;
+    //sf::Sprite j_sprite;
 
 public:
     Inimigo(Jogador* j);
@@ -25,10 +28,13 @@ public:
     
     //JOGADOR FORA DA RAND
     void movAleatorio();
-           
-    //Quando colocar o virtual antes do public esses m�todos devem ser comentados
+            
     virtual void Mover();
     virtual void Executar();
-    virtual void Colisao(Entidade* entidade, Vector2f inter_colisao);
+    virtual void Colisao(Entidade* entidade);
+
+    //Futuramente talvez seja útil ter uma função que inicializa as variáveis
+    //void initVariables();
+    
 };
 

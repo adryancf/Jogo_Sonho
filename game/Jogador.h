@@ -8,10 +8,10 @@ class Jogador :
 {
 private:
     //atributo especificos (?)
-    
-    sf::Texture tex_jogador;
-    sf::Sprite sprite_jogador;
-    void iniciar();
+    //Projetil/arma
+    //Futuramente uma sprite
+    //sf::Texture j_textura;
+    //sf::Sprite j_sprite;
 
 public:
     Jogador();
@@ -21,6 +21,12 @@ public:
  
     virtual void Mover();
     virtual void Executar();
-    virtual void Colisao(Entidade* entidade, Vector2f inter_colisao);
+
+    //O jogador não está colidindo apropriadamente com a plataforma
+    virtual void Colisao(Entidade* entidade);
+
+    //Futuramente talvez seja útil ter uma função que inicializa as variáveis
+    //void initVariables();
+
 };
 

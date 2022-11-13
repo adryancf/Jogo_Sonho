@@ -1,4 +1,6 @@
 Problemas:
 	Os IDS estão implementados de uma maneira errada;
 	O jogador consegue entrar dentro da plataforma;
-	A colisão jogador/inimigo funciona somente da esquerda para direita!
+	A colisão jogador/inimigo funciona somente da esquerda para direita;
+	A maioria, se não todos, dos métodos Executar() não realiza tarefa nenhuma;
+	O menu é a parte gráfica de entrada, é no Jogo que deve ficar a inicialização;

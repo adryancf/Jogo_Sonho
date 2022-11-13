@@ -1,15 +1,10 @@
 #include "GerenciadorGrafico.h"
 
-#define RESOLUCAO_X 1280
-#define RESOLUCAO_Y 720
-
-
 GerenciadorGrafico* GerenciadorGrafico::pGrafico = nullptr;
-float GerenciadorGrafico::dt = 0;
+
 
 GerenciadorGrafico::GerenciadorGrafico():
-    window(new sf::RenderWindow(sf::VideoMode(RESOLUCAO_X, RESOLUCAO_Y), "Jogo")),
-    clock()
+    window(new sf::RenderWindow(sf::VideoMode(RESOLUCAO_X, RESOLUCAO_Y), "Jogo"))
 {
     if (window == nullptr) {
         std::cout << "Nao foi possivel criar uma janela gráfica!" << std::endl;
@@ -64,11 +59,3 @@ const bool GerenciadorGrafico::isWindowOpen()
 {
     return window->isOpen();
 }
-
-void GerenciadorGrafico::atualizaTempo()
-{
-    dt = clock.getElapsedTime().asSeconds();
-    clock.restart();
-
-}
-
