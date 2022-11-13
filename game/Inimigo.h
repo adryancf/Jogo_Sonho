@@ -6,6 +6,8 @@
 #define RAIO_X 150.0f
 #define RAIO_Y 150.0f
 
+//Esta classe deve ser virtual pura
+//Não vou alterar agora pq modifica o funcionamento da Fase (que também deve ser alterada)
 class Inimigo :
     public Personagens
 {

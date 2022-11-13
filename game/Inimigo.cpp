@@ -1,8 +1,8 @@
 
 #include "Inimigo.h"
 
-
-Inimigo::Inimigo(Jogador* j):Personagens(50, 20, Vector2f(1.f, 0.f))
+//Não tem mais dano
+Inimigo::Inimigo(Jogador* j) : Personagens(50, /*20,*/ Vector2f(1.f, 0.f))
 {
     corpo.setPosition(Vector2f(500.f, 150.f));
     jogador = j;

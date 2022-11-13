@@ -7,7 +7,7 @@ using namespace std;
 
 using namespace sf;
 
-
+/*
 int main()
 {
     RenderWindow window(VideoMode(800, 600), "Jogo");
@@ -58,3 +58,4 @@ int main()
 
     return 0;
 }
+*/

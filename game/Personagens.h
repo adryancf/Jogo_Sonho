@@ -40,7 +40,7 @@ public:
     virtual void Colisao(Entidade* entidade) = 0;
 
     //metodo -> atualizar vida (implementar)
-    //Cada personagem atualiza a vida a sua maneira
-    virtual void atualizarVida() = 0;
+    //Cada personagem atualiza a vida a sua maneira, neste momento comentada pq tem que alterar a classe toda
+    //virtual void atualizarVida() = 0;
 };
 
