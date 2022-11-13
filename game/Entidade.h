@@ -4,8 +4,6 @@
 #define BORDA_X 1210.0
 #define BORDA_Y 650.0
 
-#define GRAVIDADE 1.0f
-
 //:pulic sf::Drawable (?)
 class Entidade : public Ente
 {

@@ -1,5 +1,5 @@
 
-#include "../../Projeto_Jogo/game/Inimigo.h"
+#include "Inimigo.h"
 
 
 Inimigo::Inimigo(Jogador* j):Personagens(50, 20, Vector2f(1.f, 0.f))
