@@ -6,7 +6,8 @@ Entidade::Entidade(): corpo(Vector2f(70.f, 70.f)), Ente(),
     colisao(false), 
     gravidade(true), 
     noChao(false), 
-    isMoving(false)
+    isMoving(false),
+    speed(Vector2f(0.0f, 0.0f))
 {
     //Posicao padrao de todas as entidades
     corpo.setPosition(Vector2f(200.f, 500.f));
@@ -61,7 +62,6 @@ void Entidade::movGravidade()
         
         corpo.move(Vector2f(0.0f, speed.y));
 
-        //std::cout << speed.y << endl;
     }
 }
 

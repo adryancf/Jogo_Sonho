@@ -21,6 +21,8 @@ Plataforma::~Plataforma()
 
 void Plataforma::Executar()
 {
+	movGravidade();
+	anulaGravidade();
 }
 
 void Plataforma::Colisao(Entidade* entidade, Vector2f inter_colisao)
