@@ -1,5 +1,7 @@
 #include "Entidade.h"
 
+#define GRAVIDADE 99.8
+
 Entidade::Entidade(): corpo(Vector2f(70.f, 70.f)), Ente(), colisao(false), gravidade(true), noChao(false), isMoving(false)
 {
     //Posicao padrao de todas as entidades
@@ -32,9 +34,13 @@ void Entidade::movGravidade()
     if (colisao == false)
         gravidade = true;
 
-    if (gravidade)
-        corpo.move(Vector2f(0.0f, GRAVIDADE));
-    
+    if (gravidade) {
+        //formula da gravidade
+        float velocidade = 0;
+        velocidade += (GRAVIDADE * GerenciadorGrafico::dt);
+        corpo.move(Vector2f(0.0f, velocidade));
+        std::cout << velocidade << endl;
+    }
 }
 
 void Entidade::verificaColisaoPlataforma(Entidade* e)
@@ -42,7 +48,6 @@ void Entidade::verificaColisaoPlataforma(Entidade* e)
     //Plataforma
     if (e->getId() == 3)
     {
-
         gravidade = false;
         noChao = true;
     }

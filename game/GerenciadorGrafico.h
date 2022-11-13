@@ -2,8 +2,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
-#define RESOLUCAO_X 1280
-#define RESOLUCAO_Y 720
+
 
 /* PADRAO DE PROJETO SINGLETON */
 //Esse padrão de projeto consiste em garantir que a classe GerenciadorGrafico só tenha uma instância
@@ -15,12 +14,19 @@ class GerenciadorGrafico
 {
 private:
 	
+	//Janela do jogo (criada nessa classe)
 	sf::RenderWindow* window;
+
+	//Tempo
+	sf::Clock clock;
+	
 
 	/* Singlton */
 	static GerenciadorGrafico* pGrafico;
 	GerenciadorGrafico();
 public:
+	static float dt;
+
 	~GerenciadorGrafico();
 	static GerenciadorGrafico* getGerenciadorGrafico();
 	sf::RenderWindow* getWindow();
@@ -29,6 +35,8 @@ public:
 	void mostrar();
 	void fecharJanela();
 	const bool isWindowOpen();
+
+	void atualizaTempo();
 
 
 

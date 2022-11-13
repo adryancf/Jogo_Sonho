@@ -38,7 +38,8 @@ void Jogo::Executar()
     while (pGrafico->isWindowOpen())
     {
         pEvento->Executar();
-
+        pGrafico->atualizaTempo();
+        //cout << "Tempo: " << GerenciadorGrafico::dt << endl;
         pGrafico->limpar();
 
         for (int j = 0; j < lista_obstaculos->listEnt.getTamanho(); j++)

@@ -59,7 +59,6 @@ void GerenciadorColisoes::verificaColisoes()
 	//Verifico a colisão entre os personagens e os obstaculos
 	for (int i = 0; i < lista_personagens->listEnt.getTamanho(); i++)
 	{
-		bool colidiu_com_algo = false;
 		Entidade* aux1 = lista_personagens->listEnt.getItemLista(i);
 
 		for (int j = 0; j < lista_obstaculos->listEnt.getTamanho(); j++) {
