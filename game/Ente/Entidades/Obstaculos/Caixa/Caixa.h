@@ -1,6 +1,6 @@
 #pragma once
-#include "Entidade.h"
-#include "Obstaculo.h"
+#include "Ente/Entidades/Entidade.h"
+#include "Ente/Entidades/Obstaculos/Obstaculo.h"
 class Caixa : public Obstaculo
 {
 private:

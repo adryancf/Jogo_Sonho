@@ -1,7 +1,8 @@
 #pragma once
-#include "Fase.h"
-#include "GerenciadorEventos.h"
-#include "GerenciadorColisoes.h"
+
+#include "Ente/Fase/Fase.h"
+#include "Gerenciadores/GerenciadorEventos.h"
+#include "Gerenciadores/GerenciadorColisoes.h"
 
 using namespace std;
 using namespace sf;

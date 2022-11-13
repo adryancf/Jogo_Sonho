@@ -1,12 +1,12 @@
 #pragma once
 
-#include "Jogador.h"
-#include "Inimigo.h"
+#include "Ente/Entidades/Personagens/Jogador/Jogador.h"
+#include "Ente/Entidades/Personagens/Inimigo/Inimigo.h"
 
-#include "Plataforma.h"
+#include "Ente/Entidades/Obstaculos/Plataforma/Plataforma.h"
 
-#include "ListaEntidades.h"
-#include "Ente.h"
+#include "Listas/ListaEntidades.h"
+#include "Ente/Ente.h"
 
 
 class Fase: virtual public Ente

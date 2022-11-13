@@ -1,5 +1,5 @@
 #pragma once
-#include "Personagens.h"
+#include "Ente/Entidades/Personagens/Personagens.h"
 #include <time.h>
 
 

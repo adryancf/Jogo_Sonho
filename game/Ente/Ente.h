@@ -2,8 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include "GerenciadorGrafico.h"
-
+#include "Gerenciadores/GerenciadorGrafico.h"
 
 using namespace std;
 using namespace sf;

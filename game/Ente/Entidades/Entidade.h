@@ -1,5 +1,5 @@
 #pragma once
-#include "Ente.h"
+#include "Ente/Ente.h"
 
 #define BORDA_X 1210.0
 #define BORDA_Y 650.0

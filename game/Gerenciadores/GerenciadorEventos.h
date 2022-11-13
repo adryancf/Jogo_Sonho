@@ -1,7 +1,7 @@
 #pragma once
 
 #include "GerenciadorGrafico.h"
-#include "Jogador.h"
+#include "Ente/Entidades/Personagens/Jogador/Jogador.h"
 
 
 /*  GERENCIA TODOS OS EVENTOS DO JOGO  */

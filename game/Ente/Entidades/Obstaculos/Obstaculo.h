@@ -1,5 +1,7 @@
 #pragma once
-#include "Entidade.h"
+
+#include "Ente/Entidades/Entidade.h"
+
 class Obstaculo :
     public Entidade
 {

@@ -1,6 +1,6 @@
 #pragma once
 #include <cmath>
-#include "Jogador.h"
+#include "Ente/Entidades/Personagens/Jogador/Jogador.h"
 
 
 #define RAIO_X 150.0f

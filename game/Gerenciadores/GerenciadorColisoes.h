@@ -1,12 +1,11 @@
 #pragma once
 
 #include "SFML/Graphics.hpp"
-#include "ListaEntidades.h"
-#include "Personagens.h"
+#include "Listas/ListaEntidades.h"
+#include "Ente/Entidades/Personagens/Personagens.h"
 
 #include <utility>
 #include <cmath>
-#include <iostream>
 
 class GerenciadorColisoes
 {
