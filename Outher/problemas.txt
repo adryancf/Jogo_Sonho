@@ -6,3 +6,7 @@ Problemas:
 	O menu é a parte gráfica de entrada, é no Jogo que deve ficar a inicialização;
 	É interessante criar uma main separada, o menu não é a main
 	Problema no fullscreen
+	O jogador/inimigo está caindo para o infinito;
+		Possível solução:
+			Se jogador tocar na borda inferior da tela respawn jogador se tiver vidas
+			Se inimigo tocar na borda inferior da tela = delete ?
