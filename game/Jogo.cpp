@@ -1,5 +1,10 @@
 #include "Jogo.h"
 
+/*
+*  Temos que desacoplar em várias funções
+*/
+
+
 Jogo::Jogo() : Ente(), pEvento(pEvento->getGerenciadorEvento())
 {
 
