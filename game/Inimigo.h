@@ -8,7 +8,7 @@
 
 //Depois devemos adicionar um virtual antes do public
 //Esta classe deve ser virtual pura
-//Não vou alterar agora pq modifica o funcionamento da Fase (que também deve ser alterada)
+//Nao vou alterar agora pq modifica o funcionamento da Fase (que tambem deve ser alterada)
 class Inimigo :
     public Personagens
 {
@@ -38,7 +38,7 @@ public:
     virtual void Executar();
     virtual void Colisao(Entidade* entidade, Vector2f inter_colisao);
 
-    //Futuramente talvez seja útil ter uma função que inicializa as variáveis
+    //Futuramente talvez seja util ter uma função que inicializa as variaveis
     //void initVariables();
 };
 
