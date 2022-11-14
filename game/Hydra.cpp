@@ -2,12 +2,14 @@
 
 Hydra::Hydra(Jogador* j): Inimigo(), atacou(false)
 {
-	jogador = j;
+	jogador1 = j;
+
+	cout << "CRIEI" << endl;
 
 	//Forma Hydra
 	corpo.setSize(Vector2f(100.f, 100.f));
 	corpo.setFillColor(Color::Blue);
-	corpo.setPosition(Vector2f(0.f, 0.f));
+	corpo.setPosition(Vector2f(50.f, 50.f));
 
 	//Atributos Hydra
 	setVelocidade(Vector2f(5.0f, 0.f));
@@ -16,18 +18,23 @@ Hydra::Hydra(Jogador* j): Inimigo(), atacou(false)
 	raio_detecção.x = 50.f;
 	raio_detecção.y = 50.f;
 
+	cout << "Posição: " << corpo.getPosition().x << corpo.getPosition().y << endl;
+
 }
 
 Hydra::~Hydra()
 {
-	jogador = nullptr;
+	jogador1 = nullptr;
 }
 
 void Hydra::Mover()
 {
+
+	movGravidade();
+
 	if (atacou)
 	{
-		Vector2f posJogador = jogador->getCorpo().getPosition();
+		Vector2f posJogador = jogador1->getCorpo().getPosition();
 		Vector2f posInimigo = corpo.getPosition();
 
 		if ((fabs(posJogador.x - posInimigo.x) <= raio_detecção.x) && (fabs(posJogador.y - posInimigo.y) <= raio_detecção.y)) {

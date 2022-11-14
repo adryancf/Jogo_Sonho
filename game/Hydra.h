@@ -18,7 +18,7 @@ private:
 	Vector2f raio_detecção;
 	bool atacou;
 
-	Jogador* jogador;
+	Jogador* jogador1;
 
 public:
 	Hydra(Jogador* j);

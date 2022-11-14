@@ -56,6 +56,7 @@ void Jogo::Executar()
             Entidade* aux = lista_personagem->listEnt.getItemLista(i);
             aux->Executar();
             pGrafico->desenhar(aux->getCorpo());
+            cout << "ID: " << aux->getId() << endl;
         }
         
         

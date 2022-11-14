@@ -31,8 +31,9 @@ public:
 			return aux->getItem();
 		else
 		{
+			//errado o jeito de andar 
 			for (int i = 0; i < posicao; i++)
-				aux = pPrimeiro->getProximo();
+				aux = aux->getProximo();
 			return aux->getItem();
 
 		}
@@ -52,7 +53,7 @@ public:
 
 		else
 		{
-			Elemento<TIPO>* aux = new Elemento<TIPO>;
+			Elemento<TIPO>* aux = new Elemento<TIPO>();
 
 			aux->setItem(add);
 			pUltimo->setProximo(aux);

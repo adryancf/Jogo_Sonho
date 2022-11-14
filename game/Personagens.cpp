@@ -1,6 +1,7 @@
 #include "Personagens.h"
 
-Personagens::Personagens(const int q_vida): 
+Personagens::Personagens(const int q_vida):
+    Entidade(),
     podeAndarDireita(true), 
     podeAndarEsquerda(true),
     olhandoDireita(false),

@@ -26,13 +26,18 @@ Fase::~Fase()
 
 void Fase::Executar()
 {
+	//Percorrer as listas
 }
 
 void Fase::criar_entidades()
 {
 	criarPlataforma();
 	criarDragao();
-	criarHydra();
+	//criarHydra();
+
+	Hydra* h = new Hydra(j1);
+	Entidade* add = static_cast<Entidade*>(h);
+	lista_personagem->listEnt.push(h);
 }
 
 ListaEntidades* Fase::getListaPersonagem()
@@ -61,10 +66,11 @@ void Fase::criarDragao()
 	Dragao* dragao = new Dragao();
 	lista_personagem->listEnt.push(dragao);
 }
-
+/*
 void Fase::criarHydra()
 {
 	Hydra* hydra = new Hydra(j1);
 	lista_personagem->listEnt.push(hydra);
 
 }
+*/

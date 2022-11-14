@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Hydra.h"
+#include "Jogador.h"
 #include "Dragao.h"
 #include "Plataforma.h"
 
@@ -31,7 +32,7 @@ public:
 
 	void criarPlataforma();
 	void criarDragao();
-	void criarHydra();
+	//void criarHydra();
 
 	
 
