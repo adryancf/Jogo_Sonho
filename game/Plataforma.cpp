@@ -1,6 +1,6 @@
 #include "Plataforma.h"
 
-Plataforma::Plataforma(Vector2f tam, Vector2f pos)
+Plataforma::Plataforma(const Vector2f tam, const Vector2f pos)
 {
 	corpo.setPosition(pos);
 	corpo.setSize(tam);
@@ -21,8 +21,10 @@ Plataforma::~Plataforma()
 
 void Plataforma::Executar()
 {
+	movGravidade();
+	anulaGravidade();
 }
 
-void Plataforma::Colisao(Entidade* entidade)
+void Plataforma::Colisao(Entidade* entidade, Vector2f inter_colisao)
 {
 }

@@ -1,13 +1,12 @@
 #include "Personagens.h"
-//Não tem mais dano
-Personagens::Personagens(const int vida, /*const int dano,*/ Vector2f velocidade) : podeAndarDireita(true), podeAndarEsquerda(true)
+
+Personagens::Personagens(const int q_vida): 
+    podeAndarDireita(true), 
+    podeAndarEsquerda(true),
+    olhandoDireita(false),
+    olhandoEsquerda(false)
 {
-    //Não tem mais vida apenas q_vida
-    //this->vida = vida;
-    //Não precisa do dano
-    //this->dano = dano;
-    this->speed = velocidade;
-    this->q_vida = 1;
+    this->q_vida = q_vida;
 }
 
 Personagens::~Personagens()
@@ -15,22 +14,22 @@ Personagens::~Personagens()
 }
 
 /*
-* Funções descenessárias
-* 
-const int Personagens::getVida() const
+* Funï¿½ï¿½es descenessï¿½rias
+*/ 
+void Personagens::setVida(int q)
 {
-    return vida;
+    q_vida = vida;
 }
 
-const int Personagens::getDano() const
+const int Personagens::getVida() const
 {
-    return dano;
+    return q_vida;
 }
-*/
+
 
 void Personagens::verificaPodeAndar()
 {
-    //verifica se não está na borda
+    //verifica se nï¿½o estï¿½ na borda
     Vector2f pos_personagem = corpo.getPosition();
     if (pos_personagem.x <= 0.0f) {
         podeAndarEsquerda = false;

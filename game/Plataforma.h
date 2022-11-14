@@ -13,9 +13,6 @@ public:
     ~Plataforma();
 
     virtual void Executar();
-    virtual void Colisao(Entidade* entidade);
-
-
-
+    virtual void Colisao(Entidade* entidade, Vector2f inter_colisao);
 };
 

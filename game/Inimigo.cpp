@@ -1,13 +1,16 @@
 
 #include "Inimigo.h"
 
-//Não tem mais dano
-Inimigo::Inimigo(Jogador* j) : Personagens(50, /*20,*/ Vector2f(1.f, 0.f))
+
+Inimigo::Inimigo(Jogador* j):Personagens()
 {
+
+    setVelocidade(Vector2f(1.0f, 0.0f));
+
     corpo.setPosition(Vector2f(500.f, 150.f));
     jogador = j;
-    movRandom = rand() % 4; //onde está a seed?
-    ID = 2; //id problemático
+    movRandom = rand() % 4; //SEED FALTANTE
+    ID = 2; // ARRUMAR ID
 }
 
 
@@ -15,6 +18,8 @@ Inimigo::~Inimigo()
 {
 }
 
+//O inimigo ï¿½ abstrata! Cada mob deve ter sua prï¿½pria funï¿½ï¿½o mover!
+//dps de adicionar o virtual devemos comentar
 void Inimigo::Mover()
 {
     //Aplica a gravidade
@@ -23,22 +28,17 @@ void Inimigo::Mover()
     Vector2f posJogador = jogador->getCorpo().getPosition();
     Vector2f posInimigo = corpo.getPosition();
 
-    /* função fabs : MODULO DA DIFERENÇA */
+    //funï¿½ï¿½o fabs : MODULO DA DIFERENï¿½A
     
     //Isso so vai acontecer se o jogador bater pela primeira vez no inimigo -> IMPLEMENTAR MAIS PRA FRENTE
-
-
-
-    //VERIFICA SE O JOGADOR ESTA NO RAIO DE DETECÇÃO
+    //VERIFICA SE O JOGADOR ESTA NO RAIO DE DETECï¿½ï¿½O
     if ((fabs(posJogador.x - posInimigo.x) <= RAIO_X) && (fabs(posJogador.y - posInimigo.y) <= RAIO_Y)) {
         PersegueJogador(posJogador, posInimigo);
     }
     else
         movAleatorio();
-    
-
 }
-//DÚVIDAS QUANTO A ESSA FUNÇÃO
+
 void Inimigo::PersegueJogador(Vector2f posJogador, Vector2f posInimigo)
 {
     verificaPodeAndar();
@@ -71,14 +71,15 @@ void Inimigo::movAleatorio()
 }
 
 
-
+//dps de adicionar o virtual devemos comentar
 void Inimigo::Executar()
 {
     Mover();
 }
 
-void Inimigo::Colisao(Entidade* entidade)
+//dps de adicionar o virtual devemos comentar
+void Inimigo::Colisao(Entidade* entidade, Vector2f inter_colisao)
 {
-    cout << "INIMIGO COLIDIU" << entidade->getId() << endl;
+    corrigeColisoes(entidade, inter_colisao);
     verificaColisaoPlataforma(entidade);
 }
