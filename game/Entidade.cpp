@@ -57,7 +57,7 @@ void Entidade::movGravidade()
         //Manipulação da integração de Euler = (Velocidade + posicao atual) + acelaracao
         //Velocidade + posicao atual = corpo.move -> ele soma a posicao atual mais o valor da velocidade
 
-        float acelaracao = GRAVIDADE * GerenciadorGrafico::dt;
+        double acelaracao = GRAVIDADE * GerenciadorGrafico::dt;
         speed.y += acelaracao;
         
         corpo.move(Vector2f(0.0f, speed.y));
@@ -72,7 +72,9 @@ void Entidade::corrigeColisoes(Entidade* a, Vector2f inter)
     // https://www.youtube.com/watch?v=mxZMK7ZqFtE&list=PLSPev71NbUEBIQlT2QCd-gN6l_mNVw1cJ&index=9
 
     Vector2f aPos = a->getCorpo().getPosition();
-    if (inter.x > inter.y) { // colisao em x
+
+    //Colisao em x
+    if (inter.x > inter.y) {
         if (corpo.getPosition().x < aPos.x)
         {
             corpo.move(Vector2f(inter.x, 0.0f));
@@ -87,7 +89,8 @@ void Entidade::corrigeColisoes(Entidade* a, Vector2f inter)
 
     }
 
-    else // colisao em y
+    //Colisao em y
+    else 
     {
         if(corpo.getPosition().y < aPos.y)
             corpo.move(Vector2f(0.f, inter.y));
@@ -95,7 +98,6 @@ void Entidade::corrigeColisoes(Entidade* a, Vector2f inter)
         else
             corpo.move(Vector2f(0.f, -inter.y));
 
-        //cout << corpo.getPosition().y << endl;
         speed.y = 0.0f;
     }
 

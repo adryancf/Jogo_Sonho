@@ -18,7 +18,7 @@ Personagens::~Personagens()
 */ 
 void Personagens::setVida(int q)
 {
-    q_vida = vida;
+    q_vida = q;
 }
 
 const int Personagens::getVida() const
