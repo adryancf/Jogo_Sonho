@@ -11,7 +11,7 @@ Entidade::Entidade(): corpo(Vector2f(70.f, 70.f)), Ente(),
 {
     //Posicao padrao de todas as entidades
     corpo.setPosition(Vector2f(200.f, 500.f));
-    ID = 0;
+    ID = 0; //alterar
 }
 
 
@@ -24,7 +24,7 @@ void Entidade::setVelocidade(Vector2f velocidade)
 
 Vector2f* Entidade::getVelocidade()
 {
-    return &speed;
+    return& speed;
 }
 
 RectangleShape Entidade::getCorpo(){ return corpo; }

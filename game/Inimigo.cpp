@@ -18,7 +18,7 @@ Inimigo::~Inimigo()
 {
 }
 
-//O inimigo � abstrata! Cada mob deve ter sua pr�pria fun��o mover!
+//O inimigo eh abstrata! Cada mob deve ter sua propria funcao mover!
 //dps de adicionar o virtual devemos comentar
 void Inimigo::Mover()
 {

@@ -7,12 +7,10 @@ class Jogador :
     public Personagens
 {
 private:
-    //atributo especificos (?)
     //Projetil/arma
     //Futuramente uma sprite
     //sf::Texture tex_jogador;
     //sf::Sprite sprite_jogador;
-    void iniciar();
     
 public:
     Jogador();

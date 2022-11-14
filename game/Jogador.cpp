@@ -1,11 +1,6 @@
 #include "Jogador.h"
 
-void Jogador::iniciar()
-{
-
-}
-
-Jogador::Jogador():Personagens()
+Jogador::Jogador() : Personagens()
 {
     setVelocidade(Vector2f(10.f, 0.f));
     q_vida = 3;

@@ -1,5 +1,11 @@
 #pragma once
-class Fase2
+#include "Fase.h"
+class Fase2 : public Fase
 {
+private:
+
+public:
+	Fase2();
+	~Fase2();
 };
 

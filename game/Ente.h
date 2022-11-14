@@ -26,7 +26,5 @@ public:
 
 	virtual void Executar() = 0;
 	void Print();
-
-
 };
 

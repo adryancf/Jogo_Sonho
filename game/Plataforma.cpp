@@ -6,7 +6,7 @@ Plataforma::Plataforma(const Vector2f tam, const Vector2f pos)
 	corpo.setSize(tam);
 	corpo.setFillColor(Color::Green);
 
-	ID = 3;
+	ID = 3; //Alterar
 
 }
 

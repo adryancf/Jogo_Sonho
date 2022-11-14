@@ -37,9 +37,5 @@ public:
 	const bool isWindowOpen();
 
 	void atualizaTempo();
-
-
-
-
 };
 

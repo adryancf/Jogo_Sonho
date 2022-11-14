@@ -1,12 +1,12 @@
 #include "Personagens.h"
 
-Personagens::Personagens(const int q_vida): 
+Personagens::Personagens(const int qvida): 
     podeAndarDireita(true), 
     podeAndarEsquerda(true),
     olhandoDireita(false),
     olhandoEsquerda(false)
 {
-    this->q_vida = q_vida;
+    this->q_vida = qvida;
 }
 
 Personagens::~Personagens()
@@ -14,7 +14,7 @@ Personagens::~Personagens()
 }
 
 /*
-* Fun��es desceness�rias
+* Funcoes descenessarias
 */ 
 void Personagens::setVida(int q)
 {

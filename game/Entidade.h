@@ -9,6 +9,8 @@ class Entidade : virtual public Ente
 {
 protected:
 	//Toda entidade tem um shape
+	//Não necessariamente um rectangle shape
+	//Alterar
 	RectangleShape corpo;
  
 	//UTIL PARA O CALCULO DA GRAVIDADE

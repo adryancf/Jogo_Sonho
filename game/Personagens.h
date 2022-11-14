@@ -16,7 +16,7 @@ protected:
     bool olhandoEsquerda;
 
 public:
-    Personagens(const int q_vida = 5);
+    Personagens(const int qvida = 5);
     ~Personagens();
 
     void setVida(int q);

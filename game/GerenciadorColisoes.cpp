@@ -1,5 +1,13 @@
 #include "GerenciadorColisoes.h"
 
+
+
+/*
+ * É importante comentar o que esses métodos fazem
+ */
+
+
+
 GerenciadorColisoes::GerenciadorColisoes(ListaEntidades* l_personagem, ListaEntidades* l_obstaculos):
 	lista_obstaculos(l_obstaculos),
 	lista_personagens(l_personagem)
@@ -118,6 +126,4 @@ void GerenciadorColisoes::colisaoPersonagemObstaculos()
 		vector_colisoes[i].second->setColisao(true);
 		vector_colisoes[i].first->Colisao(vector_colisoes[i].second, valor_colisao[i]);
 	}
-
-
 }
