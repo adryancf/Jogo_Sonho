@@ -16,7 +16,7 @@ Personagens::~Personagens()
 /*
 * Fun��es desceness�rias
 */ 
-void Personagens::setVida(int q)
+void Personagens::setQuantidadeVida(int q)
 {
     q_vida = q;
 }

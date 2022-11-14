@@ -4,9 +4,6 @@
 class Personagens : public Entidade
 {
 protected:
-
-    //ATRIBUTOS COMUNS A TODOS OS PERSONAGENS
-    //int dano;
     int q_vida;
 
     // CONTROLE DO MOVIMENTO
@@ -19,11 +16,9 @@ public:
     Personagens(const int q_vida = 5);
     ~Personagens();
 
-    void setVida(int q);
+    void setQuantidadeVida(int q);
     const int getVida() const;
 
-    //void setDano();
-    //const int getDano() const;
 
     //Verifica se o Personagem pode Andar
     void verificaPodeAndar();

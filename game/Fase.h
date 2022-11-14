@@ -1,8 +1,7 @@
 #pragma once
 
-#include "Jogador.h"
-#include "Inimigo.h"
-
+#include "Hydra.h"
+#include "Dragao.h"
 #include "Plataforma.h"
 
 #include "ListaEntidades.h"
@@ -15,7 +14,7 @@ private:
 	//ListaEntidades* lista_entidades;
 	ListaEntidades* lista_personagem;
 	ListaEntidades* lista_obstaculos;
-	Inimigo* i1;
+
 	Jogador* j1;
 
 	//Cria as entidades presentes na fase (Inimigos, Obstaculos) e adciona na lista de entidades
@@ -29,6 +28,10 @@ public:
 
 	ListaEntidades* getListaPersonagem();
 	ListaEntidades* getListaObstaculo();
+
+	void criarPlataforma();
+	void criarDragao();
+	void criarHydra();
 
 	
 
