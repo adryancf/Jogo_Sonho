@@ -1,6 +1,6 @@
 Problemas:
 	Os IDS estão implementados de uma maneira errada;
-	O jogador consegue entrar dentro da plataforma;
+	O jogador consegue entrar dentro da plataforma; RESOLVIDO
 	A colisão jogador/inimigo funciona somente da esquerda para direita;
 	A maioria, se não todos, dos métodos Executar() não realiza tarefa nenhuma;
 	O menu é a parte gráfica de entrada, é no Jogo que deve ficar a inicialização;
@@ -10,3 +10,5 @@ Problemas:
 		Possível solução:
 			Se jogador tocar na borda inferior da tela respawn jogador se tiver vidas
 			Se inimigo tocar na borda inferior da tela = delete ?
+	Os mobs estão super rápidos (deve ficar assim?)
+	Ainda há um problema quando pressionamos a na beirada da plataforma
