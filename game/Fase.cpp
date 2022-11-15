@@ -36,7 +36,6 @@ void Fase::criar_entidades()
 	//criarHydra();
 
 	Hydra* h = new Hydra(j1);
-	Entidade* add = static_cast<Entidade*>(h);
 	lista_personagem->listEnt.push(h);
 }
 

@@ -1,8 +1,27 @@
 #pragma once
 
+
 #include "Inimigo.h"
 #include <cmath>
 #include "Jogador.h"
+
+
+class Hydra: public Inimigo
+{
+private:
+	Jogador* player;
+	Vector2f raio_detecção;
+
+public:
+	Hydra(Jogador* p);
+	~Hydra();
+
+	void PersegueJogador(Vector2f posJogador, Vector2f posInimimgo);
+
+	virtual void Mover();
+	virtual void Executar();
+
+};
 
 //Como funciona a Hydra
 /*
@@ -10,27 +29,5 @@
 	Fica parada ate o jogador a atingir
 
 	O seu ataque nao move o jogador
- 
+
 */
-class Hydra: public Inimigo
-{
-private:
-	Vector2f raio_detecção;
-	bool atacou;
-
-	Jogador* jogador1;
-
-public:
-	Hydra(Jogador* j);
-	~Hydra();
-
-	virtual void Mover();
-	virtual void Executar();
-
-	void setAtacou(bool ataque);
-	void PersegueJogador(Vector2f posJogador, Vector2f posInimimgo);
-
-
-
-};
-

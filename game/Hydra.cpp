@@ -1,10 +1,10 @@
 #include "Hydra.h"
 
-Hydra::Hydra(Jogador* j): Inimigo(), atacou(false)
+Hydra::Hydra(Jogador* p): Inimigo()
 {
-	jogador1 = j;
-
 	cout << "CRIEI" << endl;
+	player = nullptr;
+	player = p;
 
 	//Forma Hydra
 	corpo.setSize(Vector2f(100.f, 100.f));
@@ -12,19 +12,19 @@ Hydra::Hydra(Jogador* j): Inimigo(), atacou(false)
 	corpo.setPosition(Vector2f(50.f, 50.f));
 
 	//Atributos Hydra
-	setVelocidade(Vector2f(5.0f, 0.f));
+	setVelocidade(Vector2f(0.5f, 0.f));
 	setQuantidadeVida(4);
 
-	raio_detecção.x = 50.f;
-	raio_detecção.y = 50.f;
+	raio_detecção.x = 2000.f;
+	raio_detecção.y = 2000.f;
 
-	cout << "Posição: " << corpo.getPosition().x << corpo.getPosition().y << endl;
-
+	//Enquanto nao tem o enum dos ids
+	ID = 15;
 }
 
 Hydra::~Hydra()
 {
-	jogador1 = nullptr;
+	player = nullptr;
 }
 
 void Hydra::Mover()
@@ -34,7 +34,7 @@ void Hydra::Mover()
 
 	if (atacou)
 	{
-		Vector2f posJogador = jogador1->getCorpo().getPosition();
+		Vector2f posJogador = player->getCorpo().getPosition();
 		Vector2f posInimigo = corpo.getPosition();
 
 		if ((fabs(posJogador.x - posInimigo.x) <= raio_detecção.x) && (fabs(posJogador.y - posInimigo.y) <= raio_detecção.y)) {
@@ -46,19 +46,25 @@ void Hydra::Mover()
 
 void Hydra::Executar()
 {
+	verificaVida();
 	Mover();
-}
-
-void Hydra::setAtacou(bool ataque)
-{
-	atacou = ataque;
 }
 
 void Hydra::PersegueJogador(Vector2f posJogador, Vector2f posInimimgo)
 {
 	//funçao altera as flags 
-	verificaPodeAndar();
+	verificaPodeAndar(speed);
 
-	if ((posJogador.x - posInimimgo.x) > 0.0f && podeAndarDireita) { corpo.move(speed.x, 0.0f); }
-	else if (podeAndarEsquerda) { corpo.move(-speed.x, 0.0f); }
+	if ((posJogador.x - posInimimgo.x) > 0.0f && podeAndarDireita) { 
+		corpo.move(speed.x, 0.0f);
+		olhandoDireita = true;
+		olhandoEsquerda = false;
+	}
+	else if (podeAndarEsquerda) { 
+		corpo.move(-speed.x, 0.0f);
+		olhandoDireita = false;
+		olhandoEsquerda = true;
+	}
+
+	
 }

@@ -5,6 +5,9 @@ class Personagens : public Entidade
 {
 protected:
     int q_vida;
+    bool vivo;
+
+    bool atacou;
 
     // CONTROLE DO MOVIMENTO
     bool podeAndarDireita;
@@ -16,12 +19,25 @@ public:
     Personagens(const int q_vida = 5);
     ~Personagens();
 
-    void setQuantidadeVida(int q);
-    const int getVida() const;
+    void setAtacou(bool ataque);
+    bool getAtacou();
 
+    void setQuantidadeVida(int q);
+    const int getQuantidadeVida();
+
+    const bool getVida() const;
+    void verificaVida();
+
+    const Vector2i getOlhar();
+
+    //Da para substituir essa função por uma sobrecarga de operador
+    void perdeVida();
 
     //Verifica se o Personagem pode Andar
     void verificaPodeAndar();
+    void verificaPodeAndar(Vector2f pos);
+
+    void pular(double tam_pulo);
    
     virtual void Executar() = 0;
     virtual void Mover() = 0;

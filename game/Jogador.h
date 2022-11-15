@@ -1,5 +1,6 @@
 #pragma once
 #include "Personagens.h"
+#include "Dragao.h"
 #include <time.h>
 
 
@@ -12,6 +13,7 @@ private:
     //Futuramente uma sprite
     //sf::Texture tex_jogador;
     //sf::Sprite sprite_jogador;
+    sf::Clock tempo;
     void iniciar();
     
 public:
