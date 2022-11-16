@@ -18,6 +18,10 @@ public:
 	ListaEntidades* getListaPersonagem();
 	ListaEntidades* getListaObstaculo();
 
+	void criarDragao();
+	void criarHydra();
+	virtual void criarPlataforma();
+
 	virtual void Executar();
 
 

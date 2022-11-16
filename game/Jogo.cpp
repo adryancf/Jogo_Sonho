@@ -7,7 +7,7 @@ Jogo::Jogo() : Ente(), pEvento(pEvento->getGerenciadorEvento())
     
     Jogador1 = new Jogador();
 
-    fase1 = new Fase(Jogador1);
+    fase1 = new Fase1(Jogador1);
 
     pEvento->setJogador(Jogador1);
     
@@ -15,6 +15,7 @@ Jogo::Jogo() : Ente(), pEvento(pEvento->getGerenciadorEvento())
     lista_personagem = fase1->getListaPersonagem();
     lista_obstaculos = fase1->getListaObstaculo();
 
+    //Posso tratar as colisoes em cada fase
     pColisoes = new GerenciadorColisoes(lista_personagem, lista_obstaculos);
 
     Executar();
@@ -42,32 +43,10 @@ void Jogo::Executar()
         pGrafico->atualizaTempo();
 
         pGrafico->limpar();
+        
+        //Percorre as listas
+        fase1->Executar();
 
-        for (int j = 0; j < lista_obstaculos->listEnt.getTamanho(); j++)
-        {
-            Entidade* aux = lista_obstaculos->listEnt.getItemLista(j);
-            aux->Executar();
-            pGrafico->desenhar(aux->getCorpo());
-        }
-
-        //Implementar isso na classe da lista (se tiver tempo)
-        for (int i = 0; i < lista_personagem->listEnt.getTamanho(); i++)
-        {
-            
-            //colocar uma condicao de id aqui(se for personagem dar o static_cast, se nao, deixar o aux como entidade)
-            Personagens* aux = static_cast<Personagens*>(lista_personagem->listEnt.getItemLista(i));
-            if (aux->getVida() == true) {
-                aux->Executar();
-                pGrafico->desenhar(aux->getCorpo());
-            }
-            else {
-                //cout << "O PERSONAGEM ESTA MORTO" << endl;
-            }
-      
-        }
-        
-        
-        
         pColisoes->verificaColisoes();
 
         pGrafico->mostrar();

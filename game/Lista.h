@@ -17,6 +17,26 @@ public:
 	Lista() { pUltimo = nullptr; pPrimeiro = nullptr; tamanho = 0; }
 	~Lista()
 	{
+		if (pPrimeiro != nullptr) {
+			Elemento<TIPO>* aux1 = pPrimeiro;
+			Elemento<TIPO>* aux2 = aux1;
+			TIPO* aux3;
+
+			while (aux1 != nullptr)
+			{
+				aux2 = aux1->getProximo();
+				aux3 = aux1->getItem();
+
+				delete aux1;
+				delete aux3;
+
+				aux1 = aux2;
+
+			}
+			pUltimo = nullptr;
+			pPrimeiro = nullptr;
+			tamanho = 0;
+		}
 	}
 
 	Elemento<TIPO>* getUltimo() { return pUltimo; }

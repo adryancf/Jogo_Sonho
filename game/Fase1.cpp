@@ -1,6 +1,4 @@
-#include "Fase1.h"
-
-
+﻿#include "Fase1.h"
 
 #define ALTURAP1 120.f
 #define ALTURAP2 250.f
@@ -22,7 +20,7 @@ Fase1::Fase1(Jogador* j1): Fase(j1)
 
 Fase1::~Fase1()
 {
-	//TODO O NEW TEM DELETE
+	//Cada fase tem a sua lista, quando essa acabar, deleta essa fase e chama a fase dois
 	delete lista_personagem;
 	delete lista_obstaculos;
 }
@@ -37,16 +35,92 @@ void Fase1::criar_entidades()
 
 ListaEntidades* Fase1::getListaPersonagem()
 {
-	if(lista_personagem)
+	if (lista_personagem)
 		return lista_personagem;
+	else
+		return nullptr;
 }
 
 ListaEntidades* Fase1::getListaObstaculo()
 {
-	if(lista_obstaculos)
+	if (lista_obstaculos)
 		return lista_obstaculos;
+	else
+		return nullptr;
 }
 
+void Fase1::criarDragao()
+{
+	Dragao* dragao1 = new Dragao();
+	lista_personagem->listEnt.push(dragao1);
+	dragao1->setPosEntidade(Vector2f(250.f, ALTURAP1 - ALTURA_DRAGAO)); //Primeira Plataforma
+
+	Dragao* dragao2 = new Dragao();
+	lista_personagem->listEnt.push(dragao2);
+	dragao2->setPosEntidade(Vector2f(1200.f, ALTURAP3 - ALTURA_DRAGAO)); //Terceira Plataforma
+
+	Dragao* dragao3 = new Dragao();
+	lista_personagem->listEnt.push(dragao3);
+	dragao3->setPosEntidade(Vector2f(500.f, ALTURAP4 - ALTURA_DRAGAO)); //Quarta Plataforma
+}
+
+void Fase1::criarHydra()
+{
+	Hydra* hydra1 = new Hydra(j1);
+	lista_personagem->listEnt.push(hydra1);
+	hydra1->setPosEntidade(Vector2f(150.f, ALTURAP1 - ALTURA_HYDRA)); //Primeira Plataforma
+
+
+	Hydra* hydra2 = new Hydra(j1);
+	lista_personagem->listEnt.push(hydra2);
+	hydra2->setPosEntidade(Vector2f(600.f, ALTURAP2 - ALTURA_HYDRA)); //Segunda Plataforma
+
+
+	Hydra* hydra3 = new Hydra(j1);
+	lista_personagem->listEnt.push(hydra3);
+	hydra3->setPosEntidade(Vector2f(100.f, ALTURAP4 - ALTURA_HYDRA)); //Quarta Plataforma
+
+
+}
+
+void Fase1::criarPlataforma()
+{
+	//ORDEM DE VISUALIZA��O (CIMA PARA BAIXO)
+
+	Plataforma* p1 = new Plataforma(Vector2f(400.f, ESPESSURA_PLATAFORMA), Vector2f(BORDA_ESQ, ALTURAP1));
+	lista_obstaculos->listEnt.push(p1);
+
+	Plataforma* p2 = new Plataforma(Vector2f(300.f, ESPESSURA_PLATAFORMA), Vector2f(450.f, ALTURAP2));
+	lista_obstaculos->listEnt.push(p2);
+
+	Plataforma* p3 = new Plataforma(Vector2f(650.f, ESPESSURA_PLATAFORMA), Vector2f(BORDA_DIR - 650.f, ALTURAP3));
+	lista_obstaculos->listEnt.push(p3);
+
+	Plataforma* p4 = new Plataforma(Vector2f(700.f, ESPESSURA_PLATAFORMA), Vector2f(BORDA_ESQ, ALTURAP4));
+	lista_obstaculos->listEnt.push(p4);
+}
+
+
+//Percorre a lista de entidades
 void Fase1::Executar()
 {
+	for (int j = 0; j < lista_obstaculos->listEnt.getTamanho(); j++)
+	{
+		Entidade* aux = lista_obstaculos->listEnt.getItemLista(j);
+		aux->Executar();
+		pGrafico->desenhar(aux->getCorpo());
+	}
+
+	//Implementar isso na classe da lista (se tiver tempo)
+	for (int i = 0; i < lista_personagem->listEnt.getTamanho(); i++)
+	{
+
+		//colocar uma condicao de id aqui(se for personagem dar o static_cast, se nao, deixar o aux como entidade)
+		Personagens* aux = static_cast<Personagens*>(lista_personagem->listEnt.getItemLista(i));
+		if (aux->getVida() == true) {
+			aux->Executar();
+			pGrafico->desenhar(aux->getCorpo());
+		}
+	}
+
 }

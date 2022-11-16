@@ -4,8 +4,8 @@
 #include "Jogador.h"
 #include "Dragao.h"
 #include "Plataforma.h"
-
 #include "ListaEntidades.h"
+
 #include "Ente.h"
 
 #define ESPESSURA_PLATAFORMA 35.f
@@ -20,19 +20,13 @@ class Fase: virtual public Ente
 protected:
 	Jogador* j1;
 
-	void criar_entidades() = 0;
+	virtual void criar_entidades() = 0;
 
 public:
 	Fase(Jogador *j);
 	~Fase();
 
-	void Executar() = 0;
-
-	void criarPlataforma();
-	void criarDragao();
-	void criarHydra();
-
-	
-
+	virtual void Executar() = 0;
+	virtual void criarPlataforma() = 0;
 };
 

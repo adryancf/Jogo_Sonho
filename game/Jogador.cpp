@@ -79,7 +79,7 @@ void Jogador::Colisao(Entidade* entidade, Vector2f inter_colisao)
            
             if (olhandoDireita || olhar_entidade.y)
             {
-                repulsao.x = -80.0;
+                repulsao.x = -100.0;
 
                 verificaPodeAndar(repulsao);
                 dragao->verificaPodeAndar(repulsao);
@@ -93,7 +93,7 @@ void Jogador::Colisao(Entidade* entidade, Vector2f inter_colisao)
 
             else if (olhandoEsquerda || olhar_entidade.x)
             {
-                repulsao.x = 80.0;
+                repulsao.x = 100.0;
 
                 verificaPodeAndar(repulsao);
                 dragao->verificaPodeAndar(repulsao);
