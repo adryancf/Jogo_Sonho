@@ -6,7 +6,6 @@ Jogador::Jogador():Personagens(), tempo()
 {
     setVelocidade(Vector2f(10.f, 0.f));
     ID = 1;
-    std::cout << vivo << endl;
 }
 
 void Jogador::iniciar()
@@ -52,52 +51,74 @@ void Jogador::andar(int i)
         olhandoDireita = true;
         olhandoEsquerda = false;
     }
-
 }
 
 //GERENCIADOR DE COLISÕES
 void Jogador::Colisao(Entidade* entidade, Vector2f inter_colisao)
 {
 
-    int id_entidade = entidade->getId();
-    Vector2i olhar_entidade;
-
-
     float t = tempo.getElapsedTime().asSeconds();
 
+    int id_entidade = entidade->getId();
+    Vector2<bool> olhar_entidade;
+
     corrigeColisoes(entidade, inter_colisao);
-    
-
-    //TEM Q SER UMA COLISAO NA DIREÇÃO DE Y
-
-    //Plataforma
-    verificaColisaoPlataforma(entidade);
+   
+    //Plataforma (Nao precisa disso pois ele ja corrige a colisao, entao nao preciso tirar a gravidade) -> PENSAR MELHOR
+    //verificaColisaoPlataforma(entidade);
     
     //Dragao -> joga pta cima e pro lado a cada 1.5 segundos
     if (id_entidade == 10)
     {
+        Vector2f repulsao(0.0, 0.0);
         Dragao* dragao = static_cast<Dragao*>(entidade);
         olhar_entidade = dragao->getOlhar();
 
-
-        if (t >= 1.0) {
+        if (!emCima) 
+        {
            
-            if (olhandoDireita)
+            if (olhandoDireita || olhar_entidade.y)
             {
-                corpo.move(Vector2f(-50.f, 0.0f));
+                repulsao.x = -80.0;
+
+                verificaPodeAndar(repulsao);
+                dragao->verificaPodeAndar(repulsao);
+
+                if (podeAndarEsquerda == true && dragao->getPodeAndar().x == true)
+                {
+                    corpo.move(repulsao);
+                    dragao->movimentaEntidade(Vector2f(40.0, repulsao.y));
+                }
+                else
+                    cout << "NAO POSSO ir" << endl;
             }
+
             else
             {
-                corpo.move(Vector2f(120.f, -0.0f));
+                repulsao.x = 80.0;
+
+                verificaPodeAndar(repulsao);
+                dragao->verificaPodeAndar(repulsao);
+
+                if (podeAndarDireita == true && dragao->getPodeAndar().y == true)
+                {
+                    corpo.move(repulsao);
+                    dragao->movimentaEntidade(Vector2f(-40.0, repulsao.y));
+
+                }
+                //else
+                    //para
             }
-            //pular(0.08);
-            perdeVida();
+
+            //Nao esta funcionando (nao to entendendo)
+            //pular(0.05);
+
+            //perdeVida();
+
             tempo.restart();
         }
 
-        cout << dragao->getQuantidadeVida() << endl;
-
-        dragao->perdeVida();    
+        //dragao->perdeVida();    
 
     }
 
@@ -114,33 +135,34 @@ void Jogador::Colisao(Entidade* entidade, Vector2f inter_colisao)
         hydra->setAtacou(true);
 
         //Se o jogador ta em cima dela, ela perde vida
-        if (hydra->getDirecaoColisao())
+        if (emCima)
         {
-            noChao = true;
             //hydra->perdeVida();
         }
         else
         {
-            if (olhandoDireita || olhar_entidade.y == 1)
+            if (olhandoDireita || olhar_entidade.y)
             {
                 repulsao.x = -15.0;
                 verificaPodeAndar(repulsao);
-                
+
                 if (podeAndarEsquerda)
-                    corpo.move(repulsao);
-                else
-                    hydra->setAtacou(false); // para parar a hydra
-            }
-            else if (olhandoEsquerda || olhar_entidade.x == 1) {
-                repulsao.x = 15.0;
-                verificaPodeAndar(repulsao);
-                
-                if (podeAndarDireita)
                     corpo.move(repulsao);
                 else
                     hydra->setAtacou(false);
             }
 
+
+            else if (olhandoEsquerda || olhar_entidade.x)  {
+                repulsao.x = 15.0;
+                verificaPodeAndar(repulsao);
+
+                if (podeAndarDireita)
+                    corpo.move(repulsao);
+                else
+                    hydra->setAtacou(false);
+            }
+            
 
         }
 

@@ -46,5 +46,4 @@ void Inimigo::movAleatorio()
 void Inimigo::Colisao(Entidade* entidade, Vector2f inter_colisao)
 {
     corrigeColisoes(entidade, inter_colisao);
-    verificaColisaoPlataforma(entidade);
 }

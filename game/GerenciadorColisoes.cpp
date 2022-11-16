@@ -106,7 +106,7 @@ void GerenciadorColisoes::colisaoPersonagemObstaculos()
 
 			}
 
-			aux1->setColisao(false);
+			aux1->setColisaoPlataforma(false);
 			aux2->setColisao(false);
 
 		}
@@ -114,7 +114,7 @@ void GerenciadorColisoes::colisaoPersonagemObstaculos()
 
 	for (int i = 0; i < vector_colisoes.size(); i++) {
 
-		vector_colisoes[i].first->setColisao(true);
+		vector_colisoes[i].first->setColisaoPlataforma(true);
 		vector_colisoes[i].second->setColisao(true);
 		vector_colisoes[i].first->Colisao(vector_colisoes[i].second, valor_colisao[i]);
 	}

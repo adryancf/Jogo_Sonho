@@ -32,7 +32,7 @@ public:
 
 	void criarPlataforma();
 	void criarDragao();
-	//void criarHydra();
+	void criarHydra();
 
 	
 

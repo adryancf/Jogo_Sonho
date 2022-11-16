@@ -3,15 +3,17 @@
 
 Entidade::Entidade(): corpo(Vector2f(70.f, 70.f)), Ente(),
     colisao(false),
+    colisaoPlataforma(false),
     colisaoCima(false),
     gravidade(true), 
     noChao(false), 
-    //isMoving(false),
-    speed(Vector2f(0.0f, 0.0f))
+    emCima(false),
+    isMoving(false),
+    speed(Vector2f(0.0f, 0.0f)),
+    ID(0)
 {
     //Posicao padrao de todas as entidades
     corpo.setPosition(Vector2f(200.f, 500.f));
-    ID = 0;
 }
 
 
@@ -39,9 +41,19 @@ const int Entidade::getId()
     return ID;
 }
 
+const bool Entidade::getisMoving()
+{
+    return isMoving;
+}
+
 void Entidade::setColisao(bool a)
 {
     colisao = a;
+}
+
+void Entidade::setColisaoPlataforma(bool a)
+{
+    colisaoPlataforma = a;
 }
 
 void Entidade::setDirecaoColisao(bool d)
@@ -55,34 +67,33 @@ const bool Entidade::getDirecaoColisao()
 }
 
 void Entidade::movGravidade()
-{
-    if (colisao == false)
-        gravidade = true;
-
-    if (gravidade) {
-
-        //Equação horária da posição
-        //speed.y = (speed.y * GerenciadorGrafico::dt) + ((GRAVIDADE * GerenciadorGrafico::dt)/2);
-        
-        //Manipulação da integração de Euler = (Velocidade + posicao atual) + acelaracao
-        //Velocidade + posicao atual = corpo.move -> ele soma a posicao atual mais o valor da velocidade
-
-        //MAIS REALISTA
-
-        
-        //tempo ao quadrado (Gravidade = 998.0)
-        float acelaracao = GRAVIDADE * GerenciadorGrafico::dt;
-        speed.y += acelaracao * GerenciadorGrafico::dt;
-        
-        /*
-        //tempo eleavdo a 1 (Gravidade = 9.98)
-        double acelaracao = GRAVIDADE * GerenciadorGrafico::dt;
-        speed.y += acelaracao;
-        */
-
-        corpo.move(Vector2f(0.0f, speed.y));
-
+{   
+    if (colisaoPlataforma){ 
+        noChao = true;
     }
+
+    else{ noChao = false; }
+    
+
+    //Equação horária da posição
+    //speed.y = (speed.y * GerenciadorGrafico::dt) + ((GRAVIDADE * GerenciadorGrafico::dt)/2);
+        
+    //Manipulação da integração de Euler = (Velocidade + posicao atual) + acelaracao
+    //Velocidade + posicao atual = corpo.move -> ele soma a posicao atual mais o valor da velocidade
+
+    //MAIS REALISTA
+    //tempo ao quadrado (Gravidade = 998.0)
+    float acelaracao = GRAVIDADE * GerenciadorGrafico::dt;
+    speed.y += acelaracao * GerenciadorGrafico::dt;
+        
+    /*
+    //tempo eleavdo a 1 (Gravidade = 9.98)
+    double acelaracao = GRAVIDADE * GerenciadorGrafico::dt;
+    speed.y += acelaracao;
+    */
+
+    corpo.move(Vector2f(0.0f, speed.y));
+
 }
 
 
@@ -94,7 +105,7 @@ void Entidade::corrigeColisoes(Entidade* a, Vector2f inter)
     Vector2f aPos = a->getCorpo().getPosition();
     
     //So vai ser true se a natureza da colisao for de cima para baixo 
-    a->setDirecaoColisao(false);
+    emCima = false;
 
     //Colisao em x
     if (inter.x > inter.y) {
@@ -121,7 +132,7 @@ void Entidade::corrigeColisoes(Entidade* a, Vector2f inter)
 
             //Se a entidade colidida nao for uma plataforma, quer dizer que o objeto que chamou essa funcao esta em cima
             if (a->getId() != 3) {
-                a->setDirecaoColisao(true);
+                emCima = true;
             }
         }
 
@@ -131,21 +142,33 @@ void Entidade::corrigeColisoes(Entidade* a, Vector2f inter)
         speed.y = 0.0f;
     }
 
-
 }
 
+/* FUNÇÃO DESNECESSARIA */
+
+//Nao preciso cancelar a gravidade pela funcao corrigeColisoes
+//O bool colisaoPlataforma eu ja atualizo no gerenciador de colisoes
+//Eu zero a velocidade quando a colisao é corrigida
+
+/*
 void Entidade::verificaColisaoPlataforma(Entidade* e)
 {
     //Plataforma
     if (e->getId() == 3)
     {
-        gravidade = false;
+        colisaoPlataforma = true;
         noChao = true;
 
-        //Zera a velocidade
         speed.y = 0.0f;
+    } 
+
+    else 
+    {
+        colisaoPlataforma = false;
+        noChao = false;
     }
 }
+*/
 
 void Entidade::setPosEntidade(Vector2f pos)
 {

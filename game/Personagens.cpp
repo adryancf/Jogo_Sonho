@@ -1,11 +1,12 @@
 #include "Personagens.h"
 
-Personagens::Personagens(const int q_vida):
+Personagens::Personagens(const int q_vida) :
     Entidade(),
-    podeAndarDireita(true), 
+    podeAndarDireita(true),
     podeAndarEsquerda(true),
     olhandoDireita(false),
     olhandoEsquerda(false),
+    podePular(false),
     vivo(true),
     atacou(false)
 {
@@ -15,6 +16,8 @@ Personagens::Personagens(const int q_vida):
 Personagens::~Personagens()
 {
 }
+
+//ATAQUE
 
 void Personagens::setAtacou(bool ataque)
 {
@@ -26,6 +29,9 @@ bool Personagens::getAtacou()
 {
     return atacou;
 }
+
+
+// VIDA DO PERSONAGEM
 
 void Personagens::setQuantidadeVida(int q)
 {
@@ -46,35 +52,22 @@ void Personagens::verificaVida()
 {
     if (q_vida <= 0) {
         vivo = false;
+
+
         //Tira ele do campo de visao para evitar colisoes indesejaveis
         setPosEntidade(Vector2f(-2000.f, -2000.f));
         gravidade = false;
     }
 }
 
-const Vector2i Personagens::getOlhar()
-{
-    Vector2i vetor_resposta;
-
-    if (olhandoDireita)
-        vetor_resposta.x = 1;
-    else
-        vetor_resposta.x = 0;
-
-    if (olhandoEsquerda)
-        vetor_resposta.y = 1;
-    else
-        vetor_resposta.y = 0;
-
-    return vetor_resposta;
-}
-
 void Personagens::perdeVida()
 {
-    if(vivo)
+    //DA PARA SUBSTITUIR POR UMA SOBRECARGA DE OPERADOR --
+    if (vivo)
         q_vida--;
 }
 
+//MOVIMENTO E PULO
 
 void Personagens::verificaPodeAndar()
 {
@@ -98,8 +91,9 @@ void Personagens::verificaPodeAndar()
 void Personagens::verificaPodeAndar(Vector2f pos)
 {
     //Verifica se o personagem pode andar no movimento que ele pretende fazer (FUTURO)
-    //verifica se nao esta na borda
+
     Vector2f pos_personagem = corpo.getPosition();
+
     if (pos_personagem.x + pos.x <= 0.0f) {
         podeAndarEsquerda = false;
         podeAndarDireita = true;
@@ -115,13 +109,60 @@ void Personagens::verificaPodeAndar(Vector2f pos)
     }
 }
 
+const Vector2<bool> Personagens::getPodeAndar()
+{
+    Vector2<bool> vetor_resposta;
+
+    if (podeAndarDireita)
+        vetor_resposta.x = true;
+    else
+        vetor_resposta.x = false;
+
+    if (podeAndarEsquerda)
+        vetor_resposta.y = true;
+    else
+        vetor_resposta.y = false;
+
+    return vetor_resposta;
+}
+
+const Vector2<bool> Personagens::getOlhar()
+{
+    Vector2<bool> vetor_resposta;
+
+    if (olhandoDireita)
+        vetor_resposta.x = true;
+    else
+        vetor_resposta.x = false;
+
+    if (olhandoEsquerda)
+        vetor_resposta.y = true;
+    else
+        vetor_resposta.y = false;
+
+    return vetor_resposta;
+}
+
 void Personagens::pular(double tam_pulo)
 {
-    if (noChao)
+    if (noChao || emCima) {
+        podePular = true;
+    }
+
+    else {
+        podePular = false;
+    }
+
+
+    if (podePular)
     {
+        cout << "PULANDO " << endl;
+        cout << speed.y << endl;
         //a alura do pulo vai ser determinada pela equação de torricelli
         speed.y = -sqrt(2.0 * GRAVIDADE * tam_pulo);
+        cout << speed.y << endl;
         noChao = false;
+        emCima = false;
     }
 
 }
