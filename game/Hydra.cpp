@@ -7,12 +7,11 @@ Hydra::Hydra(Jogador* p): Inimigo()
 	player = p;
 
 	//Forma Hydra
-	corpo.setSize(Vector2f(100.f, 100.f));
+	corpo.setSize(Vector2f(55.f, 55.f));
 	corpo.setFillColor(Color::Blue);
-	corpo.setPosition(Vector2f(50.f, 50.f));
 
 	//Atributos Hydra
-	setVelocidade(Vector2f(0.5f, 0.f));
+	setVelocidade(Vector2f(0.7f, 0.f));
 	setQuantidadeVida(4);
 
 	raio_detecção.x = 2000.f;

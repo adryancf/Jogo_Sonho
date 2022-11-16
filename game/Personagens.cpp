@@ -53,7 +53,6 @@ void Personagens::verificaVida()
     if (q_vida <= 0) {
         vivo = false;
 
-
         //Tira ele do campo de visao para evitar colisoes indesejaveis
         setPosEntidade(Vector2f(-2000.f, -2000.f));
         gravidade = false;

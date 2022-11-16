@@ -31,9 +31,9 @@ void Inimigo::movAleatorio()
             corpo.move(-speed.x, 0.f);
         }
     }
-  
+    
     float dt = tempo_inimigos.getElapsedTime().asSeconds();
-    if (dt >= 0.2f) {
+    if (dt >= 0.1f) {
         movRandom = rand() % 4;
         tempo_inimigos.restart();
     }

@@ -84,42 +84,39 @@ void Jogador::Colisao(Entidade* entidade, Vector2f inter_colisao)
                 verificaPodeAndar(repulsao);
                 dragao->verificaPodeAndar(repulsao);
 
-                if (podeAndarEsquerda == true && dragao->getPodeAndar().x == true)
+                if (podeAndarEsquerda == true)
                 {
                     corpo.move(repulsao);
-                    dragao->movimentaEntidade(Vector2f(40.0, repulsao.y));
+                    //dragao->movimentaEntidade(Vector2f(40.0, 0.0f));
                 }
-                else
-                    cout << "NAO POSSO ir" << endl;
             }
 
-            else
+            else if (olhandoEsquerda || olhar_entidade.x)
             {
                 repulsao.x = 80.0;
 
                 verificaPodeAndar(repulsao);
                 dragao->verificaPodeAndar(repulsao);
 
-                if (podeAndarDireita == true && dragao->getPodeAndar().y == true)
+                if (podeAndarDireita == true)
                 {
                     corpo.move(repulsao);
-                    dragao->movimentaEntidade(Vector2f(-40.0, repulsao.y));
+                    //dragao->movimentaEntidade(Vector2f(-40.0, repulsao.y));
 
                 }
-                //else
-                    //para
             }
+          
+            else
+                cout << "NAO DA PRA SE MOVER" << endl;
 
             //Nao esta funcionando (nao to entendendo)
             //pular(0.05);
 
             //perdeVida();
 
+            dragao->perdeVida();
             tempo.restart();
         }
-
-        //dragao->perdeVida();    
-
     }
 
     
@@ -137,7 +134,7 @@ void Jogador::Colisao(Entidade* entidade, Vector2f inter_colisao)
         //Se o jogador ta em cima dela, ela perde vida
         if (emCima)
         {
-            //hydra->perdeVida();
+            hydra->perdeVida();
         }
         else
         {

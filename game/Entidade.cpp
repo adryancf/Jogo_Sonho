@@ -11,10 +11,7 @@ Entidade::Entidade(): corpo(Vector2f(70.f, 70.f)), Ente(),
     isMoving(false),
     speed(Vector2f(0.0f, 0.0f)),
     ID(0)
-{
-    //Posicao padrao de todas as entidades
-    corpo.setPosition(Vector2f(200.f, 500.f));
-}
+{}
 
 
 Entidade::~Entidade(){}
@@ -80,19 +77,20 @@ void Entidade::movGravidade()
         
     //Manipulação da integração de Euler = (Velocidade + posicao atual) + acelaracao
     //Velocidade + posicao atual = corpo.move -> ele soma a posicao atual mais o valor da velocidade
+    if (gravidade) {
+        //MAIS REALISTA
+        //tempo ao quadrado (Gravidade = 998.0)
+        float acelaracao = GRAVIDADE * GerenciadorGrafico::dt;
+        speed.y += acelaracao * GerenciadorGrafico::dt;
 
-    //MAIS REALISTA
-    //tempo ao quadrado (Gravidade = 998.0)
-    float acelaracao = GRAVIDADE * GerenciadorGrafico::dt;
-    speed.y += acelaracao * GerenciadorGrafico::dt;
-        
-    /*
-    //tempo eleavdo a 1 (Gravidade = 9.98)
-    double acelaracao = GRAVIDADE * GerenciadorGrafico::dt;
-    speed.y += acelaracao;
-    */
+        /*
+        //tempo eleavdo a 1 (Gravidade = 9.98)
+        double acelaracao = GRAVIDADE * GerenciadorGrafico::dt;
+        speed.y += acelaracao;
+        */
 
-    corpo.move(Vector2f(0.0f, speed.y));
+        corpo.move(Vector2f(0.0f, speed.y));
+    }
 
 }
 

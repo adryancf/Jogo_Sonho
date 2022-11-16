@@ -11,7 +11,7 @@
 
 class Fase: virtual public Ente
 {
-private:
+protected:
 	//ListaEntidades* lista_entidades;
 	ListaEntidades* lista_personagem;
 	ListaEntidades* lista_obstaculos;
