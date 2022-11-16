@@ -1,38 +1,15 @@
 #include "Fase.h"
 
-#define ESPESSURA_PLATAFORMA 35.f
 
-#define BORDA_ESQ 0.f
-#define BORDA_DIR 1280.f
-
-#define ALTURAP1 120.f
-#define ALTURAP2 250.f
-#define ALTURAP3 400.f
-#define ALTURAP4 620.f
-
-#define ALTURA_HYDRA 60.f
-#define ALTURA_DRAGAO 70.f
 
 Fase::Fase(Jogador *j)
 {
 	j1 = j; //Ponteiro para o jogador
-
-	/* CRIA A LISTA DE ENTIDADES DA FASE */
-	lista_personagem = new ListaEntidades;
-	lista_obstaculos = new ListaEntidades;
-
-	lista_personagem->listEnt.push(j1);
-
-	//Inicializa todas as entidades da fase
-	criar_entidades();
 }
 
 Fase::~Fase()
 {
-	//TODO O NEW TEM DELETE
-	delete lista_personagem;
-	delete lista_obstaculos;
-
+	
 	//Aterrando ponteiros
 	j1 = nullptr;
 }
@@ -40,15 +17,6 @@ Fase::~Fase()
 void Fase::Executar()
 {
 	//Percorrer as listas
-}
-
-void Fase::criar_entidades()
-{
-	criarPlataforma();
-	criarDragao();
-	criarHydra();
-
-	
 }
 
 ListaEntidades* Fase::getListaPersonagem()

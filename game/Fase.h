@@ -8,27 +8,25 @@
 #include "ListaEntidades.h"
 #include "Ente.h"
 
+#define ESPESSURA_PLATAFORMA 35.f
+#define BORDA_ESQ 0.f
+#define BORDA_DIR 1280.f
+#define ALTURA_HYDRA 60.f
+#define ALTURA_DRAGAO 70.f
+
 
 class Fase: virtual public Ente
 {
 protected:
-	//ListaEntidades* lista_entidades;
-	ListaEntidades* lista_personagem;
-	ListaEntidades* lista_obstaculos;
-
 	Jogador* j1;
 
-	//Cria as entidades presentes na fase (Inimigos, Obstaculos) e adciona na lista de entidades
-	void criar_entidades();
+	void criar_entidades() = 0;
 
 public:
 	Fase(Jogador *j);
 	~Fase();
 
-	void Executar();
-
-	ListaEntidades* getListaPersonagem();
-	ListaEntidades* getListaObstaculo();
+	void Executar() = 0;
 
 	void criarPlataforma();
 	void criarDragao();

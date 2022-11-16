@@ -33,7 +33,7 @@ void Inimigo::movAleatorio()
     }
     
     float dt = tempo_inimigos.getElapsedTime().asSeconds();
-    if (dt >= 0.1f) {
+    if (dt >= 0.5f) {
         movRandom = rand() % 4;
         tempo_inimigos.restart();
     }
