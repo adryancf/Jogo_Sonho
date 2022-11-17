@@ -2,7 +2,6 @@
 
 Hydra::Hydra(Jogador* p): Inimigo()
 {
-	cout << "CRIEI" << endl;
 	player = nullptr;
 	player = p;
 
