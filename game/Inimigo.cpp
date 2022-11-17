@@ -5,7 +5,7 @@
 Inimigo::Inimigo():Personagens(3), tempo_inimigos()
 {   
     movRandom = rand() % 4; //SEED FALTANTE
-    ID = 2; // ARRUMAR ID
+    id = ID::inimigo; // ARRUMAR ID
 }
 
 

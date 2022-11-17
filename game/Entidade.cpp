@@ -1,7 +1,13 @@
 #include "Entidade.h"
 
 
-Entidade::Entidade(): corpo(Vector2f(70.f, 70.f)), Ente(),
+ID Entidade::getId() const
+{
+    return id;
+}
+
+Entidade::Entidade(ID idd) : corpo(Vector2f(70.f, 70.f)),
+    Ente(),
     colisao(false),
     colisaoPlataforma(false),
     colisaoCima(false),
@@ -10,7 +16,7 @@ Entidade::Entidade(): corpo(Vector2f(70.f, 70.f)), Ente(),
     emCima(false),
     isMoving(false),
     speed(Vector2f(0.0f, 0.0f)),
-    ID(0)
+    id(idd)
 {}
 
 
@@ -31,11 +37,6 @@ RectangleShape Entidade::getCorpo(){ return corpo; }
 void Entidade::setColor(sf::Color cor)
 {
     corpo.setFillColor(cor);
-}
-
-const int Entidade::getId()
-{
-    return ID;
 }
 
 const bool Entidade::getisMoving()
@@ -129,7 +130,7 @@ void Entidade::corrigeColisoes(Entidade* a, Vector2f inter)
             corpo.move(Vector2f(0.f, inter.y));
 
             //Se a entidade colidida nao for uma plataforma, quer dizer que o objeto que chamou essa funcao esta em cima
-            if (a->getId() != 3) {
+            if (a->getId() != ID::plataforma) {
                 emCima = true;
             }
         }

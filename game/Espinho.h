@@ -1,5 +1,9 @@
 #pragma once
-class Espinho
+#include "Obstaculo.h"
+class Espinho : public Obstaculo
 {
+public:
+
+private:
 };
 

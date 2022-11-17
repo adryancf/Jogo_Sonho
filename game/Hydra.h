@@ -10,7 +10,7 @@ class Hydra: public Inimigo
 {
 private:
 	Jogador* player;
-	Vector2f raio_detecção;
+	Vector2f raio_deteccao;
 
 public:
 	Hydra(Jogador* p);

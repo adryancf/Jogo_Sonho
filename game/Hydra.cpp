@@ -14,11 +14,11 @@ Hydra::Hydra(Jogador* p): Inimigo()
 	setVelocidade(Vector2f(0.7f, 0.f));
 	setQuantidadeVida(4);
 
-	raio_detecção.x = 2000.f;
-	raio_detecção.y = 2000.f;
+	raio_deteccao.x = 2000.f;
+	raio_deteccao.y = 2000.f;
 
 	//Enquanto nao tem o enum dos ids
-	ID = 15;
+	id = ID::hydra;
 }
 
 Hydra::~Hydra()
@@ -36,7 +36,7 @@ void Hydra::Mover()
 		Vector2f posJogador = player->getCorpo().getPosition();
 		Vector2f posInimigo = corpo.getPosition();
 
-		if ((fabs(posJogador.x - posInimigo.x) <= raio_detecção.x) && (fabs(posJogador.y - posInimigo.y) <= raio_detecção.y)) {
+		if ((fabs(posJogador.x - posInimigo.x) <= raio_deteccao.x) && (fabs(posJogador.y - posInimigo.y) <= raio_deteccao.y)) {
 			PersegueJogador(posJogador, posInimigo);
 		}
 	}

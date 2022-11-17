@@ -11,7 +11,7 @@ Dragao::Dragao(): Inimigo(), tempo_de_ataque(1.0)
     setQuantidadeVida(3);
 
     //Enquanto nao tem o enum dos ids
-    ID = 10;
+    id = ID::dragao;
 
 }
 

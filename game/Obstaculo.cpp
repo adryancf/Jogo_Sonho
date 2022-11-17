@@ -2,7 +2,7 @@
 
 Obstaculo::Obstaculo()
 {
-	ID = 5;
+	id = ID::obstaculo;
 }
 
 Obstaculo::~Obstaculo()

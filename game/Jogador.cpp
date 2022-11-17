@@ -5,7 +5,7 @@
 Jogador::Jogador():Personagens(), tempo()
 {
     setVelocidade(Vector2f(10.f, 0.f));
-    ID = 1;
+    id = ID::jogador;
 }
 
 void Jogador::iniciar()
@@ -59,7 +59,7 @@ void Jogador::Colisao(Entidade* entidade, Vector2f inter_colisao)
 
     float t = tempo.getElapsedTime().asSeconds();
 
-    int id_entidade = entidade->getId();
+    //ID id_entidade = entidade->getId();
     Vector2<bool> olhar_entidade;
 
     corrigeColisoes(entidade, inter_colisao);
@@ -68,7 +68,7 @@ void Jogador::Colisao(Entidade* entidade, Vector2f inter_colisao)
     //verificaColisaoPlataforma(entidade);
     
     //Dragao -> joga pta cima e pro lado a cada 1.5 segundos
-    if (id_entidade == 10)
+    if (entidade->getId() == ID::dragao)
     {
         Vector2f repulsao(0.0, 0.0);
         Dragao* dragao = static_cast<Dragao*>(entidade);
@@ -121,7 +121,7 @@ void Jogador::Colisao(Entidade* entidade, Vector2f inter_colisao)
 
     
     //Hydra
-    else if (id_entidade == 15)
+    else if (entidade->getId() == ID::hydra)
     {
         Vector2f repulsao(15.0, 0.0);
 
@@ -159,12 +159,8 @@ void Jogador::Colisao(Entidade* entidade, Vector2f inter_colisao)
                 else
                     hydra->setAtacou(false);
             }
-            
-
         }
-
     }
-    
 }
 
 

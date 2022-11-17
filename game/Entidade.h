@@ -7,6 +7,22 @@
 #define BORDA_X 1210.0
 #define BORDA_Y 650.0
 
+
+enum ID
+{
+	eempty = 0,
+	jogador,
+	hydra,
+	anjo,
+	dragao,
+	caixa,
+	espinho,
+	plataforma,
+	inimigo,
+	obstaculo
+};
+
+
 //derivando como virtual public
 class Entidade : virtual public Ente
 {
@@ -17,7 +33,8 @@ protected:
 	//UTIL PARA O CALCULO DA GRAVIDADE
 	sf::Vector2f speed;
 
-	int ID;
+	ID id;
+	//int ID;/
 
 	bool colisao; //acho que nao preciso desse atributo
 	bool colisaoPlataforma;
@@ -28,7 +45,11 @@ protected:
 	bool isMoving;
 
 public:
-	Entidade();
+
+	//retorna o ID
+	ID getId() const;
+
+	Entidade(ID idd = eempty);
 	~Entidade();
 
 	//ATRIBUTOS
@@ -41,7 +62,7 @@ public:
 	void setPosEntidade(Vector2f pos);
 	void movimentaEntidade(Vector2f mov);
 
-	const int getId();
+	//const int getId();
 	const bool getisMoving();
 
 	//COLISAO E GRAVIDADE
@@ -56,8 +77,5 @@ public:
 	
 	virtual void Executar() = 0;
 	virtual void Colisao(Entidade* entidade, Vector2f inter_colisao) = 0;
-
-
-
 };
 
