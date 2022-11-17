@@ -1,11 +1,5 @@
 #pragma once
-#include "Inimigo.h"
-class Anjo : public Inimigo
+class Anjo
 {
-private:
-
-public:
-	Anjo();
-	~Anjo();
 };
 

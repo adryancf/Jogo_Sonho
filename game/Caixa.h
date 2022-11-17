@@ -12,5 +12,9 @@ public:
 
 	virtual void Colisao(Entidade* entidade, Vector2f inter_colisao);
 
+	//iniciar a caixa
+	//void initialize();
+
+	virtual void Executar();
 };
 

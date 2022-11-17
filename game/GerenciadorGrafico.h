@@ -31,11 +31,16 @@ public:
 	static GerenciadorGrafico* getGerenciadorGrafico();
 	sf::RenderWindow* getWindow();
 	void limpar();
-	void desenhar(sf::RectangleShape corpo);
+	
 	void mostrar();
 	void fecharJanela();
 	const bool isWindowOpen();
 
 	void atualizaTempo();
+
+	void desenhar(sf::RectangleShape corpo);
+	void desenhar(sf::Sprite ssprite);
+
+
 };
 

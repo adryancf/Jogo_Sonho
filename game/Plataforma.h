@@ -6,7 +6,6 @@ class Plataforma :
 
 private:
 
-
 public:
     Plataforma(Vector2f tam, Vector2f pos);
     Plataforma();

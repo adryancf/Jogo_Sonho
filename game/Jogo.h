@@ -1,5 +1,5 @@
 #pragma once
-#include "Fase.h"
+#include "Fase1.h"
 #include "GerenciadorEventos.h"
 #include "GerenciadorColisoes.h"
 
@@ -18,7 +18,7 @@ private:
 	GerenciadorEvento* pEvento;
 	GerenciadorColisoes* pColisoes;
 
-	Fase* fase1;
+	Fase1* fase1;
 
 public:
 	Jogo();

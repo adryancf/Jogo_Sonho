@@ -12,8 +12,6 @@ Ente::Ente(GerenciadorGrafico* pG)
 
 Ente::~Ente()
 { 
-	//aterrar o ponteiro
-	//pGrafico = nullptr;
 }
 
 void Ente::setWindow(GerenciadorGrafico* pG) { pGrafico = pG; }

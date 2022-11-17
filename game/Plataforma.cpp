@@ -6,13 +6,13 @@ Plataforma::Plataforma(const Vector2f tam, const Vector2f pos)
 	corpo.setSize(tam);
 	corpo.setFillColor(Color::Green);
 
-	ID = 3; //Alterar
+	id = ID::plataforma;
 
 }
 
 Plataforma::Plataforma()
 {
-	ID = 3;
+	id = ID::plataforma;
 }
 
 Plataforma::~Plataforma()

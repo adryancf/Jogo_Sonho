@@ -17,6 +17,26 @@ public:
 	Lista() { pUltimo = nullptr; pPrimeiro = nullptr; tamanho = 0; }
 	~Lista()
 	{
+		if (pPrimeiro != nullptr) {
+			Elemento<TIPO>* aux1 = pPrimeiro;
+			Elemento<TIPO>* aux2 = aux1;
+			TIPO* aux3;
+
+			while (aux1 != nullptr)
+			{
+				aux2 = aux1->getProximo();
+				aux3 = aux1->getItem();
+
+				delete aux1;
+				delete aux3;
+
+				aux1 = aux2;
+
+			}
+			pUltimo = nullptr;
+			pPrimeiro = nullptr;
+			tamanho = 0;
+		}
 	}
 
 	Elemento<TIPO>* getUltimo() { return pUltimo; }
@@ -31,8 +51,9 @@ public:
 			return aux->getItem();
 		else
 		{
+			//errado o jeito de andar 
 			for (int i = 0; i < posicao; i++)
-				aux = pPrimeiro->getProximo();
+				aux = aux->getProximo();
 			return aux->getItem();
 
 		}
@@ -52,7 +73,7 @@ public:
 
 		else
 		{
-			Elemento<TIPO>* aux = new Elemento<TIPO>;
+			Elemento<TIPO>* aux = new Elemento<TIPO>();
 
 			aux->setItem(add);
 			pUltimo->setProximo(aux);

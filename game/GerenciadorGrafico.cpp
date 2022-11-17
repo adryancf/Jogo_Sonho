@@ -50,6 +50,11 @@ void GerenciadorGrafico::desenhar(sf::RectangleShape corpo)
     window->draw(corpo);
 }
 
+void GerenciadorGrafico::desenhar(sf::Sprite ssprite)
+{
+    window->draw(ssprite);
+}
+
 void GerenciadorGrafico::mostrar()
 {
     window->display();
