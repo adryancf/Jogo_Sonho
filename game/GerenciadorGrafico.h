@@ -24,6 +24,7 @@ private:
 	/* Singlton */
 	static GerenciadorGrafico* pGrafico;
 	GerenciadorGrafico();
+
 public:
 	static float dt;
 

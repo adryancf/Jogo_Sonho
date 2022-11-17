@@ -59,27 +59,23 @@ void Jogador::Colisao(Entidade* entidade, Vector2f inter_colisao)
 
     float t = tempo.getElapsedTime().asSeconds();
 
-    //ID id_entidade = entidade->getId();
     Vector2<bool> olhar_entidade;
 
     corrigeColisoes(entidade, inter_colisao);
-   
-    //Plataforma (Nao precisa disso pois ele ja corrige a colisao, entao nao preciso tirar a gravidade) -> PENSAR MELHOR
-    //verificaColisaoPlataforma(entidade);
     
-    //Dragao -> joga pta cima e pro lado a cada 1.5 segundos
     if (entidade->getId() == ID::dragao)
     {
         Vector2f repulsao(0.0, 0.0);
         Dragao* dragao = static_cast<Dragao*>(entidade);
         olhar_entidade = dragao->getOlhar();
 
+        //ESSE OLHAR DA ENTIDADE Q TA MEIO BUGADO (PENSAR COM MAIS CALMA)
+        
         if (!emCima) 
         {
-           
             if (olhandoDireita || olhar_entidade.y)
             {
-                repulsao.x = -100.0;
+                repulsao.x = -60.0;
 
                 verificaPodeAndar(repulsao);
                 dragao->verificaPodeAndar(repulsao);
@@ -93,7 +89,7 @@ void Jogador::Colisao(Entidade* entidade, Vector2f inter_colisao)
 
             else if (olhandoEsquerda || olhar_entidade.x)
             {
-                repulsao.x = 100.0;
+                repulsao.x = 60.0;
 
                 verificaPodeAndar(repulsao);
                 dragao->verificaPodeAndar(repulsao);
@@ -109,6 +105,7 @@ void Jogador::Colisao(Entidade* entidade, Vector2f inter_colisao)
             else
                 cout << "NAO DA PRA SE MOVER" << endl;
 
+
             //Nao esta funcionando (nao to entendendo)
             //pular(0.05);
 
@@ -117,9 +114,11 @@ void Jogador::Colisao(Entidade* entidade, Vector2f inter_colisao)
             dragao->perdeVida();
             tempo.restart();
         }
+       
+
+     
     }
 
-    
     //Hydra
     else if (entidade->getId() == ID::hydra)
     {

@@ -10,7 +10,7 @@ Hydra::Hydra(Jogador* p): Inimigo()
 	corpo.setFillColor(Color::Blue);
 
 	//Atributos Hydra
-	setVelocidade(Vector2f(0.7f, 0.f));
+	setVelocidade(Vector2f(0.3f, 0.f));
 	setQuantidadeVida(4);
 
 	raio_deteccao.x = 2000.f;

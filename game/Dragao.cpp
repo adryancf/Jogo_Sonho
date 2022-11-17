@@ -7,10 +7,9 @@ Dragao::Dragao(): Inimigo(), tempo_de_ataque(1.0)
     corpo.setFillColor(Color::Red);
     
     //Atributos Dragao
-    setVelocidade(Vector2f(1.0f, 0.f));
+    setVelocidade(Vector2f(0.6f, 0.f));
     setQuantidadeVida(3);
 
-    //Enquanto nao tem o enum dos ids
     id = ID::dragao;
 
 }

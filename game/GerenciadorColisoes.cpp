@@ -61,14 +61,15 @@ void GerenciadorColisoes::colisaoPersonagens()
 		Colisao = calculaColisoes(Jogador1, aux);
 		if (Colisao.x < 0.0f && Colisao.y < 0.0f) {
 
-			vector_colisoes.push_back(make_pair(Jogador1, aux));
-			valor_colisao.push_back(Colisao);
+			//vector_colisoes.push_back(make_pair(Jogador1, aux));
+			//valor_colisao.push_back(Colisao);
+			Jogador1->Colisao(aux, Colisao);
 		}
-		Jogador1->setColisao(false);
-		Jogador1->setColisao(false);
+		//Jogador1->setColisao(false);
+		//Jogador1->setColisao(false);
 	}
 
-
+	/*
 	//Resolve colisoes
 	for (int i = 0; i < vector_colisoes.size(); i++) {
 
@@ -76,6 +77,7 @@ void GerenciadorColisoes::colisaoPersonagens()
 		vector_colisoes[i].second->setColisao(true);
 		vector_colisoes[i].first->Colisao(vector_colisoes[i].second, valor_colisao[i]);
 	}
+	*/
 
 }
 
