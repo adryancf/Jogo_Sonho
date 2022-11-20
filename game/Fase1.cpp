@@ -30,7 +30,7 @@ void Fase1::criar_entidades()
 {
 	criarPlataforma();
 	criarDragao();
-	criarHydra();
+	//criarHydra();
 }
 
 ListaEntidades* Fase1::getListaPersonagem()

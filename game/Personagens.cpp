@@ -10,6 +10,7 @@ Personagens::Personagens(const int q_vida) :
     vivo(true),
     atacou(false),
     podeAndar(true),
+    direcaoMovimento("Nenhuma"),
     dano(0.0)
 {
     this->q_vida = q_vida;
@@ -120,7 +121,7 @@ void Personagens::verificaPodeAndar(Vector2f pos)
         podeAndarEsquerda = false;
         podeAndarDireita = true;
     }
-    else if (pos_personagem.x + pos.x >= BORDA_X) {
+    else if (pos_personagem.x + pos.x >= (1280.0 - corpo.getSize().x)) {
         podeAndarDireita = false;
         podeAndarEsquerda = true;
     }
@@ -146,6 +147,29 @@ const Vector2<bool> Personagens::getPodeAndar()
         vetor_resposta.y = false;
 
     return vetor_resposta;
+}
+
+void Personagens::movimentaEntidade(Vector2f mov, bool direcao)
+{
+    corpo.move(mov);
+
+    //DIREITA
+    if (direcao) {
+        olhandoDireita = true;
+        olhandoEsquerda = false;
+    }
+
+    //ESQUERDA
+    else{
+        olhandoDireita = false;
+        olhandoEsquerda = true;
+    }
+
+}
+
+void Personagens::setDirecaoMovimento(string direcao)
+{
+    direcaoMovimento = direcao;
 }
 
 const Vector2<bool> Personagens::getOlhar()
@@ -177,6 +201,7 @@ void Personagens::pular(double tam_pulo)
     {
         //a alura do pulo vai ser determinada pela equação de torricelli
         speed.y = -sqrt(2.0 * GRAVIDADE * tam_pulo);
+        cout << speed.y << endl;
         noChao = false;
         emCima = false;
     }

@@ -174,9 +174,5 @@ void Entidade::setPosEntidade(Vector2f pos)
     corpo.setPosition(pos);
 }
 
-void Entidade::movimentaEntidade(Vector2f mov)
-{
-    corpo.move(mov);
-}
 
 

@@ -1,5 +1,6 @@
 #pragma once
 #include "Entidade.h"
+#include "string"
 
 class Personagens : public Entidade
 {
@@ -20,6 +21,7 @@ protected:
     bool olhandoEsquerda;
     bool podeAndar;
     bool podePular;
+    string direcaoMovimento;
 
 public:
     Personagens(const int q_vida = 5.0);
@@ -41,6 +43,8 @@ public:
     void perdeVida(float dano);
 
     //MOVIMENTO E PULO
+    void movimentaEntidade(Vector2f mov, bool direcao);
+    void setDirecaoMovimento(string direcao); // true = direita , false = esquerda
     const Vector2<bool> getOlhar();
     void verificaPodeAndar();
     void verificaPodeAndar(Vector2f pos);

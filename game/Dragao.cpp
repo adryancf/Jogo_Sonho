@@ -30,6 +30,8 @@ void Dragao::Mover()
     movGravidade();
     movAleatorio();
 
+    direcaoMovimento = string("nulo");
+
 }
 
 void Dragao::Executar()
@@ -44,19 +46,45 @@ void Dragao::Colisao(Entidade* entidade, Vector2f inter_colisao)
     Personagens* jogador = static_cast<Personagens*>(entidade);
 
     //Nao corrige colisao com o jogador, pois la ele ja chama essa funcao
-    if (id_entidade == ID::jogador){
-        
-        if (olhandoDireita) {
-            repulsao.x = -60.0;
-            verificaPodeAndar(repulsao);
-            if(podeAndarEsquerda)
-                movimentaEntidade(Vector2f(repulsao.x, repulsao.y));
+    if (id_entidade == ID::jogador) {
+
+        cout << direcaoMovimento << endl;
+        if (direcaoMovimento != "nulo") {
+            if (direcaoMovimento == "esquerda")
+            {
+                repulsao.x = -60.0;
+                verificaPodeAndar(repulsao);
+                if (podeAndarEsquerda)
+                    movimentaEntidade((repulsao), false);
+
+            }
+            else if (direcaoMovimento == "direita")
+            {
+                repulsao.x = 60.0;
+                verificaPodeAndar(repulsao);
+                if (podeAndarDireita)
+                    movimentaEntidade(repulsao, true);
+
+
+            }
         }
-        else if (olhandoEsquerda) {
-            repulsao.x = 60.0;
-            verificaPodeAndar(repulsao);
-            if(podeAndarDireita)
-                movimentaEntidade(repulsao);
+
+        else
+        {
+            if (olhandoDireita) {
+                repulsao.x = -60.0;
+                verificaPodeAndar(repulsao);
+                if (podeAndarEsquerda)
+                    movimentaEntidade(Vector2f(repulsao.x, repulsao.y), false);
+            }
+            else if (olhandoEsquerda) {
+                repulsao.x = 60.0;
+                verificaPodeAndar(repulsao);
+                if (podeAndarDireita)
+                    movimentaEntidade(repulsao, true);
+            }
+
+            
         }
 
         //Ataque

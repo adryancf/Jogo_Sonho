@@ -21,14 +21,10 @@ void Inimigo::movAleatorio()
     /* O movimento aleatorio se da por um valor sorteado entre 1 e 4 a cada 0.1s */
     if (noChao) {
         if (movRandom == 1 && podeAndarDireita) {
-            olhandoDireita = true;
-            olhandoEsquerda = false;
-            corpo.move(speed.x, 0.f);
+            movimentaEntidade(Vector2f(speed.x, 0.f), true);
         }
         else if (movRandom == 2 && podeAndarEsquerda) {
-            olhandoEsquerda = true;
-            olhandoDireita = false;
-            corpo.move(-speed.x, 0.f);
+            movimentaEntidade(Vector2f(-speed.x, 0.f), false);
         }
     }
     

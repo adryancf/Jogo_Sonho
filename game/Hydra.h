@@ -18,6 +18,7 @@ public:
 
 	void PersegueJogador(Vector2f posJogador, Vector2f posInimimgo);
 
+
 	virtual void Mover();
 	virtual void Executar();
 	virtual void Colisao(Entidade* entidade, Vector2f inter_colisao);

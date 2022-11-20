@@ -44,15 +44,11 @@ void Jogador::andar(int i)
 
     if (i == 2 && podeAndarEsquerda)
     {
-        corpo.move(Vector2f(-speed.x, 0));
-        olhandoEsquerda = true;
-        olhandoDireita = false;
+        movimentaEntidade(Vector2f(-speed.x, 0), false);
     }
     else if (i == 4 && podeAndarDireita)
     {
-        corpo.move(Vector2f(speed.x, 0));
-        olhandoDireita = true;
-        olhandoEsquerda = false;
+        movimentaEntidade(Vector2f(speed.x, 0), true);
     }
 }
 
@@ -63,6 +59,7 @@ void Jogador::Colisao(Entidade* entidade, Vector2f inter_colisao)
     
     if (entidade->getId() == ID::dragao)
     {
+        Personagens* dragao = static_cast<Personagens*>(entidade);
         float t = tempo.getElapsedTime().asSeconds();
 
         if (!emCima) 
@@ -70,18 +67,24 @@ void Jogador::Colisao(Entidade* entidade, Vector2f inter_colisao)
             if (olhandoDireita) {
                 repulsao.x = -60.0;
                 verificaPodeAndar(repulsao);
-                if (podeAndarEsquerda)
-                    movimentaEntidade(repulsao);
+                if (podeAndarEsquerda) {
+                    movimentaEntidade(repulsao, false);
+
+                    //Manda o dragao para direita
+                    dragao->setDirecaoMovimento(string("direita"));
+                }
             }
             else if (olhandoEsquerda) {
                 repulsao.x = 60.0;
                 verificaPodeAndar(repulsao);
-                if (podeAndarDireita)
-                    movimentaEntidade(repulsao);
+                if (podeAndarDireita) {
+                    movimentaEntidade(repulsao, true);
+
+                    //Manda o dragao para esquerda
+                    dragao->setDirecaoMovimento(string("esquerda"));
+                }
             }
         }
-
-        Personagens* dragao = static_cast<Personagens*>(entidade);
         
         if(t<=0.5)
             atacar(dragao, dano);
@@ -110,8 +113,10 @@ void Jogador::Colisao(Entidade* entidade, Vector2f inter_colisao)
                 repulsao.x = -15.0;
                 verificaPodeAndar(repulsao);
 
-                if (podeAndarEsquerda)
-                    corpo.move(repulsao);
+                if (podeAndarEsquerda) {
+                    movimentaEntidade(repulsao, false);
+                   
+                }
             }
 
 
@@ -119,8 +124,10 @@ void Jogador::Colisao(Entidade* entidade, Vector2f inter_colisao)
                 repulsao.x = 15.0;
                 verificaPodeAndar(repulsao);
 
-                if (podeAndarDireita)
-                    corpo.move(repulsao);
+                if (podeAndarDireita) {
+                    movimentaEntidade(repulsao, true);
+                    
+                }
             }
         }
     }

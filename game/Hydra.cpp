@@ -28,20 +28,63 @@ Hydra::~Hydra()
 
 void Hydra::Mover()
 {
-
 	movGravidade();
+	//podeAndar = true;
+
+	//cout << "Atacou: " << atacou << "Pode Andar: " << podeAndar << endl;
 
 	if (atacou == true && podeAndar == true)
 	{
 		Vector2f posJogador = player->getCorpo().getPosition();
 		Vector2f posInimigo = corpo.getPosition();
 
-		if ((fabs(posJogador.x - posInimigo.x) <= raio_deteccao.x) && (fabs(posJogador.y - posInimigo.y) <= raio_deteccao.y)) {
+		if ((fabs(posJogador.x - posInimigo.x) <= raio_deteccao.x) 
+			&& (fabs(posJogador.y - posInimigo.y) <= raio_deteccao.y)) {
+
 			PersegueJogador(posJogador, posInimigo);
 		}
 	}
 
 }
+
+void Hydra::PersegueJogador(Vector2f posJogador, Vector2f posInimimgo)
+{
+	//funçao altera as flags 
+	verificaPodeAndar(speed);
+	Vector2f diferenca = posJogador - posInimimgo;
+
+	if ((diferenca.x > 0) && podeAndarDireita) {
+
+		cout << "DIREITA" << endl;
+		movimentaEntidade(Vector2f(speed.x, 0.0), true);
+	}
+
+	else if((diferenca.x < 0) && podeAndarEsquerda)
+	{
+		
+		cout << "ESQUERDA" << endl;
+		movimentaEntidade(Vector2f(-speed.x, 0.0), false);
+		
+	}
+
+	//PENSAR EM UMA FORMA PARA PERSEGUIR EM Y
+
+	/*
+	else if (diferenca.y > 0.0 || diferenca.y < 0.0)
+	{
+		cout << "ENTREI " << endl;
+		if (podeAndarDireita == true) {
+			movimentaEntidade(Vector2f(speed.x, 0.0), true);
+		}
+		else if (podeAndarEsquerda == true) {
+			movimentaEntidade(Vector2f(-speed.x, 0.0), false);
+			
+		}	 
+	}
+	*/
+
+}
+
 
 void Hydra::Executar()
 {
@@ -57,6 +100,7 @@ void Hydra::Colisao(Entidade* entidade, Vector2f inter_colisao)
 	if (id_entidade == ID::jogador) {
 
 		atacou = true;
+
 		Vector2<bool> podeAndarJogador;
 		Personagens* jogador = static_cast<Personagens*>(entidade);
 
@@ -68,7 +112,7 @@ void Hydra::Colisao(Entidade* entidade, Vector2f inter_colisao)
 
 			if (podeAndarJogador.x)
 				podeAndar = true;
-			else
+			else if(!podeAndarJogador.x)
 				podeAndar = false;
 		}
 		else if (olhandoEsquerda) {
@@ -78,7 +122,7 @@ void Hydra::Colisao(Entidade* entidade, Vector2f inter_colisao)
 
 			if (podeAndarJogador.y)
 				podeAndar = true;
-			else
+			else if(!podeAndarJogador.y)
 				podeAndar = false;
 		}
 
@@ -93,23 +137,4 @@ void Hydra::Colisao(Entidade* entidade, Vector2f inter_colisao)
 	}
 }
 
-void Hydra::PersegueJogador(Vector2f posJogador, Vector2f posInimimgo)
-{
-	//funçao altera as flags 
-	verificaPodeAndar(speed);
-	cout << "perseguind" << endl;
-	if ((posJogador.x - posInimimgo.x) > 0.0f && podeAndarDireita) { 
-		podeAndar = true;
-		corpo.move(speed.x, 0.0f);
-		olhandoDireita = true;
-		olhandoEsquerda = false;
-	}
-	else if (podeAndarEsquerda) { 
-		podeAndar = true;
-		corpo.move(-speed.x, 0.0f);
-		olhandoDireita = false;
-		olhandoEsquerda = true;
-	}
 
-	
-}

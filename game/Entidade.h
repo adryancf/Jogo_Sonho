@@ -1,7 +1,7 @@
 #pragma once
 #include "Ente.h"
 
-#define GRAVIDADE 998.0
+#define GRAVIDADE 998.0f
 
 //Borda para o movimento do jogador (o setPosition nao segue essas medidas, la é 1280x720)
 #define BORDA_X 1210.0
@@ -60,7 +60,6 @@ public:
 	RectangleShape getCorpo();
 	void setColor(sf::Color cor);
 	void setPosEntidade(Vector2f pos);
-	void movimentaEntidade(Vector2f mov);
 
 	//retorna o ID
 	ID getId() const;
