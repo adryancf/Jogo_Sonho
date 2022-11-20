@@ -1,125 +1,62 @@
 #include "GerenciadorColisoes.h"
 
-GerenciadorColisoes::GerenciadorColisoes(ListaEntidades* l_personagem, ListaEntidades* l_obstaculos):
-	lista_obstaculos(l_obstaculos),
-	lista_personagens(l_personagem)
-
-{}
+GerenciadorColisoes::GerenciadorColisoes(ListaEntidades* pLista) : lista(pLista)
+{
+}
 
 GerenciadorColisoes::~GerenciadorColisoes()
 {
-	lista_personagens = nullptr;
-	lista_obstaculos = nullptr;
+	lista = nullptr;
 }
 
-sf::Vector2f GerenciadorColisoes::calculaColisoes(Entidade* e1, Entidade* e2)
+//Essa função corre toda a lista e causa as colisoes
+void GerenciadorColisoes::colidir()
 {
-	sf::Vector2f colisao;
+	Entidade* ent1, * ent2;
 
-	sf::Vector2f pos1 = e1->getCorpo().getPosition();
-	sf::Vector2f pos2 = e2->getCorpo().getPosition();
-
-	sf::Vector2f tam1 = e1->getCorpo().getSize();
-	sf::Vector2f tam2 = e2->getCorpo().getSize();
-
-	//Modulo da distancia entre os centros dos elementos menos a soma da metade do tamanho
-	
-	colisao.x = fabs((pos1.x + (tam1.x/2.0f)) - (pos2.x + (tam2.x/2.0f))) - 
-				((tam1.x / 2.0f) + (tam2.x / 2.0f));
-
-	colisao.y = fabs((pos1.y + (tam1.y / 2.0f)) - (pos2.y + (tam2.y / 2.0f))) -
-		((tam1.y / 2.0f) + (tam2.y / 2.0f));
-
-	return colisao;
-}
-
-void GerenciadorColisoes::verificaColisoes()
-{
-
-	colisaoPersonagens();
-	colisaoPersonagemObstaculos();
-	
-}
-
-void GerenciadorColisoes::colisaoPersonagens()
-{
-	//COLISAO ENTRE PERSONAGEM E JOGADOR (FAZER ISSO)
-	Entidade* Jogador1 = nullptr;
-	Entidade* aux = nullptr;
-	Vector2f Colisao;
-
-	vector <pair<Entidade*, Entidade*>> vector_colisoes;
-	vector <Vector2f> valor_colisao;
-
-	Jogador1 = lista_personagens->listEnt.getPrimeiro()->getItem();
-
-	//Verifica se houve colisão
-	for (int j = 1; j < lista_personagens->listEnt.getTamanho(); j++) {
-
-		aux = lista_personagens->listEnt.getItemLista(j);
-
-		Colisao = calculaColisoes(Jogador1, aux);
-		if (Colisao.x < 0.0f && Colisao.y < 0.0f) {
-
-			//vector_colisoes.push_back(make_pair(Jogador1, aux));
-			//valor_colisao.push_back(Colisao);
-			Jogador1->Colisao(aux, Colisao);
-		}
-		//Jogador1->setColisao(false);
-		//Jogador1->setColisao(false);
-	}
-
-	/*
-	//Resolve colisoes
-	for (int i = 0; i < vector_colisoes.size(); i++) {
-
-		vector_colisoes[i].first->setColisao(true);
-		vector_colisoes[i].second->setColisao(true);
-		vector_colisoes[i].first->Colisao(vector_colisoes[i].second, valor_colisao[i]);
-	}
-	*/
-
-}
-
-void GerenciadorColisoes::colisaoPersonagemObstaculos()
-{
-	Entidade* aux1 = nullptr;
-	Entidade* aux2 = nullptr;
-	Vector2f Colisao;
-
-	//O pair transforma dois tipos em um so
-	vector <pair<Entidade*, Entidade*>> vector_colisoes;
-	vector <Vector2f> valor_colisao;
-
-	//Verifico a colisão entre os personagens e os obstaculos
-	for (int i = 0; i < lista_personagens->listEnt.getTamanho(); i++)
+	for (auto i = 0; i < lista->getTamanho(); ++i)
 	{
-		aux1 = lista_personagens->listEnt.getItemLista(i);
-
-		for (int j = 0; j < lista_obstaculos->listEnt.getTamanho(); j++) {
-			aux2 = lista_obstaculos->listEnt.getItemLista(j);
-
-			Colisao = calculaColisoes(aux1, aux2);
-
-			if (Colisao.x < 0.0f && Colisao.y < 0.0f)
+		for (auto j = i + 1; j < lista->getTamanho(); ++j)
+		{
+			ent1 = (*lista)[i];
+			ent2 = (*lista)[j];
+			if (ent1->getShowing() && ent2->getShowing())
 			{
-				vector_colisoes.push_back(make_pair(aux1, aux2));
-				valor_colisao.push_back(Colisao);
+				bool atk = ((ent1->getId() == ID::jogador && (ent2->getId() == ID::hydra || ent2->getId() == ID::dragao || ent2->getId() == ID::anjo))
+					|| (ent2->getId() == ID::jogador && (ent1->getId() == ID::hydra || ent1->getId() == ID::dragao || ent1->getId() == ID::anjo)));
 
+				float dy, dx, intersectX, intersectY;
+				dx = ent2->getPosicao().x - ent1->getPosicao().x;
+				dy = ent2->getPosicao().y - ent1->getPosicao().y;
+
+				intersectX = abs(dx) - (ent1->getHitbox().x / 2 + ent2->getHitbox().x / 2);
+				intersectY = abs(dy) - (ent1->getHitbox().y / 2 + ent2->getHitbox().y / 2);
+
+				if (atk)
+				{
+					atacarJogador(ent1, ent2, dx, dy);
+				}
+				if (intersectX < 0.0f && intersectY < 0.0f)
+				{
+					if (ent1->getId() == ID::jogador || ent1->getId() == ID::jogador2) {
+						colidirJogador(ent1, ent2, dx, dy, intersectX, intersectY);
+					}
+					else if (ent1->getId() == ID::dragao || ent1->getId() == ID::hydra || ent1->getId() == ID::anjo) {
+						colidirInimigo(ent1, ent2, dx, dy, intersectX, intersectY);
+					}
+					else if (ent1->getId() == ID::projetil) {
+						colidirProjetil(ent1, ent2, dx, dy, intersectX, intersectY);
+					}
+					else if (ent1->getId() == ID::plataforma || ent1->getId() == ID::parede) {
+						colidirPlataforma(ent1, ent2, dx, dy, intersectX, intersectY);
+					}
+				}
 			}
-
-			aux1->setColisaoPlataforma(false);
-			aux2->setColisao(false);
-
 		}
 	}
+}
 
-	for (int i = 0; i < vector_colisoes.size(); i++) {
-
-		vector_colisoes[i].first->setColisaoPlataforma(true);
-		vector_colisoes[i].second->setColisao(true);
-		vector_colisoes[i].first->Colisao(vector_colisoes[i].second, valor_colisao[i]);
-	}
-
+void GerenciadorColisoes::setLista(ListaEntidades* pLista)
+{
 
 }

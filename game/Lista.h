@@ -1,113 +1,191 @@
 #pragma once
 
-#include "Elemento.h"
+#include "stdafx.h"
 
 template<class TIPO>
 class Lista
 {
-
 private:
-	Elemento<TIPO>* pUltimo;
-	Elemento<TIPO>* pPrimeiro;
+	template <class TE>
+	class Elemento
+	{
+	private:
+		Elemento<TE>* pProx;
+		Elemento<TE>* pAnterior;
+		TE* pInformacao;
 
+	public:
+		Elemento()
+		{
+			pProx = nullptr;
+			pAnterior = nullptr;
+			pInformacao = nullptr;
+		}
+		~Elemento()
+		{
+			pProx = nullptr;
+			pAnterior = nullptr;
+			pInformacao = nullptr;
+		}
+		//Define o prox Elemento
+		void setProx(Elemento<TE>* pProx)
+		{
+			this->pProx = nullptr;
+		}
+		//Retorna o prox elemento da lista
+		Elemento<TE>* getProx()
+		{
+			return pProx;
+		}
+		//Define o elemento anterior da lista
+		void setAnterior(Elemento<TE>* pAnterior)
+		{
+			this->pAnterior = pAnterior;
+		}
+		//Retorna o anterior
+		Elemento<TE>* getAnterior()
+		{
+			return pAnterior;
+		}
+		void setInformacao(TE* pInformacao)
+		{
+			return pInfo;
+		}
+		TE* getInfo()
+		{
+			return pInformacao;
+		}
+	};
+
+	Elemento<TIPO>* pPrimeiro;
+	Elemento<TIPO>* pUltimo;
 	int tamanho;
 
 public:
+	Lista();
+	~Lista();
 
-	Lista() { pUltimo = nullptr; pPrimeiro = nullptr; tamanho = 0; }
-	~Lista()
+	void limpar();
+	void anexar(TIPO* pInformacao);
+	int getTam()
 	{
-		if (pPrimeiro != nullptr) {
-			Elemento<TIPO>* aux1 = pPrimeiro;
-			Elemento<TIPO>* aux2 = aux1;
-			TIPO* aux3;
-
-			while (aux1 != nullptr)
-			{
-				aux2 = aux1->getProximo();
-				aux3 = aux1->getItem();
-
-				delete aux1;
-				delete aux3;
-
-				aux1 = aux2;
-
-			}
-			pUltimo = nullptr;
-			pPrimeiro = nullptr;
-			tamanho = 0;
-		}
+		return tamanho;
 	}
 
-	Elemento<TIPO>* getUltimo() { return pUltimo; }
-	Elemento<TIPO>* getPrimeiro() { return pPrimeiro; }
+	TIPO* operator[](int x);
+	bool remover(TIPO* pTipo);
 
-	const int getTamanho() { return tamanho; }
-
-	TIPO* getItemLista(int posicao)
+private:
+	void setElemento(Elemento<TIPO>* pElemento);
+	Elemento<TIPO>* getPrimeiro()
 	{
-		Elemento<TIPO>* aux = pPrimeiro;
-		if (posicao == 0)
-			return aux->getItem();
-		else
-		{
-			//errado o jeito de andar 
-			for (int i = 0; i < posicao; i++)
-				aux = aux->getProximo();
-			return aux->getItem();
-
-		}
-
-
+		return pPrimeiro;
 	}
-
-	void push(TIPO* add)
+	Elemento<TIPO>* getUltimo()
 	{
-		if (pPrimeiro == nullptr) {
-			pPrimeiro = new Elemento<TIPO>;
-
-			pPrimeiro->setItem(add);
-			pUltimo = pPrimeiro;
-
-		}
-
-		else
-		{
-			Elemento<TIPO>* aux = new Elemento<TIPO>();
-
-			aux->setItem(add);
-			pUltimo->setProximo(aux);
-			pUltimo = aux;
-		}
-		tamanho++;
-	}
-
-	void pop(TIPO* e_remove)
-	{
-		Elemento<TIPO>* aux = pPrimeiro;
-		Elemento<TIPO>* auxAnt = nullptr;
-
-		while (aux->getItem() != e_remove)
-		{
-			auxAnt = aux;
-			aux = aux->getProximo();
-		}
-
-		if (aux == pPrimeiro)
-			pPrimeiro = aux->getProximo();
-
-		else if (aux == pUltimo) {
-			aux->setProximo(nullptr);
-			pUltimo = auxAnt;
-		}
-
-		else
-		{
-			auxAnt->setProximo(aux->getProximo());
-		}
-
-		delete aux;
-		tamanho--;
+		return pUltimo;
 	}
 };
 
+template <class TIPO>
+Lista<TIPO>::Lista() : pPrimeiro(), pUltimo(), tamanho(0)
+{
+	limpar();
+}
+
+template <class TIPO>
+Lista<TIPO>::~Lista()
+{
+	clear();
+}
+
+template <class TIPO>
+void Lista<TIPO>::limpar()
+{
+	Elemento<TL>* pAux1;
+	Elemento<TL>* pAux2;
+
+	pAux1 = pPrimeiro;
+	pAux2 = pAux1;
+
+	while (pAux1 != nullptr)
+	{
+		delete pAux1->getInfo();
+		pAux2 = pAux1->getProx();
+		delete pAux1;
+		pAux1 = pAux2;
+		--tamanho;
+	}
+
+	pPrimeiro = nullptr;
+	pUltimo = nullptr;
+}
+
+template <class TIPO>
+void Lista<TIPO>::setElemento(Elemento<TIPO>* pElemento)
+{
+	if (pElemento != nullptr)
+	{
+		if (pPrimeiro == nullptr)
+		{
+			pPrimeiro = pElemento;
+			pUltimo = pElemento;
+		}
+		else
+		{
+			pUltimo->setNext(pElemento);
+			pElemento->setAnterior(pUltimo);
+			pUltimo = pElemento;
+		}
+		++tamanho;
+	}
+}
+
+template <class TIPO>
+void Lista<TIPO>::anexar(TIPO* pInfo) {
+	if (pInfo != nullptr) {
+		Elemento<TIPO>* pElemento = nullptr;
+		pElemento = new Elemento<TIPO>();
+		pElemento->setInformacao(pInfo);
+		setElemento(pElemento);
+	}
+}
+
+template <class TIPO>
+TIPO* Lista<TIPO>::operator[](int x) {
+	if (x >= tamanho || x < 0) {
+		std::cout << "ERROR: Segmentation fault LISTAS." << std::endl;
+		exit(1);
+	}
+
+	Elemento<TIPO>* pAux = pPrimeiro;
+	for (int i = 0; i < x; i++) {
+		pAux = pAux->getProx();
+	}
+
+	if (pAux == nullptr) {
+		cout << "ERROR: on template operator[] pAux == NULL." << endl;
+		exit(1);
+	}
+	return pAux->getInfo();
+}
+
+template <class TIPO>
+bool Lista<TIPO>::remover(TIPO* pTL) {
+	Elemento<TIPO>* pAux = pPrimeiro;
+	Elemento<TIPO>* pPrev = nullptr;
+	while (pAux != nullptr) {
+		if (pAux->getInfo() == pTL) {
+			if (pAux == pPrimeiro)
+				pPrimeiro = pAux->getProx();
+			else
+				pPrev->setProx(pAux->getProx());
+			delete (pAux);
+			--size;
+			return true;
+		}
+		pPrev = pAux;
+		pAux = pAux->getProx();
+	}
+	return false;
+}

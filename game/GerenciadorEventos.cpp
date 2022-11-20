@@ -48,8 +48,12 @@ void GerenciadorEvento::verificaTeclaPressionada(sf::Keyboard::Key tecla)
         Jogador1->andar(4);
         tecla_pres = 2;
     }
-    else if(tecla == sf::Keyboard::Space){
+    else if(tecla == sf::Keyboard::Space){ //pulando muito baixo
         Jogador1->pular(0.008);
+    }
+    else if (tecla == sf::Keyboard::W)
+    {
+        Jogador1->pular(0.03);
     }
     /*
     if (tecla_pres == 1)
