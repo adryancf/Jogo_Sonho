@@ -8,7 +8,6 @@ ID Entidade::getId() const
 
 Entidade::Entidade(ID idd) : corpo(Vector2f(70.f, 70.f)),
     Ente(),
-    colisao(false),
     colisaoPlataforma(false),
     colisaoCima(false),
     gravidade(true), 
@@ -16,6 +15,7 @@ Entidade::Entidade(ID idd) : corpo(Vector2f(70.f, 70.f)),
     emCima(false),
     isMoving(false),
     speed(Vector2f(0.0f, 0.0f)),
+    repulsao(Vector2f(0.0f, 0.0f)),
     id(idd)
 {}
 
@@ -32,6 +32,11 @@ Vector2f* Entidade::getVelocidade()
     return &speed;
 }
 
+const Vector2f Entidade::getRepulsao()
+{
+    return repulsao;
+}
+
 RectangleShape Entidade::getCorpo(){ return corpo; }
 
 void Entidade::setColor(sf::Color cor)
@@ -44,24 +49,20 @@ const bool Entidade::getisMoving()
     return isMoving;
 }
 
-void Entidade::setColisao(bool a)
+void Entidade::setColisaoPlataforma(bool estaNaPlataforma)
 {
-    colisao = a;
+    colisaoPlataforma = estaNaPlataforma;
 }
 
-void Entidade::setColisaoPlataforma(bool a)
+void Entidade::setChao(bool estaNoChao)
 {
-    colisaoPlataforma = a;
+    noChao = estaNoChao;
 }
 
-void Entidade::setDirecaoColisao(bool d)
-{
-    colisaoCima = d;
-}
 
-const bool Entidade::getDirecaoColisao()
+const bool Entidade::getEmCima()
 {
-    return colisaoCima;
+    return emCima;
 }
 
 void Entidade::movGravidade()
@@ -70,19 +71,19 @@ void Entidade::movGravidade()
         noChao = true;
     }
 
-    else{ noChao = false; }
-    
 
-    //Equação horária da posição
-    //speed.y = (speed.y * GerenciadorGrafico::dt) + ((GRAVIDADE * GerenciadorGrafico::dt)/2);
+    else{ noChao = false; }
         
     //Manipulação da integração de Euler = (Velocidade + posicao atual) + acelaracao
     //Velocidade + posicao atual = corpo.move -> ele soma a posicao atual mais o valor da velocidade
+    
     if (gravidade) {
-        //MAIS REALISTA
-        //tempo ao quadrado (Gravidade = 998.0)
+     
+        //tempo ao quadrado (Gravidade = 998.0) | MAIS REALISTA
         float acelaracao = GRAVIDADE * GerenciadorGrafico::dt;
         speed.y += acelaracao * GerenciadorGrafico::dt;
+
+        corpo.move(Vector2f(0.0f, speed.y));
 
         /*
         //tempo eleavdo a 1 (Gravidade = 9.98)
@@ -90,7 +91,6 @@ void Entidade::movGravidade()
         speed.y += acelaracao;
         */
 
-        corpo.move(Vector2f(0.0f, speed.y));
     }
 
 }
@@ -107,7 +107,7 @@ void Entidade::corrigeColisoes(Entidade* a, Vector2f inter)
     emCima = false;
 
     //Colisao em x
-    if (inter.x > inter.y) {
+    if (inter.x >= inter.y) {
         if (corpo.getPosition().x < aPos.x)
         {
             corpo.move(Vector2f(inter.x, 0.0f));

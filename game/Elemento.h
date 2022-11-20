@@ -15,10 +15,7 @@ public:
 		item = nullptr;
 	}
 	~Elemento()
-	{
-
-		///A FAZER...
-	}
+	{}
 
 	void setProximo(Elemento<TIPO>* p) { this->pProx = p; }
 	Elemento<TIPO>* getProximo() { return pProx; }

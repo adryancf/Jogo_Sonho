@@ -47,6 +47,7 @@ void Jogo::Executar()
         //Percorre as listas
         fase1->Executar();
 
+        //Verifica Colisões
         pColisoes->verificaColisoes();
 
         pGrafico->mostrar();

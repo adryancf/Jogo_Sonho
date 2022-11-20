@@ -49,7 +49,6 @@ void GerenciadorColisoes::colisaoPersonagens()
 	Vector2f Colisao;
 
 	vector <pair<Entidade*, Entidade*>> vector_colisoes;
-	vector <Vector2f> valor_colisao;
 
 	Jogador1 = lista_personagens->listEnt.getPrimeiro()->getItem();
 
@@ -60,24 +59,11 @@ void GerenciadorColisoes::colisaoPersonagens()
 
 		Colisao = calculaColisoes(Jogador1, aux);
 		if (Colisao.x < 0.0f && Colisao.y < 0.0f) {
-
-			//vector_colisoes.push_back(make_pair(Jogador1, aux));
-			//valor_colisao.push_back(Colisao);
 			Jogador1->Colisao(aux, Colisao);
+			aux->Colisao(Jogador1, Colisao);
 		}
-		//Jogador1->setColisao(false);
-		//Jogador1->setColisao(false);
 	}
 
-	/*
-	//Resolve colisoes
-	for (int i = 0; i < vector_colisoes.size(); i++) {
-
-		vector_colisoes[i].first->setColisao(true);
-		vector_colisoes[i].second->setColisao(true);
-		vector_colisoes[i].first->Colisao(vector_colisoes[i].second, valor_colisao[i]);
-	}
-	*/
 
 }
 
@@ -109,17 +95,23 @@ void GerenciadorColisoes::colisaoPersonagemObstaculos()
 			}
 
 			aux1->setColisaoPlataforma(false);
-			aux2->setColisao(false);
 
 		}
 	}
 
 	for (int i = 0; i < vector_colisoes.size(); i++) {
 
-		vector_colisoes[i].first->setColisaoPlataforma(true);
-		vector_colisoes[i].second->setColisao(true);
+		if(vector_colisoes[i].second->getId() == ID::plataforma)
+			vector_colisoes[i].first->setColisaoPlataforma(true);
+
 		vector_colisoes[i].first->Colisao(vector_colisoes[i].second, valor_colisao[i]);
+
 	}
 
 
+}
+
+void GerenciadorColisoes::Executar()
+{
+	verificaColisoes();
 }

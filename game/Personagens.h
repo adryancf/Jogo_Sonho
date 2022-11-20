@@ -4,32 +4,41 @@
 class Personagens : public Entidade
 {
 protected:
-    int q_vida;
+
+    //Vida
+    float q_vida;
     bool vivo;
 
+    //Ataque
+    float dano;
     bool atacou;
 
-    // CONTROLE DO MOVIMENTO
+    //Controle do Movimento
     bool podeAndarDireita;
     bool olhandoDireita;
     bool podeAndarEsquerda;
     bool olhandoEsquerda;
+    bool podeAndar;
     bool podePular;
 
 public:
-    Personagens(const int q_vida = 5);
+    Personagens(const int q_vida = 5.0);
     ~Personagens();
 
     //ATAQUE
+    void setDano(float dano);
+    const float getDano() const;
+    virtual void atacar(Personagens* adversario, float dano); // Se precisar redefinir a funcao eu posso
     void setAtacou(bool ataque);
     bool getAtacou();
 
     //VIDA DO PERSONAGEM
-    void setQuantidadeVida(int q);
-    const int getQuantidadeVida();
+    void setQuantidadeVida(float q);
+    const float getQuantidadeVida();
     const bool getVida() const;
     void verificaVida();
-    void perdeVida(); //Da para substituir essa função por uma sobrecarga de operador
+    void perdeVida(); //Da para substituir essa funcao por uma sobrecarga de operador
+    void perdeVida(float dano);
 
     //MOVIMENTO E PULO
     const Vector2<bool> getOlhar();
@@ -38,7 +47,7 @@ public:
     const Vector2<bool> getPodeAndar();
     void pular(double tam_pulo);
    
-    //FUNÇÕES PRINCIPAIS
+    //FUNï¿½ï¿½ES PRINCIPAIS
     virtual void Executar() = 0;
     virtual void Mover() = 0;
     virtual void Colisao(Entidade* entidade, Vector2f inter_colisao) = 0;

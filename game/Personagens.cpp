@@ -8,7 +8,9 @@ Personagens::Personagens(const int q_vida) :
     olhandoEsquerda(false),
     podePular(false),
     vivo(true),
-    atacou(false)
+    atacou(false),
+    podeAndar(true),
+    dano(0.0)
 {
     this->q_vida = q_vida;
 }
@@ -18,6 +20,21 @@ Personagens::~Personagens()
 }
 
 //ATAQUE
+
+void Personagens::setDano(float dano)
+{
+    this->dano = dano;
+}
+
+const float Personagens::getDano() const
+{
+    return dano;
+}
+
+void Personagens::atacar(Personagens* adversario ,float dano)
+{
+    adversario->perdeVida();
+}
 
 void Personagens::setAtacou(bool ataque)
 {
@@ -33,12 +50,12 @@ bool Personagens::getAtacou()
 
 // VIDA DO PERSONAGEM
 
-void Personagens::setQuantidadeVida(int q)
+void Personagens::setQuantidadeVida(float q)
 {
     q_vida = q;
 }
 
-const int Personagens::getQuantidadeVida()
+const float Personagens::getQuantidadeVida()
 {
     return q_vida;
 }
@@ -64,6 +81,12 @@ void Personagens::perdeVida()
     //DA PARA SUBSTITUIR POR UMA SOBRECARGA DE OPERADOR --
     if (vivo)
         q_vida--;
+}
+
+void Personagens::perdeVida(float dano)
+{
+    if (vivo)
+        q_vida -= dano;
 }
 
 //MOVIMENTO E PULO
@@ -146,20 +169,14 @@ void Personagens::pular(double tam_pulo)
 {
     if (noChao || emCima) {
         podePular = true;
-    }
-
-    else {
+    } else {
         podePular = false;
     }
 
-
     if (podePular)
     {
-        cout << "PULANDO " << endl;
-        cout << speed.y << endl;
         //a alura do pulo vai ser determinada pela equação de torricelli
         speed.y = -sqrt(2.0 * GRAVIDADE * tam_pulo);
-        cout << speed.y << endl;
         noChao = false;
         emCima = false;
     }

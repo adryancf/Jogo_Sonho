@@ -33,10 +33,12 @@ protected:
 	//UTIL PARA O CALCULO DA GRAVIDADE
 	sf::Vector2f speed;
 
+	//Util para colisoes entre entidades
+	sf::Vector2f repulsao;
+
 	ID id;
 	//int ID;/
 
-	bool colisao; //acho que nao preciso desse atributo
 	bool colisaoPlataforma;
 	bool colisaoCima;
 	bool gravidade;
@@ -46,15 +48,13 @@ protected:
 
 public:
 
-	//retorna o ID
-	ID getId() const;
-
 	Entidade(ID idd = eempty);
 	~Entidade();
 
 	//ATRIBUTOS
 	void setVelocidade(Vector2f velocidade);
 	Vector2f* getVelocidade();
+	const Vector2f getRepulsao();
 
 	//CORPO
 	RectangleShape getCorpo();
@@ -62,14 +62,16 @@ public:
 	void setPosEntidade(Vector2f pos);
 	void movimentaEntidade(Vector2f mov);
 
-	//const int getId();
+	//retorna o ID
+	ID getId() const;
+
+	//Nao sei se precisa
 	const bool getisMoving();
 
 	//COLISAO E GRAVIDADE
-	void setColisao(bool a);
-	void setColisaoPlataforma(bool a);
-	void setDirecaoColisao(bool d);
-	const bool getDirecaoColisao();
+	void setColisaoPlataforma(bool estaNaPlataforma);
+	void setChao(bool estaNoChao);
+	const bool getEmCima();
 
 	void movGravidade();
 	void corrigeColisoes(Entidade* a, Vector2f inter);

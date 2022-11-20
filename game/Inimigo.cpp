@@ -40,10 +40,3 @@ void Inimigo::movAleatorio()
 
 }
 
-
-//Nao vamos tratar colisoes entre persoganes inicialmente
-//Sendo assim, nao precisa cada inimigo redefinir sua colisao, pois ela so vai ser chamada quando se colide com a plataforma
-void Inimigo::Colisao(Entidade* entidade, Vector2f inter_colisao)
-{
-    corrigeColisoes(entidade, inter_colisao);
-}

@@ -25,6 +25,8 @@ public:
 	void colisaoPersonagens();
 	void colisaoPersonagemObstaculos();
 
+	void Executar();
+
 
 };
 

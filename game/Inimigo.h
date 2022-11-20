@@ -26,7 +26,7 @@ public:
            
     virtual void Mover() = 0;
     virtual void Executar() = 0;
-    virtual void Colisao(Entidade* entidade, Vector2f inter_colisao);
+    virtual void Colisao(Entidade* entidade, Vector2f inter_colisao) = 0;
 
     //Futuramente talvez seja útil ter uma função que inicializa as variáveis
     //void initVariables();
