@@ -1,19 +1,16 @@
 #pragma once
 
 #include "Jogador.h"
-#include <cmath>
-
-
 
 class Inimigo :
     public Personagens
 {
-protected:
+private:
     sf::Clock tempo_mov;
     int movRandom;
 
+protected:
     Vector2f raio_deteccao;
-
     Jogador* player;
 
     /* Futuramente uma sprite */

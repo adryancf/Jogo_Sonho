@@ -11,6 +11,8 @@ public:
 	Hydra(Jogador* p);
 	~Hydra();
 
+	void inicializa();
+
 	virtual void Mover();
 	virtual void Executar();
 	virtual void Colisao(Entidade* entidade, Vector2f inter_colisao);

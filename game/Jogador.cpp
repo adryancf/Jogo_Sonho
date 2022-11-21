@@ -1,29 +1,25 @@
 #include "Jogador.h"
 
-Jogador::Jogador():Personagens(), tempo()
+Jogador::Jogador():Personagens(), tempo(), pontuacao(0)
 {
-    
     id = ID::jogador;  
+    iniciar();
+}
 
+void Jogador::iniciar()
+{
     //Atributos Jogador
     setVelocidade(Vector2f(10.f, 0.f));
     setQuantidadeVida(10.0);
     setDano(3.0);
 }
-
-void Jogador::iniciar()
-{
-
+Jogador::~Jogador(){
+    pontuacao = 0;
 }
-Jogador::~Jogador(){}
+
 
 void Jogador::Mover()
 {
-    
-    //Representar quando ele ta parado
-    //olhandoDireita = false;
-    //olhandoEsquerda = false;
-
     movGravidade();
 }
 
@@ -41,16 +37,39 @@ void Jogador::andar(int i)
 {
     speed.x = 10.f;
 
-    verificaPodeAndar(speed);
-
-    if (i == 2 && podeAndarEsquerda)
+    if (i == 2)
     {
         movimentaEntidade(Vector2f(-speed.x, 0), false);
     }
-    else if (i == 4 && podeAndarDireita)
+    else if (i == 4)
     {
         movimentaEntidade(Vector2f(speed.x, 0), true);
     }
+}
+
+void Jogador::ganhaPontos(int pontos)
+{
+    pontuacao += pontos;
+}
+
+void Jogador::ganhaPontos()
+{
+    pontuacao++;
+}
+
+void Jogador::perdePontos(int pontos)
+{
+    pontuacao -= pontos;
+}
+
+void Jogador::perdePontos()
+{
+    pontuacao--;
+}
+
+const int Jogador::getPontos()
+{
+    return pontuacao;
 }
 
 //GERENCIADOR DE COLISÕES
@@ -64,6 +83,7 @@ void Jogador::Colisao(Entidade* entidade, Vector2f inter_colisao)
         Personagens* dragao = static_cast<Personagens*>(entidade);
         float t = tempo.getElapsedTime().asSeconds();
 
+        //So tem repulsao quando nao esta em cima
         if (!emCima) 
         {
             if (olhandoDireita) {
@@ -99,36 +119,28 @@ void Jogador::Colisao(Entidade* entidade, Vector2f inter_colisao)
     else if (entidade->getId() == ID::hydra)
     {
         //Se o jogador ta em cima dela, ela perde vida
-        if (emCima)
-        {
+        if (emCima) {
             atacar(entidade, dano);
-;       }
+            
+        }
 
         else
         {
             if (olhandoDireita)
             {
                 repulsao.x = -15.0;
-                verificaPodeAndar(repulsao);
-
-                if (podeAndarEsquerda) {
-                    movimentaEntidade(repulsao, false);
-                   
-                }
+                movimentaEntidade(repulsao, false);
             }
-
 
             else if (olhandoEsquerda)  {
                 repulsao.x = 15.0;
-                verificaPodeAndar(repulsao);
-
-                if (podeAndarDireita) {
-                    movimentaEntidade(repulsao, true);
-                    
-                }
+                movimentaEntidade(repulsao, true);
             }
         }
     }
+
+
+
 }
 
 

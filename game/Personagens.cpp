@@ -82,24 +82,6 @@ void Personagens::perdeVida(float dano)
 
 //MOVIMENTO E PULO
 
-void Personagens::verificaPodeAndar()
-{
-    //verifica se nao esta na borda
-    Vector2f pos_personagem = corpo.getPosition();
-    if (pos_personagem.x <= 0.0f) {
-        podeAndarEsquerda = false;
-        podeAndarDireita = true;
-    }
-    else if (pos_personagem.x >= BORDA_X) {
-        podeAndarDireita = false;
-        podeAndarEsquerda = true;
-    }
- 
-    else {
-        podeAndarDireita = true;
-        podeAndarEsquerda = true;
-    }
-}
 
 void Personagens::verificaPodeAndar(Vector2f pos)
 {
@@ -111,7 +93,7 @@ void Personagens::verificaPodeAndar(Vector2f pos)
         podeAndarEsquerda = false;
         podeAndarDireita = true;
     }
-    else if (pos_personagem.x + pos.x >= (1280.0 - corpo.getSize().x)) {
+    else if (pos_personagem.x + pos.x >= (RESOLUCAO_X - getSizeCorpo().x)) {
         podeAndarDireita = false;
         podeAndarEsquerda = true;
     }
@@ -119,6 +101,25 @@ void Personagens::verificaPodeAndar(Vector2f pos)
     else {
         podeAndarDireita = true;
         podeAndarEsquerda = true;
+    }
+}
+
+void Personagens::movimentaEntidade(Vector2f mov, bool direcao)
+{
+    verificaPodeAndar(mov);
+
+    //DIREITA
+    if (direcao && podeAndarDireita) {
+        corpo.move(mov);
+        olhandoDireita = true;
+        olhandoEsquerda = false;
+    }
+
+    //ESQUERDA
+    else if (!direcao && podeAndarEsquerda) {
+        corpo.move(mov);
+        olhandoDireita = false;
+        olhandoEsquerda = true;
     }
 }
 
@@ -139,29 +140,6 @@ const Vector2<bool> Personagens::getPodeAndar()
     return vetor_resposta;
 }
 
-void Personagens::movimentaEntidade(Vector2f mov, bool direcao)
-{
-    corpo.move(mov);
-
-    //DIREITA
-    if (direcao) {
-        olhandoDireita = true;
-        olhandoEsquerda = false;
-    }
-
-    //ESQUERDA
-    else{
-        olhandoDireita = false;
-        olhandoEsquerda = true;
-    }
-
-}
-
-void Personagens::setDirecaoMovimento(string direcao)
-{
-    direcaoMovimento = direcao;
-}
-
 const Vector2<bool> Personagens::getOlhar()
 {
     Vector2<bool> vetor_resposta;
@@ -178,6 +156,15 @@ const Vector2<bool> Personagens::getOlhar()
 
     return vetor_resposta;
 }
+
+
+
+void Personagens::setDirecaoMovimento(string direcao)
+{
+    direcaoMovimento = direcao;
+}
+
+
 
 void Personagens::pular(double tam_pulo)
 {

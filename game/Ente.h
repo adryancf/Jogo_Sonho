@@ -1,20 +1,16 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
-#include <iostream>
+#include "stdafx.h"
 #include "GerenciadorGrafico.h"
 
-
-using namespace std;
-using namespace sf;
-
-/* Jogo, Entidade, Fase */
+/* Derivadas = Jogo, Entidade, Fase */
 
 class Ente
 {
 protected:
 	//Todo ENTE deve conhecer a parte Gráfica do jogo (Janela - SFML)
-	GerenciadorGrafico* pGrafico;
+	static GerenciadorGrafico* pGrafico;
+
 
 public:
 	Ente();
@@ -22,10 +18,10 @@ public:
 	~Ente();
 
 	void setWindow(GerenciadorGrafico* pG);
-	GerenciadorGrafico* getGrafico();
+	static GerenciadorGrafico* getGrafico();
 
 	virtual void Executar() = 0;
-	void Print();
+	void Print(); //posso fazer um render
 
 
 };

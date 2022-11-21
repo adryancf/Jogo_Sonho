@@ -10,11 +10,9 @@ Entidade::Entidade(ID idd) : corpo(Vector2f(70.f, 70.f)),
     Ente(),
     visivel(true),
     colisaoPlataforma(false),
-    colisaoCima(false),
     gravidade(true), 
     noChao(false), 
     emCima(false),
-    isMoving(false),
     speed(Vector2f(0.0f, 0.0f)),
     repulsao(Vector2f(0.0f, 0.0f)),
     dano(0.0f),
@@ -54,17 +52,26 @@ const bool Entidade::getVisivel() const
     return visivel;
 }
 
-RectangleShape Entidade::getCorpo(){ return corpo; }
+const RectangleShape Entidade::getCorpo() const
+{ 
+    return corpo; 
+}
+
+const Vector2f Entidade::getSizeCorpo() const
+{
+    return corpo.getSize();
+}
 
 void Entidade::setColor(sf::Color cor)
 {
     corpo.setFillColor(cor);
 }
 
-const bool Entidade::getisMoving()
+const Vector2f Entidade::getPosicao() const
 {
-    return isMoving;
+    return corpo.getPosition();
 }
+
 
 void Entidade::setColisaoPlataforma(bool estaNaPlataforma)
 {
@@ -92,7 +99,7 @@ void Entidade::movGravidade()
     else{ noChao = false; }
         
     //Manipulação da integração de Euler = (Velocidade + posicao atual) + acelaracao
-    //Velocidade + posicao atual = corpo.move -> ele soma a posicao atual mais o valor da velocidade
+    //(Velocidade + posicao atual) = corpo.move -> ele soma a posicao atual mais o valor da velocidade
     
     if (gravidade) {
      
@@ -113,19 +120,20 @@ void Entidade::movGravidade()
 }
 
 
+//CADA ENTIDADE CORRIGE SUA COLISAO (ELE SE MOVE PARA TRAS)
 void Entidade::corrigeColisoes(Entidade* a, Vector2f inter)
 {
     // Codigo baseado na video aula do monitor Matheus Burda:
     // https://www.youtube.com/watch?v=mxZMK7ZqFtE&list=PLSPev71NbUEBIQlT2QCd-gN6l_mNVw1cJ&index=9
     
-    Vector2f aPos = a->getCorpo().getPosition();
+    Vector2f entidadeEmColisao = a->getPosicao();
     
     //So vai ser true se a natureza da colisao for de cima para baixo 
     emCima = false;
 
     //Colisao em x
     if (inter.x >= inter.y) {
-        if (corpo.getPosition().x < aPos.x)
+        if (getPosicao().x < entidadeEmColisao.x)
         {
             corpo.move(Vector2f(inter.x, 0.0f));
         }
@@ -142,11 +150,11 @@ void Entidade::corrigeColisoes(Entidade* a, Vector2f inter)
     //Colisao em y
     else 
     {
-        if (corpo.getPosition().y < aPos.y) {
+        if (getPosicao().y < entidadeEmColisao.y) {
 
             corpo.move(Vector2f(0.f, inter.y));
 
-            //Se a entidade colidida nao for uma plataforma, quer dizer que o objeto que chamou essa funcao esta em cima
+            //Se a entidade colidida nao for uma plataforma, quer dizer que o objeto que chamou essa funcao esta em cima de outra entidade
             if (a->getId() != ID::plataforma) {
                 emCima = true;
             }
@@ -160,31 +168,6 @@ void Entidade::corrigeColisoes(Entidade* a, Vector2f inter)
 
 }
 
-/* FUNÇÃO DESNECESSARIA */
-
-//Nao preciso cancelar a gravidade pela funcao corrigeColisoes
-//O bool colisaoPlataforma eu ja atualizo no gerenciador de colisoes
-//Eu zero a velocidade quando a colisao é corrigida
-
-/*
-void Entidade::verificaColisaoPlataforma(Entidade* e)
-{
-    //Plataforma
-    if (e->getId() == 3)
-    {
-        colisaoPlataforma = true;
-        noChao = true;
-
-        speed.y = 0.0f;
-    } 
-
-    else 
-    {
-        colisaoPlataforma = false;
-        noChao = false;
-    }
-}
-*/
 
 void Entidade::setPosEntidade(Vector2f pos)
 {

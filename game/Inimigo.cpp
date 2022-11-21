@@ -2,7 +2,7 @@
 #include "Inimigo.h"
 
 
-Inimigo::Inimigo():Personagens(3), tempo_mov()
+Inimigo::Inimigo():Personagens(), tempo_mov(), player(nullptr)
 {   
     movRandom = rand() % 4; //SEED FALTANTE
     id = ID::inimigo; // ARRUMAR ID
@@ -11,19 +11,18 @@ Inimigo::Inimigo():Personagens(3), tempo_mov()
 
 Inimigo::~Inimigo()
 {
+	player = nullptr;
 }
 
 
 void Inimigo::movAleatorio()
 {
-    verificaPodeAndar(speed);
-
-    /* O movimento aleatorio se da por um valor sorteado entre 1 e 4 a cada 0.1s */
+    /* O movimento aleatorio se da por um valor sorteado entre 1 e 4 a cada 0.5s */
     if (noChao) {
-        if (movRandom == 1 && podeAndarDireita) {
+        if (movRandom == 1) {
             movimentaEntidade(Vector2f(speed.x, 0.f), true);
         }
-        else if (movRandom == 2 && podeAndarEsquerda) {
+        else if (movRandom == 2) {
             movimentaEntidade(Vector2f(-speed.x, 0.f), false);
         }
     }
@@ -39,14 +38,13 @@ void Inimigo::movAleatorio()
 void Inimigo::PersegueJogador(Vector2f posJogador, Vector2f posInimimgo)
 {
 	//funçao altera as flags 
-	verificaPodeAndar(speed);
 	Vector2f diferenca = posJogador - posInimimgo;
 
-	if ((diferenca.x > 0) && podeAndarDireita) {
+	if ((diferenca.x > 0)) {
 		movimentaEntidade(Vector2f(speed.x, 0.0), true);
 	}
 
-	else if ((diferenca.x < 0) && podeAndarEsquerda)
+	else if ((diferenca.x < 0))
 	{
 		movimentaEntidade(Vector2f(-speed.x, 0.0), false);
 	}

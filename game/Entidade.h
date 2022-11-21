@@ -1,13 +1,7 @@
 #pragma once
 #include "Ente.h"
 
-#define GRAVIDADE 998.0f
-
-//Borda para o movimento do jogador (o setPosition nao segue essas medidas, la é 1280x720)
-#define BORDA_X 1210.0
-#define BORDA_Y 650.0
-
-
+//Fazer uma classe ID
 enum ID
 {
 	eempty = 0,
@@ -31,13 +25,16 @@ protected:
 	//Toda entidade tem um shape
 	RectangleShape corpo;
  
-	//UTIL PARA O CALCULO DA GRAVIDADE
+	//Toda entidade sofre uma velocida (gravidade e movimento)
 	sf::Vector2f speed;
+
+	//Nao sei se seria util esse atributo (pois a posicao do corpo pode ser obtida atraves de um getPosicao())
+	Vector2f posicao;
 
 	//Util para colisoes entre entidades
 	sf::Vector2f repulsao;
 
-	//Algumas entidades tem a capacidade de causar dano
+	//Entidades sao capazes de causar dano
 	float dano;
 
 	ID id;
@@ -45,11 +42,9 @@ protected:
 	//Variaveis de controle
 	bool visivel;
 	bool colisaoPlataforma;
-	bool colisaoCima;
 	bool gravidade;
 	bool noChao;
 	bool emCima;
-	bool isMoving;
 
 public:
 
@@ -62,20 +57,22 @@ public:
 	const Vector2f getRepulsao();
 	void setDano(float dano);
 	const float getDano() const;
-	virtual void atacar(Entidade* adversario, float dano) = 0;
 	const bool getVisivel() const;
+
+	//Entidades sao capazes de causar dano em outras entidades
+	virtual void atacar(Entidade* adversario, float dano) = 0;
 
 
 	//CORPO
-	RectangleShape getCorpo();
+	const RectangleShape getCorpo() const;
+	const Vector2f getSizeCorpo() const;
 	void setColor(sf::Color cor);
 	void setPosEntidade(Vector2f pos);
+	const Vector2f getPosicao() const;
+	
 
 	//retorna o ID
 	ID getId() const;
-
-	//Nao sei se precisa
-	const bool getisMoving();
 
 	//COLISAO E GRAVIDADE
 	void setColisaoPlataforma(bool estaNaPlataforma);

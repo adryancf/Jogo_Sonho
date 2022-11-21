@@ -3,24 +3,9 @@
 Anjo::Anjo(Jogador* p): Inimigo(), projetil(nullptr)
 {
     player = p;
-
-    //Forma Anjo
-    corpo.setSize(Vector2f(50.f, 150.f));
-    corpo.setFillColor(Color::Cyan);
-
-    //Atributos Anjo
-    setVelocidade(Vector2f(0.3f, 0.f));
-    setQuantidadeVida(15.0);
-
-    raio_deteccao = Vector2f(2000.f, 2000.f);
-
-    //Dano Fisico
-    setDano(2.0);
-
-    //Dano Projetil
-    //projetil->setDano(5.0);
-
     id = ID::anjo;
+
+    inicializa();
 
 }
 
@@ -34,10 +19,28 @@ Anjo::~Anjo()
 	projetil = nullptr;
 }
 
+void Anjo::inicializa()
+{
+    //Forma Anjo
+    corpo.setSize(Vector2f(ANJO_X, ANJO_Y));
+    setColor(Color::Cyan);
+
+    //Atributos Anjo
+    setVelocidade(Vector2f(0.3f, 0.f));
+    setQuantidadeVida(15.0);
+
+    raio_deteccao = Vector2f(2000.f, 2000.f);
+
+    //Dano Fisico
+    setDano(2.0);
+}
+
+
 const Projetil* Anjo::getProjetil()
 {
     return projetil;
 }
+
 
 void Anjo::Mover()
 {
@@ -67,6 +70,8 @@ void Anjo::Executar()
 void Anjo::Colisao(Entidade* entidade, Vector2f inter_colisao)
 {
 	ID id_entidade = entidade->getId();
+    corrigeColisoes(entidade, inter_colisao);
+
 
 	//Nao corrige colisao com o jogador, pois la ele ja chama essa funcao
 	if (id_entidade == ID::jogador) {
@@ -74,20 +79,10 @@ void Anjo::Colisao(Entidade* entidade, Vector2f inter_colisao)
     
         //Verifica se pode Perseguir
         podePerseguir(jogador);
-
-        
         atacar(jogador, dano);
 		
+        //Liberar projetil
 	}
-
-	else
-	{
-		corrigeColisoes(entidade, inter_colisao);
-	}
-
-
-
-
 
 }
 

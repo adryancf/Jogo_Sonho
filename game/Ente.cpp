@@ -1,6 +1,9 @@
 #include "Ente.h"
 
-Ente::Ente(): pGrafico(pGrafico->getGerenciadorGrafico())
+//Atributo estatico
+GerenciadorGrafico* GerenciadorGrafico::pGrafico = pGrafico->getGerenciadorGrafico();
+
+Ente::Ente()
 {
 	pGrafico->getWindow()->setVerticalSyncEnabled(true);
 }
@@ -14,13 +17,19 @@ Ente::~Ente()
 { 
 }
 
-void Ente::setWindow(GerenciadorGrafico* pG) { pGrafico = pG; }
 
+// (Sem uso)
+void Ente::setWindow(GerenciadorGrafico* pG) 
+{ 
+	pGrafico = pG; 
+}
+// (Sem uso) | talvez precise do static antes da declaração da funcao
 GerenciadorGrafico* Ente::getGrafico()
 {
 	return pGrafico;
 }
 
+//Pode ser a funcao render (pensar)
 void Ente::Print()
 {
 }
