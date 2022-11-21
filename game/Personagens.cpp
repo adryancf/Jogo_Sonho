@@ -1,6 +1,6 @@
 #include "Personagens.h"
 
-Personagens::Personagens(const int q_vida) :
+Personagens::Personagens(const float vida):
     Entidade(),
     podeAndarDireita(true),
     podeAndarEsquerda(true),
@@ -10,31 +10,20 @@ Personagens::Personagens(const int q_vida) :
     vivo(true),
     atacou(false),
     podeAndar(true),
-    direcaoMovimento("Nenhuma"),
-    dano(0.0)
+    direcaoMovimento("Nenhuma")
 {
-    this->q_vida = q_vida;
+    this->q_vida = vida;
 }
 
 Personagens::~Personagens()
 {
 }
 
-//ATAQUE
 
-void Personagens::setDano(float dano)
+void Personagens::atacar(Entidade* adversario ,float dano)
 {
-    this->dano = dano;
-}
-
-const float Personagens::getDano() const
-{
-    return dano;
-}
-
-void Personagens::atacar(Personagens* adversario ,float dano)
-{
-    adversario->perdeVida();
+    Personagens* adv = static_cast<Personagens*>(adversario);
+    adv->perdeVida(dano);
 }
 
 void Personagens::setAtacou(bool ataque)
@@ -70,6 +59,7 @@ void Personagens::verificaVida()
 {
     if (q_vida <= 0) {
         vivo = false;
+        visivel = false;
 
         //Tira ele do campo de visao para evitar colisoes indesejaveis
         setPosEntidade(Vector2f(-2000.f, -2000.f));
@@ -201,7 +191,6 @@ void Personagens::pular(double tam_pulo)
     {
         //a alura do pulo vai ser determinada pela equação de torricelli
         speed.y = -sqrt(2.0 * GRAVIDADE * tam_pulo);
-        cout << speed.y << endl;
         noChao = false;
         emCima = false;
     }

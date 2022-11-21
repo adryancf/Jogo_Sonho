@@ -19,7 +19,8 @@ enum ID
 	espinho,
 	plataforma,
 	inimigo,
-	obstaculo
+	obstaculo,
+	projetil
 };
 
 
@@ -36,9 +37,13 @@ protected:
 	//Util para colisoes entre entidades
 	sf::Vector2f repulsao;
 
-	ID id;
-	//int ID;/
+	//Algumas entidades tem a capacidade de causar dano
+	float dano;
 
+	ID id;
+
+	//Variaveis de controle
+	bool visivel;
 	bool colisaoPlataforma;
 	bool colisaoCima;
 	bool gravidade;
@@ -55,6 +60,11 @@ public:
 	void setVelocidade(Vector2f velocidade);
 	Vector2f* getVelocidade();
 	const Vector2f getRepulsao();
+	void setDano(float dano);
+	const float getDano() const;
+	virtual void atacar(Entidade* adversario, float dano) = 0;
+	const bool getVisivel() const;
+
 
 	//CORPO
 	RectangleShape getCorpo();
@@ -71,10 +81,8 @@ public:
 	void setColisaoPlataforma(bool estaNaPlataforma);
 	void setChao(bool estaNoChao);
 	const bool getEmCima();
-
 	void movGravidade();
 	void corrigeColisoes(Entidade* a, Vector2f inter);
-	//void verificaColisaoPlataforma(Entidade* e);
 	
 	virtual void Executar() = 0;
 	virtual void Colisao(Entidade* entidade, Vector2f inter_colisao) = 0;

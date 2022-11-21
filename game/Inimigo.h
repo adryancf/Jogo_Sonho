@@ -1,16 +1,20 @@
 #pragma once
 
-#include "Personagens.h"
+#include "Jogador.h"
+#include <cmath>
 
-//Depois devemos adicionar um virtual antes do public
-//Esta classe deve ser virtual pura
-//Não vou alterar agora pq modifica o funcionamento da Fase (que também deve ser alterada)
+
+
 class Inimigo :
     public Personagens
 {
 protected:
-    sf::Clock tempo_inimigos;
+    sf::Clock tempo_mov;
     int movRandom;
+
+    Vector2f raio_deteccao;
+
+    Jogador* player;
 
     /* Futuramente uma sprite */
 
@@ -23,6 +27,9 @@ public:
     
     //Movimentos
     void movAleatorio();
+    void PersegueJogador(Vector2f posJogador, Vector2f posInimimgo);
+    void podePerseguir(Personagens* personagem);
+
            
     virtual void Mover() = 0;
     virtual void Executar() = 0;

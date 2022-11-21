@@ -8,7 +8,7 @@ Jogador::Jogador():Personagens(), tempo()
     //Atributos Jogador
     setVelocidade(Vector2f(10.f, 0.f));
     setQuantidadeVida(10.0);
-    setDano(1.0);
+    setDano(3.0);
 }
 
 void Jogador::iniciar()
@@ -30,6 +30,7 @@ void Jogador::Mover()
 void Jogador::Executar()
 {
     verificaVida();
+    cout << " Vida Jogador: " << q_vida << endl;
     Mover();
 }
 
@@ -57,6 +58,7 @@ void Jogador::Colisao(Entidade* entidade, Vector2f inter_colisao)
 {
     corrigeColisoes(entidade, inter_colisao);
     
+    //Dragao
     if (entidade->getId() == ID::dragao)
     {
         Personagens* dragao = static_cast<Personagens*>(entidade);
@@ -65,7 +67,7 @@ void Jogador::Colisao(Entidade* entidade, Vector2f inter_colisao)
         if (!emCima) 
         {
             if (olhandoDireita) {
-                repulsao.x = -60.0;
+                repulsao.x = -30.0;
                 verificaPodeAndar(repulsao);
                 if (podeAndarEsquerda) {
                     movimentaEntidade(repulsao, false);
@@ -75,7 +77,7 @@ void Jogador::Colisao(Entidade* entidade, Vector2f inter_colisao)
                 }
             }
             else if (olhandoEsquerda) {
-                repulsao.x = 60.0;
+                repulsao.x = 30.0;
                 verificaPodeAndar(repulsao);
                 if (podeAndarDireita) {
                     movimentaEntidade(repulsao, true);
@@ -84,12 +86,11 @@ void Jogador::Colisao(Entidade* entidade, Vector2f inter_colisao)
                     dragao->setDirecaoMovimento(string("esquerda"));
                 }
             }
+
+            atacar(entidade, dano);
+
         }
         
-        if(t<=0.5)
-            atacar(dragao, dano);
-
-
         tempo.restart();
 
     }
@@ -97,13 +98,10 @@ void Jogador::Colisao(Entidade* entidade, Vector2f inter_colisao)
     //Hydra
     else if (entidade->getId() == ID::hydra)
     {
-
-        Personagens* hydra = static_cast<Personagens*>(entidade);
-
         //Se o jogador ta em cima dela, ela perde vida
         if (emCima)
         {
-            atacar(hydra, dano);
+            atacar(entidade, dano);
 ;       }
 
         else

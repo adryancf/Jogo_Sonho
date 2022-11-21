@@ -11,7 +11,6 @@ protected:
     bool vivo;
 
     //Ataque
-    float dano;
     bool atacou;
 
     //Controle do Movimento
@@ -24,13 +23,12 @@ protected:
     string direcaoMovimento;
 
 public:
-    Personagens(const int q_vida = 5.0);
+    Personagens(const float vida = 5.0);
     ~Personagens();
 
     //ATAQUE
-    void setDano(float dano);
-    const float getDano() const;
-    virtual void atacar(Personagens* adversario, float dano); // Se precisar redefinir a funcao eu posso
+    
+    virtual void atacar(Entidade* adversario, float dano); // Se precisar redefinir a funcao eu posso
     void setAtacou(bool ataque);
     bool getAtacou();
 

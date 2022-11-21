@@ -29,8 +29,19 @@ Fase1::~Fase1()
 void Fase1::criar_entidades()
 {
 	criarPlataforma();
-	criarDragao();
+	//criarDragao();
 	//criarHydra();
+	Anjo* anjo1 = new Anjo(j1);
+	lista_personagem->listEnt.push(anjo1);
+
+	anjo1->setPosEntidade(Vector2f(250.f, ALTURAP3 - 150.f)); //Primeira Plataforma
+
+	//Projetil* projetil_anjo = new Projetil(j1);
+	//projetil_anjo->setPortador(anjo1);
+	//lista_personagem->listEnt.push(projetil_anjo);
+
+	
+
 }
 
 ListaEntidades* Fase1::getListaPersonagem()
@@ -114,12 +125,10 @@ void Fase1::Executar()
 	//Implementar isso na classe da lista (se tiver tempo)
 	for (int i = 0; i < lista_personagem->listEnt.getTamanho(); i++)
 	{
-
-		//colocar uma condicao de id aqui(se for personagem dar o static_cast, se nao, deixar o aux como entidade)
-		Personagens* aux = static_cast<Personagens*>(lista_personagem->listEnt.getItemLista(i));
-		if (aux->getVida() == true) {
-			aux->Executar();
-			pGrafico->desenhar(aux->getCorpo());
+		Entidade* personagem = lista_personagem->listEnt.getItemLista(i);
+		if (personagem->getVisivel() == true) {
+			personagem->Executar();
+			pGrafico->desenhar(personagem->getCorpo());
 		}
 	}
 

@@ -19,6 +19,10 @@ Plataforma::~Plataforma()
 {
 }
 
+void Plataforma::atacar(Entidade* adversario, float dano)
+{
+}
+
 void Plataforma::Executar()
 {
 	movGravidade();

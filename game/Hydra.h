@@ -1,23 +1,15 @@
 #pragma once
 
-
 #include "Inimigo.h"
-#include <cmath>
-#include "Jogador.h"
-
 
 class Hydra: public Inimigo
 {
 private:
-	Jogador* player;
-	Vector2f raio_deteccao;
+	Vector2f posHydra;
 
 public:
 	Hydra(Jogador* p);
 	~Hydra();
-
-	void PersegueJogador(Vector2f posJogador, Vector2f posInimimgo);
-
 
 	virtual void Mover();
 	virtual void Executar();

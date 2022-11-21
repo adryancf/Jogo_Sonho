@@ -8,6 +8,7 @@ ID Entidade::getId() const
 
 Entidade::Entidade(ID idd) : corpo(Vector2f(70.f, 70.f)),
     Ente(),
+    visivel(true),
     colisaoPlataforma(false),
     colisaoCima(false),
     gravidade(true), 
@@ -16,6 +17,7 @@ Entidade::Entidade(ID idd) : corpo(Vector2f(70.f, 70.f)),
     isMoving(false),
     speed(Vector2f(0.0f, 0.0f)),
     repulsao(Vector2f(0.0f, 0.0f)),
+    dano(0.0f),
     id(idd)
 {}
 
@@ -35,6 +37,21 @@ Vector2f* Entidade::getVelocidade()
 const Vector2f Entidade::getRepulsao()
 {
     return repulsao;
+}
+
+void Entidade::setDano(float dano)
+{
+    this->dano = dano;
+}
+
+const float Entidade::getDano() const
+{
+    return dano;
+}
+
+const bool Entidade::getVisivel() const
+{
+    return visivel;
 }
 
 RectangleShape Entidade::getCorpo(){ return corpo; }
