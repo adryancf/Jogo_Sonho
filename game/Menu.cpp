@@ -1,4 +1,4 @@
-
+/*
 #include "Jogo.h"
 
 int main()
@@ -35,10 +35,7 @@ int main()
 
         }
     }
-    */
-
-    
 }
-
+*/
 
 

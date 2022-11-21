@@ -2,7 +2,7 @@
 
 #include "stdafx.h"
 #include "GerenciadorGrafico.h"
-
+#include "Id.h"
 /* Derivadas = Jogo, Entidade, Fase */
 
 class Ente
@@ -10,6 +10,17 @@ class Ente
 protected:
 	//Todo ENTE deve conhecer a parte Gráfica do jogo (Janela - SFML)
 	GerenciadorGrafico* pGrafico;
+
+	//Todo ENTE tem um ID
+	ID id;
+
+	//Todo ENTE tem uma POSICAO
+
+	//Todo ENTE tem um SHAPE
+
+	//Todo ENTE tem uma TEXTURA
+
+	//Todo ENTE pode ou nao estar VISIVEL
 
 
 public:
@@ -22,6 +33,16 @@ public:
 
 	virtual void Executar() = 0;
 	void Print(); //posso fazer um render
+
+	//ID
+	void setId(ID Id);
+	ID getId();
+
+	//POSICAO
+
+	//TEXTURA
+
+	//VISIBILIDADE
 
 
 };

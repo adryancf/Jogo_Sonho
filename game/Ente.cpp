@@ -33,3 +33,15 @@ GerenciadorGrafico* Ente::getGrafico()
 void Ente::Print()
 {
 }
+
+//Define o ID
+void Ente::setId(ID Id)
+{
+	id = Id;
+}
+
+//Retorna o ID
+ID Ente::getId()
+{
+	return id;
+}

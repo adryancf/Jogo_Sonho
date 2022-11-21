@@ -1,11 +1,11 @@
 #include "Entidade.h"
 
-
+/*
 ID Entidade::getId() const
 {
     return id;
 }
-
+*/
 Entidade::Entidade(ID idd) : corpo(Vector2f(70.f, 70.f)),
     Ente(),
     visivel(true),
@@ -15,8 +15,8 @@ Entidade::Entidade(ID idd) : corpo(Vector2f(70.f, 70.f)),
     emCima(false),
     speed(Vector2f(0.0f, 0.0f)),
     repulsao(Vector2f(0.0f, 0.0f)),
-    dano(0.0f),
-    id(idd)
+    dano(0.0f)
+    //id(idd)
 {}
 
 
