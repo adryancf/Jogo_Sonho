@@ -9,7 +9,7 @@ class Ente
 {
 protected:
 	//Todo ENTE deve conhecer a parte Gráfica do jogo (Janela - SFML)
-	static GerenciadorGrafico* pGrafico;
+	GerenciadorGrafico* pGrafico;
 
 
 public:
@@ -18,7 +18,7 @@ public:
 	~Ente();
 
 	void setWindow(GerenciadorGrafico* pG);
-	static GerenciadorGrafico* getGrafico();
+	GerenciadorGrafico* getGrafico();
 
 	virtual void Executar() = 0;
 	void Print(); //posso fazer um render

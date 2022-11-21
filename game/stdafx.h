@@ -25,6 +25,9 @@
 #define BORDA_X 1210.0
 #define BORDA_Y 650.0
 
+#define BORDA_ESQ 0.f
+#define BORDA_DIR 1280.f
+
 //RESOLUCAO
 #define RESOLUCAO_X 1280
 #define RESOLUCAO_Y 720
@@ -43,6 +46,9 @@
 
 #define ANJO_X 20.f
 #define ANJO_Y 40.f
+
+#define ESPESSURA_PLATAFORMA 20.f
+
 
 //Using
 using namespace std;

@@ -1,9 +1,9 @@
 #include "Ente.h"
 
 //Atributo estatico
-GerenciadorGrafico* GerenciadorGrafico::pGrafico = pGrafico->getGerenciadorGrafico();
+//GerenciadorGrafico* GerenciadorGrafico::pGrafico = pGrafico->getGerenciadorGrafico();
 
-Ente::Ente()
+Ente::Ente(): pGrafico(pGrafico->getGerenciadorGrafico())
 {
 	pGrafico->getWindow()->setVerticalSyncEnabled(true);
 }

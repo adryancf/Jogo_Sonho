@@ -5,7 +5,6 @@
 #define ALTURAP3 400.f
 #define ALTURAP4 620.f
 
-
 Fase1::Fase1(Jogador* j1): Fase(j1)
 {
 	/* CRIA A LISTA DE ENTIDADES DA FASE */
@@ -29,8 +28,8 @@ Fase1::~Fase1()
 void Fase1::criar_entidades()
 {
 	criarPlataforma();
-	//criarDragao();
-	//criarHydra();
+	criarDragao();
+	criarHydra();
 	Anjo* anjo1 = new Anjo(j1);
 	lista_personagem->listEnt.push(anjo1);
 
@@ -64,32 +63,32 @@ void Fase1::criarDragao()
 {
 	Dragao* dragao1 = new Dragao();
 	lista_personagem->listEnt.push(dragao1);
-	dragao1->setPosEntidade(Vector2f(250.f, ALTURAP1 - ALTURA_DRAGAO)); //Primeira Plataforma
-
+	dragao1->setPosEntidade(Vector2f(250.f, ALTURAP1 - DRAGAO_Y)); //Primeira Plataforma
+	
 	Dragao* dragao2 = new Dragao();
 	lista_personagem->listEnt.push(dragao2);
-	dragao2->setPosEntidade(Vector2f(1200.f, ALTURAP3 - ALTURA_DRAGAO)); //Terceira Plataforma
+	dragao2->setPosEntidade(Vector2f(1200.f, ALTURAP3 - DRAGAO_Y)); //Terceira Plataforma
 
 	Dragao* dragao3 = new Dragao();
 	lista_personagem->listEnt.push(dragao3);
-	dragao3->setPosEntidade(Vector2f(500.f, ALTURAP4 - ALTURA_DRAGAO)); //Quarta Plataforma
+	dragao3->setPosEntidade(Vector2f(500.f, ALTURAP4 - DRAGAO_Y)); //Quarta Plataforma
 }
 
 void Fase1::criarHydra()
 {
 	Hydra* hydra1 = new Hydra(j1);
 	lista_personagem->listEnt.push(hydra1);
-	hydra1->setPosEntidade(Vector2f(150.f, ALTURAP1 - ALTURA_HYDRA)); //Primeira Plataforma
+	hydra1->setPosEntidade(Vector2f(150.f, ALTURAP1 - HYDRA_Y)); //Primeira Plataforma
 
 
 	Hydra* hydra2 = new Hydra(j1);
 	lista_personagem->listEnt.push(hydra2);
-	hydra2->setPosEntidade(Vector2f(600.f, ALTURAP2 - ALTURA_HYDRA)); //Segunda Plataforma
+	hydra2->setPosEntidade(Vector2f(600.f, ALTURAP2 - HYDRA_Y)); //Segunda Plataforma
 
 
 	Hydra* hydra3 = new Hydra(j1);
 	lista_personagem->listEnt.push(hydra3);
-	hydra3->setPosEntidade(Vector2f(100.f, ALTURAP4 - ALTURA_HYDRA)); //Quarta Plataforma
+	hydra3->setPosEntidade(Vector2f(100.f, ALTURAP4 - HYDRA_Y)); //Quarta Plataforma
 
 
 }

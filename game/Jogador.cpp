@@ -9,6 +9,7 @@ Jogador::Jogador():Personagens(), tempo(), pontuacao(0)
 void Jogador::iniciar()
 {
     //Atributos Jogador
+    corpo.setSize(Vector2f(JOGADOR_X, JOGADOR_Y));
     setVelocidade(Vector2f(10.f, 0.f));
     setQuantidadeVida(10.0);
     setDano(3.0);

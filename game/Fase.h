@@ -9,12 +9,6 @@
 
 #include "Ente.h"
 
-#define ESPESSURA_PLATAFORMA 35.f
-#define BORDA_ESQ 0.f
-#define BORDA_DIR 1280.f
-#define ALTURA_HYDRA 60.f
-#define ALTURA_DRAGAO 70.f
-
 
 class Fase: virtual public Ente
 {
