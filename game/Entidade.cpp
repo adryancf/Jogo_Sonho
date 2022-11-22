@@ -8,7 +8,7 @@ ID Entidade::getId() const
 */
 Entidade::Entidade(ID idd) : corpo(Vector2f(70.f, 70.f)),
     Ente(),
-    visivel(true),
+    //visivel(true),
     colisaoPlataforma(false),
     gravidade(true), 
     noChao(false), 
@@ -17,8 +17,15 @@ Entidade::Entidade(ID idd) : corpo(Vector2f(70.f, 70.f)),
     repulsao(Vector2f(0.0f, 0.0f)),
     dano(0.0f)
     //id(idd)
-{}
+{
+    //visivel = true;
+}
 
+/* AMBIGUO
+Entidade::Entidade() : Ente()
+{
+}
+*/
 
 Entidade::~Entidade(){}
 

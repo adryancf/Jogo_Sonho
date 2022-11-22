@@ -23,7 +23,10 @@ protected:
 	//ID id;
 
 	//Variaveis de controle
-	bool visivel;
+	
+	//bool visivel;
+
+
 	bool colisaoPlataforma;
 	bool gravidade;
 	bool noChao;
@@ -32,6 +35,7 @@ protected:
 public:
 
 	Entidade(ID idd = ID::vazio);
+	//Entidade(); AMBIGUO
 	~Entidade();
 
 	//ATRIBUTOS

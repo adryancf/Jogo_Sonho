@@ -21,6 +21,7 @@ protected:
 	//Todo ENTE tem uma TEXTURA
 
 	//Todo ENTE pode ou nao estar VISIVEL
+	bool visivel;
 
 
 public:
@@ -43,7 +44,7 @@ public:
 	//TEXTURA
 
 	//VISIBILIDADE
-
-
+	void setVisivel(bool s);
+	const bool getVisivel() const;
 };
 
