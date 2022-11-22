@@ -28,19 +28,18 @@ Fase1::~Fase1()
 void Fase1::criar_entidades()
 {
 	criarPlataforma();
-	criarDragao();
-	criarHydra();
-	Anjo* anjo1 = new Anjo(j1);
+	//criarDragao();
+	//criarHydra();
+
+	Projetil* projetil_anjo = new Projetil();
+	lista_personagem->listEnt.push(projetil_anjo);
+
+	Anjo* anjo1 = new Anjo(j1, projetil_anjo);
+	anjo1->setPosEntidade(Vector2f(700.f, ALTURAP3 - 150.f)); //Primeira Plataforma
+	anjo1->setAlvo(j1);
 	lista_personagem->listEnt.push(anjo1);
 
-	anjo1->setPosEntidade(Vector2f(250.f, ALTURAP3 - 150.f)); //Primeira Plataforma
-
-	//Projetil* projetil_anjo = new Projetil(j1);
-	//projetil_anjo->setPortador(anjo1);
-	//lista_personagem->listEnt.push(projetil_anjo);
-
-	
-
+	projetil_anjo->setPortador(anjo1);
 }
 
 ListaEntidades* Fase1::getListaPersonagem()

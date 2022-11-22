@@ -1,6 +1,11 @@
 #include "Anjo.h"
 
-Anjo::Anjo(Jogador* p): Inimigo(), projetil(nullptr)
+Anjo::Anjo(Jogador* p, Projetil* b): 
+    Inimigo(), 
+    projetil(b),
+    tempo_atk(1.0f),
+    estaNoRaio(false),
+    posAlvo(Vector2f(0.f, 0.f))
 {
     player = p;
     id = ID::anjo;
@@ -9,14 +14,33 @@ Anjo::Anjo(Jogador* p): Inimigo(), projetil(nullptr)
 
 }
 
-Anjo::Anjo(Personagens* alvo)
-{
-	projetil->setAlvo(alvo);
-}
-
 Anjo::~Anjo()
 {
-	projetil = nullptr;
+    if(projetil)
+        projetil = nullptr;
+}
+
+void Anjo::setAlvo(Personagens* alvo)
+{
+    this->alvo = alvo;
+}
+
+const Personagens* Anjo::getAlvo() const
+{
+    return alvo;
+}
+
+void Anjo::EncontraPosAlvo()
+{
+    //Encontra a posicao do alvo e pra que lado ele esta
+    posAlvo = alvo->getPosicao();
+    Vector2f diferenca = (getPosicao() - posAlvo);
+
+    if (diferenca.x < 0.0000000f)
+        direcao = "direita";
+    else
+        direcao = "esquerda";
+    
 }
 
 void Anjo::inicializa()
@@ -26,10 +50,10 @@ void Anjo::inicializa()
     setColor(Color::Cyan);
 
     //Atributos Anjo
-    setVelocidade(Vector2f(0.3f, 0.f));
+    setVelocidade(Vector2f(0.5f, 0.f));
     setQuantidadeVida(15.0);
 
-    raio_deteccao = Vector2f(2000.f, 2000.f);
+    raio_deteccao = Vector2f(500.f, 500.f);
 
     //Dano Fisico
     setDano(2.0);
@@ -41,12 +65,32 @@ const Projetil* Anjo::getProjetil()
     return projetil;
 }
 
+void Anjo::atacar()
+{
+    
+    //O ataque do anjo é lançar o projetil
+    
+    //Lança de 1 em 1s
+    if (estaNoRaio)
+    {
+        //Liberar projetil
+        EncontraPosAlvo();
+
+        if (projetil)
+            projetil->atirar(direcao, tempo_atk);
+        
+    }
+    
+}
+
 
 void Anjo::Mover()
 {
     movGravidade();
 
     //Perseguir o Jogador
+    podePerseguir(player);
+
     if (podeAndar)
     {
         Vector2f posJogador = player->getCorpo().getPosition();
@@ -54,9 +98,12 @@ void Anjo::Mover()
 
         if ((fabs(posJogador.x - posInimigo.x) <= raio_deteccao.x)
             && (fabs(posJogador.y - posInimigo.y) <= raio_deteccao.y)) {
-
             PersegueJogador(posJogador, posInimigo);
+            estaNoRaio = true;
+
         }
+        else
+            estaNoRaio = false;
     }
 
 }
@@ -65,6 +112,7 @@ void Anjo::Executar()
 {
     verificaVida();
     Mover();
+    atacar();
 }
 
 void Anjo::Colisao(Entidade* entidade, Vector2f inter_colisao)
@@ -78,10 +126,7 @@ void Anjo::Colisao(Entidade* entidade, Vector2f inter_colisao)
         Personagens* jogador = static_cast<Personagens*>(entidade);
     
         //Verifica se pode Perseguir
-        podePerseguir(jogador);
-        atacar(jogador, dano);
-		
-        //Liberar projetil
+        //atacar(jogador, dano);
 	}
 
 }

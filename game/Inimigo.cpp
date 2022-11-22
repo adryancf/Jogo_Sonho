@@ -37,6 +37,7 @@ void Inimigo::movAleatorio()
 
 void Inimigo::PersegueJogador(Vector2f posJogador, Vector2f posInimimgo)
 {
+
 	//funçao altera as flags 
 	Vector2f diferenca = posJogador - posInimimgo;
 
