@@ -24,6 +24,12 @@ Projetil::~Projetil()
 		portador = nullptr;
 
 }
+
+
+
+
+//ESTADO INICIAL
+
 void Projetil::verificarBordas()
 {
 	Vector2f posProjetil = getPosicao();
@@ -36,7 +42,6 @@ void Projetil::verificarBordas()
 		estadoInicial();
 	}
 }
-
 
 void Projetil::estadoInicial()
 {
@@ -52,6 +57,8 @@ void Projetil::atualizaPosicaoInicial()
 	setPosEntidade(portador->getCorpo().getPosition());
 }
 
+//PORTADOR
+
 void Projetil::setPortador(Personagens* portador)
 {
 	this->portador = portador;
@@ -65,6 +72,8 @@ const Personagens* Projetil::getPortador() const
 
 
 
+// ATAQUE
+
 void Projetil::atacar(Entidade* adversario, float dano)
 {
 
@@ -77,16 +86,15 @@ void Projetil::atacar(Entidade* adversario, float dano)
 
 }
 
-//Passar o tempo de ataque aqui
 void Projetil::atirar(string direcao, float tempo)
 {
 
 	tempo_ataque = t.getElapsedTime().asSeconds();
-	cout << tempo_ataque << endl;
 
 	if (repouso && tempo_ataque >= tempo) {
 
 		t.restart();
+		atualizaPosicaoInicial();
 
 		visivel = true;
 		repouso = false;
@@ -107,6 +115,7 @@ void Projetil::atirar(string direcao, float tempo)
 		corpo.move(Vector2f(speed.x, 0.f));
 	}
 }
+
 void Projetil::Executar()
 {
 	verificarBordas();
@@ -125,7 +134,7 @@ void Projetil::Colisao(Entidade* entidade, Vector2f inter_colisao)
 
 	if (entidade->getId() == ID::jogador) {
 		//Quando colide eu chamo o atacar (que causa dano no adversario)
-		//atacar(entidade, dano);
+		atacar(entidade, dano);
 	}
 
 	//Volto para a estado inicial

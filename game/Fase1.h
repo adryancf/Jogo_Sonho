@@ -1,13 +1,13 @@
 #pragma once
-
 #include "Fase.h"
-
 
 class Fase1: public Fase
 {
 private:
-	ListaEntidades* lista_personagem;
-	ListaEntidades* lista_obstaculos;
+
+	//NESSA FASE VAI TER ESPECIFICAMENTE
+	Dragao* dragao;
+	Hydra* hydra;
 
 	virtual void criar_entidades();
 
@@ -15,18 +15,15 @@ public:
 	Fase1(Jogador* j1);
 	~Fase1();
 
-	ListaEntidades* getListaPersonagem();
-	ListaEntidades* getListaObstaculo();
-
+	//Personagem
 	void criarDragao();
 	void criarHydra();
+
+	//Obstaculo
 	virtual void criarPlataforma();
+	virtual void criarCaixa();
 
 	virtual void Executar();
-
-
-
-
 
 
 };

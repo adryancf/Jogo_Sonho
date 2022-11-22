@@ -141,26 +141,26 @@ void Jogador::Colisao(Entidade* entidade, Vector2f inter_colisao)
     }
     else if (entidade->getId() == anjo)
     {
-        //Vou dar dano batendo nele
-        if (olhandoDireita)
-        {
-            repulsao.x = -50.0;
-            movimentaEntidade(repulsao, false);
+        if (!emCima) {
+            //Vou dar dano batendo nele
+            if (olhandoDireita)
+            {
+                repulsao.x = -50.0;
+                movimentaEntidade(repulsao, false);
+            }
+
+            else if (olhandoEsquerda) {
+                repulsao.x = 50.0;
+                movimentaEntidade(repulsao, true);
+            }
+
+            atacar(entidade, dano);
         }
-
-        else if (olhandoEsquerda) {
-            repulsao.x = 50.0;
-            movimentaEntidade(repulsao, true);
-        }
-
-        atacar(entidade, dano);
-
     }
 
     else if (entidade->getId() == ID::projetil)
     {
         cout << "COLIDIU PROJETIL" << endl;
-
 
     }
 

@@ -16,6 +16,9 @@ Anjo::Anjo(Jogador* p, Projetil* b):
 
 Anjo::~Anjo()
 {
+    if (alvo)
+        alvo = nullptr;
+
     if(projetil)
         projetil = nullptr;
 }
@@ -30,17 +33,9 @@ const Personagens* Anjo::getAlvo() const
     return alvo;
 }
 
-void Anjo::EncontraPosAlvo()
+const Projetil* Anjo::getProjetil()
 {
-    //Encontra a posicao do alvo e pra que lado ele esta
-    posAlvo = alvo->getPosicao();
-    Vector2f diferenca = (getPosicao() - posAlvo);
-
-    if (diferenca.x < 0.0000000f)
-        direcao = "direita";
-    else
-        direcao = "esquerda";
-    
+    return projetil;
 }
 
 void Anjo::inicializa()
@@ -59,11 +54,20 @@ void Anjo::inicializa()
     setDano(2.0);
 }
 
-
-const Projetil* Anjo::getProjetil()
+void Anjo::EncontraPosAlvo()
 {
-    return projetil;
+    //Encontra a posicao do alvo e pra que lado ele esta
+    posAlvo = alvo->getPosicao();
+
+    Vector2f diferenca = (getPosicao() - posAlvo);
+
+    if (diferenca.x < 0.00f)
+        direcao_alvo = "direita";
+    else
+        direcao_alvo = "esquerda";
+    
 }
+
 
 void Anjo::atacar()
 {
@@ -77,12 +81,11 @@ void Anjo::atacar()
         EncontraPosAlvo();
 
         if (projetil)
-            projetil->atirar(direcao, tempo_atk);
+            projetil->atirar(direcao_alvo, tempo_atk);
         
     }
     
 }
-
 
 void Anjo::Mover()
 {
@@ -125,7 +128,6 @@ void Anjo::Colisao(Entidade* entidade, Vector2f inter_colisao)
 	if (id_entidade == ID::jogador) {
         Personagens* jogador = static_cast<Personagens*>(entidade);
     
-        //Verifica se pode Perseguir
         //atacar(jogador, dano);
 	}
 

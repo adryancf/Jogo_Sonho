@@ -8,14 +8,15 @@ class Anjo: public Inimigo
 private:
 	//Crio o projetil na fase, pois precico inclui-lo na lista de personagens
 	Projetil* projetil;
-	Personagens* alvo;
 
+	Personagens* alvo;
 	Vector2f posAlvo;
 
 	float tempo_atk;
 
+	//Controle
 	bool estaNoRaio;
-	string direcao;
+	string direcao_alvo;
 
 public:
 	Anjo(Jogador* p, Projetil* b);
