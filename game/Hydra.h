@@ -6,6 +6,7 @@ class Hydra: public Inimigo
 {
 private:
 	Vector2f posHydra;
+	sf::Texture texture;
 
 public:
 	Hydra(Jogador* p);

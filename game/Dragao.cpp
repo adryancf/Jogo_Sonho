@@ -4,6 +4,9 @@ Dragao::Dragao(): Inimigo(), tempo_de_ataque(1.0)
 {
     id = ID::dragao;
     inicializa();
+    texture.loadFromFile("assets/NinjaFrog.png");
+    corpo.setTexture(&texture);
+    corpo.setSize(sf::Vector2f(80.0f, 80.0f));
 }
 
 Dragao::~Dragao()
@@ -14,7 +17,7 @@ void Dragao::inicializa()
 {
     //Forma Dragao
     corpo.setSize(Vector2f(DRAGAO_X, DRAGAO_Y));
-    setColor(Color::Red);
+    //setColor(Color::Red);
 
     //Atributos Dragao
     setVelocidade(Vector2f(0.6f, 0.f));

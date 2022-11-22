@@ -9,6 +9,8 @@ private:
 	//Crio o projetil na fase, pois precico inclui-lo na lista de personagens
 	Projetil* projetil;
 
+	sf::Texture texture;
+
 public:
 	Anjo(Jogador* p);
 	Anjo(Personagens* alvo);

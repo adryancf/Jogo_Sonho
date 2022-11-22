@@ -13,6 +13,10 @@ private:
 
     sf::Clock tempo;
     void iniciar();
+
+    //Textura do jogador
+    sf::Texture texture;
+
     
 public:
     Jogador();
@@ -36,5 +40,7 @@ public:
     //Atualiza
     virtual void Executar();
 
+    //Def a textura
+   // void setTextura();
 };
 

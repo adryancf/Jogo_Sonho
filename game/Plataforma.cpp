@@ -4,9 +4,11 @@ Plataforma::Plataforma(const Vector2f tam, const Vector2f pos)
 {
 	corpo.setPosition(pos);
 	corpo.setSize(tam);
-	corpo.setFillColor(Color::Green);
+	//corpo.setFillColor(Color::Green);
 
 	id = ID::plataforma;
+	texture.loadFromFile("assets/brownPlatform.png");
+	corpo.setTexture(&texture);
 
 }
 
