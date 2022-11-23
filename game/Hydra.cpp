@@ -6,6 +6,9 @@ Hydra::Hydra(Jogador* p): Inimigo(), posHydra(Vector2f(0.0f, 0.0f))
 	id = ID::hydra;
 
 	inicializa();
+	texture.loadFromFile("assets/MaskDude.png");
+	corpo.setTexture(&texture);
+	corpo.setSize(sf::Vector2f(70.0f, 70.0f));
 }
 
 Hydra::~Hydra()
@@ -17,7 +20,7 @@ void Hydra::inicializa()
 {
 	//Forma Hydra
 	corpo.setSize(Vector2f(HYDRA_X, HYDRA_Y));
-	corpo.setFillColor(Color::Blue);
+	//corpo.setFillColor(Color::Blue);
 
 	//Atributos Hydra
 	setVelocidade(Vector2f(0.3f, 0.f));

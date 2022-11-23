@@ -51,7 +51,6 @@ void GerenciadorEvento::verificaTeclaPressionada(sf::Keyboard::Key tecla)
     else if(tecla == sf::Keyboard::Space){
         Jogador1->pular(0.004);
     }
-
     /*
     if (tecla_pres == 1)
         Jogador1->andar(2);
@@ -73,7 +72,7 @@ void GerenciadorEvento::verificaTeclaSolta(sf::Keyboard::Key tecla)
 
 void GerenciadorEvento::Executar()
 {
-    //loop de execução da janela
+    //loop de execuï¿½ï¿½o da janela
     
     Event event;
     while (pGrafico->getWindow()->pollEvent(event))

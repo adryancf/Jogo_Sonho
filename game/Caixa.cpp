@@ -9,7 +9,11 @@ Caixa::Caixa(const sf::Vector2f tam, const sf::Vector2f pos, bool estado_caixa):
 {
 	corpo.setPosition(pos);
 	corpo.setSize(tam);
-	corpo.setFillColor(sf::Color::Red);
+	//corpo.setFillColor(sf::Color::Red);
+
+	//texture.loadFromFile("freetileset/png/Object/Crate.png");
+	//corpo.setTexture(&texture);
+
 	id = ID::caixa;
 }
 

@@ -2,14 +2,19 @@
 
 Jogador::Jogador():Personagens(), tempo(), pontuacao(0)
 {
-    id = ID::jogador;  
+    id = ID::jogador;
+    texture.loadFromFile("assets/PinkMan.png");
+    corpo.setTexture(&texture);
     iniciar();
+    corpo.setSize(sf::Vector2f(70.0f, 70.0f));
 }
 
 void Jogador::iniciar()
 {
     //Atributos Jogador
     corpo.setSize(Vector2f(JOGADOR_X, JOGADOR_Y));
+    //this->setTextura();
+
     setVelocidade(Vector2f(10.f, 0.f));
     setQuantidadeVida(10.0);
     setDano(3.0);
@@ -33,7 +38,7 @@ void Jogador::Executar()
     Mover();
 }
 
-/* OS GERENCIADORES QUE CHAMAM ESSAS FUNÇÕES */
+/* OS GERENCIADORES QUE CHAMAM ESSAS FUNï¿½ï¿½ES */
 
 //GERENCIADOR DE EVENTOS
 void Jogador::andar(int i)
@@ -74,7 +79,7 @@ const int Jogador::getPontos()
     return pontuacao;
 }
 
-//GERENCIADOR DE COLISÕES
+//GERENCIADOR DE COLISï¿½ES
 void Jogador::Colisao(Entidade* entidade, Vector2f inter_colisao)
 {
     corrigeColisoes(entidade, inter_colisao);
@@ -191,5 +196,12 @@ void Jogador::Colisao(Entidade* entidade, Vector2f inter_colisao)
     }
 
 }
+
+/*
+void Jogador::setTextura()
+{
+    textura->loadFromFile("assets/mushroom.PNG");
+}
+*/
 
 

@@ -7,6 +7,7 @@ class Dragao: public Inimigo
 
 private:
 	float tempo_de_ataque;
+	sf::Texture texture;
 
 public:
 	Dragao();

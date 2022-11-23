@@ -5,7 +5,7 @@ class Plataforma :
 {
 
 private:
-
+    sf::Texture texture;
 
 public:
     Plataforma(Vector2f tam, Vector2f pos);

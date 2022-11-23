@@ -1,9 +1,13 @@
 #include "Jogo.h"
-
+#include "Menu.h"
+#include <conio.h>
 int main()
 {
-    Jogo jogo;
-    jogo.Executar();
+    Menu* menu = new Menu();
+    menu->run_menu();
+    getch();
+    //Jogo jogo;
+    //jogo.Executar();
 
     return 0;
 }

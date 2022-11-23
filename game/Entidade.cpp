@@ -1,18 +1,31 @@
 #include "Entidade.h"
 
+/*
+ID Entidade::getId() const
+{
+    return id;
+}
+*/
 Entidade::Entidade(ID idd) : corpo(Vector2f(70.f, 70.f)),
     Ente(),
-    visivel(true),
+    //visivel(true),
     colisaoPlataforma(false),
     gravidade(true), 
     noChao(false), 
     emCima(false),
     speed(Vector2f(0.0f, 0.0f)),
     repulsao(Vector2f(0.0f, 0.0f)),
-    dano(0.0f),
-    id(idd)
-{}
+    dano(0.0f)
+    //id(idd)
+{
+    //visivel = true;
+}
 
+/* AMBIGUO
+Entidade::Entidade() : Ente()
+{
+}
+*/
 
 Entidade::~Entidade(){}
 
@@ -116,7 +129,7 @@ void Entidade::movGravidade()
 
     else{ noChao = false; }
         
-    //Manipulação da integração de Euler = (Velocidade + posicao atual) + acelaracao
+    //Manipulaï¿½ï¿½o da integraï¿½ï¿½o de Euler = (Velocidade + posicao atual) + acelaracao
     //(Velocidade + posicao atual) = corpo.move -> ele soma a posicao atual mais o valor da velocidade
     
     if (gravidade) {

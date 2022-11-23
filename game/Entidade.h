@@ -1,23 +1,6 @@
 #pragma once
 #include "Ente.h"
 
-//Fazer uma classe ID
-enum ID
-{
-	eempty = 0,
-	jogador,
-	hydra,
-	anjo,
-	dragao,
-	caixa,
-	espinho,
-	plataforma,
-	inimigo,
-	obstaculo,
-	projetil
-};
-
-
 //derivando como virtual public
 class Entidade : virtual public Ente
 {
@@ -37,10 +20,13 @@ protected:
 	//Entidades sao capazes de causar dano
 	float dano;
 
-	ID id;
+	//ID id;
 
 	//Variaveis de controle
-	bool visivel;
+	
+	//bool visivel;
+
+
 	bool colisaoPlataforma;
 	bool gravidade;
 	bool noChao;
@@ -48,7 +34,8 @@ protected:
 
 public:
 
-	Entidade(ID idd = eempty);
+	Entidade(ID idd = ID::vazio);
+	//Entidade(); AMBIGUO
 	~Entidade();
 
 	//Controle
@@ -79,7 +66,7 @@ public:
 	
 
 	//retorna o ID
-	ID getId() const;
+	//ID getId() const;
 
 	//COLISAO E GRAVIDADE
 	void setColisaoPlataforma(bool estaNaPlataforma);
