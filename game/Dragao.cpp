@@ -42,7 +42,7 @@ void Dragao::Mover()
 void Dragao::Executar()
 {
     verificaVida();
-    cout << " Vida Dragao: " << q_vida << endl;
+    //cout << " Vida Dragao: " << q_vida << endl;
 
     Mover();
 }
@@ -51,12 +51,13 @@ void Dragao::Colisao(Entidade* entidade, Vector2f inter_colisao)
 {
     ID id_entidade = entidade->getId();
 
-    corrigeColisoes(entidade, inter_colisao);
-
     //Nao corrige colisao com o jogador, pois la ele ja chama essa funcao
     if (id_entidade == ID::jogador) {
 
+        Personagens* jogador = static_cast<Personagens*>(entidade);
+
         if (direcaoMovimento != "nulo") {
+            cout << direcaoMovimento << endl;
             if (direcaoMovimento == "esquerda")
             {
                 repulsao.x = -30.0;
@@ -71,27 +72,34 @@ void Dragao::Colisao(Entidade* entidade, Vector2f inter_colisao)
 
             }
         }
-
+        
         else
         {
             if (olhandoDireita) {
                 repulsao.x = -60.0;
                 movimentaEntidade(repulsao, false);
+                jogador->setDirecaoMovimento(string("direita"));
+
             }
             else if (olhandoEsquerda) {
                 repulsao.x = 60.0;
                 movimentaEntidade(repulsao, true);
+                jogador->setDirecaoMovimento(string("esquerda"));
+
             }
 
             
         }
+        
 
         //Ataque
-        Personagens* jogador = static_cast<Personagens*>(entidade);
-
+        
         if(jogador->getEmCima() == false)
             atacar(jogador, dano);
+          
     }
   
+    else
+        corrigeColisoes(entidade, inter_colisao);
 
 }

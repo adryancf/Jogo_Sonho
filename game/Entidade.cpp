@@ -22,6 +22,11 @@ Entidade::Entidade(ID idd) : corpo(Vector2f(70.f, 70.f)),
 
 Entidade::~Entidade(){}
 
+void Entidade::render()
+{
+    pGrafico->desenhar(corpo);
+}
+
 void Entidade::setVelocidade(Vector2f velocidade)
 {
     speed = velocidade;
@@ -143,7 +148,7 @@ void Entidade::corrigeColisoes(Entidade* a, Vector2f inter)
             corpo.move(Vector2f(-inter.x, 0.0f));
         }
 
-        speed.x = 0.0f;
+        //speed.x = 0.0f;
 
     }
 

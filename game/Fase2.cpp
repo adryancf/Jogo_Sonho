@@ -55,11 +55,11 @@ void Fase2::criarAnjo()
 		projetil_anjo = nullptr;
 
 		projetil_anjo = new Projetil();
-		lista_personagem->listEnt.push(projetil_anjo);
+		lista_personagem->incluir(projetil_anjo);
 
 		anjo = new Anjo(j1, projetil_anjo);
 		anjo->setAlvo(j1);
-		lista_personagem->listEnt.push(anjo);
+		lista_personagem->incluir(anjo);
 
 		projetil_anjo->setPortador(anjo);
 
@@ -85,19 +85,19 @@ void Fase2::criarPlataforma()
 	plataforma_fase = nullptr;
 
 	plataforma_fase = new Plataforma(Vector2f(COMPRIMENTOP1, ESPESSURA_PLATAFORMA), Vector2f(BORDA_ESQ, ALTURAP1));
-	lista_obstaculos->listEnt.push(plataforma_fase);
+	lista_obstaculos->incluir(plataforma_fase);
 
 	plataforma_fase = new Plataforma(Vector2f(COMPRIMENTOP2, ESPESSURA_PLATAFORMA), Vector2f(700.f, ALTURAP2));
-	lista_obstaculos->listEnt.push(plataforma_fase);
+	lista_obstaculos->incluir(plataforma_fase);
 
 	plataforma_fase = new Plataforma(Vector2f(COMPRIMENTOP3, ESPESSURA_PLATAFORMA), Vector2f(320.f, ALTURAP3));
-	lista_obstaculos->listEnt.push(plataforma_fase);
+	lista_obstaculos->incluir(plataforma_fase);
 
 	plataforma_fase = new Plataforma(Vector2f(COMPRIMENTOP4, ESPESSURA_PLATAFORMA), Vector2f(BORDA_DIR - 650.f, ALTURAP4));
-	lista_obstaculos->listEnt.push(plataforma_fase);
+	lista_obstaculos->incluir(plataforma_fase);
 
 	plataforma_fase = new Plataforma(Vector2f(COMPRIMENTOP5, ESPESSURA_PLATAFORMA), Vector2f(BORDA_ESQ, ALTURAP5));
-	lista_obstaculos->listEnt.push(plataforma_fase);
+	lista_obstaculos->incluir(plataforma_fase);
 }
 
 void Fase2::criarCaixa()
@@ -106,20 +106,6 @@ void Fase2::criarCaixa()
 
 void Fase2::Executar()
 {
-	for (int j = 0; j < lista_obstaculos->listEnt.getTamanho(); j++)
-	{
-		Entidade* aux = lista_obstaculos->listEnt.getItemLista(j);
-		aux->Executar();
-		pGrafico->desenhar(aux->getCorpo());
-	}
-
-	//Implementar isso na classe da lista (se tiver tempo)
-	for (int i = 0; i < lista_personagem->listEnt.getTamanho(); i++)
-	{
-		Entidade* personagem = lista_personagem->listEnt.getItemLista(i);
-		if (personagem->getVisivel() == true) {
-			personagem->Executar();
-			pGrafico->desenhar(personagem->getCorpo());
-		}
-	}
+	lista_obstaculos->renderElementos();
+	lista_personagem->renderElementos();
 }

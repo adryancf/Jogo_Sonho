@@ -22,12 +22,14 @@ Jogador::~Jogador(){
 void Jogador::Mover()
 {
     movGravidade();
+    direcaoMovimento = string("nulo");
+
 }
 
 void Jogador::Executar()
 {
     verificaVida();
-    cout << " Vida Jogador: " << q_vida << endl;
+    //cout << " Vida Jogador: " << q_vida << endl;
     Mover();
 }
 
@@ -36,7 +38,7 @@ void Jogador::Executar()
 //GERENCIADOR DE EVENTOS
 void Jogador::andar(int i)
 {
-    speed.x = 10.f;
+    //speed.x = 10.f;
 
     if (i == 2)
     {
@@ -87,27 +89,45 @@ void Jogador::Colisao(Entidade* entidade, Vector2f inter_colisao)
         //So tem repulsao quando nao esta em cima
         if (!emCima) 
         {
-            if (olhandoDireita) {
-                repulsao.x = -30.0;
-                verificaPodeAndar(repulsao);
-                if (podeAndarEsquerda) {
-                    movimentaEntidade(repulsao, false);
+            if (direcaoMovimento != "nulo") {
+                cout << direcaoMovimento << endl;
+                if (direcaoMovimento == "esquerda")
+                {
+                    repulsao.x = -30.0;
+                    movimentaEntidade((repulsao), false);
 
-                    //Manda o dragao para direita
-                    dragao->setDirecaoMovimento(string("direita"));
                 }
-            }
-            else if (olhandoEsquerda) {
-                repulsao.x = 30.0;
-                verificaPodeAndar(repulsao);
-                if (podeAndarDireita) {
+                else if (direcaoMovimento == "direita")
+                {
+                    repulsao.x = 30.0;
                     movimentaEntidade(repulsao, true);
 
-                    //Manda o dragao para esquerda
-                    dragao->setDirecaoMovimento(string("esquerda"));
+
                 }
             }
 
+            else {
+                if (olhandoDireita) {
+                    repulsao.x = -30.0;
+                    verificaPodeAndar(repulsao);
+                    if (podeAndarEsquerda) {
+                        movimentaEntidade(repulsao, false);
+
+                        //Manda o dragao para direita
+                        dragao->setDirecaoMovimento(string("direita"));
+                    }
+                }
+                else if (olhandoEsquerda) {
+                    repulsao.x = 30.0;
+                    verificaPodeAndar(repulsao);
+                    if (podeAndarDireita) {
+                        movimentaEntidade(repulsao, true);
+
+                        //Manda o dragao para esquerda
+                        dragao->setDirecaoMovimento(string("esquerda"));
+                    }
+                }
+            }
             atacar(entidade, dano);
 
         }
@@ -139,6 +159,8 @@ void Jogador::Colisao(Entidade* entidade, Vector2f inter_colisao)
             }
         }
     }
+
+    //Anjo (CHEFAO)
     else if (entidade->getId() == anjo)
     {
         if (!emCima) {

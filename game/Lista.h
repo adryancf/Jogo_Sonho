@@ -17,26 +17,7 @@ public:
 	Lista() { pUltimo = nullptr; pPrimeiro = nullptr; tamanho = 0; }
 	~Lista()
 	{
-		if (pPrimeiro != nullptr) {
-			Elemento<TIPO>* aux1 = pPrimeiro;
-			Elemento<TIPO>* aux2 = aux1;
-			TIPO* aux3;
-
-			while (aux1 != nullptr)
-			{
-				aux2 = aux1->getProximo();
-				aux3 = aux1->getItem();
-
-				delete aux1;
-				delete aux3;
-
-				aux1 = aux2;
-
-			}
-			pUltimo = nullptr;
-			pPrimeiro = nullptr;
-			tamanho = 0;
-		}
+		limpar();
 	}
 
 	Elemento<TIPO>* getUltimo() { return pUltimo; }
@@ -44,20 +25,31 @@ public:
 
 	const int getTamanho() { return tamanho; }
 
-	TIPO* getItemLista(int posicao)
+	//Sobrecarga de operador
+
+	TIPO* operator[](int posicao)
 	{
+
 		Elemento<TIPO>* aux = pPrimeiro;
-		if (posicao == 0)
-			return aux->getItem();
+
+		if (posicao > tamanho || posicao < 0) {
+			cout << "Acesso de posicao indevida" << endl;
+			exit(1);
+		}
+
 		else
 		{
-			//errado o jeito de andar 
 			for (int i = 0; i < posicao; i++)
 				aux = aux->getProximo();
+
+			if (aux == nullptr) {
+				cout << "Elemento requerido nulo! (LISTA | Funcao(getItemLista) )" << endl;
+				exit(1);
+			}
+
 			return aux->getItem();
 
 		}
-
 
 	}
 
@@ -97,8 +89,9 @@ public:
 			pPrimeiro = aux->getProximo();
 
 		else if (aux == pUltimo) {
-			aux->setProximo(nullptr);
+			//aux->setProximo(nullptr);
 			pUltimo = auxAnt;
+			pUltimo->setProximo(nullptr);
 		}
 
 		else
@@ -107,7 +100,34 @@ public:
 		}
 
 		delete aux;
-		tamanho--;
+		--tamanho;
+	}
+
+	void limpar()
+	{
+		if (pPrimeiro != nullptr) {
+			Elemento<TIPO>* aux1 = pPrimeiro;
+			Elemento<TIPO>* aux2 = aux1;
+			TIPO* aux3;
+
+			while (aux1 != nullptr)
+			{
+				aux2 = aux1->getProximo();
+				aux3 = aux1->getItem();
+
+				delete aux1;
+				delete aux3;
+
+				aux1 = aux2;
+
+				--tamanho;
+
+			}
+			pUltimo = nullptr;
+			pPrimeiro = nullptr;
+			tamanho = 0;
+		}
+
 	}
 };
 

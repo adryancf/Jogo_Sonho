@@ -51,6 +51,8 @@ public:
 	Entidade(ID idd = eempty);
 	~Entidade();
 
+	void render();
+
 	//ATRIBUTOS
 	void setVelocidade(Vector2f velocidade);
 	Vector2f* getVelocidade();

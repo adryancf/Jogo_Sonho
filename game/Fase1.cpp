@@ -54,7 +54,7 @@ void Fase1::criarDragao()
 		dragao = nullptr;
 
 		dragao = new Dragao();
-		lista_personagem->listEnt.push(dragao);
+		lista_personagem->incluir(dragao);
 
 		//Setar posicao
 		if (i == 0)
@@ -83,12 +83,12 @@ void Fase1::criarHydra()
 	numero_instancias = gerarNumeroAleatorio(3, 5);
 
 	//Numero aleatorio de instâncias
-	for (int i = 0; i < numero_instancias; i++)
+	for (unsigned int i = 0; i < numero_instancias; i++)
 	{
 		hydra = nullptr;
 
 		hydra = new Hydra(j1);
-		lista_personagem->listEnt.push(hydra);
+		lista_personagem->incluir(hydra);
 
 		//Setar posicao
 		if(i == 0)
@@ -113,19 +113,19 @@ void Fase1::criarPlataforma()
 	plataforma_fase = nullptr;
 
 	plataforma_fase = new Plataforma(Vector2f(COMPRIMENTOP1, ESPESSURA_PLATAFORMA), Vector2f(BORDA_ESQ, ALTURAP1));
-	lista_obstaculos->listEnt.push(plataforma_fase);
+	lista_obstaculos->incluir(plataforma_fase);
 
 	plataforma_fase = new Plataforma(Vector2f(COMPRIMENTOP2, ESPESSURA_PLATAFORMA), Vector2f(700.f, ALTURAP2));
-	lista_obstaculos->listEnt.push(plataforma_fase);
+	lista_obstaculos->incluir(plataforma_fase);
 
 	plataforma_fase = new Plataforma(Vector2f(COMPRIMENTOP3, ESPESSURA_PLATAFORMA), Vector2f(320.f, ALTURAP3));
-	lista_obstaculos->listEnt.push(plataforma_fase);
+	lista_obstaculos->incluir(plataforma_fase);
 
 	plataforma_fase = new Plataforma(Vector2f(COMPRIMENTOP4, ESPESSURA_PLATAFORMA), Vector2f(BORDA_DIR - 650.f, ALTURAP4));
-	lista_obstaculos->listEnt.push(plataforma_fase);
+	lista_obstaculos->incluir(plataforma_fase);
 
 	plataforma_fase = new Plataforma(Vector2f(COMPRIMENTOP5, ESPESSURA_PLATAFORMA), Vector2f(BORDA_ESQ, ALTURAP5));
-	lista_obstaculos->listEnt.push(plataforma_fase);
+	lista_obstaculos->incluir(plataforma_fase);
 
 
 }
@@ -139,9 +139,10 @@ void Fase1::criarCaixa()
 //Percorre a lista de entidades
 void Fase1::Executar()
 {
+	/*
 	for (int j = 0; j < lista_obstaculos->listEnt.getTamanho(); j++)
 	{
-		Entidade* aux = lista_obstaculos->listEnt.getItemLista(j);
+		Entidade* aux = lista_obstaculos->listEnt[j];
 		aux->Executar();
 		pGrafico->desenhar(aux->getCorpo());
 	}
@@ -149,11 +150,14 @@ void Fase1::Executar()
 	//Implementar isso na classe da lista (se tiver tempo)
 	for (int i = 0; i < lista_personagem->listEnt.getTamanho(); i++)
 	{
-		Entidade* personagem = lista_personagem->listEnt.getItemLista(i);
+		Entidade* personagem = lista_personagem->listEnt[i];
 		if (personagem->getVisivel() == true) {
 			personagem->Executar();
 			pGrafico->desenhar(personagem->getCorpo());
 		}
 	}
+	*/
 
+	lista_obstaculos->renderElementos();
+	lista_personagem->renderElementos();
 }

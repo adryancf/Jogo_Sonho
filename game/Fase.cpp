@@ -42,7 +42,7 @@ void Fase::criarLista()
 	lista_personagem = new ListaEntidades;
 	lista_obstaculos = new ListaEntidades;
 
-	lista_personagem->listEnt.push(j1);
+	lista_personagem->incluir(j1);
 }
 
 void Fase::deletaListas()
