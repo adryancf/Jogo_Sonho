@@ -1,16 +1,17 @@
 #pragma once
 
+//REVISAR INCLUDES
+
 #include "Hydra.h"
 #include "Jogador.h"
 #include "Dragao.h"
 #include "Anjo.h"
 #include "Plataforma.h"
 #include "Caixa.h"
-#include "Espinho.h"
+#include "Espinho.h" //inclui personagem
 #include "ListaEntidades.h"
 
 #include "GerenciadorColisoes.h"
-#include "Ente.h"
 
 
 class Fase: virtual public Ente
@@ -39,19 +40,23 @@ public:
 	Fase(Jogador *j);
 	~Fase();
 
+	//Features
 	int gerarNumeroAleatorio(int min, int max);
 	int gerarNumeroAleatorio(float min, float max);
 
+	//Controle da execução da fase
 	void verificaTerminoFase();
 	const bool getAtiva();
 
 	virtual void Executar() = 0;
 
+	//Listas
 	virtual void criarLista();
 	void deletaListas();
 	ListaEntidades* getListaPersonagem();
 	ListaEntidades* getListaObstaculo();
 
+	//Todas as fases vao ter esses elementos
 	virtual void criarCaixa() = 0;
 	virtual void criarPlataforma() = 0;
 	virtual void criarHydra() = 0;

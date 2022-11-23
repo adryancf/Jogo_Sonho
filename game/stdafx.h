@@ -7,6 +7,7 @@
 
 //Bibliotecas PADRAO	
 #include <iostream>
+#include <utility>
 #include <time.h>
 #include <stdlib.h>
 #include <fstream>
@@ -49,6 +50,12 @@
 
 #define ESPESSURA_PLATAFORMA_F1 20.f
 #define ESPESSURA_PLATAFORMA_F2 25.f
+
+#define CAIXA_TAM 40.f
+
+#define ESPINHO_X 50.F
+#define ESPINHO_Y 15.F
+
 
 
 

@@ -45,9 +45,9 @@ void Entidade::setVelocidade(Vector2f velocidade)
     speed = velocidade;
 }
 
-Vector2f* Entidade::getVelocidade()
+Vector2f Entidade::getVelocidade()
 {
-    return &speed;
+    return speed;
 }
 
 const Vector2f Entidade::getRepulsao()

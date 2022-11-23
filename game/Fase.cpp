@@ -20,15 +20,11 @@ Fase::~Fase()
 
 int Fase::gerarNumeroAleatorio(int min, int max)
 {
-	//Muda a seed
-	//std::srand(std::time(nullptr));
 	return (min + (std::rand() % (max - min + 1)));;
 }
 
 int Fase::gerarNumeroAleatorio(float min, float max)
 {
-	//Muda a seed
-	//std::srand(std::time(nullptr));
 
 	int max_int = static_cast<int>(max);
 	int min_int = static_cast<int>(min);
@@ -66,21 +62,30 @@ void Fase::deletaListas()
 	if (pColisoes != nullptr)
 		delete pColisoes;
 
-	/*
+	else
+		cout << "Nao é possível deletar ponteiro null (pColisoes - Fase.cpp)" << endl;
+	
 	if (lista_personagem) {
-		cout << "Deletando lista_personagens..." << endl;
 		lista_personagem->removerTudo();
-		//delete lista_personagem;
+		delete lista_personagem;
+
 		lista_personagem = nullptr;
 	}
+
+	else
+		cout << "Nao é possível deletar ponteiro null (lista_personagens - Fase.cpp)" << endl;
+
 	if (lista_obstaculos) {
-		cout << "Deletando lista_obstaculos..." << endl;
 		lista_obstaculos->removerTudo();
-		//delete lista_obstaculos;
+		delete lista_obstaculos;
+
 		lista_obstaculos = nullptr;
 	
 	}
-	*/
+
+	else
+		cout << "Nao é possível deletar ponteiro null (lista_obstaculos - Fase.cpp)" << endl;
+	
 }
 
 ListaEntidades* Fase::getListaPersonagem()

@@ -1,12 +1,7 @@
 #pragma once
 
-#include "SFML/Graphics.hpp"
 #include "ListaEntidades.h"
 #include "Personagens.h"
-
-#include <utility>
-#include <cmath>
-#include <iostream>
 
 class GerenciadorColisoes
 {
@@ -24,6 +19,7 @@ public:
 
 	void colisaoPersonagens();
 	void colisaoPersonagemObstaculos();
+	void colisaoObstaculos();
 
 	void setListas(ListaEntidades* l_personagem, ListaEntidades* l_obstaculos);
 

@@ -31,6 +31,7 @@ public:
 	void iniciaFase1();
 	void deletaFase1();
 	void iniciaFase2();
+	void deletaFase2();
 
 	void Executar();
 

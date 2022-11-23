@@ -60,6 +60,7 @@ void Personagens::verificaVida()
     
 
     if (q_vida <= 0 || verificarPosInvalida()) {
+        
         vivo = false;
         visivel = false;
 

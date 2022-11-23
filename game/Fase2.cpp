@@ -5,8 +5,8 @@
 #define ALTURAP1 180.f
 #define COMPRIMENTOP1 220.f
 
-#define ALTURAP2 250.f
-#define COMPRIMENTOP2 180.f
+#define ALTURAP2 230.f
+#define COMPRIMENTOP2 220.f
 
 #define ALTURAP3 180.f
 #define COMPRIMENTOP3 300.f
@@ -42,12 +42,51 @@ Fase2::~Fase2()
 void Fase2::criar_entidades()
 {
 	criarLista();
+
 	criarPlataforma();
+	criaEspinhos();
+	criarCaixa();
+
 	criarAnjo();
 	criarHydra();
 
 }
 
+
+void Fase2::criaEspinhos()
+{
+	srand(time(NULL));
+
+	//(numero de instancias entre 3 e 5)
+	numero_instancias = gerarNumeroAleatorio(3, 4);
+
+	//Numero aleatorio de instâncias
+	for (unsigned int i = 0; i < numero_instancias; i++)
+	{
+		espinho = nullptr;
+
+		//Setar posicao
+		if (i == 0) {
+			espinho = new Espinho(Vector2f(ESPINHO_X, ESPINHO_Y), Vector2f(gerarNumeroAleatorio(340.0f, 380.f), ALTURAP2 - ESPINHO_Y));
+			lista_personagem->incluir(espinho);
+
+		}
+		else if (i == 2) {
+			espinho = new Espinho(Vector2f(ESPINHO_X, ESPINHO_Y), Vector2f(gerarNumeroAleatorio(1100.0f, 1200.f), ALTURAP3 - ESPINHO_Y));
+			lista_personagem->incluir(espinho);
+		}
+		else if (i == 3) {
+			espinho = new Espinho(Vector2f(ESPINHO_X, ESPINHO_Y), Vector2f(gerarNumeroAleatorio(590.0f, 700.f), ALTURAP6 - ESPINHO_Y));
+			lista_personagem->incluir(espinho);
+
+		}
+		else {
+			espinho = new Espinho(Vector2f(ESPINHO_X, ESPINHO_Y), Vector2f(gerarNumeroAleatorio(50.0f, 400.f), ALTURAP7 - ESPINHO_Y));
+			lista_personagem->incluir(espinho);
+		}
+
+	}
+}
 
 void Fase2::criarPlataforma()
 {
@@ -57,7 +96,7 @@ void Fase2::criarPlataforma()
 	plataforma_fase = new Plataforma(Vector2f(COMPRIMENTOP1, ESPESSURA_PLATAFORMA_F2), Vector2f(BORDA_ESQ, ALTURAP1));
 	lista_obstaculos->incluir(plataforma_fase);
 
-	plataforma_fase = new Plataforma(Vector2f(COMPRIMENTOP2, ESPESSURA_PLATAFORMA_F2), Vector2f(BORDA_ESQ + 340.f, ALTURAP2));
+	plataforma_fase = new Plataforma(Vector2f(COMPRIMENTOP2, ESPESSURA_PLATAFORMA_F2), Vector2f(340.f, ALTURAP2));
 	lista_obstaculos->incluir(plataforma_fase);
 
 	plataforma_fase = new Plataforma(Vector2f(COMPRIMENTOP3, ESPESSURA_PLATAFORMA_F2), Vector2f(BORDA_DIR - COMPRIMENTOP3, ALTURAP3));
@@ -78,6 +117,8 @@ void Fase2::criarPlataforma()
 
 void Fase2::criarCaixa()
 {
+	caixa = new Caixa(Vector2f(CAIXA_TAM, CAIXA_TAM), Vector2f(520.f, ALTURAP2 - CAIXA_TAM), true); //Segunda plataforma
+	lista_obstaculos->incluir(caixa);
 }
 
 void Fase2::criarAnjo()
@@ -107,10 +148,10 @@ void Fase2::criarAnjo()
 
 		//Posicao
 		if (i == 0)
-			anjo->setPosEntidade(Vector2f(gerarNumeroAleatorio(650.F, 1000.F), ALTURAP6 - ANJO_Y)); //Sexta Plataforma
+			anjo->setPosEntidade(Vector2f(gerarNumeroAleatorio(750.F, 1000.F), ALTURAP6 - ANJO_Y)); //Sexta Plataforma
 
 		else
-			anjo->setPosEntidade(Vector2f(gerarNumeroAleatorio(50.0f, COMPRIMENTOP7), ALTURAP7 - ANJO_Y)); //Setima Plataforma
+			anjo->setPosEntidade(Vector2f(gerarNumeroAleatorio(450.0f, COMPRIMENTOP7), ALTURAP7 - ANJO_Y)); //Setima Plataforma
 
 
 	}
@@ -121,7 +162,7 @@ void Fase2::criarHydra()
 	srand(time(NULL));
 
 	//(numero de instancias entre 3 e 5)
-	numero_instancias = gerarNumeroAleatorio(1, 2);
+	numero_instancias = gerarNumeroAleatorio(3, 5);
 
 	//Numero aleatorio de instâncias
 	for (unsigned int i = 0; i < numero_instancias; i++)
@@ -133,18 +174,18 @@ void Fase2::criarHydra()
 
 		//Setar posicao
 		if (i == 0)
-			hydra->setPosEntidade(Vector2f(gerarNumeroAleatorio(340.0f, COMPRIMENTOP2 + 300.f), ALTURAP2 - HYDRA_Y)); //Segunda Plataforma
+			hydra->setPosEntidade(Vector2f(gerarNumeroAleatorio(390.0f, 450.f), ALTURAP2 - HYDRA_Y)); //Segunda Plataforma
 
 		
 		else if (i == 2)
-			hydra->setPosEntidade(Vector2f(gerarNumeroAleatorio(980.0f, 1100.f), ALTURAP3 - HYDRA_Y)); //Terceira Plataforma
+			hydra->setPosEntidade(Vector2f(gerarNumeroAleatorio(985.0f, 1050.f), ALTURAP3 - HYDRA_Y)); //Terceira Plataforma
 
 		else if(i == 3)
 			hydra->setPosEntidade(Vector2f(gerarNumeroAleatorio(640.0f, 900.f), ALTURAP4 - HYDRA_Y)); //Terceira Quarta Plataforma
 
 		
 		else
-			hydra->setPosEntidade(Vector2f(gerarNumeroAleatorio(580.F, 1000.f), ALTURAP6 - HYDRA_Y)); //Sexta Plataforma
+			hydra->setPosEntidade(Vector2f(gerarNumeroAleatorio(800.F, 1000.f), ALTURAP6 - HYDRA_Y)); //Sexta Plataforma
 
 
 	}

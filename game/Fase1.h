@@ -9,6 +9,9 @@ private:
 	Dragao* dragao;
 	Espinho* espinho;
 
+	RectangleShape fundo;
+
+
 	virtual void criar_entidades();
 
 public:

@@ -19,14 +19,14 @@ Plataforma::~Plataforma()
 {
 }
 
-void Plataforma::atacar(Entidade* adversario, float dano)
-{
-}
-
 void Plataforma::Executar()
 {
 	movGravidade();
 	anulaGravidade();
+}
+
+void Plataforma::atacar(Entidade* adversario, float dano)
+{
 }
 
 void Plataforma::Colisao(Entidade* entidade, Vector2f inter_colisao)

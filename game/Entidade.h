@@ -60,7 +60,7 @@ public:
 
 	//ATRIBUTOS
 	void setVelocidade(Vector2f velocidade);
-	Vector2f* getVelocidade();
+	Vector2f getVelocidade();
 	const Vector2f getRepulsao();
 	void setDano(float dano);
 	const float getDano() const;
@@ -86,6 +86,7 @@ public:
 	void setChao(bool estaNoChao);
 	const bool getEmCima();
 	void movGravidade();
+
 	void corrigeColisoes(Entidade* a, Vector2f inter);
 	
 	virtual void Executar() = 0;

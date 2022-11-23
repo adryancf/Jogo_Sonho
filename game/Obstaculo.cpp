@@ -18,3 +18,4 @@ void Obstaculo::anulaGravidade()
 	}
 
 }
+

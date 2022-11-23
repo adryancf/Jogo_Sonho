@@ -18,7 +18,7 @@ Inimigo::~Inimigo()
 void Inimigo::movAleatorio()
 {
     /* O movimento aleatorio se da por um valor sorteado entre 1 e 4 a cada 0.5s */
-    if (noChao) {
+    if (noChao || emCima) {
         if (movRandom == 0) {
             movimentaEntidade(Vector2f(speed.x, 0.f), true);
         }

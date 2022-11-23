@@ -8,6 +8,7 @@ private:
 	//NESSA FASE VAI TER ESPECIFICAMENTE
 	Anjo* anjo;
 	Projetil* projetil_anjo;
+	Espinho* espinho;
 
 	virtual void criar_entidades();
 
@@ -19,6 +20,7 @@ public:
 	void criarAnjo();
 
 	//Obstaculo
+	void criaEspinhos();
 	virtual void criarPlataforma();
 	virtual void criarCaixa();
 	virtual void criarHydra();

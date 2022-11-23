@@ -29,7 +29,7 @@ void Jogador::Mover()
 void Jogador::Executar()
 {
     verificaVida();
-    //cout << " Vida Jogador: " << q_vida << endl;
+    cout << " Vida Jogador: " << q_vida << endl;
     Mover();
 }
 
@@ -38,7 +38,6 @@ void Jogador::Executar()
 //GERENCIADOR DE EVENTOS
 void Jogador::andar(int i)
 {
-    //speed.x = 10.f;
 
     if (i == 2)
     {
@@ -186,6 +185,10 @@ void Jogador::Colisao(Entidade* entidade, Vector2f inter_colisao)
 
     }
 
+    else if (entidade->getId() == ID::plataforma)
+    {
+        speed.x = 10.f;
+    }
 
 }
 
