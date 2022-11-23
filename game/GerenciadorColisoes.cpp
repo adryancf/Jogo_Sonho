@@ -111,6 +111,12 @@ void GerenciadorColisoes::colisaoPersonagemObstaculos()
 
 }
 
+void GerenciadorColisoes::setListas(ListaEntidades* l_personagem, ListaEntidades* l_obstaculos)
+{
+	lista_personagens = l_personagem;
+	lista_obstaculos = l_obstaculos;
+}
+
 void GerenciadorColisoes::Executar()
 {
 	verificaColisoes();

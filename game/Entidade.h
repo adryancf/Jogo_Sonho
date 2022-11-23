@@ -85,5 +85,6 @@ public:
 	
 	virtual void Executar() = 0;
 	virtual void Colisao(Entidade* entidade, Vector2f inter_colisao) = 0;
+
 };
 

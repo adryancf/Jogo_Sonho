@@ -18,6 +18,7 @@ protected:
 
 	//Entidades
 	Jogador* j1;
+	Hydra* hydra;
 	Plataforma* plataforma_fase;
 	Caixa* caixa;
 
@@ -27,6 +28,7 @@ protected:
 
 	//Controle e inicialização
 	unsigned int numero_instancias;
+	bool ativa;
 	virtual void criar_entidades() = 0;
 
 public:
@@ -35,6 +37,9 @@ public:
 
 	int gerarNumeroAleatorio(int min, int max);
 	int gerarNumeroAleatorio(float min, float max);
+
+	void verificaTerminoFase();
+	const bool getAtiva();
 
 	virtual void Executar() = 0;
 
@@ -45,5 +50,7 @@ public:
 
 	virtual void criarCaixa() = 0;
 	virtual void criarPlataforma() = 0;
+	virtual void criarHydra() = 0;
+
 };
 

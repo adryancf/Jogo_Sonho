@@ -25,6 +25,8 @@ public:
 	void colisaoPersonagens();
 	void colisaoPersonagemObstaculos();
 
+	void setListas(ListaEntidades* l_personagem, ListaEntidades* l_obstaculos);
+
 	void Executar();
 
 

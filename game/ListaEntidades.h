@@ -16,14 +16,19 @@ public:
 	~ListaEntidades();
 
 	void renderElementos();
+	bool verificaEntidadesVisiveis();
 
 	Entidade* getJogador();
 	const int getTamanhoLista();
+
 	void incluir(Entidade* pE);
+
 	void remover(Entidade* pE);
 	void removerTudo();
 	void removerTudoExcetoJogador(); //pensar num nome melhor
+
 	const Lista<Entidade>* getList();
+
 	Entidade* operator[](int x);
 
 

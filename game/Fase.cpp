@@ -1,6 +1,6 @@
 #include "Fase.h"
 
-Fase::Fase(Jogador *j): numero_instancias(0), j1(j), plataforma_fase(nullptr), caixa(nullptr)
+Fase::Fase(Jogador *j): numero_instancias(0), j1(j), plataforma_fase(nullptr), caixa(nullptr), ativa(true), hydra(nullptr)
 {
 	lista_obstaculos = nullptr;
 	lista_personagem = nullptr;
@@ -31,9 +31,17 @@ int Fase::gerarNumeroAleatorio(float min, float max)
 
 	int numero = min_int + (std::rand() % (max_int - min_int + 1));
 
-	cout << numero << endl;
-
 	return (numero);
+}
+
+void Fase::verificaTerminoFase()
+{
+	ativa = lista_personagem->verificaEntidadesVisiveis();
+}
+
+const bool Fase::getAtiva()
+{
+	return ativa;
 }
 
 void Fase::criarLista()

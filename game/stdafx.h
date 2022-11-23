@@ -35,8 +35,8 @@
 
 //TAMANHOS
 
-#define JOGADOR_X 25.f
-#define JOGADOR_Y 25.f
+#define JOGADOR_X 30.f
+#define JOGADOR_Y 30.f
 
 #define DRAGAO_X 10.f
 #define DRAGAO_Y 30.f
@@ -44,10 +44,12 @@
 #define HYDRA_X 16.f
 #define HYDRA_Y 16.f
 
-#define ANJO_X 20.f
-#define ANJO_Y 40.f
+#define ANJO_X 30.f
+#define ANJO_Y 70.f
 
-#define ESPESSURA_PLATAFORMA 20.f
+#define ESPESSURA_PLATAFORMA_F1 20.f
+#define ESPESSURA_PLATAFORMA_F2 25.f
+
 
 
 //Using

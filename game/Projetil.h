@@ -21,6 +21,7 @@ public:
 	void verificarBordas();
 	void estadoInicial();
 	void atualizaPosicaoInicial();
+	const bool getRepouso();
 
 	//PORTADOR
 	void setPortador(Personagens* portador);

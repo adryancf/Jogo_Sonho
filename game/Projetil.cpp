@@ -4,11 +4,11 @@ Projetil::Projetil():portador(nullptr), repouso(true), t()
 {
 	//Forma Projetil
 	corpo.setSize(Vector2f(10.f, 5.f));
-	corpo.setFillColor(Color::Red);
+	corpo.setFillColor(Color::Magenta);
 
 	//Atributos Projetil
 	setVelocidade(Vector2f(5.0f, 0.f));
-	dano = 2.f;
+	dano = 3.5f;
 
 	id = ID::projetil;
 
@@ -24,8 +24,6 @@ Projetil::~Projetil()
 		portador = nullptr;
 
 }
-
-
 
 
 //ESTADO INICIAL
@@ -54,7 +52,13 @@ void Projetil::estadoInicial()
 
 void Projetil::atualizaPosicaoInicial()
 {
-	setPosEntidade(portador->getCorpo().getPosition());
+	Vector2f posPortador = portador->getCorpo().getPosition();
+	setPosEntidade(Vector2f(posPortador.x, posPortador.y + 5.f));
+}
+
+const bool Projetil::getRepouso()
+{
+	return repouso;
 }
 
 //PORTADOR
@@ -118,9 +122,10 @@ void Projetil::atirar(string direcao, float tempo)
 
 void Projetil::Executar()
 {
+	//Se o projetil colide com as bordas ele volta ao seu estado inicial
 	verificarBordas();
 
-	//Sempre atualiza a posicao da entidade
+	//Sempre atualiza a posicao do projetil
 	if (repouso)
 		estadoInicial();
 	else

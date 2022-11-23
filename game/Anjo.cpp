@@ -48,10 +48,10 @@ void Anjo::inicializa()
     setVelocidade(Vector2f(0.5f, 0.f));
     setQuantidadeVida(15.0);
 
-    raio_deteccao = Vector2f(500.f, 500.f);
+    raio_deteccao = Vector2f(500.f, 100.f);
 
     //Dano Fisico
-    setDano(2.0);
+    setDano(2.5);
 }
 
 void Anjo::EncontraPosAlvo()

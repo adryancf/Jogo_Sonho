@@ -21,6 +21,8 @@ public:
 	//Obstaculo
 	virtual void criarPlataforma();
 	virtual void criarCaixa();
+	virtual void criarHydra();
+
 
 	virtual void Executar();
 };

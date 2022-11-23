@@ -22,12 +22,18 @@ Fase1::Fase1(Jogador* j1): Fase(j1)
 {
 	//Inicializa todas as entidades da fase
 	criar_entidades();
+	j1->setPosEntidade(Vector2f(10.0f, ALTURAP1 - JOGADOR_Y));
+
 }
 
 Fase1::~Fase1()
 {
 	//Cada fase tem a sua lista, quando essa acabar, deleta essa fase e chama a fase dois
 	deletaListas();
+
+	//dragao = nullptr;
+	//espinho = nullptr;
+
 }
 
 
@@ -112,19 +118,19 @@ void Fase1::criarPlataforma()
 	//ORDEM DE VISUALIZA��O (CIMA PARA BAIXO)
 	plataforma_fase = nullptr;
 
-	plataforma_fase = new Plataforma(Vector2f(COMPRIMENTOP1, ESPESSURA_PLATAFORMA), Vector2f(BORDA_ESQ, ALTURAP1));
+	plataforma_fase = new Plataforma(Vector2f(COMPRIMENTOP1, ESPESSURA_PLATAFORMA_F1), Vector2f(BORDA_ESQ, ALTURAP1));
 	lista_obstaculos->incluir(plataforma_fase);
 
-	plataforma_fase = new Plataforma(Vector2f(COMPRIMENTOP2, ESPESSURA_PLATAFORMA), Vector2f(700.f, ALTURAP2));
+	plataforma_fase = new Plataforma(Vector2f(COMPRIMENTOP2, ESPESSURA_PLATAFORMA_F1), Vector2f(700.f, ALTURAP2));
 	lista_obstaculos->incluir(plataforma_fase);
 
-	plataforma_fase = new Plataforma(Vector2f(COMPRIMENTOP3, ESPESSURA_PLATAFORMA), Vector2f(320.f, ALTURAP3));
+	plataforma_fase = new Plataforma(Vector2f(COMPRIMENTOP3, ESPESSURA_PLATAFORMA_F1), Vector2f(320.f, ALTURAP3));
 	lista_obstaculos->incluir(plataforma_fase);
 
-	plataforma_fase = new Plataforma(Vector2f(COMPRIMENTOP4, ESPESSURA_PLATAFORMA), Vector2f(BORDA_DIR - 650.f, ALTURAP4));
+	plataforma_fase = new Plataforma(Vector2f(COMPRIMENTOP4, ESPESSURA_PLATAFORMA_F1), Vector2f(BORDA_DIR - 650.f, ALTURAP4));
 	lista_obstaculos->incluir(plataforma_fase);
 
-	plataforma_fase = new Plataforma(Vector2f(COMPRIMENTOP5, ESPESSURA_PLATAFORMA), Vector2f(BORDA_ESQ, ALTURAP5));
+	plataforma_fase = new Plataforma(Vector2f(COMPRIMENTOP5, ESPESSURA_PLATAFORMA_F1), Vector2f(BORDA_ESQ, ALTURAP5));
 	lista_obstaculos->incluir(plataforma_fase);
 
 

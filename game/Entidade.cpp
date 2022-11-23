@@ -1,11 +1,5 @@
 #include "Entidade.h"
 
-
-ID Entidade::getId() const
-{
-    return id;
-}
-
 Entidade::Entidade(ID idd) : corpo(Vector2f(70.f, 70.f)),
     Ente(),
     visivel(true),
@@ -21,6 +15,11 @@ Entidade::Entidade(ID idd) : corpo(Vector2f(70.f, 70.f)),
 
 
 Entidade::~Entidade(){}
+
+ID Entidade::getId() const
+{
+    return id;
+}
 
 void Entidade::render()
 {
@@ -168,6 +167,7 @@ void Entidade::corrigeColisoes(Entidade* a, Vector2f inter)
         else {
             corpo.move(Vector2f(0.f, -inter.y));
         }
+
         speed.y = 0.0f;
     }
 

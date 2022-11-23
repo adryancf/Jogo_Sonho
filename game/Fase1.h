@@ -7,7 +7,7 @@ private:
 
 	//NESSA FASE VAI TER ESPECIFICAMENTE
 	Dragao* dragao;
-	Hydra* hydra;
+	Espinho* espinho;
 
 	virtual void criar_entidades();
 
@@ -17,7 +17,7 @@ public:
 
 	//Personagem
 	void criarDragao();
-	void criarHydra();
+	virtual void criarHydra();
 
 	//Obstaculo
 	virtual void criarPlataforma();
