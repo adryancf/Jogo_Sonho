@@ -26,6 +26,20 @@ void Entidade::render()
     pGrafico->desenhar(corpo);
 }
 
+//TRUE: ESTA FORA DO MAPA | FALSE: ESTA DENTRO DO MAPA
+const bool Entidade::verificarPosInvalida()
+{
+    Vector2f pos_ent(getPosicao());
+
+    if (pos_ent.x < 0.0f || pos_ent.x > RESOLUCAO_X - getSizeCorpo().x)
+        return true;
+    else if (pos_ent.y > RESOLUCAO_Y + getSizeCorpo().y)
+        return true;
+    else
+        return false;
+
+}
+
 void Entidade::setVelocidade(Vector2f velocidade)
 {
     speed = velocidade;

@@ -9,6 +9,7 @@
 #include "Espinho.h"
 #include "ListaEntidades.h"
 
+#include "GerenciadorColisoes.h"
 #include "Ente.h"
 
 
@@ -25,6 +26,9 @@ protected:
 	//Lista
 	ListaEntidades* lista_personagem;
 	ListaEntidades* lista_obstaculos;
+
+	//Colisoes
+	GerenciadorColisoes* pColisoes;
 
 	//Controle e inicialização
 	unsigned int numero_instancias;

@@ -30,12 +30,8 @@ Projetil::~Projetil()
 
 void Projetil::verificarBordas()
 {
-	Vector2f posProjetil = getPosicao();
 
-	if (posProjetil.x < 0.f || 
-		posProjetil.x > RESOLUCAO_X || 
-		posProjetil.y < 0.f ||
-		posProjetil.y > RESOLUCAO_Y)
+	if (verificarPosInvalida())
 	{
 		estadoInicial();
 	}

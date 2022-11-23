@@ -1,10 +1,14 @@
 #include "Fase.h"
 
-Fase::Fase(Jogador *j): numero_instancias(0), j1(j), plataforma_fase(nullptr), caixa(nullptr), ativa(true), hydra(nullptr)
-{
-	lista_obstaculos = nullptr;
-	lista_personagem = nullptr;
-}
+Fase::Fase(Jogador *j): numero_instancias(0), j1(j), 
+	plataforma_fase(nullptr), 
+	caixa(nullptr), 
+	ativa(true), 
+	hydra(nullptr),
+	pColisoes(nullptr),
+	lista_obstaculos(nullptr),
+	lista_personagem(nullptr)
+{}
 
 Fase::~Fase()
 {
@@ -51,15 +55,32 @@ void Fase::criarLista()
 	lista_obstaculos = new ListaEntidades;
 
 	lista_personagem->incluir(j1);
+
+	//Gerenciador
+	pColisoes = new GerenciadorColisoes(lista_personagem, lista_obstaculos);
+
 }
 
 void Fase::deletaListas()
 {
-	if(lista_personagem)
-		delete lista_personagem;
+	if (pColisoes != nullptr)
+		delete pColisoes;
 
-	if(lista_obstaculos)
-		delete lista_obstaculos;
+	/*
+	if (lista_personagem) {
+		cout << "Deletando lista_personagens..." << endl;
+		lista_personagem->removerTudo();
+		//delete lista_personagem;
+		lista_personagem = nullptr;
+	}
+	if (lista_obstaculos) {
+		cout << "Deletando lista_obstaculos..." << endl;
+		lista_obstaculos->removerTudo();
+		//delete lista_obstaculos;
+		lista_obstaculos = nullptr;
+	
+	}
+	*/
 }
 
 ListaEntidades* Fase::getListaPersonagem()

@@ -135,14 +135,14 @@ void Fase2::criarHydra()
 		if (i == 0)
 			hydra->setPosEntidade(Vector2f(gerarNumeroAleatorio(340.0f, COMPRIMENTOP2 + 300.f), ALTURAP2 - HYDRA_Y)); //Segunda Plataforma
 
-		/*
+		
 		else if (i == 2)
 			hydra->setPosEntidade(Vector2f(gerarNumeroAleatorio(980.0f, 1100.f), ALTURAP3 - HYDRA_Y)); //Terceira Plataforma
 
 		else if(i == 3)
 			hydra->setPosEntidade(Vector2f(gerarNumeroAleatorio(640.0f, 900.f), ALTURAP4 - HYDRA_Y)); //Terceira Quarta Plataforma
 
-		*/
+		
 		else
 			hydra->setPosEntidade(Vector2f(gerarNumeroAleatorio(580.F, 1000.f), ALTURAP6 - HYDRA_Y)); //Sexta Plataforma
 
@@ -154,4 +154,6 @@ void Fase2::Executar()
 {
 	lista_obstaculos->renderElementos();
 	lista_personagem->renderElementos();
+
+	pColisoes->verificaColisoes();
 }

@@ -51,7 +51,12 @@ public:
 	Entidade(ID idd = eempty);
 	~Entidade();
 
+	//Controle
 	void render();
+
+	//Funcao para verificar se a entidade esta dentro da area permitida na tela
+	const bool verificarPosInvalida();
+
 
 	//ATRIBUTOS
 	void setVelocidade(Vector2f velocidade);

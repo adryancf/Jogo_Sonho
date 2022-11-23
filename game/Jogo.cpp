@@ -51,6 +51,8 @@ void Jogo::deletaFase1()
 
 void Jogo::iniciaFase2()
 {
+    //deletaFase1();
+
     fase2 = new Fase2(Jogador1);
 
     lista_personagem = fase2->getListaPersonagem();
@@ -58,29 +60,34 @@ void Jogo::iniciaFase2()
 
     pColisoes->setListas(lista_personagem, lista_obstaculos);
 
+
+
 }
 
 void Jogo::controleFases()
 {
-    if (fase1->getAtiva())
-    {
-        fase1->Executar();
-        fase1->verificaTerminoFase();
-    }
-    else
-    {
-        //deletaFase1();
-
-        if(fase2 == nullptr)
-            iniciaFase2();
-
-        if (fase2->getAtiva()) {
-            fase2->Executar();
-            fase2->verificaTerminoFase();
+    if (Jogador1->getVida() == true) {
+        if (fase1->getAtiva())
+        {
+            fase1->Executar();
+            fase1->verificaTerminoFase();
         }
         else
-            cout << "FIM!!" << endl;
+        {
+
+            if (fase2 == nullptr)
+                iniciaFase2();
+
+            if (fase2->getAtiva()) {
+                fase2->Executar();
+                fase2->verificaTerminoFase();
+            }
+            else
+                cout << "FIM!!" << endl;
+        }
     }
+    else
+        cout << "FIM DO JOGO!" << endl; //tela de gameOver
 }
 
 void Jogo::Executar()
@@ -94,14 +101,9 @@ void Jogo::Executar()
         pGrafico->atualizaTempo();
 
         pGrafico->limpar();
-        
-        //Se todos os inimigos morrerem a fase acaba
-        //Quando a fase 1 acaba, ela é deletada e a fase2 é iniciada
-        
+  
+        //Desenho as entidades da fase na tela e gerencio as colisoes entre elas dentro de cada fase
         controleFases();
-        
-        //Verifica Colisões
-        pColisoes->verificaColisoes();
 
         pGrafico->mostrar();
                

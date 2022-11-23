@@ -28,11 +28,10 @@ Fase1::Fase1(Jogador* j1): Fase(j1)
 
 Fase1::~Fase1()
 {
-	//Cada fase tem a sua lista, quando essa acabar, deleta essa fase e chama a fase dois
 	deletaListas();
 
-	//dragao = nullptr;
-	//espinho = nullptr;
+	dragao = nullptr;
+	espinho = nullptr;
 
 }
 
@@ -145,25 +144,12 @@ void Fase1::criarCaixa()
 //Percorre a lista de entidades
 void Fase1::Executar()
 {
-	/*
-	for (int j = 0; j < lista_obstaculos->listEnt.getTamanho(); j++)
-	{
-		Entidade* aux = lista_obstaculos->listEnt[j];
-		aux->Executar();
-		pGrafico->desenhar(aux->getCorpo());
-	}
+	//desenha fundo
 
-	//Implementar isso na classe da lista (se tiver tempo)
-	for (int i = 0; i < lista_personagem->listEnt.getTamanho(); i++)
-	{
-		Entidade* personagem = lista_personagem->listEnt[i];
-		if (personagem->getVisivel() == true) {
-			personagem->Executar();
-			pGrafico->desenhar(personagem->getCorpo());
-		}
-	}
-	*/
-
+	//Desenha todas as entidades
 	lista_obstaculos->renderElementos();
 	lista_personagem->renderElementos();
+
+	//Verifica a colisao entre elas
+	pColisoes->verificaColisoes();
 }
