@@ -74,11 +74,6 @@ const float Entidade::getDano() const
     return dano;
 }
 
-const bool Entidade::getVisivel() const
-{
-    return visivel;
-}
-
 const RectangleShape Entidade::getCorpo() const
 { 
     return corpo; 

@@ -50,7 +50,7 @@ public:
 	const Vector2f getRepulsao();
 	void setDano(float dano);
 	const float getDano() const;
-	const bool getVisivel() const;
+	//const bool getVisivel() const;
 
 	//Entidades sao capazes de causar dano em outras entidades
 	virtual void atacar(Entidade* adversario, float dano) = 0;
