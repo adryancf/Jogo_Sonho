@@ -36,8 +36,8 @@
 
 //TAMANHOS
 
-#define JOGADOR_X 30.f
-#define JOGADOR_Y 30.f
+#define JOGADOR_X 20.f
+#define JOGADOR_Y 20.f
 
 #define DRAGAO_X 10.f
 #define DRAGAO_Y 30.f
