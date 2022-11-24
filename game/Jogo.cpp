@@ -18,6 +18,11 @@ Jogo::Jogo() : Ente(), pEvento(pEvento->getGerenciadorEvento())
     //Posso tratar as colisoes em cada fase
     pColisoes = new GerenciadorColisoes(lista_personagem, lista_obstaculos);
 
+    //Inicializando a textura
+    //textura.loadFromFile("assets/h4.png");
+    //Corpo.setTexture(&textura);
+    //Corpo.setSize(sf::Vector2f(RESOLUCAO_X, RESOLUCAO_Y));
+
     Executar();
 }
 
@@ -44,6 +49,9 @@ void Jogo::Executar()
 
         pGrafico->limpar();
         
+        //Textura
+        //pGrafico->desenhar(Corpo);
+
         //Percorre as listas
         fase1->Executar();
 

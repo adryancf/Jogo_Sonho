@@ -29,9 +29,5 @@ public:
 	void verificaTeclaPressionada(sf::Keyboard::Key tecla);
 	void verificaTeclaSolta(sf::Keyboard::Key tecla);
 	void Executar();
-
-
-
-
 };
 

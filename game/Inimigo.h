@@ -2,8 +2,7 @@
 
 #include "Jogador.h"
 
-class Inimigo :
-    public Personagens
+class Inimigo : public Personagens
 {
 private:
     sf::Clock tempo_mov;

@@ -28,7 +28,7 @@ Fase1::~Fase1()
 void Fase1::criar_entidades()
 {
 	criarPlataforma();
-	criarDragao();
+	criarFantasma();
 	criarHydra();
 	Anjo* anjo1 = new Anjo(j1);
 	lista_personagem->listEnt.push(anjo1);
@@ -59,19 +59,19 @@ ListaEntidades* Fase1::getListaObstaculo()
 		return nullptr;
 }
 
-void Fase1::criarDragao()
+void Fase1::criarFantasma()
 {
-	Dragao* dragao1 = new Dragao();
-	lista_personagem->listEnt.push(dragao1);
-	dragao1->setPosEntidade(Vector2f(250.f, ALTURAP1 - DRAGAO_Y)); //Primeira Plataforma
+	Fantasma* fantasma1 = new Fantasma();
+	lista_personagem->listEnt.push(fantasma1);
+	fantasma1->setPosEntidade(Vector2f(250.f, ALTURAP1 - DRAGAO_Y)); //Primeira Plataforma
 	
-	Dragao* dragao2 = new Dragao();
-	lista_personagem->listEnt.push(dragao2);
-	dragao2->setPosEntidade(Vector2f(1200.f, ALTURAP3 - DRAGAO_Y)); //Terceira Plataforma
+	Fantasma* fantasma2 = new Fantasma();
+	lista_personagem->listEnt.push(fantasma2);
+	fantasma2->setPosEntidade(Vector2f(1200.f, ALTURAP3 - DRAGAO_Y)); //Terceira Plataforma
 
-	Dragao* dragao3 = new Dragao();
-	lista_personagem->listEnt.push(dragao3);
-	dragao3->setPosEntidade(Vector2f(500.f, ALTURAP4 - DRAGAO_Y)); //Quarta Plataforma
+	Fantasma* fantasma3 = new Fantasma();
+	lista_personagem->listEnt.push(fantasma3);
+	fantasma3->setPosEntidade(Vector2f(500.f, ALTURAP4 - DRAGAO_Y)); //Quarta Plataforma
 }
 
 void Fase1::criarHydra()

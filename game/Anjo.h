@@ -9,7 +9,7 @@ private:
 	//Crio o projetil na fase, pois precico inclui-lo na lista de personagens
 	Projetil* projetil;
 
-	sf::Texture texture;
+	//sf::Texture texture;
 
 public:
 	Anjo(Jogador* p);
@@ -23,7 +23,5 @@ public:
 	virtual void Mover();
 	virtual void Executar();
 	virtual void Colisao(Entidade* entidade, Vector2f inter_colisao);
-
-
 };
 

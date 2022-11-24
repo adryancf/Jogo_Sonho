@@ -80,7 +80,7 @@ void Projetil::atacar(Entidade* adversario, float dano)
 	Personagens* adv = nullptr;
 
 	//Quando colidir eu chamo essa funcao que ataca o adversario
-	if (adversario->getId() == ID::jogador || adversario->getId() == ID::hydra || adversario->getId() == ID::dragao) {
+	if (adversario->getId() == ID::jogador || adversario->getId() == ID::hydra || adversario->getId() == ID::fantasma) {
 		 adv = static_cast<Personagens*>(adversario);
 	}
 

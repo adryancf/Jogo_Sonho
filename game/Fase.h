@@ -2,7 +2,7 @@
 
 #include "Hydra.h"
 #include "Jogador.h"
-#include "Dragao.h"
+#include "Fantasma.h"
 #include "Anjo.h"
 #include "Plataforma.h"
 #include "ListaEntidades.h"

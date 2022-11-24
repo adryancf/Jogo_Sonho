@@ -48,7 +48,7 @@ public:
     const Vector2<bool> getPodeAndar();
     void pular(double tam_pulo);
    
-    //FUN��ES PRINCIPAIS
+    //FUNCOES PRINCIPAIS
     virtual void Executar() = 0;
     virtual void Mover() = 0;
     virtual void Colisao(Entidade* entidade, Vector2f inter_colisao) = 0;

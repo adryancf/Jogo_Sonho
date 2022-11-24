@@ -20,12 +20,14 @@ private:
 
 	Fase1* fase1;
 
+	//teste de background
+	//sf::Texture textura;
+	//sf::RectangleShape Corpo;
+
 public:
 	Jogo();
 	~Jogo();
 
 	void Executar();
-
-
 };
 

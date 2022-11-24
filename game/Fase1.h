@@ -18,7 +18,7 @@ public:
 	ListaEntidades* getListaPersonagem();
 	ListaEntidades* getListaObstaculo();
 
-	void criarDragao();
+	void criarFantasma();
 	void criarHydra();
 	virtual void criarPlataforma();
 
