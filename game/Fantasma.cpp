@@ -1,38 +1,40 @@
-﻿#include "Dragao.h"
+﻿#include "Fantasma.h"
 
-Dragao::Dragao(): Inimigo(), tempo_de_ataque(1.0)
+Fantasma::Fantasma(): Inimigo(), tempo_de_ataque(1.0)
 {
-    id = ID::dragao;
+    id = ID::fantasma;
     inicializa();
-    texture.loadFromFile("assets/NinjaFrog.png");
+
+    sf::IntRect rect(1, 4, 30, 27);
+    texture.loadFromFile("assets/ghost-Sheet.png", rect);
     corpo.setTexture(&texture);
-    corpo.setSize(sf::Vector2f(80.0f, 80.0f));
+    corpo.setSize(sf::Vector2f(60.0f, 60.0f));
 }
 
-Dragao::~Dragao()
+Fantasma::~Fantasma()
 {
 }
 
-void Dragao::inicializa()
+void Fantasma::inicializa()
 {
-    //Forma Dragao
+    //Forma Fantasma
     corpo.setSize(Vector2f(DRAGAO_X, DRAGAO_Y));
     //setColor(Color::Red);
 
-    //Atributos Dragao
+    //Atributos Fantasma
     setVelocidade(Vector2f(0.6f, 0.f));
     setQuantidadeVida(3.0);
     setDano(0.5);
 
 }
 
-const float Dragao::getTempoAtaque() const
+const float Fantasma::getTempoAtaque() const
 {
     return tempo_de_ataque;
 }
 
 
-void Dragao::Mover()
+void Fantasma::Mover()
 {
     //Aplica a gravidade
     movGravidade();
@@ -42,7 +44,7 @@ void Dragao::Mover()
 
 }
 
-void Dragao::Executar()
+void Fantasma::Executar()
 {
     verificaVida();
     //cout << " Vida Dragao: " << q_vida << endl;
@@ -50,7 +52,7 @@ void Dragao::Executar()
     Mover();
 }
 
-void Dragao::Colisao(Entidade* entidade, Vector2f inter_colisao)
+void Fantasma::Colisao(Entidade* entidade, Vector2f inter_colisao)
 {
     ID id_entidade = entidade->getId();
 

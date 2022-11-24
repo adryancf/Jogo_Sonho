@@ -15,6 +15,12 @@ Caixa::Caixa(const sf::Vector2f tam, const sf::Vector2f pos, bool estado_caixa):
 	//corpo.setTexture(&texture);
 
 	id = ID::caixa;
+
+	/*
+	texture.loadFromFile("assets/NinjaFrog.png");
+	corpo.setTexture(&texture);
+	corpo.setSize(sf::Vector2f(80.0f, 80.0f));
+	*/
 }
 
 Caixa::~Caixa()

@@ -47,14 +47,14 @@ void Fase1::criar_entidades()
 	criarCaixa();
 
 	//inimigos
-	criarDragao();
+	criarFantasma();
 	criarHydra();
 
 }
 
 
 //Cria de 3 a 4 dragoes na fase e os coloca em uma posicao aleatoria
-void Fase1::criarDragao()
+void Fase1::criarFantasma()
 {
 
 	srand(time(nullptr));
@@ -65,23 +65,23 @@ void Fase1::criarDragao()
 	//Numero aleatorio de instâncias
 	for (unsigned int i = 0; i < numero_instancias; i++)
 	{
-		dragao = nullptr;
+		fantasma = nullptr;
 
-		dragao = new Dragao();
-		lista_personagem->incluir(dragao);
+		fantasma = new Fantasma();
+		lista_personagem->incluir(fantasma);
 
 		//Setar posicao
 		if (i == 0)
-			dragao->setPosEntidade(Vector2f(gerarNumeroAleatorio(150.0f, COMPRIMENTOP1), ALTURAP1 - HYDRA_Y)); //Primeira Plataforma
+			fantasma->setPosEntidade(Vector2f(gerarNumeroAleatorio(150.0f, COMPRIMENTOP1), ALTURAP1 - HYDRA_Y)); //Primeira Plataforma
 
 		else if(i == 1)
-			dragao->setPosEntidade(Vector2f(gerarNumeroAleatorio(850.0f, 980.f), ALTURAP2 - HYDRA_Y)); //Segunda Plataforma
+			fantasma->setPosEntidade(Vector2f(gerarNumeroAleatorio(850.0f, 980.f), ALTURAP2 - HYDRA_Y)); //Segunda Plataforma
 
 		else if (i == 2)
-			dragao->setPosEntidade(Vector2f(gerarNumeroAleatorio(700.0f, 630.f + COMPRIMENTOP4), ALTURAP4 - HYDRA_Y)); //Quarta Plataforma
+			fantasma->setPosEntidade(Vector2f(gerarNumeroAleatorio(700.0f, 630.f + COMPRIMENTOP4), ALTURAP4 - HYDRA_Y)); //Quarta Plataforma
 
 		else
-			dragao->setPosEntidade(Vector2f(gerarNumeroAleatorio(50.0f, 500.f), ALTURAP5 - HYDRA_Y)); //Quinta Plataforma
+			fantasma->setPosEntidade(Vector2f(gerarNumeroAleatorio(50.0f, 500.f), ALTURAP5 - HYDRA_Y)); //Quinta Plataforma
 
 
 

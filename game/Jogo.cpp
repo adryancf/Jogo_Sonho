@@ -3,10 +3,15 @@
 Jogo::Jogo() : Ente(), pEvento(pEvento->getGerenciadorEvento()), fase2(nullptr)
 {
 
-    //Alocando ele dinamicâmente (O NEW É O EQUIVALENTE AO MALLOC EM C)
+    //Alocando ele dinamicï¿½mente (O NEW ï¿½ O EQUIVALENTE AO MALLOC EM C)
    
     iniciaFase1();
     Executar();
+
+    //Inicializando a textura
+    //textura.loadFromFile("assets/h4.png");
+    //Corpo.setTexture(&textura);
+    //Corpo.setSize(sf::Vector2f(RESOLUCAO_X, RESOLUCAO_Y));
 }
 
 Jogo::~Jogo()
@@ -103,7 +108,7 @@ void Jogo::controleFases()
 void Jogo::Executar()
 {
     
-    //LOOP DE EXECUÇÃO DO PROGRAMA
+    //LOOP DE EXECUï¿½ï¿½O DO PROGRAMA
     while (pGrafico->isWindowOpen())
     {
         pEvento->Executar();

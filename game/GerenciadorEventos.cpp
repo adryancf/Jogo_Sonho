@@ -91,9 +91,7 @@ void GerenciadorEvento::Executar()
         }
         else if (event.type == Event::Closed) {
             pGrafico->fecharJanela();
-        }
-        
-        
+        } 
 
     }
 

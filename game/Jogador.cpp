@@ -3,7 +3,8 @@
 Jogador::Jogador():Personagens(), tempo(), pontuacao(0)
 {
     id = ID::jogador;
-    texture.loadFromFile("assets/PinkMan.png");
+    sf::IntRect rect(59, 46, 30, 54);
+    texture.loadFromFile("assets/Idle.png", rect);
     corpo.setTexture(&texture);
     iniciar();
     corpo.setSize(sf::Vector2f(70.0f, 70.0f));
@@ -85,7 +86,7 @@ void Jogador::Colisao(Entidade* entidade, Vector2f inter_colisao)
     corrigeColisoes(entidade, inter_colisao);
     
     //Dragao
-    if (entidade->getId() == ID::dragao)
+    if (entidade->getId() == ID::fantasma)
     {
         Personagens* dragao = static_cast<Personagens*>(entidade);
         float t = tempo.getElapsedTime().asSeconds();

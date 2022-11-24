@@ -6,7 +6,7 @@ class Fase1: public Fase
 private:
 
 	//NESSA FASE VAI TER ESPECIFICAMENTE
-	Dragao* dragao;
+	Fantasma* fantasma;
 	Espinho* espinho;
 
 	RectangleShape fundo;
@@ -17,12 +17,10 @@ private:
 public:
 	Fase1(Jogador* j1);
 	~Fase1();
-
+	
 	//Personagem
-	void criarDragao();
+	void criarFantasma();
 	virtual void criarHydra();
-
-	//Obstaculo
 	virtual void criarPlataforma();
 	virtual void criarCaixa();
 

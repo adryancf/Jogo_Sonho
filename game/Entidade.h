@@ -8,6 +8,9 @@ protected:
 	//Toda entidade tem um shape
 	RectangleShape corpo;
  
+	//Textura
+	sf::Texture texture;
+
 	//Toda entidade sofre uma velocida (gravidade e movimento)
 	sf::Vector2f speed;
 

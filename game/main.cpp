@@ -1,6 +1,6 @@
 #include "Jogo.h"
 #include "Menu.h"
-#include <conio.h>
+//#include <conio.h>
 int main()
 {
     Menu* menu = new Menu();

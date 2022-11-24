@@ -2,16 +2,16 @@
 
 #include "Inimigo.h"
 
-class Dragao: public Inimigo
+class Fantasma: public Inimigo
 {
 
 private:
 	float tempo_de_ataque;
-	sf::Texture texture;
+	//sf::Texture texture;
 
 public:
-	Dragao();
-	~Dragao();
+	Fantasma();
+	~Fantasma();
 
 	const float getTempoAtaque() const;
 	void inicializa();

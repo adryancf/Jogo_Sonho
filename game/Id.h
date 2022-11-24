@@ -5,7 +5,7 @@ enum ID
 	jogador,
 	hydra,
 	anjo,
-	dragao,
+	fantasma,
 	caixa,
 	espinho,
 	plataforma,

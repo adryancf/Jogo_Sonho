@@ -22,6 +22,10 @@ private:
 	Fase1* fase1;
 	Fase2* fase2;
 
+	//teste de background
+	//sf::Texture textura;
+	//sf::RectangleShape Corpo;
+
 public:
 	Jogo();
 	~Jogo();
@@ -34,7 +38,5 @@ public:
 	void deletaFase2();
 
 	void Executar();
-
-
 };
 
