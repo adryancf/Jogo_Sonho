@@ -29,10 +29,6 @@ Entidade::Entidade() : Ente()
 
 Entidade::~Entidade(){}
 
-ID Entidade::getId() const
-{
-    return id;
-}
 
 void Entidade::render()
 {

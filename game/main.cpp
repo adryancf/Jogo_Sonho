@@ -5,7 +5,7 @@ int main()
 {
     Menu* menu = new Menu();
     menu->run_menu();
-    getch();
+    //getch();
     //Jogo jogo;
     //jogo.Executar();
 

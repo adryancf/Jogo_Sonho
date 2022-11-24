@@ -11,8 +11,8 @@ Anjo::Anjo(Jogador* p, Projetil* b):
     id = ID::anjo;
 
     inicializa();
-    texture.loadFromFile("assets/VirtualGuy.png");
-    corpo.setTexture(&texture);
+    //texture.loadFromFile("assets/VirtualGuy.png");
+    //corpo.setTexture(&texture);
     corpo.setSize(sf::Vector2f(70.0f, 70.0f));
 
 }
