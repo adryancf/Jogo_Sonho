@@ -13,7 +13,7 @@ Anjo::Anjo(Jogador* p, Projetil* b):
     inicializa();
     //texture.loadFromFile("assets/VirtualGuy.png");
     //corpo.setTexture(&texture);
-    corpo.setSize(sf::Vector2f(70.0f, 70.0f));
+    //corpo.setSize(sf::Vector2f(70.0f, 70.0f));
 
 }
 

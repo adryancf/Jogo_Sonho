@@ -18,7 +18,7 @@
 #define COMPRIMENTOP5 1000.f
 
 
-Fase1::Fase1(Jogador* j1): Fase(j1), dragao(nullptr), espinho(nullptr)
+Fase1::Fase1(Jogador* j1): Fase(j1), fantasma(nullptr)
 {
 	//Inicializa todas as entidades da fase
 	criar_entidades();
@@ -31,8 +31,7 @@ Fase1::~Fase1()
 
 	deletaListas();
 
-	dragao = nullptr;
-	espinho = nullptr;
+	fantasma = nullptr;
 
 }
 
@@ -72,16 +71,16 @@ void Fase1::criarFantasma()
 
 		//Setar posicao
 		if (i == 0)
-			fantasma->setPosEntidade(Vector2f(gerarNumeroAleatorio(150.0f, COMPRIMENTOP1), ALTURAP1 - HYDRA_Y)); //Primeira Plataforma
+			fantasma->setPosEntidade(Vector2f(gerarNumeroAleatorio(150.0f, COMPRIMENTOP1), ALTURAP1 - FANTASMA_Y)); //Primeira Plataforma
 
 		else if(i == 1)
-			fantasma->setPosEntidade(Vector2f(gerarNumeroAleatorio(850.0f, 980.f), ALTURAP2 - HYDRA_Y)); //Segunda Plataforma
+			fantasma->setPosEntidade(Vector2f(gerarNumeroAleatorio(850.0f, 980.f), ALTURAP2 - FANTASMA_Y)); //Segunda Plataforma
 
 		else if (i == 2)
-			fantasma->setPosEntidade(Vector2f(gerarNumeroAleatorio(700.0f, 630.f + COMPRIMENTOP4), ALTURAP4 - HYDRA_Y)); //Quarta Plataforma
+			fantasma->setPosEntidade(Vector2f(gerarNumeroAleatorio(700.0f, 630.f + COMPRIMENTOP4), ALTURAP4 - FANTASMA_Y)); //Quarta Plataforma
 
 		else
-			fantasma->setPosEntidade(Vector2f(gerarNumeroAleatorio(50.0f, 500.f), ALTURAP5 - HYDRA_Y)); //Quinta Plataforma
+			fantasma->setPosEntidade(Vector2f(gerarNumeroAleatorio(50.0f, 500.f), ALTURAP5 - FANTASMA_Y)); //Quinta Plataforma
 
 
 

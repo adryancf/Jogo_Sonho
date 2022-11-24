@@ -4,11 +4,11 @@ Plataforma::Plataforma(const Vector2f tam, const Vector2f pos)
 {
 	corpo.setPosition(pos);
 	corpo.setSize(tam);
-	//corpo.setFillColor(Color::Green);
+	corpo.setFillColor(Color::Green);
 
 	id = ID::plataforma;
 	sf::IntRect rect(478, 35, 1050, 452);
-	texture.loadFromFile("MossyFloatingPlatforms.png", rect);
+	//texture.loadFromFile("assets/brownPlatform.png", rect);
 	corpo.setTexture(&texture);
 
 }

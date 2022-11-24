@@ -7,7 +7,6 @@ private:
 
 	//NESSA FASE VAI TER ESPECIFICAMENTE
 	Fantasma* fantasma;
-	Espinho* espinho;
 
 	RectangleShape fundo;
 

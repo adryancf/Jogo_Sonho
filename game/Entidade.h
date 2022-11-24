@@ -23,13 +23,9 @@ protected:
 	//Entidades sao capazes de causar dano
 	float dano;
 
-	//ID id;
 
 	//Variaveis de controle
 	
-	//bool visivel;
-
-
 	bool colisaoPlataforma;
 	bool gravidade;
 	bool noChao;

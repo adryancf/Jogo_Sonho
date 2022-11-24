@@ -27,16 +27,13 @@ void Ente::setWindow(GerenciadorGrafico* pG)
 { 
 	pGrafico = pG; 
 }
+
 // (Sem uso) | talvez precise do static antes da declaração da funcao
 GerenciadorGrafico* Ente::getGrafico()
 {
 	return pGrafico;
 }
 
-//Pode ser a funcao render (pensar)
-void Ente::Print()
-{
-}
 
 //Define o ID
 void Ente::setId(ID Id)

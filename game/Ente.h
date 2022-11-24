@@ -33,7 +33,6 @@ public:
 	GerenciadorGrafico* getGrafico();
 
 	virtual void Executar() = 0;
-	void Print(); //posso fazer um render
 
 	//ID
 	void setId(ID Id);

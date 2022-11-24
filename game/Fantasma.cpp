@@ -8,7 +8,7 @@ Fantasma::Fantasma(): Inimigo(), tempo_de_ataque(1.0)
     sf::IntRect rect(1, 4, 30, 27);
     texture.loadFromFile("assets/ghost-Sheet.png", rect);
     corpo.setTexture(&texture);
-    corpo.setSize(sf::Vector2f(60.0f, 60.0f));
+    //corpo.setSize(sf::Vector2f(60.0f, 60.0f));
 }
 
 Fantasma::~Fantasma()
@@ -18,7 +18,7 @@ Fantasma::~Fantasma()
 void Fantasma::inicializa()
 {
     //Forma Fantasma
-    corpo.setSize(Vector2f(DRAGAO_X, DRAGAO_Y));
+    corpo.setSize(Vector2f(FANTASMA_X, FANTASMA_Y));
     //setColor(Color::Red);
 
     //Atributos Fantasma

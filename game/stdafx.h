@@ -36,11 +36,11 @@
 
 //TAMANHOS
 
-#define JOGADOR_X 20.f
-#define JOGADOR_Y 20.f
+#define JOGADOR_X 50.f
+#define JOGADOR_Y 50.f
 
-#define DRAGAO_X 10.f
-#define DRAGAO_Y 30.f
+#define FANTASMA_X 60.f
+#define FANTASMA_Y 60.f
 
 #define HYDRA_X 16.f
 #define HYDRA_Y 16.f

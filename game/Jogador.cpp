@@ -3,11 +3,13 @@
 Jogador::Jogador():Personagens(), tempo(), pontuacao(0)
 {
     id = ID::jogador;
+
     sf::IntRect rect(59, 46, 30, 54);
     texture.loadFromFile("assets/Idle.png", rect);
     corpo.setTexture(&texture);
     iniciar();
-    corpo.setSize(sf::Vector2f(70.0f, 70.0f));
+
+    //corpo.setSize(sf::Vector2f(70.0f, 70.0f));
 }
 
 void Jogador::iniciar()
