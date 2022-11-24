@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Fase.h"
-
+#include "Caixa.h"
 
 class Fase1: public Fase
 {
