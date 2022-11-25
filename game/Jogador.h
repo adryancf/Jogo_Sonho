@@ -23,6 +23,7 @@ public:
     ~Jogador();
 
     //Sistema de pontos
+    void verificaPontos(Entidade* inimigo);
     void ganhaPontos(int pontos);
     void ganhaPontos();
     void perdePontos(int pontos);

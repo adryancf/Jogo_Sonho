@@ -34,7 +34,6 @@ protected:
 public:
 
 	Entidade(ID idd = ID::vazio);
-	//Entidade(); AMBIGUO
 	~Entidade();
 
 	//Controle
@@ -50,7 +49,6 @@ public:
 	const Vector2f getRepulsao();
 	void setDano(float dano);
 	const float getDano() const;
-	//const bool getVisivel() const;
 
 	//Entidades sao capazes de causar dano em outras entidades
 	virtual void atacar(Entidade* adversario, float dano) = 0;
@@ -63,9 +61,6 @@ public:
 	void setPosEntidade(Vector2f pos);
 	const Vector2f getPosicao() const;
 	
-
-	//retorna o ID
-	//ID getId() const;
 
 	//COLISAO E GRAVIDADE
 	void setColisaoPlataforma(bool estaNaPlataforma);

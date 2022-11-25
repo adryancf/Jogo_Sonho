@@ -57,8 +57,6 @@ const bool Personagens::getVida() const
 
 void Personagens::verificaVida()
 {
-    
-
     if (q_vida <= 0 || verificarPosInvalida()) {
         
         vivo = false;

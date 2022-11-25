@@ -42,6 +42,21 @@ bool ListaEntidades::verificaEntidadesVisiveis()
 
 }
 
+int ListaEntidades::contaEntidadesMortas()
+{
+	int entidades = 0;
+	//Percorrer a lista e contar quantas entidades estao com a flag visivel como false
+	for (int i = 0; i < getTamanhoLista(); i++) {
+
+		if (listEnt[i]->getId() == ID::anjo || listEnt[i]->getId() == ID::fantasma || listEnt[i]->getId() == ID::hydra) {
+			if (listEnt[i]->getVisivel() == false)
+				entidades++;
+		}
+	}
+
+	return entidades;
+}
+
 Entidade* ListaEntidades::getJogador()
 {
 	for (int i = 0; i < getTamanhoLista(); i++)

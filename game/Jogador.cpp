@@ -37,7 +37,7 @@ void Jogador::Mover()
 void Jogador::Executar()
 {
     verificaVida();
-    cout << " Vida Jogador: " << q_vida << endl;
+    cout << " Pontos Jogador: " << pontuacao << endl;
     Mover();
 }
 
@@ -55,6 +55,16 @@ void Jogador::andar(int i)
     {
         movimentaEntidade(Vector2f(speed.x, 0), true);
     }
+}
+
+void Jogador::verificaPontos(Entidade* inimigo)
+{
+    //SE O INIMIGO TA MORTO = PONTO
+    if (inimigo->getVisivel() == false)
+    {
+        pontuacao++;
+    }
+
 }
 
 void Jogador::ganhaPontos(int pontos)
@@ -87,7 +97,7 @@ void Jogador::Colisao(Entidade* entidade, Vector2f inter_colisao)
 {
     corrigeColisoes(entidade, inter_colisao);
     
-    //Dragao
+    //Fantasma
     if (entidade->getId() == ID::fantasma)
     {
         Personagens* dragao = static_cast<Personagens*>(entidade);
@@ -136,7 +146,8 @@ void Jogador::Colisao(Entidade* entidade, Vector2f inter_colisao)
                 }
             }
             atacar(entidade, dano);
-
+            verificaPontos(entidade);
+            
         }
         
         tempo.restart();
@@ -149,6 +160,7 @@ void Jogador::Colisao(Entidade* entidade, Vector2f inter_colisao)
         //Se o jogador ta em cima dela, ela perde vida
         if (emCima) {
             atacar(entidade, dano);
+            verificaPontos(entidade);
             
         }
 
@@ -184,6 +196,7 @@ void Jogador::Colisao(Entidade* entidade, Vector2f inter_colisao)
             }
 
             atacar(entidade, dano);
+            verificaPontos(entidade);
         }
     }
 
