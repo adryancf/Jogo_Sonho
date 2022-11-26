@@ -42,8 +42,8 @@
 #define FANTASMA_X 60.f
 #define FANTASMA_Y 60.f
 
-#define HYDRA_X 16.f
-#define HYDRA_Y 16.f
+#define HYDRA_X 40.f
+#define HYDRA_Y 40.f
 
 #define ANJO_X 30.f
 #define ANJO_Y 70.f

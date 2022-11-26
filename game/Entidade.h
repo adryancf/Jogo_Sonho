@@ -18,7 +18,8 @@ protected:
 	Vector2f posicao;
 
 	//Util para colisoes entre entidades
-	sf::Vector2f repulsao;
+	sf::Vector2f repulsao_direita;
+	sf::Vector2f repulsao_esquerda;
 
 	//Entidades sao capazes de causar dano
 	float dano;
@@ -29,7 +30,7 @@ protected:
 	bool colisaoPlataforma;
 	bool gravidade;
 	bool noChao;
-	bool emCima;
+	bool emCimaEntidade;
 
 public:
 
@@ -41,12 +42,13 @@ public:
 
 	//Funcao para verificar se a entidade esta dentro da area permitida na tela
 	const bool verificarPosInvalida();
+	const bool verificarPosInvalidaEmY();
+
 
 
 	//ATRIBUTOS
 	void setVelocidade(Vector2f velocidade);
 	Vector2f getVelocidade();
-	const Vector2f getRepulsao();
 	void setDano(float dano);
 	const float getDano() const;
 

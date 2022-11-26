@@ -44,6 +44,11 @@ const bool Fase::getAtiva()
 	return ativa;
 }
 
+void Fase::pontuacaoJogador()
+{
+	j1->ganhaPontos(lista_personagem->contaEntidadesMortas());
+}
+
 void Fase::criarLista()
 {
 	/* CRIA A LISTA DE ENTIDADES DA FASE */

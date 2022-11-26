@@ -48,6 +48,7 @@ public:
 	void verificaTerminoFase();
 	const bool getAtiva();
 
+	void pontuacaoJogador();
 	virtual void Executar() = 0;
 
 	//Listas

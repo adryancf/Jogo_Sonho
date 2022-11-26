@@ -1,13 +1,14 @@
 #include "Jogador.h"
 
-Jogador::Jogador():Personagens(), tempo(), pontuacao(0)
+int Jogador::pontuacao = 0;
+
+Jogador::Jogador(int jogador):Personagens(), tempo()
 {
     id = ID::jogador;
-
-    sf::IntRect rect(59, 46, 30, 54);
-    texture.loadFromFile("assets/Idle.png", rect);
-    corpo.setTexture(&texture);
     iniciar();
+
+    this->setTextura(jogador);
+
 
     //corpo.setSize(sf::Vector2f(70.0f, 70.0f));
 }
@@ -16,22 +17,42 @@ void Jogador::iniciar()
 {
     //Atributos Jogador
     corpo.setSize(Vector2f(JOGADOR_X, JOGADOR_Y));
-    //this->setTextura();
-
     setVelocidade(Vector2f(10.f, 0.f));
-    setQuantidadeVida(10.0);
+    setQuantidadeVida(20.0);
     setDano(3.0);
 }
-Jogador::~Jogador(){
-    pontuacao = 0;
+Jogador::~Jogador(){}
+
+void Jogador::setTextura(int i)
+{
+    if (i == 1)
+    {
+        sf::IntRect rect(59, 46, 30, 54);
+        texture.loadFromFile("assets/Idle.png", rect);
+        corpo.setTexture(&texture);
+
+    }
+    else if (i == 2)
+    {
+        sf::IntRect rect(59, 46, 30, 54);
+        texture.loadFromFile("assets/Idle.png", rect);
+        corpo.setTexture(&texture);
+    }
 }
 
+
+void Jogador::atacar(Entidade* adversario, float dano)
+{
+    Personagens* adv = static_cast<Personagens*>(adversario);
+    adv->perdeVida(dano);
+
+    if (adv->getQuantidadeVida() <= 0.f)
+        ganhaPontos();
+}
 
 void Jogador::Mover()
 {
     movGravidade();
-    direcaoMovimento = string("nulo");
-
 }
 
 void Jogador::Executar()
@@ -39,6 +60,7 @@ void Jogador::Executar()
     verificaVida();
     cout << " Pontos Jogador: " << pontuacao << endl;
     Mover();
+
 }
 
 /* OS GERENCIADORES QUE CHAMAM ESSAS FUN��ES */
@@ -46,6 +68,7 @@ void Jogador::Executar()
 //GERENCIADOR DE EVENTOS
 void Jogador::andar(int i)
 {
+    andando = true;
 
     if (i == 2)
     {
@@ -69,12 +92,12 @@ void Jogador::verificaPontos(Entidade* inimigo)
 
 void Jogador::ganhaPontos(int pontos)
 {
-    pontuacao += pontos;
+    pontuacao = pontos;
 }
 
 void Jogador::ganhaPontos()
 {
-    pontuacao++;
+    ++pontuacao;
 }
 
 void Jogador::perdePontos(int pontos)
@@ -96,120 +119,6 @@ const int Jogador::getPontos()
 void Jogador::Colisao(Entidade* entidade, Vector2f inter_colisao)
 {
     corrigeColisoes(entidade, inter_colisao);
-    
-    //Fantasma
-    if (entidade->getId() == ID::fantasma)
-    {
-        Personagens* dragao = static_cast<Personagens*>(entidade);
-        float t = tempo.getElapsedTime().asSeconds();
-
-        //So tem repulsao quando nao esta em cima
-        if (!emCima) 
-        {
-            if (direcaoMovimento != "nulo") {
-                cout << direcaoMovimento << endl;
-                if (direcaoMovimento == "esquerda")
-                {
-                    repulsao.x = -30.0;
-                    movimentaEntidade((repulsao), false);
-
-                }
-                else if (direcaoMovimento == "direita")
-                {
-                    repulsao.x = 30.0;
-                    movimentaEntidade(repulsao, true);
-
-
-                }
-            }
-
-            else {
-                if (olhandoDireita) {
-                    repulsao.x = -30.0;
-                    verificaPodeAndar(repulsao);
-                    if (podeAndarEsquerda) {
-                        movimentaEntidade(repulsao, false);
-
-                        //Manda o dragao para direita
-                        dragao->setDirecaoMovimento(string("direita"));
-                    }
-                }
-                else if (olhandoEsquerda) {
-                    repulsao.x = 30.0;
-                    verificaPodeAndar(repulsao);
-                    if (podeAndarDireita) {
-                        movimentaEntidade(repulsao, true);
-
-                        //Manda o dragao para esquerda
-                        dragao->setDirecaoMovimento(string("esquerda"));
-                    }
-                }
-            }
-            atacar(entidade, dano);
-            verificaPontos(entidade);
-            
-        }
-        
-        tempo.restart();
-
-    }
-            
-    //Hydra
-    else if (entidade->getId() == ID::hydra)
-    {
-        //Se o jogador ta em cima dela, ela perde vida
-        if (emCima) {
-            atacar(entidade, dano);
-            verificaPontos(entidade);
-            
-        }
-
-        else
-        {
-            if (olhandoDireita)
-            {
-                repulsao.x = -15.0;
-                movimentaEntidade(repulsao, false);
-            }
-
-            else if (olhandoEsquerda)  {
-                repulsao.x = 15.0;
-                movimentaEntidade(repulsao, true);
-            }
-        }
-    }
-
-    //Anjo (CHEFAO)
-    else if (entidade->getId() == anjo)
-    {
-        if (!emCima) {
-            //Vou dar dano batendo nele
-            if (olhandoDireita)
-            {
-                repulsao.x = -50.0;
-                movimentaEntidade(repulsao, false);
-            }
-
-            else if (olhandoEsquerda) {
-                repulsao.x = 50.0;
-                movimentaEntidade(repulsao, true);
-            }
-
-            atacar(entidade, dano);
-            verificaPontos(entidade);
-        }
-    }
-
-    else if (entidade->getId() == ID::projetil)
-    {
-        cout << "COLIDIU PROJETIL" << endl;
-
-    }
-
-    else if (entidade->getId() == ID::plataforma)
-    {
-        speed.x = 10.f;
-    }
 
 }
 

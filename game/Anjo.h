@@ -28,7 +28,7 @@ public:
 
 
 	const Projetil* getProjetil();
-	virtual void atacar();
+	virtual void atirar_projetil();
 
 	void inicializa();
 

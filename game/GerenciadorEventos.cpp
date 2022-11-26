@@ -63,10 +63,10 @@ void GerenciadorEvento::verificaTeclaPressionada(sf::Keyboard::Key tecla)
 void GerenciadorEvento::verificaTeclaSolta(sf::Keyboard::Key tecla)
 {
     //VERIFICAR SE A TECLA FOR SOLTA E ALTERAR A FLAG
-    /*
+    
     if (tecla == sf::Keyboard::A || tecla == sf::Keyboard::D)
-        tecla_pres = 0;
-        */
+        Jogador1->setAndando(false);
+        
 
 }
 

@@ -25,7 +25,7 @@ Jogo::~Jogo()
 
 void Jogo::iniciaFase1()
 {
-    Jogador1 = new Jogador();
+    Jogador1 = new Jogador(1);
     pEvento->setJogador(Jogador1);
 
     fase1 = new Fase1(Jogador1);
@@ -48,7 +48,7 @@ void Jogo::iniciaFase2()
     if(fase1)
         deletaFase1();
 
-    Jogador1 = new Jogador();
+    Jogador1 = new Jogador(1);
     pEvento->setJogador(Jogador1);
 
     fase2 = new Fase2(Jogador1);

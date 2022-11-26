@@ -9,7 +9,7 @@ private:
     //sf::Texture tex_jogador;
     //sf::Sprite sprite_jogador;
 
-    int pontuacao;
+    static int pontuacao;
 
     sf::Clock tempo;
     void iniciar();
@@ -19,8 +19,11 @@ private:
 
     
 public:
-    Jogador();
+    Jogador(int jogador);
     ~Jogador();
+
+    void setTextura(int i);
+    
 
     //Sistema de pontos
     void verificaPontos(Entidade* inimigo);
@@ -28,9 +31,10 @@ public:
     void ganhaPontos();
     void perdePontos(int pontos);
     void perdePontos();
-    const int getPontos();
+    static const int getPontos();
 
-    
+    //Redefinindo função do ataque
+    virtual void atacar(Entidade* adversario, float dano);
     //Movimento
     virtual void Mover();
     void andar(int i);

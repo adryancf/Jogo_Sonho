@@ -12,6 +12,8 @@ protected:
     Vector2f raio_deteccao;
     Jogador* player;
 
+    bool jogadorEmCima;
+
     /* Futuramente uma sprite */
 
     //sf::Texture j_textura;

@@ -2,7 +2,8 @@
 #include "Inimigo.h"
 
 
-Inimigo::Inimigo():Personagens(), tempo_mov(), player(nullptr)
+Inimigo::Inimigo():Personagens(), tempo_mov(), player(nullptr), jogadorEmCima(false)
+
 {   
     movRandom = rand() % 4; //SEED FALTANTE
     id = ID::inimigo; // ARRUMAR ID
@@ -18,7 +19,7 @@ Inimigo::~Inimigo()
 void Inimigo::movAleatorio()
 {
     /* O movimento aleatorio se da por um valor sorteado entre 1 e 4 a cada 0.5s */
-    if (noChao || emCima) {
+    if (noChao || emCimaEntidade) {
         if (movRandom == 0) {
             movimentaEntidade(Vector2f(speed.x, 0.f), true);
         }
@@ -70,32 +71,26 @@ void Inimigo::PersegueJogador(Vector2f posJogador, Vector2f posInimimgo)
 
 void Inimigo::podePerseguir(Personagens* personagem)
 {
-	Vector2<bool> podeAndarPersonagem;
+	bool podeAndarPersonagem;
 
 	if (olhandoDireita) {
 
-		if (repulsao.x < 0.0)
-			repulsao.x *= -1.0;
+		personagem->verificaPodeAndar(repulsao_direita);
+		podeAndarPersonagem = personagem->getPodeAndarDireita();
 
-		personagem->verificaPodeAndar(repulsao);
-		podeAndarPersonagem = personagem->getPodeAndar();
-
-		if (podeAndarPersonagem.x)
+		if (podeAndarPersonagem)
 			podeAndar = true;
-		else if (!podeAndarPersonagem.x)
+		else if (!podeAndarPersonagem)
 			podeAndar = false;
 	}
 	else if (olhandoEsquerda) {
-
-		if(repulsao.x > 0.0)
-			repulsao.x *= -1.0;
 		
-		personagem->verificaPodeAndar(repulsao);
-		podeAndarPersonagem = personagem->getPodeAndar();
+		personagem->verificaPodeAndar(repulsao_esquerda);
+		podeAndarPersonagem = personagem->getPodeAndarEsquerda();
 
-		if (podeAndarPersonagem.y)
+		if (podeAndarPersonagem)
 			podeAndar = true;
-		else if (!podeAndarPersonagem.y)
+		else if (!podeAndarPersonagem)
 			podeAndar = false;
 	}
 }
