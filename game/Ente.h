@@ -23,7 +23,6 @@ protected:
 	//Todo ENTE pode ou nao estar VISIVEL
 	bool visivel;
 
-
 public:
 	Ente();
 	Ente(GerenciadorGrafico* pG);
@@ -33,7 +32,6 @@ public:
 	GerenciadorGrafico* getGrafico();
 
 	virtual void Executar() = 0;
-	void Print(); //posso fazer um render
 
 	//ID
 	void setId(ID Id);

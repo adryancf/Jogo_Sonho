@@ -36,9 +36,9 @@ void Hydra::inicializa()
 void Hydra::Mover()
 {
 	movGravidade();
-	//podeAndar = true;
 
-	//cout << "Atacou: " << atacou << "Pode Andar: " << podeAndar << endl;
+	//Verifica se com a repulsao causada pela colisao entre os dois, o jogador pode andar ainda
+	podePerseguir(player);
 
 	if (atacou == true && podeAndar == true)
 	{
@@ -65,21 +65,20 @@ void Hydra::Colisao(Entidade* entidade, Vector2f inter_colisao)
 {
 	ID id_entidade = entidade->getId();
 
-	corrigeColisoes(entidade, inter_colisao);
-
 	//Nao corrige colisao com o jogador, pois la ele ja chama essa funcao
 	if (id_entidade == ID::jogador) {
-
-		Personagens* jogador = static_cast<Personagens*>(entidade);
 		atacou = true;
-		
-		//Verifica se pode Perseguir (Altera a flag podeAndar)
-		podePerseguir(jogador);
-
+	
 		//Ataque (Só ataca quando o jogador nao tiver em cima)
+		Personagens* jogador = static_cast<Personagens*>(entidade);
 		if(jogador->getEmCima() == false)
 			atacar(jogador, dano);
 	}
+
+	else
+		corrigeColisoes(entidade, inter_colisao);
+
+
 
 }
 

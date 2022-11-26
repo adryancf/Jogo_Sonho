@@ -18,18 +18,18 @@ Inimigo::~Inimigo()
 void Inimigo::movAleatorio()
 {
     /* O movimento aleatorio se da por um valor sorteado entre 1 e 4 a cada 0.5s */
-    if (noChao) {
-        if (movRandom == 1) {
+    if (noChao || emCima) {
+        if (movRandom == 0) {
             movimentaEntidade(Vector2f(speed.x, 0.f), true);
         }
-        else if (movRandom == 2) {
+        else if (movRandom == 1) {
             movimentaEntidade(Vector2f(-speed.x, 0.f), false);
         }
     }
     
     float dt = tempo_mov.getElapsedTime().asSeconds();
-    if (dt >= 0.5f) {
-        movRandom = rand() % 4;
+    if (dt >= 1.0f) {
+        movRandom = rand() % 2;
         tempo_mov.restart();
     }
 
@@ -37,6 +37,7 @@ void Inimigo::movAleatorio()
 
 void Inimigo::PersegueJogador(Vector2f posJogador, Vector2f posInimimgo)
 {
+
 	//funçao altera as flags 
 	Vector2f diferenca = posJogador - posInimimgo;
 

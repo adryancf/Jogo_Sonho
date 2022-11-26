@@ -1,53 +1,63 @@
 #include "Projetil.h"
 
-Projetil::Projetil(): alvo(nullptr), portador(nullptr)
+Projetil::Projetil():portador(nullptr), repouso(true), t()
 {
 	//Forma Projetil
-	corpo.setSize(Vector2f(20.f, 5.f));
-	corpo.setFillColor(Color::Red);
+	corpo.setSize(Vector2f(10.f, 5.f));
+	corpo.setFillColor(Color::Magenta);
 
 	//Atributos Projetil
-	setVelocidade(Vector2f(1.0f, 0.f));
+	setVelocidade(Vector2f(5.0f, 0.f));
+	dano = 3.5f;
 
 	id = ID::projetil;
 
+	estadoInicial();
+
 }
 
-Projetil::Projetil(Personagens* a): alvo(a), portador(nullptr)
-{
-}
 
 Projetil::~Projetil()
 {
-	if(alvo)
-		alvo = nullptr;
-
+	
 	if (portador)
 		portador = nullptr;
 
 }
 
-void Projetil::setAlvo(Personagens* alvo)
-{
-	this->alvo = alvo;
-}
 
-const Personagens* Projetil::getAlvo() const
-{
-	return alvo;
-}
+//ESTADO INICIAL
 
-void Projetil::EncontraPosAlvo()
+void Projetil::verificarBordas()
 {
-	posicaoAlvo = alvo->getCorpo().getPosition();
+
+	if (verificarPosInvalida())
+	{
+		estadoInicial();
+	}
 }
 
 void Projetil::estadoInicial()
 {
-	visivel = false;
-	setPosEntidade(portador->getCorpo().getPosition());
-
+	if (portador) {
+		atualizaPosicaoInicial();
+		visivel = false;
+		repouso = true;
+	}
 }
+
+void Projetil::atualizaPosicaoInicial()
+{
+	Vector2f posPortador = portador->getCorpo().getPosition();
+	setPosEntidade(Vector2f(posPortador.x, posPortador.y + 5.f));
+}
+
+const bool Projetil::getRepouso()
+{
+	return repouso;
+}
+
+//PORTADOR
 
 void Projetil::setPortador(Personagens* portador)
 {
@@ -60,46 +70,73 @@ const Personagens* Projetil::getPortador() const
 	return portador;
 }
 
-void Projetil::movimentoProjetil()
-{
-	visivel = true;
-	//Trajetoria ate o alvo
-	EncontraPosAlvo();
 
-	speed.y = -sqrt(2.0 * GRAVIDADE * 0.05);
 
-	if (corpo.getPosition().x != posicaoAlvo.x)
-		speed.x *= GerenciadorGrafico::dt;
-
-	corpo.move(speed);
-
-}
+// ATAQUE
 
 void Projetil::atacar(Entidade* adversario, float dano)
 {
-	Personagens* adv = nullptr;
 
 	//Quando colidir eu chamo essa funcao que ataca o adversario
-	if (adversario->getId() == ID::jogador || adversario->getId() == ID::hydra || adversario->getId() == ID::fantasma) {
-		 adv = static_cast<Personagens*>(adversario);
+	if (adversario->getId() == ID::jogador) {
+
+		Personagens* adv = static_cast<Personagens*>(adversario);
+		adv->perdeVida(dano);
 	}
 
-	adv->perdeVida(dano);
+}
 
+void Projetil::atirar(string direcao, float tempo)
+{
 
+	tempo_ataque = t.getElapsedTime().asSeconds();
+
+	if (repouso && tempo_ataque >= tempo) {
+
+		t.restart();
+		atualizaPosicaoInicial();
+
+		visivel = true;
+		repouso = false;
+		speed.y = -1.f;
+
+		//Aqui dentro para ele nao mudar a direcao no meio da trajetoria
+		if (direcao == "direita")
+			speed.x = 10.0f;
+
+		else if (direcao == "esquerda")
+			speed.x = -10.0f;
+
+		corpo.move(speed);
+	}
+
+	else if (!repouso) {
+		//Mantem a trajetoria do projetil
+		corpo.move(Vector2f(speed.x, 0.f));
+	}
 }
 
 void Projetil::Executar()
 {
-	if(visivel)
-		movGravidade();
+	//Se o projetil colide com as bordas ele volta ao seu estado inicial
+	verificarBordas();
 
+	//Sempre atualiza a posicao do projetil
+	if (repouso)
+		estadoInicial();
+	else
+		movGravidade();
 }
 
 void Projetil::Colisao(Entidade* entidade, Vector2f inter_colisao)
 {
-	//Quando colide eu chamo o atacar (que causa dano no adversario)
-	atacar(entidade, dano);
+
+	corrigeColisoes(entidade, inter_colisao);
+
+	if (entidade->getId() == ID::jogador) {
+		//Quando colide eu chamo o atacar (que causa dano no adversario)
+		atacar(entidade, dano);
+	}
 
 	//Volto para a estado inicial
 	estadoInicial();

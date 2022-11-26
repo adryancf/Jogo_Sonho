@@ -6,13 +6,19 @@ class Caixa : public Obstaculo
 private:
 	sf::Texture texture;
 
+	//Define a propriedade da Caixa: Fixa ou m�vel
+	bool fixa;
+
 public:
 	Caixa();
-	Caixa(const sf::Vector2f tam, const sf::Vector2f pos);
+	Caixa(const sf::Vector2f tam, const sf::Vector2f pos, bool estado_caixa);
 	~Caixa();
 
-	virtual void atacar(Entidade* adversario, float dano);
+	void setEstadoCaixa(bool estado_caixa);
+	const bool getEstadoCaixa();
+
 	virtual void Executar();
+	virtual void atacar(Entidade* adversario, float dano);
 	virtual void Colisao(Entidade* entidade, Vector2f inter_colisao);
 
 };

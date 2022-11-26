@@ -1,134 +1,180 @@
 ﻿#include "Fase1.h"
 
+//PLATAFORMAS
+
 #define ALTURAP1 120.f
-#define ALTURAP2 250.f
-#define ALTURAP3 400.f
-#define ALTURAP4 620.f
+#define COMPRIMENTOP1 600.f
 
-Fase1::Fase1(Jogador* j1): Fase(j1)
+#define ALTURAP2 200.f
+#define COMPRIMENTOP2 300.f
+
+#define ALTURAP3 360.f
+#define COMPRIMENTOP3 300.f
+
+#define ALTURAP4 450.f
+#define COMPRIMENTOP4 650.f
+
+#define ALTURAP5 700.f
+#define COMPRIMENTOP5 1000.f
+
+
+Fase1::Fase1(Jogador* j1): Fase(j1), fantasma(nullptr)
 {
-	/* CRIA A LISTA DE ENTIDADES DA FASE */
-	lista_personagem = new ListaEntidades;
-	lista_obstaculos = new ListaEntidades;
-
-	lista_personagem->listEnt.push(j1);
-
 	//Inicializa todas as entidades da fase
 	criar_entidades();
+	j1->setPosEntidade(Vector2f(10.0f, ALTURAP1 - JOGADOR_Y));
+
 }
 
 Fase1::~Fase1()
 {
-	//Cada fase tem a sua lista, quando essa acabar, deleta essa fase e chama a fase dois
-	delete lista_personagem;
-	delete lista_obstaculos;
+
+	deletaListas();
+
+	fantasma = nullptr;
+
 }
 
 
 void Fase1::criar_entidades()
 {
+	//Controle
+	criarLista();
+
+	//Obstaculos
 	criarPlataforma();
+	criarCaixa();
+
+	//inimigos
 	criarFantasma();
 	criarHydra();
-	Anjo* anjo1 = new Anjo(j1);
-	lista_personagem->listEnt.push(anjo1);
-
-	anjo1->setPosEntidade(Vector2f(250.f, ALTURAP3 - 150.f)); //Primeira Plataforma
-
-	//Projetil* projetil_anjo = new Projetil(j1);
-	//projetil_anjo->setPortador(anjo1);
-	//lista_personagem->listEnt.push(projetil_anjo);
-
-	
 
 }
 
-ListaEntidades* Fase1::getListaPersonagem()
-{
-	if (lista_personagem)
-		return lista_personagem;
-	else
-		return nullptr;
-}
 
-ListaEntidades* Fase1::getListaObstaculo()
-{
-	if (lista_obstaculos)
-		return lista_obstaculos;
-	else
-		return nullptr;
-}
-
+//Cria de 3 a 4 dragoes na fase e os coloca em uma posicao aleatoria
 void Fase1::criarFantasma()
 {
-	Fantasma* fantasma1 = new Fantasma();
-	lista_personagem->listEnt.push(fantasma1);
-	fantasma1->setPosEntidade(Vector2f(250.f, ALTURAP1 - DRAGAO_Y)); //Primeira Plataforma
-	
-	Fantasma* fantasma2 = new Fantasma();
-	lista_personagem->listEnt.push(fantasma2);
-	fantasma2->setPosEntidade(Vector2f(1200.f, ALTURAP3 - DRAGAO_Y)); //Terceira Plataforma
 
-	Fantasma* fantasma3 = new Fantasma();
-	lista_personagem->listEnt.push(fantasma3);
-	fantasma3->setPosEntidade(Vector2f(500.f, ALTURAP4 - DRAGAO_Y)); //Quarta Plataforma
+	srand(time(nullptr));
+
+	//(numero de instancias entre 3 e 4)
+	numero_instancias = gerarNumeroAleatorio(3, 4);
+
+	//Numero aleatorio de instâncias
+	for (unsigned int i = 0; i < numero_instancias; i++)
+	{
+		fantasma = nullptr;
+
+		fantasma = new Fantasma();
+		lista_personagem->incluir(fantasma);
+
+		//Setar posicao
+		if (i == 0)
+			fantasma->setPosEntidade(Vector2f(gerarNumeroAleatorio(150.0f, COMPRIMENTOP1), ALTURAP1 - FANTASMA_Y)); //Primeira Plataforma
+
+		else if(i == 1)
+			fantasma->setPosEntidade(Vector2f(gerarNumeroAleatorio(850.0f, 980.f), ALTURAP2 - FANTASMA_Y)); //Segunda Plataforma
+
+		else if (i == 2)
+			fantasma->setPosEntidade(Vector2f(gerarNumeroAleatorio(700.0f, 630.f + COMPRIMENTOP4), ALTURAP4 - FANTASMA_Y)); //Quarta Plataforma
+
+		else
+			fantasma->setPosEntidade(Vector2f(gerarNumeroAleatorio(50.0f, 500.f), ALTURAP5 - FANTASMA_Y)); //Quinta Plataforma
+
+
+
+	}
+	
 }
 
+//Cria de 3 a 5 hydras na fase e os coloca em uma posicao aleatoria
 void Fase1::criarHydra()
 {
-	Hydra* hydra1 = new Hydra(j1);
-	lista_personagem->listEnt.push(hydra1);
-	hydra1->setPosEntidade(Vector2f(150.f, ALTURAP1 - HYDRA_Y)); //Primeira Plataforma
+	srand(time(NULL));
+
+	//(numero de instancias entre 3 e 5)
+	numero_instancias = gerarNumeroAleatorio(3, 5);
+
+	//Numero aleatorio de instâncias
+	for (unsigned int i = 0; i < numero_instancias; i++)
+	{
+		hydra = nullptr;
+
+		hydra = new Hydra(j1);
+		lista_personagem->incluir(hydra);
+
+		//Setar posicao
+		if(i == 0)
+			hydra->setPosEntidade(Vector2f(gerarNumeroAleatorio(100.0f, COMPRIMENTOP1), ALTURAP1 - HYDRA_Y)); //Primeira Plataforma
+
+		else if(i == 2)
+			hydra->setPosEntidade(Vector2f(gerarNumeroAleatorio(320.0f, 600.f), ALTURAP3 - HYDRA_Y)); //Terceira Plataforma
+
+		else
+			hydra->setPosEntidade(Vector2f(gerarNumeroAleatorio(10.0f * i, COMPRIMENTOP5), ALTURAP5 - HYDRA_Y)); //Quinta Plataforma
 
 
-	Hydra* hydra2 = new Hydra(j1);
-	lista_personagem->listEnt.push(hydra2);
-	hydra2->setPosEntidade(Vector2f(600.f, ALTURAP2 - HYDRA_Y)); //Segunda Plataforma
-
-
-	Hydra* hydra3 = new Hydra(j1);
-	lista_personagem->listEnt.push(hydra3);
-	hydra3->setPosEntidade(Vector2f(100.f, ALTURAP4 - HYDRA_Y)); //Quarta Plataforma
-
+	}
 
 }
 
+//Cria 5 plataformas que formam o cenario da fase
 void Fase1::criarPlataforma()
 {
 	//ORDEM DE VISUALIZA��O (CIMA PARA BAIXO)
+	plataforma_fase = nullptr;
 
-	Plataforma* p1 = new Plataforma(Vector2f(400.f, ESPESSURA_PLATAFORMA), Vector2f(BORDA_ESQ, ALTURAP1));
-	lista_obstaculos->listEnt.push(p1);
+	plataforma_fase = new Plataforma(Vector2f(COMPRIMENTOP1, ESPESSURA_PLATAFORMA_F1), Vector2f(BORDA_ESQ, ALTURAP1));
+	lista_obstaculos->incluir(plataforma_fase);
 
-	Plataforma* p2 = new Plataforma(Vector2f(300.f, ESPESSURA_PLATAFORMA), Vector2f(450.f, ALTURAP2));
-	lista_obstaculos->listEnt.push(p2);
+	plataforma_fase = new Plataforma(Vector2f(COMPRIMENTOP2, ESPESSURA_PLATAFORMA_F1), Vector2f(700.f, ALTURAP2));
+	lista_obstaculos->incluir(plataforma_fase);
 
-	Plataforma* p3 = new Plataforma(Vector2f(650.f, ESPESSURA_PLATAFORMA), Vector2f(BORDA_DIR - 650.f, ALTURAP3));
-	lista_obstaculos->listEnt.push(p3);
+	plataforma_fase = new Plataforma(Vector2f(COMPRIMENTOP3, ESPESSURA_PLATAFORMA_F1), Vector2f(325.f, ALTURAP3));
+	lista_obstaculos->incluir(plataforma_fase);
 
-	Plataforma* p4 = new Plataforma(Vector2f(700.f, ESPESSURA_PLATAFORMA), Vector2f(BORDA_ESQ, ALTURAP4));
-	lista_obstaculos->listEnt.push(p4);
+	plataforma_fase = new Plataforma(Vector2f(COMPRIMENTOP4, ESPESSURA_PLATAFORMA_F1), Vector2f(BORDA_DIR - 650.f, ALTURAP4));
+	lista_obstaculos->incluir(plataforma_fase);
+
+	plataforma_fase = new Plataforma(Vector2f(COMPRIMENTOP5, ESPESSURA_PLATAFORMA_F1), Vector2f(BORDA_ESQ, ALTURAP5));
+	lista_obstaculos->incluir(plataforma_fase);
+
+
+}
+
+void Fase1::criarCaixa()
+{
+	srand(time(nullptr));
+
+
+	caixa = new Caixa(Vector2f(CAIXA_TAM, CAIXA_TAM), Vector2f(gerarNumeroAleatorio(700.f, 800.f), ALTURAP2 - CAIXA_TAM), true); //Segunda plataforma
+	lista_obstaculos->incluir(caixa);
+
+	caixa = new Caixa(Vector2f(CAIXA_TAM, CAIXA_TAM), Vector2f(630.f, ALTURAP4 - CAIXA_TAM), true); //Quarta plataforma
+	lista_obstaculos->incluir(caixa);
+
+	caixa = new Caixa(Vector2f(CAIXA_TAM, CAIXA_TAM), Vector2f(630.f, ALTURAP4 - (CAIXA_TAM * 2.f)), true); //Quarta plataforma
+	lista_obstaculos->incluir(caixa);
+
+	caixa = new Caixa(Vector2f(CAIXA_TAM, CAIXA_TAM), Vector2f(gerarNumeroAleatorio(630.f + 40.f, 1200.f), ALTURAP4 - CAIXA_TAM), false); //Quarta plataforma
+	lista_obstaculos->incluir(caixa);
+
+
 }
 
 
 //Percorre a lista de entidades
 void Fase1::Executar()
 {
-	for (int j = 0; j < lista_obstaculos->listEnt.getTamanho(); j++)
-	{
-		Entidade* aux = lista_obstaculos->listEnt.getItemLista(j);
-		aux->Executar();
-		pGrafico->desenhar(aux->getCorpo());
-	}
+	//desenha fundo
+	
 
-	//Implementar isso na classe da lista (se tiver tempo)
-	for (int i = 0; i < lista_personagem->listEnt.getTamanho(); i++)
-	{
-		Entidade* personagem = lista_personagem->listEnt.getItemLista(i);
-		if (personagem->getVisivel() == true) {
-			personagem->Executar();
-			pGrafico->desenhar(personagem->getCorpo());
-		}
-	}
 
+	//Desenha todas as entidades
+	lista_obstaculos->renderElementos();
+	lista_personagem->renderElementos();
+
+	//Verifica a colisao entre elas
+	pColisoes->verificaColisoes();
 }

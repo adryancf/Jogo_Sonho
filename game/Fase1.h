@@ -1,32 +1,29 @@
 #pragma once
-
 #include "Fase.h"
-#include "Caixa.h"
 
 class Fase1: public Fase
 {
 private:
-	ListaEntidades* lista_personagem;
-	ListaEntidades* lista_obstaculos;
+
+	//NESSA FASE VAI TER ESPECIFICAMENTE
+	Fantasma* fantasma;
+
+	RectangleShape fundo;
+
 
 	virtual void criar_entidades();
 
 public:
 	Fase1(Jogador* j1);
 	~Fase1();
-
-	ListaEntidades* getListaPersonagem();
-	ListaEntidades* getListaObstaculo();
-
+	
+	//Personagem
 	void criarFantasma();
-	void criarHydra();
+	virtual void criarHydra();
 	virtual void criarPlataforma();
+	virtual void criarCaixa();
 
 	virtual void Executar();
-
-
-
-
 
 
 };

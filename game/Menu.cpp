@@ -1,8 +1,10 @@
 #include "Menu.h"
 
-Menu::Menu() {
-    window = new sf::RenderWindow();
-    winclose = new sf::RectangleShape();
+Menu::Menu() : Ente(), window(pGrafico->getWindow())
+{
+    std::cout << "Construtora menu iniciada." << std::endl;
+    //window = new sf::RenderWindow();
+    //winclose = new sf::RectangleShape();
     font = new sf::Font();
     image = new sf::Texture();
     bg = new sf::Sprite();
@@ -11,17 +13,17 @@ Menu::Menu() {
 }
 
 Menu::~Menu() {
-    delete window;
-    delete winclose;
+   // delete window;
+    //delete winclose;
     delete font;
     delete image;
     delete bg;
 }
 
 void Menu::set_values() {
-    window->create(sf::VideoMode(1280, 720), "Menu SFML", sf::Style::Titlebar | sf::Style::Close);
-    window->setPosition(sf::Vector2i(0, 0));
-
+    //window->create(sf::VideoMode(1280, 720), "Menu SFML", sf::Style::Titlebar | sf::Style::Close);
+    //window->setPosition(sf::Vector2i(0, 0));
+    std::cout << "Setando os valores do menu" << std::endl;
     pos = 0;
     pressed = theselect = false;
     font->loadFromFile("assets/Fonts/PixelFont2.ttf");
@@ -29,10 +31,10 @@ void Menu::set_values() {
 
     bg->setTexture(*image);
 
-    pos_mouse = { 0,0 };
-    mouse_coord = { 0, 0 };
+    //pos_mouse = { 0,0 };
+    //mouse_coord = { 0, 0 };
 
-    options = { "Jogo", "Jogar", "Fase2", "Leaderboard", "Quit" };
+    options = { "Jogo", "Fase1", "Fase2", "Leaderboard", "Quit" };
     texts.resize(5);
     coords = { {590,40},{620,191},{610,282},{590,370},{623,457} };
     sizes = { 20,28,24,24,24 };
@@ -46,8 +48,9 @@ void Menu::set_values() {
     }
     texts[1].setOutlineThickness(4);
     pos = 1;
-}
 
+    std::cout << "Valores do menu setados." << std::endl;
+}
 void Menu::loop_events() {
     sf::Event event;
     while (window->pollEvent(event)) {
@@ -85,17 +88,26 @@ void Menu::loop_events() {
             //Iniciar jogo
             else if (pos == 1)
             {
-                window->close();
-                Jogo jogo;
+                //window->close();
+                //simplesmente seta o estado como fase1
+                pGrafico->setEstado(ID::fase1);
+                std::cout << "estado setado para fase1" << std::endl;
             }
             //Inicia a fase2
             else if (pos == 2)
             {
+                pGrafico->setEstado(ID::fase2);
+
+                cout << "Estado: " << pGrafico->getEstado() << endl;
+
                 window->close();
             }
             //Leaderboard
             else if (pos == 3)
             {
+                pGrafico->setEstado(ID::leaderboard);
+
+                cout << "Estado: " << pGrafico->getEstado() << endl;
                 window->close();
             }
 
@@ -103,7 +115,6 @@ void Menu::loop_events() {
         }
     }
 }
-
 void Menu::draw_all() {
     window->clear();
     window->draw(*bg);
@@ -114,8 +125,14 @@ void Menu::draw_all() {
 }
 
 void Menu::run_menu() {
-    while (window->isOpen()) {
+    while (window->isOpen() && pGrafico->getEstado() == ID::menuPrincipal)
+    {
         loop_events();
         draw_all();
     }
+}
+void Menu::Executar()
+{
+    run_menu();
+    //draw_all();
 }

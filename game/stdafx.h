@@ -7,6 +7,7 @@
 
 //Bibliotecas PADRAO	
 #include <iostream>
+#include <utility>
 #include <time.h>
 #include <stdlib.h>
 #include <fstream>
@@ -35,19 +36,27 @@
 
 //TAMANHOS
 
-#define JOGADOR_X 25.f
-#define JOGADOR_Y 25.f
+#define JOGADOR_X 50.f
+#define JOGADOR_Y 50.f
 
-#define DRAGAO_X 10.f
-#define DRAGAO_Y 30.f
+#define FANTASMA_X 60.f
+#define FANTASMA_Y 60.f
 
 #define HYDRA_X 16.f
 #define HYDRA_Y 16.f
 
-#define ANJO_X 20.f
-#define ANJO_Y 40.f
+#define ANJO_X 30.f
+#define ANJO_Y 70.f
 
-#define ESPESSURA_PLATAFORMA 20.f
+#define ESPESSURA_PLATAFORMA_F1 20.f
+#define ESPESSURA_PLATAFORMA_F2 25.f
+
+#define CAIXA_TAM 40.f
+
+#define ESPINHO_X 50.F
+#define ESPINHO_Y 15.F
+
+
 
 
 //Using

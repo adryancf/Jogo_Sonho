@@ -23,13 +23,9 @@ protected:
 	//Entidades sao capazes de causar dano
 	float dano;
 
-	//ID id;
 
 	//Variaveis de controle
 	
-	//bool visivel;
-
-
 	bool colisaoPlataforma;
 	bool gravidade;
 	bool noChao;
@@ -41,9 +37,16 @@ public:
 	//Entidade(); AMBIGUO
 	~Entidade();
 
+	//Controle
+	void render();
+
+	//Funcao para verificar se a entidade esta dentro da area permitida na tela
+	const bool verificarPosInvalida();
+
+
 	//ATRIBUTOS
 	void setVelocidade(Vector2f velocidade);
-	Vector2f* getVelocidade();
+	Vector2f getVelocidade();
 	const Vector2f getRepulsao();
 	void setDano(float dano);
 	const float getDano() const;
@@ -69,9 +72,11 @@ public:
 	void setChao(bool estaNoChao);
 	const bool getEmCima();
 	void movGravidade();
+
 	void corrigeColisoes(Entidade* a, Vector2f inter);
 	
 	virtual void Executar() = 0;
 	virtual void Colisao(Entidade* entidade, Vector2f inter_colisao) = 0;
+
 };
 

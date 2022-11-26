@@ -9,14 +9,26 @@ private:
 	//Crio o projetil na fase, pois precico inclui-lo na lista de personagens
 	Projetil* projetil;
 
-	//sf::Texture texture;
+	Personagens* alvo;
+	Vector2f posAlvo;
+
+	float tempo_atk;
+
+	//Controle
+	bool estaNoRaio;
+	string direcao_alvo;
 
 public:
-	Anjo(Jogador* p);
-	Anjo(Personagens* alvo);
+	Anjo(Jogador* p, Projetil* b);
 	~Anjo();
 
+	void setAlvo(Personagens* alvo);
+	const Personagens* getAlvo() const;
+	void EncontraPosAlvo();
+
+
 	const Projetil* getProjetil();
+	virtual void atacar();
 
 	void inicializa();
 

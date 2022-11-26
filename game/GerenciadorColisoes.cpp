@@ -38,6 +38,7 @@ void GerenciadorColisoes::verificaColisoes()
 
 	colisaoPersonagens();
 	colisaoPersonagemObstaculos();
+	colisaoObstaculos();
 	
 }
 
@@ -48,23 +49,19 @@ void GerenciadorColisoes::colisaoPersonagens()
 	Entidade* aux = nullptr;
 	Vector2f Colisao;
 
-	vector <pair<Entidade*, Entidade*>> vector_colisoes;
-
-	Jogador1 = lista_personagens->listEnt.getPrimeiro()->getItem();
+	Jogador1 = lista_personagens->getJogador();
 
 	//Verifica se houve colisão
-	for (int j = 1; j < lista_personagens->listEnt.getTamanho(); j++) {
+	for (int j = 1; j < lista_personagens->getTamanhoLista(); j++) {
 
-		aux = lista_personagens->listEnt.getItemLista(j);
+		aux = lista_personagens->operator[](j);
 
 		Colisao = calculaColisoes(Jogador1, aux);
 		if (Colisao.x < 0.0f && Colisao.y < 0.0f) {
 			Jogador1->Colisao(aux, Colisao);
-			aux->Colisao(Jogador1, Colisao);
+			aux->Colisao(Jogador1, Colisao); //alterar nomenclatura
 		}
 	}
-
-
 }
 
 void GerenciadorColisoes::colisaoPersonagemObstaculos()
@@ -78,12 +75,12 @@ void GerenciadorColisoes::colisaoPersonagemObstaculos()
 	vector <Vector2f> valor_colisao;
 
 	//Verifico a colisão entre os personagens e os obstaculos
-	for (int i = 0; i < lista_personagens->listEnt.getTamanho(); i++)
+	for (unsigned int i = 0; i < lista_personagens->getTamanhoLista(); i++)
 	{
-		aux1 = lista_personagens->listEnt.getItemLista(i);
+		aux1 = lista_personagens->operator[](i);
 
-		for (int j = 0; j < lista_obstaculos->listEnt.getTamanho(); j++) {
-			aux2 = lista_obstaculos->listEnt.getItemLista(j);
+		for (int j = 0; j < lista_obstaculos->getTamanhoLista(); j++) {
+			aux2 = lista_obstaculos->operator[](j);
 
 			Colisao = calculaColisoes(aux1, aux2);
 
@@ -99,16 +96,47 @@ void GerenciadorColisoes::colisaoPersonagemObstaculos()
 		}
 	}
 
-	for (int i = 0; i < vector_colisoes.size(); i++) {
+	for (unsigned int i = 0; i < vector_colisoes.size(); i++) {
 
 		if(vector_colisoes[i].second->getId() == ID::plataforma)
 			vector_colisoes[i].first->setColisaoPlataforma(true);
 
 		vector_colisoes[i].first->Colisao(vector_colisoes[i].second, valor_colisao[i]);
+		vector_colisoes[i].second->Colisao(vector_colisoes[i].first, valor_colisao[i]);
 
 	}
 
 
+}
+
+void GerenciadorColisoes::colisaoObstaculos()
+{
+	Entidade* aux1 = nullptr;
+	Entidade* aux2 = nullptr;
+	Vector2f Colisao;
+	for (unsigned int i = 0; i < lista_obstaculos->getTamanhoLista(); i++) {
+
+		aux1 = lista_obstaculos->operator[](i);
+
+		//Verifica se houve colisão
+		for (int j = i+1; j < lista_obstaculos->getTamanhoLista(); j++) {
+
+			aux2 = lista_obstaculos->operator[](j);
+
+			Colisao = calculaColisoes(aux1, aux2);
+
+			if (Colisao.x < 0.0f && Colisao.y < 0.0f) {
+				aux1->Colisao(aux2, Colisao);
+				aux2->Colisao(aux1, Colisao);
+			}
+		}
+	}
+}
+
+void GerenciadorColisoes::setListas(ListaEntidades* l_personagem, ListaEntidades* l_obstaculos)
+{
+	lista_personagens = l_personagem;
+	lista_obstaculos = l_obstaculos;
 }
 
 void GerenciadorColisoes::Executar()

@@ -29,14 +29,34 @@ Entidade::Entidade() : Ente()
 
 Entidade::~Entidade(){}
 
+
+void Entidade::render()
+{
+    pGrafico->desenhar(corpo);
+}
+
+//TRUE: ESTA FORA DO MAPA | FALSE: ESTA DENTRO DO MAPA
+const bool Entidade::verificarPosInvalida()
+{
+    Vector2f pos_ent(getPosicao());
+
+    if (pos_ent.x < 0.0f || pos_ent.x > RESOLUCAO_X - getSizeCorpo().x)
+        return true;
+    else if (pos_ent.y > RESOLUCAO_Y + getSizeCorpo().y)
+        return true;
+    else
+        return false;
+
+}
+
 void Entidade::setVelocidade(Vector2f velocidade)
 {
     speed = velocidade;
 }
 
-Vector2f* Entidade::getVelocidade()
+Vector2f Entidade::getVelocidade()
 {
-    return &speed;
+    return speed;
 }
 
 const Vector2f Entidade::getRepulsao()
@@ -105,7 +125,7 @@ void Entidade::movGravidade()
 
     else{ noChao = false; }
         
-    //Manipulação da integração de Euler = (Velocidade + posicao atual) + acelaracao
+    //Manipulaï¿½ï¿½o da integraï¿½ï¿½o de Euler = (Velocidade + posicao atual) + acelaracao
     //(Velocidade + posicao atual) = corpo.move -> ele soma a posicao atual mais o valor da velocidade
     
     if (gravidade) {
@@ -150,7 +170,7 @@ void Entidade::corrigeColisoes(Entidade* a, Vector2f inter)
             corpo.move(Vector2f(-inter.x, 0.0f));
         }
 
-        speed.x = 0.0f;
+        //speed.x = 0.0f;
 
     }
 
@@ -170,6 +190,7 @@ void Entidade::corrigeColisoes(Entidade* a, Vector2f inter)
         else {
             corpo.move(Vector2f(0.f, -inter.y));
         }
+
         speed.y = 0.0f;
     }
 

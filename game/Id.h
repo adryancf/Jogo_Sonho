@@ -11,6 +11,11 @@ enum ID
 	plataforma,
 	inimigo,
 	obstaculo,
-	projetil
+	projetil,
+	menuPrincipal,
+	menuPause,
+	fase1,
+	fase2,
+	leaderboard
 };
 

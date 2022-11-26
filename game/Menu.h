@@ -1,10 +1,10 @@
 #pragma once
 #include "Ente.h"
 #include <iostream>
-#include "Jogo.h"
+//#include "Jogo.h"
 
 //Inicialmente nao vou derivar do ENTE e apenas seguir o TUTORIAL
-class Menu
+class Menu : public Ente
 {
 private:
 	//Como eh derivado do ENTE jah tem o posicao
@@ -14,7 +14,7 @@ private:
 
 	//Conhece a JANELA
 	sf::RenderWindow* window;
-	sf::RectangleShape* winclose;
+	//sf::RectangleShape* winclose;
 
 	//A fonte
 	sf::Font* font;
@@ -37,12 +37,12 @@ protected:
 	void set_values();
 	void loop_events();
 	void draw_all();
-
 public:
 	Menu();
 	~Menu();
 	void run_menu();
 
-	void setFont();
+	//redefinindo a executar
+	void Executar();
 };
 
