@@ -75,39 +75,6 @@ const Projetil* Anjo::getProjetil()
 }
 
 
-void Anjo::EncontraPosAlvo()
-{
-    //Encontra a posicao do alvo e pra que lado ele esta
-    posAlvo = alvo->getPosicao();
-
-    Vector2f diferenca = (getPosicao() - posAlvo);
-
-    if (diferenca.x < 0.00f)
-        direcao_alvo = "direita";
-    else
-        direcao_alvo = "esquerda";
-    
-}
-
-
-void Anjo::atacar()
-{
-    
-    //O ataque do anjo � lan�ar o projetil
-    
-    //Lan�a de 1 em 1s
-    if (estaNoRaio)
-    {
-        //Liberar projetil
-        EncontraPosAlvo();
-
-        if (projetil)
-            projetil->atirar(direcao_alvo, tempo_atk);
-        
-    }
-    
-}
-
 
 void Anjo::EncontraPosAlvo()
 {
