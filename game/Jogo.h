@@ -42,10 +42,10 @@ public:
 	void iniciarMenu();
 
 	//Metodo para definir o estado
-	void setEstado(ID id);
+	//void setEstado(ID id);
 
 	//Metodo para retornar o estado
-	ID getEstado();
+	//ID getEstado();
 
 	void Executar();
 };

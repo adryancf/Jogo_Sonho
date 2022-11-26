@@ -99,8 +99,6 @@ void Menu::loop_events() {
                 pGrafico->setEstado(ID::fase2);
 
                 cout << "Estado: " << pGrafico->getEstado() << endl;
-
-                window->close();
             }
             //Leaderboard
             else if (pos == 3)

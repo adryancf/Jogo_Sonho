@@ -28,7 +28,7 @@ Fase2::Fase2(Jogador* j1): Fase(j1), anjo(nullptr), projetil_anjo(nullptr)
 {
 	criar_entidades();
 	j1->setPosEntidade(Vector2f(10.0f, ALTURAP1 - JOGADOR_Y));
-
+	cout << "criou entidades e setou a pos" << endl;
 }
 
 

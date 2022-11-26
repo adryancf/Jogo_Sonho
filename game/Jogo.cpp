@@ -59,6 +59,7 @@ void Jogo::iniciaFase2()
     pEvento->setJogador(Jogador1);
 
     fase2 = new Fase2(Jogador1);
+    std::cout << "new na fase2" << endl;
 }
 
 void Jogo::deletaFase2()
@@ -106,6 +107,7 @@ void Jogo::controleFases()
             //cout << "Chamei a fase2" << endl;
 
             if (fase2->getAtiva()) {
+                pGrafico->setEstado(ID::fase2);
                 fase2->Executar();
                 fase2->verificaTerminoFase();
             }
@@ -124,7 +126,7 @@ void Jogo::controleFases()
         //deletar
         cout << "FIM DO JOGO!" << endl; //tela de gameOver
         //tempo e uma imagem
-        pGrafico->fecharJanela();
+        //pGrafico->fecharJanela();
     }
 }
 /*
@@ -186,7 +188,22 @@ void Jogo::Executar()
         }
         else if (estado == ID::fase2)
         {
+            pEvento->Executar();
+            pGrafico->atualizaTempo();
+            pGrafico->limpar();
+            //fase2
+            if (fase2 == nullptr)
+                iniciaFase2();
 
+            //cout << "Chamei a fase2" << endl;
+
+            //if (fase2->getAtiva()) {
+                //pGrafico->setEstado(ID::fase2);
+                fase2->Executar();
+                cout << "fase2->Executar()" << endl;
+                //fase2->verificaTerminoFase();
+            //}
+            pGrafico->mostrar();
         }
   
         //Desenho as entidades da fase na tela e gerencio as colisoes entre elas dentro de cada fase

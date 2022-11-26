@@ -1,3 +1,4 @@
+
 #include "Jogador.h"
 
 Jogador::Jogador():Personagens(), tempo(), pontuacao(0)
