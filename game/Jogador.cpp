@@ -8,7 +8,7 @@ Jogador::Jogador():Personagens(), tempo(), pontuacao(0)
     texture.loadFromFile("assets/Idle.png", rect);
     corpo.setTexture(&texture);
     iniciar();
-
+    //cout << getPosicao().x << getPosicao().y << endl;
     //corpo.setSize(sf::Vector2f(70.0f, 70.0f));
 }
 
@@ -37,7 +37,7 @@ void Jogador::Mover()
 void Jogador::Executar()
 {
     verificaVida();
-    cout << " Vida Jogador: " << q_vida << endl;
+    //cout << " Vida Jogador: " << q_vida << endl;
     Mover();
 }
 

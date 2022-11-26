@@ -85,15 +85,18 @@ void Jogo::setEstado(ID id)
 */
 void Jogo::controleFases()
 {
-
-    if (!fase1)
+    
+    if (!fase1) {
         iniciaFase1();
-
-    if (Jogador1 && Jogador1->getVida() == true) {
-
+        cout << "CRIEI FASE 1" << endl;
+    }
+    
+    else if (Jogador1 && Jogador1->getVida() == true) {
+        cout << "entrei segundo if" << endl;
 
         if (fase1 && fase1->getAtiva())
         {
+            cout << "entrei if fase 1" << endl;
             fase1->Executar();
             fase1->verificaTerminoFase();
         }
@@ -115,6 +118,7 @@ void Jogo::controleFases()
         }
     }
     else {
+        cout << "entrei NO ELSE" << endl;
 
         if (fase1)
             deletaFase1();
@@ -136,7 +140,7 @@ ID Jogo::getEstado()
 void Jogo::Executar()
 {
     
-    std::cout << "Entrou no loop executar / loop principal." << std::endl;
+    //std::cout << "Entrou no loop executar / loop principal." << std::endl;
 
     //LOOP DE EXECU��O DO PROGRAMA
     while (pGrafico->isWindowOpen())
@@ -150,13 +154,14 @@ void Jogo::Executar()
         //O problema esta na inicialização do estado!
 
         ID estado = pGrafico->getEstado();
-        std::cout << "Estado: " << estado << std::endl;
+        //std::cout << "Estado: " << estado << std::endl;
+
         //getch();
 
 
         if (estado == ID::menuPrincipal)
         {
-            std::cout << "Menu Principal is running." << std::endl;
+            //std::cout << "Menu Principal is running." << std::endl;
             menu->run_menu();
         }
         else if (estado == ID::menuPause)
@@ -166,18 +171,18 @@ void Jogo::Executar()
 
         else if (estado == ID::fase1)
         {
-            std::cout << "Fase1 is running" << std::endl;
+            //std::cout << "Fase1 is running" << std::endl;
             pEvento->Executar();
-            std::cout << "pEvento->executar com sucesso" << std::endl;
+            //std::cout << "pEvento->executar com sucesso" << std::endl;
             pGrafico->atualizaTempo();
-            std::cout << "Tempo atualizado com sucesso" << std::endl;
+            //std::cout << "Tempo atualizado com sucesso" << std::endl;
             pGrafico->limpar();
-            std::cout << "Grafico limpo com sucesso" << std::endl;
+            //std::cout << "Grafico limpo com sucesso" << std::endl;
 
 
             
             controleFases();
-            std::cout << "controleFases realizado com sucesso" << std::endl;
+            //std::cout << "controleFases realizado com sucesso" << std::endl;
 
 
 

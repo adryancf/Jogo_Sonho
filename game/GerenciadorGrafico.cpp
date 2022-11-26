@@ -75,6 +75,7 @@ const bool GerenciadorGrafico::isWindowOpen()
     return window->isOpen();
 }
 
+
 void GerenciadorGrafico::atualizaTempo()
 {
     dt = clock.getElapsedTime().asSeconds();

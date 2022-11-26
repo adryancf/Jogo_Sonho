@@ -2,7 +2,7 @@
 
 Menu::Menu() : Ente(), window(pGrafico->getWindow())
 {
-    std::cout << "Construtora menu iniciada." << std::endl;
+    //std::cout << "Construtora menu iniciada." << std::endl;
     //window = new sf::RenderWindow();
     //winclose = new sf::RectangleShape();
     font = new sf::Font();
@@ -23,7 +23,7 @@ Menu::~Menu() {
 void Menu::set_values() {
     //window->create(sf::VideoMode(1280, 720), "Menu SFML", sf::Style::Titlebar | sf::Style::Close);
     //window->setPosition(sf::Vector2i(0, 0));
-    std::cout << "Setando os valores do menu" << std::endl;
+    //std::cout << "Setando os valores do menu" << std::endl;
     pos = 0;
     pressed = theselect = false;
     font->loadFromFile("assets/Fonts/PixelFont2.ttf");
@@ -49,7 +49,7 @@ void Menu::set_values() {
     texts[1].setOutlineThickness(4);
     pos = 1;
 
-    std::cout << "Valores do menu setados." << std::endl;
+    //std::cout << "Valores do menu setados." << std::endl;
 }
 void Menu::loop_events() {
     sf::Event event;
@@ -91,24 +91,24 @@ void Menu::loop_events() {
                 //window->close();
                 //simplesmente seta o estado como fase1
                 pGrafico->setEstado(ID::fase1);
-                std::cout << "estado setado para fase1" << std::endl;
+                //std::cout << "estado setado para fase1" << std::endl;
             }
             //Inicia a fase2
             else if (pos == 2)
             {
                 pGrafico->setEstado(ID::fase2);
 
-                cout << "Estado: " << pGrafico->getEstado() << endl;
+                //cout << "Estado: " << pGrafico->getEstado() << endl;
 
-                window->close();
+                //window->close();
             }
             //Leaderboard
             else if (pos == 3)
             {
                 pGrafico->setEstado(ID::leaderboard);
 
-                cout << "Estado: " << pGrafico->getEstado() << endl;
-                window->close();
+                //cout << "Estado: " << pGrafico->getEstado() << endl;
+                //window->close();
             }
 
             std::cout << options[pos] << '\n';
