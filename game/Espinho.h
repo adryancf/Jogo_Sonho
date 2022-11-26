@@ -2,6 +2,7 @@
 
 #include "Obstaculo.h"
 #include "Personagens.h"
+#include "stdafx.h"
 
 class Espinho : public Obstaculo
 {

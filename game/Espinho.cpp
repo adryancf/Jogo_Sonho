@@ -42,13 +42,13 @@ void Espinho::Colisao(Entidade* entidade, Vector2f inter_colisao)
 	{
 		Vector2f velocidade_entidade = entidade->getVelocidade();
 
-		if (velocidade_entidade.x > 5.0f)
+		if (velocidade_entidade.x == VELOCIDADE_JOGADOR_X)
 			velocidade_jogador = velocidade_entidade;
 
 		//deixe o jogador lento se tiver em cima dele
 		if (entidade->getEmCima()) {
-			entidade->setVelocidade(Vector2f((velocidade_jogador.x / 8.f), velocidade_entidade.y));
-			
+			entidade->setVelocidade(Vector2f((velocidade_jogador.x / 4.f), velocidade_entidade.y));
+			cout << velocidade_jogador.x / 2.f << endl;
 			//tira a vida dele a cada 2s
 			if (countdown >= 1.f) {
 				atacar(entidade, dano);

@@ -2,7 +2,12 @@
 #include "Inimigo.h"
 
 
-Inimigo::Inimigo():Personagens(), tempo_mov(), player1(nullptr), player2(nullptr), jogadorEmCima(false)
+Inimigo::Inimigo():Personagens(), tempo_mov(), 
+	player1(nullptr), 
+	player2(nullptr), 
+	jogadorEmCima(false),
+	estaNoRaio(false),
+	jogadoresAtivos("Dois")
 
 {   
     movRandom = rand() % 4; //SEED FALTANTE
@@ -16,6 +21,21 @@ Inimigo::~Inimigo()
 	player2 = nullptr;
 }
 
+string Inimigo::verficaJogadoresAtivos(Jogador* j1, Jogador* j2)
+{
+	if (j1 && j2)
+		return "Dois";
+
+	else if (j1)
+		return "Jogador1";
+
+	else if (j2)
+		return "Jogador2";
+
+	else
+		return "Nenhum";
+
+}
 
 void Inimigo::movAleatorio()
 {
@@ -37,7 +57,40 @@ void Inimigo::movAleatorio()
 
 }
 
-void Inimigo::qualPerseguir(Vector2f pos_j1, Vector2f pos_j2, Vector2f pos_inimigo)
+void Inimigo::qualPerseguir(Vector2f pos_inimigo)
+{
+	if (jogadoresAtivos == "Dois")
+		persegurDoisJogadores(player1->getPosicao(), player2->getPosicao(), pos_inimigo);
+
+	else if (jogadoresAtivos == "Jogador1")
+		perseguirUmJogador(player1, pos_inimigo);
+
+	else if (jogadoresAtivos == "Jogador2")
+		perseguirUmJogador(player2, pos_inimigo);
+
+	else if (jogadoresAtivos == "Nenhum")
+		cout << "Nenhum Jogador vivo | Hydra.cpp" << endl;
+}
+
+void Inimigo::perseguirUmJogador(Jogador* j, Vector2f posInimimgo)
+{
+	if (j) {
+		podePerseguir(j);
+
+		if (podeAndar == true)
+
+		{
+			estaNoRaio = verificaEntidadeNoRaio(j->getPosicao(), posInimimgo, raio_deteccao);
+
+			if (estaNoRaio) {
+
+				PersegueJogador(j->getPosicao(), posInimimgo);
+			}
+		}
+	}
+}
+
+void Inimigo::persegurDoisJogadores(Vector2f pos_j1, Vector2f pos_j2, Vector2f pos_inimigo)
 {
 	Vector2f proximidadeJogador1;
 	proximidadeJogador1.x = fabs(pos_j1.x - pos_inimigo.x);
@@ -50,7 +103,10 @@ void Inimigo::qualPerseguir(Vector2f pos_j1, Vector2f pos_j2, Vector2f pos_inimi
 	if (proximidadeJogador1.x <= proximidadeJogador2.x || proximidadeJogador1.y <= proximidadeJogador2.y)
 	{
 		podePerseguir(player1);
-		if (proximidadeJogador1.x <= raio_deteccao.x && proximidadeJogador1.y <= raio_deteccao.y && podeAndar) {
+
+		estaNoRaio = verificaEntidadeNoRaio(player1->getPosicao(), getPosicao(), raio_deteccao);
+
+		if (estaNoRaio && podeAndar) {
 
 			PersegueJogador(pos_j1, pos_inimigo);
 		}
@@ -58,7 +114,10 @@ void Inimigo::qualPerseguir(Vector2f pos_j1, Vector2f pos_j2, Vector2f pos_inimi
 	else
 	{
 		podePerseguir(player2);
-		if (proximidadeJogador2.x <= raio_deteccao.x && proximidadeJogador2.y <= raio_deteccao.y && podeAndar) {
+
+		estaNoRaio = verificaEntidadeNoRaio(player2->getPosicao(), getPosicao(), raio_deteccao);
+
+		if (estaNoRaio && podeAndar) {
 
 			PersegueJogador(pos_j2, pos_inimigo);
 		}
@@ -86,6 +145,16 @@ Personagens* Inimigo::verificaMaisProximo(Jogador* j1, Jogador* j2, Vector2f pos
 	else
 		return j2;
 
+}
+
+bool Inimigo::verificaEntidadeNoRaio(Vector2f pos_entidade, Vector2f pos_inimigo, Vector2f raio)
+{
+	if ((fabs(pos_entidade.x - pos_inimigo.x) <= raio.x) && (fabs(pos_entidade.y - pos_inimigo.y) <= raio.y)) {
+		return true;
+
+	}
+	else
+		return false;
 }
 
 void Inimigo::PersegueJogador(Vector2f posJogador, Vector2f posInimimgo)

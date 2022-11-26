@@ -56,9 +56,14 @@ void Fase::criarLista()
 	lista_personagem = new ListaEntidades;
 	lista_obstaculos = new ListaEntidades;
 
-	lista_personagem->incluir(j1);
-	lista_personagem->incluir(j2);
-
+	if (j1 != nullptr) {
+		lista_personagem->incluir(j1);
+		cout << "INCLUI J1 NA LISTA" << endl;
+	}
+	if (j2 != nullptr) {
+		lista_personagem->incluir(j2);
+		cout << "INCLUI J2 NA LISTA" << endl;
+	}
 	//Gerenciador
 	pColisoes = new GerenciadorColisoes(lista_personagem, lista_obstaculos);
 

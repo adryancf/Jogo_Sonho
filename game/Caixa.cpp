@@ -49,6 +49,11 @@ void Caixa::atacar(Entidade* adversario, float dano)
 
 void Caixa::Colisao(Entidade* entidade, Vector2f inter_colisao)
 {
+	if (entidade->getId() == jogador && entidade->getVelocidade().x != VELOCIDADE_JOGADOR_X) {
+		entidade->setVelocidade(Vector2f(VELOCIDADE_JOGADOR_X, entidade->getVelocidade().y));
+	}
+
+
 	if (fixa) {
 		if (entidade->getId() == ID::plataforma || entidade->getId() == ID::caixa || entidade->getId() == ID::espinho)
 			corrigeColisoes(entidade, inter_colisao);

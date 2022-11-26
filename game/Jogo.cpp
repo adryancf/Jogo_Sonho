@@ -57,10 +57,10 @@ void Jogo::iniciaFase2()
     if(fase1)
         deletaFase1();
 
-    if (jogadoresVivos.x)
+    if (jogadoresVivos.x == true)
         Jogador1 = new Jogador(1);
 
-    if (jogadoresVivos.y)
+    if (jogadoresVivos.y == true)
         Jogador2 = new Jogador(2);
 
     pEvento->setJogador1(Jogador1);
@@ -95,8 +95,6 @@ void Jogo::controleFases()
         {
             if (fase2 == nullptr)
                 iniciaFase2();
-
-            //cout << "Chamei a fase2" << endl;
 
             if (fase2->getAtiva()) {
                 fase2->Executar();

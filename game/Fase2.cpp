@@ -38,9 +38,9 @@ Fase2::Fase2(Jogador* j1, Jogador* j2): Fase(j1, j2), anjo(nullptr), projetil_an
 
 Fase2::~Fase2()
 {
+	deletaListas();
 	anjo = nullptr;
 	projetil_anjo = nullptr;
-	deletaListas();
 }
 
 void Fase2::criar_entidades()
@@ -199,4 +199,5 @@ void Fase2::Executar()
 	lista_personagem->renderElementos();
 
 	pColisoes->verificaColisoes();
+
 }

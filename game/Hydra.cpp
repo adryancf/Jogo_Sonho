@@ -4,6 +4,10 @@ Hydra::Hydra(Jogador* p1, Jogador* p2): Inimigo(), posHydra(Vector2f(0.0f, 0.0f)
 {
 	player1 = p1;
 	player2 = p2;
+
+	jogadoresAtivos = verficaJogadoresAtivos(p1, p2);
+	cout << "Hydra: Jogadores ativos: " << jogadoresAtivos << endl;
+
 	id = ID::hydra;
 
 	inicializa();
@@ -39,18 +43,12 @@ void Hydra::inicializa()
 void Hydra::Mover()
 {
 	movGravidade();
+	posHydra = corpo.getPosition();
 
-	if (atacou == true && podeAndar == true)
+	if (atacou)
 	{
-		Vector2f posJogador1 = player1->getPosicao();
-		Vector2f posJogador2 = player2->getPosicao();
-
-		posHydra = corpo.getPosition();
-
-		//Verifica o jogador mais proximo e ja persegue
-		qualPerseguir(posJogador1, posJogador2, posHydra);
-		
-		
+		//Decide qual inimigo perseguir (Se houver dois ativos ele ver qual esta mais proximo, e no caso de um só ele o persegue)
+		qualPerseguir(posHydra);
 	}
 
 }

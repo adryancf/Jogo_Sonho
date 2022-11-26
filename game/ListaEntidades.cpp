@@ -16,7 +16,7 @@ void ListaEntidades::renderElementos()
 	{
 		Entidade* aux = listEnt[j];
 		
-		if (aux->getVisivel()) {
+		if (aux && aux->getVisivel()) {
 			aux->Executar();
 			aux->render();
 		}

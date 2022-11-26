@@ -4,16 +4,20 @@ Anjo::Anjo(Jogador* p1, Jogador* p2, Projetil* b):
     Inimigo(), 
     projetil(b),
     tempo_atk(1.0f),
-    posAlvo(Vector2f(0.f, 0.f)),
-    estaNoRaio(true)
+    posAlvo(Vector2f(0.f, 0.f))
 {
     player1 = p1;
     player2 = p2;
+
+    jogadoresAtivos = verficaJogadoresAtivos(p1, p2);
+    cout << "Anjo: Jogadores ativos: " << jogadoresAtivos << endl;
+
     id = ID::anjo;
 
     projetil->setPortador(this);
 
     inicializa();
+
     //texture.loadFromFile("assets/VirtualGuy.png");
     //corpo.setTexture(&texture);
     //corpo.setSize(sf::Vector2f(70.0f, 70.0f));
@@ -69,9 +73,32 @@ const Projetil* Anjo::getProjetil()
 
 void Anjo::EncontraPosAlvo()
 {
-    //Encontra a posicao do alvo mais proximo e pra que lado ele esta
-    alvo = verificaMaisProximo(player1, player2, getPosicao());
-        
+    /*
+    if (player1 && player2) {
+        //Encontra a posicao do alvo mais proximo e pra que lado ele esta
+        alvo = verificaMaisProximo(player1, player2, getPosicao());
+    }
+    else {
+        if (player1)
+            alvo = player1;
+        else if (player2)
+            alvo = player2;
+
+    }
+    */
+
+    if (jogadoresAtivos == "Dois")
+        alvo = verificaMaisProximo(player1, player2, getPosicao());
+
+    else if (jogadoresAtivos == "Jogador1")
+        alvo = player1;
+
+    else if (jogadoresAtivos == "Jogador2")
+        alvo = player2;
+
+    else if (jogadoresAtivos == "Nenhum")
+        cout << "Nenhum Jogador vivo | Anjo.cpp (EncontraPosAlvo)" << endl;
+
     posAlvo = alvo->getPosicao();
 
     Vector2f diferenca = (getPosicao() - posAlvo);
@@ -104,9 +131,7 @@ void Anjo::Mover()
 {
     movGravidade();
 
-    qualPerseguir(player1->getPosicao(), player2->getPosicao(), getPosicao());
-
-    
+    qualPerseguir(getPosicao());
 
 }
 
@@ -142,9 +167,6 @@ void Anjo::Colisao(Entidade* entidade, Vector2f inter_colisao)
             }
             else
             {
-                cout << "ENTREI" << endl;
-                cout << "Diretia:" << olhandoDireita << endl;
-                cout << "Esquerda:" << olhandoEsquerda << endl;
                 if (olhandoDireita) {
                     jogador->movimentaEntidade(repulsao_direita, true);
 

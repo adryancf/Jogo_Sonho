@@ -15,7 +15,6 @@ private:
 	float tempo_atk;
 
 	//Controle
-	bool estaNoRaio;
 	string direcao_alvo;
 
 public:
