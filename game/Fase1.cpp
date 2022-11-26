@@ -22,6 +22,8 @@ Fase1::Fase1(Jogador* j1, Jogador* j2): Fase(j1, j2), fantasma(nullptr)
 {
 	//Inicializa todas as entidades da fase
 	criar_entidades();
+	//setFundo("assets/Background.png");
+
 	this->j1->setPosEntidade(Vector2f(10.0f, ALTURAP1 - JOGADOR_Y));
 	this->j2->setPosEntidade(Vector2f(10.0f, ALTURAP5 - JOGADOR_Y));
 
@@ -29,9 +31,9 @@ Fase1::Fase1(Jogador* j1, Jogador* j2): Fase(j1, j2), fantasma(nullptr)
 
 Fase1::~Fase1()
 {
+	//tempo_fase = relogio_fase.getElapsedTime().asSeconds();
 
 	deletaListas();
-
 	fantasma = nullptr;
 
 }
@@ -170,7 +172,7 @@ void Fase1::Executar()
 {
 	//desenha fundo
 	
-
+	//pGrafico->desenhar(fundo);
 
 	//Desenha todas as entidades
 	lista_obstaculos->renderElementos();

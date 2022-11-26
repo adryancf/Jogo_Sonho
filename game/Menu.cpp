@@ -108,7 +108,7 @@ void Menu::loop_events() {
                 pGrafico->setEstado(ID::leaderboard);
 
                 //cout << "Estado: " << pGrafico->getEstado() << endl;
-                //window->close();
+                window->close();
             }
 
             std::cout << options[pos] << '\n';

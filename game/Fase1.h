@@ -7,10 +7,6 @@ private:
 
 	//NESSA FASE VAI TER ESPECIFICAMENTE
 	Fantasma* fantasma;
-
-	RectangleShape fundo;
-
-
 	virtual void criar_entidades();
 
 public:
