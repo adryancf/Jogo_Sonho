@@ -32,10 +32,13 @@ Jogo::~Jogo()
 
 void Jogo::iniciaFase1()
 {
-    Jogador1 = new Jogador();
-    pEvento->setJogador(Jogador1);
+    Jogador1 = new Jogador(1);
+    Jogador2 = new Jogador(2);
 
-    fase1 = new Fase1(Jogador1);
+    pEvento->setJogador1(Jogador1);
+    pEvento->setJogador2(Jogador2);
+
+    fase1 = new Fase1(Jogador1, Jogador2);
 
 }
 
@@ -48,17 +51,29 @@ void Jogo::deletaFase1()
         cout << "IMPOSSIVEL DELETAR PONTEIRO NULO - FASE 1" << endl;
 
     fase1 = nullptr;
+    Jogador1 = nullptr;
+    Jogador2 = nullptr;
 }
 
 void Jogo::iniciaFase2()
 {
+    Vector2<bool> jogadoresVivos;
+    jogadoresVivos.x = Jogador1->getVida();
+    jogadoresVivos.y = Jogador2->getVida();
+
     if(fase1)
         deletaFase1();
 
-    Jogador1 = new Jogador();
-    pEvento->setJogador(Jogador1);
+    if (jogadoresVivos.x == true)
+        Jogador1 = new Jogador(1);
 
-    fase2 = new Fase2(Jogador1);
+    if (jogadoresVivos.y == true)
+        Jogador2 = new Jogador(2);
+
+    pEvento->setJogador1(Jogador1);
+    pEvento->setJogador2(Jogador2);
+
+    fase2 = new Fase2(Jogador1, Jogador2);
 }
 
 void Jogo::deletaFase2()
@@ -70,19 +85,72 @@ void Jogo::deletaFase2()
 
     fase2 = nullptr;
     Jogador1 = nullptr;
+    Jogador2 = nullptr;
 }
+
+void Jogo::controleFases()
+{
+    if (Jogador1 && Jogador1->getVida() == true || Jogador2 && Jogador2->getVida() == true) {
+
+        if (fase1 && fase1->getAtiva())
+        {
+            fase1->Executar();
+            fase1->verificaTerminoFase();
+        }
+
+        else
+        {
+            if (fase2 == nullptr)
+                iniciaFase2();
+
+            if (fase2->getAtiva()) {
+                fase2->Executar();
+                fase2->verificaTerminoFase();
+            }
+            else {
+                deletaFase2();
+            }
+        }
+    }
+    else {
+
+        if (fase1)
+            deletaFase1();
+        if (fase2)
+            deletaFase2();
+
+        //deletar
+        cout << "FIM DO JOGO!" << endl; //tela de gameOver
+        //tempo e uma imagem
+        pGrafico->fecharJanela();
+    }
+}
+
+
+
+void Jogo::iniciaFase1()
+{
+    Jogador1 = new Jogador();
+    pEvento->setJogador(Jogador1);
+
+    fase1 = new Fase1(Jogador1);
+
+}
+
 
 void Jogo::iniciarMenu()
 {
     std::cout << "Menu Principal iniciado." << std::endl;
     menu = new Menu();
 }
+
 /*
 void Jogo::setEstado(ID id)
 {
     estado = id;
 }
 */
+
 void Jogo::controleFases()
 {
     
@@ -131,12 +199,14 @@ void Jogo::controleFases()
         pGrafico->fecharJanela();
     }
 }
+
 /*
 ID Jogo::getEstado()
 {
     return estado;
 }
 */
+
 void Jogo::Executar()
 {
     

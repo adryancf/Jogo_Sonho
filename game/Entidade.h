@@ -18,7 +18,8 @@ protected:
 	Vector2f posicao;
 
 	//Util para colisoes entre entidades
-	sf::Vector2f repulsao;
+	sf::Vector2f repulsao_direita;
+	sf::Vector2f repulsao_esquerda;
 
 	//Entidades sao capazes de causar dano
 	float dano;
@@ -29,12 +30,11 @@ protected:
 	bool colisaoPlataforma;
 	bool gravidade;
 	bool noChao;
-	bool emCima;
+	bool emCimaEntidade;
 
 public:
 
 	Entidade(ID idd = ID::vazio);
-	//Entidade(); AMBIGUO
 	~Entidade();
 
 	//Controle
@@ -42,15 +42,15 @@ public:
 
 	//Funcao para verificar se a entidade esta dentro da area permitida na tela
 	const bool verificarPosInvalida();
+	const bool verificarPosInvalidaEmY();
+
 
 
 	//ATRIBUTOS
 	void setVelocidade(Vector2f velocidade);
 	Vector2f getVelocidade();
-	const Vector2f getRepulsao();
 	void setDano(float dano);
 	const float getDano() const;
-	const bool getVisivel() const;
 
 	//Entidades sao capazes de causar dano em outras entidades
 	virtual void atacar(Entidade* adversario, float dano) = 0;
@@ -63,9 +63,6 @@ public:
 	void setPosEntidade(Vector2f pos);
 	const Vector2f getPosicao() const;
 	
-
-	//retorna o ID
-	//ID getId() const;
 
 	//COLISAO E GRAVIDADE
 	void setColisaoPlataforma(bool estaNaPlataforma);

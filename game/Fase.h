@@ -20,6 +20,8 @@ protected:
 
 	//Entidades
 	Jogador* j1;
+	Jogador* j2;
+
 	Hydra* hydra;
 	Plataforma* plataforma_fase;
 	Caixa* caixa;
@@ -31,23 +33,24 @@ protected:
 	//Colisoes
 	GerenciadorColisoes* pColisoes;
 
-	//Controle e inicialização
+	//Controle e inicializaï¿½ï¿½o
 	unsigned int numero_instancias;
 	bool ativa;
 	virtual void criar_entidades() = 0;
 
 public:
-	Fase(Jogador *j);
+	Fase(Jogador *j1, Jogador* j2);
 	~Fase();
 
 	//Features
 	int gerarNumeroAleatorio(int min, int max);
 	int gerarNumeroAleatorio(float min, float max);
 
-	//Controle da execução da fase
+	//Controle da execuï¿½ï¿½o da fase
 	void verificaTerminoFase();
 	const bool getAtiva();
 
+	void pontuacaoJogador();
 	virtual void Executar() = 0;
 
 	//Listas

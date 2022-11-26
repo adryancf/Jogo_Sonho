@@ -24,19 +24,23 @@
 #define COMPRIMENTOP7 1280.f
 
 
-Fase2::Fase2(Jogador* j1): Fase(j1), anjo(nullptr), projetil_anjo(nullptr)
+
+Fase2::Fase2(Jogador* j1, Jogador* j2): Fase(j1, j2), anjo(nullptr), projetil_anjo(nullptr)
 {
 	criar_entidades();
-	j1->setPosEntidade(Vector2f(10.0f, ALTURAP1 - JOGADOR_Y));
+	if(j1 != nullptr)
+		this->j1->setPosEntidade(Vector2f(10.0f, ALTURAP1 - JOGADOR_Y));
+	if(j2 != nullptr)
+		this->j2->setPosEntidade(Vector2f(980.f, ALTURAP3 - JOGADOR_Y));
 
 }
 
 
 Fase2::~Fase2()
 {
+	deletaListas();
 	anjo = nullptr;
 	projetil_anjo = nullptr;
-	deletaListas();
 }
 
 void Fase2::criar_entidades()
@@ -140,11 +144,9 @@ void Fase2::criarAnjo()
 		projetil_anjo = new Projetil();
 		lista_personagem->incluir(projetil_anjo);
 
-		anjo = new Anjo(j1, projetil_anjo);
-		anjo->setAlvo(j1);
+		anjo = new Anjo(j1, j2, projetil_anjo);
 		lista_personagem->incluir(anjo);
 
-		projetil_anjo->setPortador(anjo);
 
 		//Posicao
 		if (i == 0)
@@ -169,7 +171,7 @@ void Fase2::criarHydra()
 	{
 		hydra = nullptr;
 
-		hydra = new Hydra(j1);
+		hydra = new Hydra(j1, j2);
 		lista_personagem->incluir(hydra);
 
 		//Setar posicao

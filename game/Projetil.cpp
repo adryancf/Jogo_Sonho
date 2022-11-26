@@ -102,10 +102,10 @@ void Projetil::atirar(string direcao, float tempo)
 
 		//Aqui dentro para ele nao mudar a direcao no meio da trajetoria
 		if (direcao == "direita")
-			speed.x = 10.0f;
+			speed.x = 5.0f;
 
 		else if (direcao == "esquerda")
-			speed.x = -10.0f;
+			speed.x = -5.0f;
 
 		corpo.move(speed);
 	}

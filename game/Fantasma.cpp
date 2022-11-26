@@ -26,6 +26,9 @@ void Fantasma::inicializa()
     setQuantidadeVida(3.0);
     setDano(0.5);
 
+    repulsao_direita = Vector2f(30.f, 0.f);
+    repulsao_esquerda = Vector2f(-30.f, 0.f);
+
 }
 
 const float Fantasma::getTempoAtaque() const
@@ -61,49 +64,43 @@ void Fantasma::Colisao(Entidade* entidade, Vector2f inter_colisao)
 
         Personagens* jogador = static_cast<Personagens*>(entidade);
 
-        if (direcaoMovimento != "nulo") {
-            cout << direcaoMovimento << endl;
-            if (direcaoMovimento == "esquerda")
+        if (!jogador->getEmCima()) {
+            //Se o jogador estiver em movimento
+            if (jogador->getEstadoMovimentoJogador() == true) {
+
+                if (jogador->getOlhar()) {
+                    movimentaEntidade(repulsao_direita, true);
+                    jogador->movimentaEntidade(repulsao_esquerda, false);
+                }
+                else if (!jogador->getOlhar()) {
+                    movimentaEntidade(repulsao_esquerda, false);
+                    jogador->movimentaEntidade(repulsao_direita, true);
+                }
+            }
+            else
             {
-                repulsao.x = -30.0;
-                movimentaEntidade((repulsao), false);
+                if (olhandoDireita) {
+                    movimentaEntidade(repulsao_esquerda, false);
+                    jogador->movimentaEntidade(repulsao_direita, true);
 
-            }
-            else if (direcaoMovimento == "direita")
-            {
-                repulsao.x = 30.0;
-                movimentaEntidade(repulsao, true);
+                }
+                else if (olhandoEsquerda) {
+                    movimentaEntidade(repulsao_direita, true);
+                    jogador->movimentaEntidade(repulsao_esquerda, false);
 
+                }
 
-            }
-        }
-        
-        else
-        {
-            if (olhandoDireita) {
-                repulsao.x = -60.0;
-                movimentaEntidade(repulsao, false);
-                jogador->setDirecaoMovimento(string("direita"));
-
-            }
-            else if (olhandoEsquerda) {
-                repulsao.x = 60.0;
-                movimentaEntidade(repulsao, true);
-                jogador->setDirecaoMovimento(string("esquerda"));
 
             }
 
-            
-        }
-        
-
-        //Ataque
-        
-        if(jogador->getEmCima() == false)
+            //ATAQUE
             atacar(jogador, dano);
-          
+
+            jogador->atacar(this, jogador->getDano());
+        }
+
     }
-  
+
     else
         corrigeColisoes(entidade, inter_colisao);
 

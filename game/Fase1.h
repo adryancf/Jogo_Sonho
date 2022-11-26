@@ -14,7 +14,7 @@ private:
 	virtual void criar_entidades();
 
 public:
-	Fase1(Jogador* j1);
+	Fase1(Jogador* j1, Jogador* j2);
 	~Fase1();
 	
 	//Personagem

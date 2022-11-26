@@ -4,7 +4,7 @@ Plataforma::Plataforma(const Vector2f tam, const Vector2f pos)
 {
 	corpo.setPosition(pos);
 	corpo.setSize(tam);
-	//corpo.setFillColor(Color::Green);
+	corpo.setFillColor(Color::Green);
 
 	id = ID::plataforma;
 	//sf::IntRect rect(478, 35, 1050, 452);
@@ -34,4 +34,6 @@ void Plataforma::atacar(Entidade* adversario, float dano)
 
 void Plataforma::Colisao(Entidade* entidade, Vector2f inter_colisao)
 {
+	if (entidade->getId() == jogador)
+		entidade->setVelocidade(Vector2f(VELOCIDADE_JOGADOR_X, entidade->getVelocidade().y));
 }
