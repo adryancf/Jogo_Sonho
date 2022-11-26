@@ -10,7 +10,10 @@ private:
 
 protected:
     Vector2f raio_deteccao;
-    Jogador* player;
+    
+    Jogador* player1;
+    Jogador* player2;
+
 
     bool jogadorEmCima;
 
@@ -25,6 +28,9 @@ public:
     
     //Movimentos
     void movAleatorio();
+    void qualPerseguir(Vector2f pos_j1, Vector2f pos_j2, Vector2f pos_inimigo);
+    Personagens* verificaMaisProximo(Jogador* j1, Jogador* j2, Vector2f pos_inimigo);
+
     void PersegueJogador(Vector2f posJogador, Vector2f posInimimgo);
     void podePerseguir(Personagens* personagem);
 

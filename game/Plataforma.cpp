@@ -35,5 +35,5 @@ void Plataforma::atacar(Entidade* adversario, float dano)
 void Plataforma::Colisao(Entidade* entidade, Vector2f inter_colisao)
 {
 	if (entidade->getId() == jogador)
-		entidade->setVelocidade(Vector2f(10.f, entidade->getVelocidade().y));
+		entidade->setVelocidade(Vector2f(VELOCIDADE_JOGADOR_X, entidade->getVelocidade().y));
 }

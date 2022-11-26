@@ -1,13 +1,17 @@
 #include "Anjo.h"
 
-Anjo::Anjo(Jogador* p, Projetil* b): 
+Anjo::Anjo(Jogador* p1, Jogador* p2, Projetil* b): 
     Inimigo(), 
     projetil(b),
     tempo_atk(1.0f),
-    posAlvo(Vector2f(0.f, 0.f))
+    posAlvo(Vector2f(0.f, 0.f)),
+    estaNoRaio(true)
 {
-    player = p;
+    player1 = p1;
+    player2 = p2;
     id = ID::anjo;
+
+    projetil->setPortador(this);
 
     inicializa();
     //texture.loadFromFile("assets/VirtualGuy.png");
@@ -65,7 +69,9 @@ const Projetil* Anjo::getProjetil()
 
 void Anjo::EncontraPosAlvo()
 {
-    //Encontra a posicao do alvo e pra que lado ele esta
+    //Encontra a posicao do alvo mais proximo e pra que lado ele esta
+    alvo = verificaMaisProximo(player1, player2, getPosicao());
+        
     posAlvo = alvo->getPosicao();
 
     Vector2f diferenca = (getPosicao() - posAlvo);
@@ -98,22 +104,9 @@ void Anjo::Mover()
 {
     movGravidade();
 
-    //Perseguir o Jogador
-    podePerseguir(player);
+    qualPerseguir(player1->getPosicao(), player2->getPosicao(), getPosicao());
 
-    if (podeAndar)
-    {
-        Vector2f posJogador = player->getCorpo().getPosition();
-        Vector2f posInimigo = corpo.getPosition();
-
-        if ((fabs(posJogador.x - posInimigo.x) <= raio_deteccao.x)
-            && (fabs(posJogador.y - posInimigo.y) <= raio_deteccao.y)) {
-            PersegueJogador(posJogador, posInimigo);
-            estaNoRaio = true;
-        }
-        else
-            estaNoRaio = false;
-    }
+    
 
 }
 

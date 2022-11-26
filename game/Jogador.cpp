@@ -17,7 +17,7 @@ void Jogador::iniciar()
 {
     //Atributos Jogador
     corpo.setSize(Vector2f(JOGADOR_X, JOGADOR_Y));
-    setVelocidade(Vector2f(10.f, 0.f));
+    setVelocidade(Vector2f(VELOCIDADE_JOGADOR_X, 0.f));
     setQuantidadeVida(20.0);
     setDano(3.0);
 }
@@ -53,6 +53,17 @@ void Jogador::atacar(Entidade* adversario, float dano)
 void Jogador::Mover()
 {
     movGravidade();
+
+    if (andando)
+    {
+        if(olhandoDireita)
+            movimentaEntidade(Vector2f(speed.x, 0.f), true);
+
+        else if(olhandoEsquerda)
+            movimentaEntidade(Vector2f(-speed.x, 0.f), false);
+
+
+    }
 }
 
 void Jogador::Executar()
@@ -72,11 +83,11 @@ void Jogador::andar(int i)
 
     if (i == 2)
     {
-        movimentaEntidade(Vector2f(-speed.x, 0), false);
+        movimentaEntidade(Vector2f(-speed.x, 0.f), false);
     }
     else if (i == 4)
     {
-        movimentaEntidade(Vector2f(speed.x, 0), true);
+        movimentaEntidade(Vector2f(speed.x, 0.f), true);
     }
 }
 

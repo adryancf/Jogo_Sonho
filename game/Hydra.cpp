@@ -1,8 +1,9 @@
 #include "Hydra.h"
 
-Hydra::Hydra(Jogador* p): Inimigo(), posHydra(Vector2f(0.0f, 0.0f))
+Hydra::Hydra(Jogador* p1, Jogador* p2): Inimigo(), posHydra(Vector2f(0.0f, 0.0f))
 {
-	player = p;
+	player1 = p1;
+	player2 = p2;
 	id = ID::hydra;
 
 	inicializa();
@@ -13,7 +14,8 @@ Hydra::Hydra(Jogador* p): Inimigo(), posHydra(Vector2f(0.0f, 0.0f))
 
 Hydra::~Hydra()
 {
-	player = nullptr;
+	player1 = nullptr;
+	player2 = nullptr;
 }
 
 void Hydra::inicializa()
@@ -38,19 +40,17 @@ void Hydra::Mover()
 {
 	movGravidade();
 
-	//Verifica se com a repulsao causada pela colisao entre os dois, o jogador pode andar ainda
-	podePerseguir(player);
-
 	if (atacou == true && podeAndar == true)
 	{
-		Vector2f posJogador = player->getCorpo().getPosition();
+		Vector2f posJogador1 = player1->getPosicao();
+		Vector2f posJogador2 = player2->getPosicao();
+
 		posHydra = corpo.getPosition();
 
-		if ((fabs(posJogador.x - posHydra.x) <= raio_deteccao.x)
-			&& (fabs(posJogador.y - posHydra.y) <= raio_deteccao.y)) {
-
-			PersegueJogador(posJogador, posHydra);
-		}
+		//Verifica o jogador mais proximo e ja persegue
+		qualPerseguir(posJogador1, posJogador2, posHydra);
+		
+		
 	}
 
 }

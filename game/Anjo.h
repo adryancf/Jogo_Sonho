@@ -19,7 +19,7 @@ private:
 	string direcao_alvo;
 
 public:
-	Anjo(Jogador* p, Projetil* b);
+	Anjo(Jogador* p1, Jogador* p2, Projetil* b);
 	~Anjo();
 
 	void setAlvo(Personagens* alvo);

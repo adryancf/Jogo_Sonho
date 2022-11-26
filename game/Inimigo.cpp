@@ -2,7 +2,7 @@
 #include "Inimigo.h"
 
 
-Inimigo::Inimigo():Personagens(), tempo_mov(), player(nullptr), jogadorEmCima(false)
+Inimigo::Inimigo():Personagens(), tempo_mov(), player1(nullptr), player2(nullptr), jogadorEmCima(false)
 
 {   
     movRandom = rand() % 4; //SEED FALTANTE
@@ -12,7 +12,8 @@ Inimigo::Inimigo():Personagens(), tempo_mov(), player(nullptr), jogadorEmCima(fa
 
 Inimigo::~Inimigo()
 {
-	player = nullptr;
+	player1 = nullptr;
+	player2 = nullptr;
 }
 
 
@@ -33,6 +34,57 @@ void Inimigo::movAleatorio()
         movRandom = rand() % 2;
         tempo_mov.restart();
     }
+
+}
+
+void Inimigo::qualPerseguir(Vector2f pos_j1, Vector2f pos_j2, Vector2f pos_inimigo)
+{
+	Vector2f proximidadeJogador1;
+	proximidadeJogador1.x = fabs(pos_j1.x - pos_inimigo.x);
+	proximidadeJogador1.y = fabs(pos_j1.y - pos_inimigo.y);
+
+	Vector2f proximidadeJogador2;
+	proximidadeJogador2.x = fabs(pos_j2.x - pos_inimigo.x);
+	proximidadeJogador2.y = fabs(pos_j2.y - pos_inimigo.y);
+
+	if (proximidadeJogador1.x <= proximidadeJogador2.x || proximidadeJogador1.y <= proximidadeJogador2.y)
+	{
+		podePerseguir(player1);
+		if (proximidadeJogador1.x <= raio_deteccao.x && proximidadeJogador1.y <= raio_deteccao.y && podeAndar) {
+
+			PersegueJogador(pos_j1, pos_inimigo);
+		}
+	}
+	else
+	{
+		podePerseguir(player2);
+		if (proximidadeJogador2.x <= raio_deteccao.x && proximidadeJogador2.y <= raio_deteccao.y && podeAndar) {
+
+			PersegueJogador(pos_j2, pos_inimigo);
+		}
+	}
+}
+
+Personagens* Inimigo::verificaMaisProximo(Jogador* j1, Jogador* j2, Vector2f pos_inimigo)
+{
+
+	Vector2f pos_j1 = j1->getPosicao();
+	Vector2f pos_j2 = j2->getPosicao();
+
+	Vector2f proximidadeJogador1;
+	proximidadeJogador1.x = fabs(pos_j1.x - pos_inimigo.x);
+	proximidadeJogador1.y = fabs(pos_j1.y - pos_inimigo.y);
+
+	Vector2f proximidadeJogador2;
+	proximidadeJogador2.x = fabs(pos_j2.x - pos_inimigo.x);
+	proximidadeJogador2.y = fabs(pos_j2.y - pos_inimigo.y);
+
+	if (proximidadeJogador1.x <= proximidadeJogador2.x || proximidadeJogador1.y <= proximidadeJogador2.y)
+	{
+		return j1;
+	}
+	else
+		return j2;
 
 }
 

@@ -10,6 +10,8 @@ class Jogo: public Ente
 {
 private:
 	Jogador* Jogador1;
+	Jogador* Jogador2;
+
 	GerenciadorEvento* pEvento;
 
 	Fase1* fase1;

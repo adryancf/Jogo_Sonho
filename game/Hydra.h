@@ -9,7 +9,7 @@ private:
 	//sf::Texture texture;
 
 public:
-	Hydra(Jogador* p);
+	Hydra(Jogador* p1, Jogador* p2);
 	~Hydra();
 
 	void inicializa();

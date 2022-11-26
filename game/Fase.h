@@ -20,6 +20,8 @@ protected:
 
 	//Entidades
 	Jogador* j1;
+	Jogador* j2;
+
 	Hydra* hydra;
 	Plataforma* plataforma_fase;
 	Caixa* caixa;
@@ -37,7 +39,7 @@ protected:
 	virtual void criar_entidades() = 0;
 
 public:
-	Fase(Jogador *j);
+	Fase(Jogador *j1, Jogador* j2);
 	~Fase();
 
 	//Features

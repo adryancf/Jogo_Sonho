@@ -38,6 +38,7 @@
 
 #define JOGADOR_X 50.f
 #define JOGADOR_Y 50.f
+#define VELOCIDADE_JOGADOR_X 1.5f
 
 #define FANTASMA_X 60.f
 #define FANTASMA_Y 60.f

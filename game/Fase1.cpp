@@ -18,11 +18,12 @@
 #define COMPRIMENTOP5 1000.f
 
 
-Fase1::Fase1(Jogador* j1): Fase(j1), fantasma(nullptr)
+Fase1::Fase1(Jogador* j1, Jogador* j2): Fase(j1, j2), fantasma(nullptr)
 {
 	//Inicializa todas as entidades da fase
 	criar_entidades();
-	j1->setPosEntidade(Vector2f(10.0f, ALTURAP1 - JOGADOR_Y));
+	this->j1->setPosEntidade(Vector2f(10.0f, ALTURAP1 - JOGADOR_Y));
+	this->j2->setPosEntidade(Vector2f(10.0f, ALTURAP5 - JOGADOR_Y));
 
 }
 
@@ -101,7 +102,7 @@ void Fase1::criarHydra()
 	{
 		hydra = nullptr;
 
-		hydra = new Hydra(j1);
+		hydra = new Hydra(j1, j2);
 		lista_personagem->incluir(hydra);
 
 		//Setar posicao
@@ -112,7 +113,7 @@ void Fase1::criarHydra()
 			hydra->setPosEntidade(Vector2f(gerarNumeroAleatorio(320.0f, 600.f), ALTURAP3 - HYDRA_Y)); //Terceira Plataforma
 
 		else
-			hydra->setPosEntidade(Vector2f(gerarNumeroAleatorio(10.0f * i, COMPRIMENTOP5), ALTURAP5 - HYDRA_Y)); //Quinta Plataforma
+			hydra->setPosEntidade(Vector2f(gerarNumeroAleatorio(20.0f, COMPRIMENTOP5), ALTURAP5 - HYDRA_Y)); //Quinta Plataforma
 
 
 	}
