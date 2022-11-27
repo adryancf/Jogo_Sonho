@@ -123,12 +123,12 @@ void GerenciadorEvento::Executar()
     //loop de execu��o da janela
     
     Event event;
+
     while (pGrafico->getWindow()->pollEvent(event))
     {
+    
         if (event.type == sf::Event::KeyPressed) {
             verificaTeclaPressionada(event.key.code);
-
-            
         }
 
         else if (event.type == Event::KeyReleased) {

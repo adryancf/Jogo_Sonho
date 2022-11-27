@@ -2,7 +2,8 @@
 #include "Fase1.h"
 #include "Fase2.h"
 #include "GerenciadorEventos.h"
-#include "Menu.h"
+
+#include "MenuPrincipal.h"
 #include "MenuJogadores.h"
 #include "MenuPause.h"
 
@@ -19,7 +20,8 @@ private:
 
 	Fase1* fase1;
 	Fase2* fase2;
-	Menu* menu;
+
+	MenuPrincipal* menu;
 	MenuJogadores* menuj;
 	MenuPause* menup;
 

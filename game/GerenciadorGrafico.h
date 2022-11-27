@@ -39,11 +39,12 @@ public:
 	sf::RenderWindow* getWindow();
 	void limpar();
 	void desenhar(sf::RectangleShape corpo);
-	//void desenhar(sf::Sprite p);
-	//void desenhar(sf::Text t);
+	void desenhar(sf::Sprite corpo);
+	void desenhar(sf::Text t);
 	void mostrar();
 	void fecharJanela();
 	const bool isWindowOpen();
+	const bool verificaEventos(sf::Event evento);
 
 	void atualizaTempo();
 

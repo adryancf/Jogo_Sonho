@@ -60,10 +60,6 @@ public:
 	void setFundo(string path_fundo);
 	void setFundo(string path_fundo, IntRect rect);
 
-	//Background
-	void setFundo(string path_fundo);
-	void setFundo(string path_fundo, IntRect rect);
-
 	//Controle da execucao da fase
 	void verificaTerminoFase();
 	const bool getAtiva();

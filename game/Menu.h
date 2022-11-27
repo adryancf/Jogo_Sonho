@@ -3,16 +3,11 @@
 
 class Menu : public Ente
 {
-private:
+protected:
 	//Como eh derivado do ENTE jah tem o posicao
 	int pos;
 	bool pressed, theselect;
 	
-
-	//Conhece a JANELA
-	sf::RenderWindow* window;
-	//sf::RectangleShape* winclose;
-
 	//A fonte
 	sf::Font* font;
 	//A textura
@@ -30,14 +25,16 @@ private:
 	std::vector<sf::Text> texts;
 	std::vector<std::size_t> sizes;
 
-protected:
-	void set_values();
-	void loop_events();
+
 	void draw_all();
+
+	//CADA MENU DERIVADO REDEFINE ESSA FUNÇÃO
+	virtual void set_values() = 0;
+	virtual void loop_events() = 0;
 public:
 	Menu();
 	~Menu();
-	void run_menu();
+	virtual void run_menu() = 0;
 
 	//redefinindo a executar
 	void Executar();

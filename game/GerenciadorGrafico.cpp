@@ -50,6 +50,16 @@ void GerenciadorGrafico::desenhar(sf::RectangleShape corpo)
     window->draw(corpo);
 }
 
+void GerenciadorGrafico::desenhar(sf::Sprite corpo)
+{
+    window->draw(corpo);
+}
+
+void GerenciadorGrafico::desenhar(sf::Text t)
+{
+    window->draw(t);
+}
+
 /*
 void GerenciadorGrafico::desenhar(sf::Sprite p)
 {
@@ -75,6 +85,12 @@ const bool GerenciadorGrafico::isWindowOpen()
 {
     return window->isOpen();
 }
+
+const bool GerenciadorGrafico::verificaEventos(sf::Event evento)
+{
+    return (window->pollEvent(evento));
+}
+
 
 
 void GerenciadorGrafico::atualizaTempo()

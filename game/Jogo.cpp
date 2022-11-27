@@ -30,9 +30,10 @@ Jogo::~Jogo()
 void Jogo::iniciarMenu()
 {
     std::cout << "Menu Principal iniciado." << std::endl;
-    menu = new Menu();
+    menu = new MenuPrincipal();
     menuj = new MenuJogadores();
     menup = new MenuPause();
+    pGrafico->setEstado(ID::menuPrincipal);
 }
 
 void Jogo::iniciaFase1()

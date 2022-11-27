@@ -1,38 +1,32 @@
 #include "MenuPause.h"
 
-MenuPause::MenuPause() : Ente(), window(pGrafico->getWindow())
+MenuPause::MenuPause() : Menu()
 {
-    //std::cout << "Construtora menu iniciada." << std::endl;
-    //window = new sf::RenderWindow();
-    //winclose = new sf::RectangleShape();
-    font = new sf::Font();
-    image = new sf::Texture();
-    bg = new sf::Sprite();
-
     set_values();
+
 }
 
 MenuPause::~MenuPause() {
-    // delete window;
-     //delete winclose;
-    delete font;
-    delete image;
-    delete bg;
+    
 }
 
-void MenuPause::set_values() {
-    //window->create(sf::VideoMode(1280, 720), "Menu SFML", sf::Style::Titlebar | sf::Style::Close);
-    //window->setPosition(sf::Vector2i(0, 0));
-    //std::cout << "Setando os valores do menu" << std::endl;
+void MenuPause::run_menu()
+{
+    while (pGrafico->isWindowOpen() && pGrafico->getEstado() == ID::menuPause)
+    {
+        loop_events();
+        draw_all();
+    }
+}
+
+void MenuPause::set_values()
+{
     pos = 0;
     pressed = theselect = false;
     font->loadFromFile("assets/Fonts/PixelFont2.ttf");
     image->loadFromFile("assets/menu.png");
 
     bg->setTexture(*image);
-
-    //pos_mouse = { 0,0 };
-    //mouse_coord = { 0, 0 };
 
     options = { "Sonho++", "Continuar", "...", "...", "Quit" };
     texts.resize(5);
@@ -48,14 +42,13 @@ void MenuPause::set_values() {
     }
     texts[1].setOutlineThickness(4);
     pos = 1;
-
-    //std::cout << "Valores do menu setados." << std::endl;
 }
+
 void MenuPause::loop_events() {
     sf::Event event;
-    while (window->pollEvent(event)) {
+    while (pGrafico->getWindow()->pollEvent(event)) {
         if (event.type == sf::Event::Closed) {
-            window->close();
+            pGrafico->fecharJanela();
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !pressed) {
             if (pos < 4) {
@@ -80,11 +73,14 @@ void MenuPause::loop_events() {
         }
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && !theselect) {
+
             theselect = true;
+
             //Volta para o menuPrincipal
             if (pos == 4) {
                 pGrafico->setEstado(ID::menuPrincipal);
             }
+
             //Simplesmente continua o jogo
             else if (pos == 1)
             {
@@ -97,38 +93,19 @@ void MenuPause::loop_events() {
             else if (pos == 2)
             {
                 //pGrafico->setEstado(ID::menuJogadores);
-                window->close();
+                pGrafico->fecharJanela();
 
             }
             //faz nada por hora
             else if (pos == 3)
             {
                 //pGrafico->setEstado(ID::leaderboard);
-                window->close();
+                pGrafico->fecharJanela();
             }
 
             std::cout << options[pos] << '\n';
         }
     }
 }
-void MenuPause::draw_all() {
-    window->clear();
-    window->draw(*bg);
-    for (auto t : texts) {
-        window->draw(t);
-    }
-    window->display();
-}
 
-void MenuPause::run_menu() {
-    while (window->isOpen() && pGrafico->getEstado() == ID::menuPause)
-    {
-        loop_events();
-        draw_all();
-    }
-}
-void MenuPause::Executar()
-{
-    run_menu();
-    //draw_all();
-}
+
