@@ -39,7 +39,7 @@ void Plataforma::setVariaveis(const Vector2f tam, const Vector2f pos)
 {
 	corpo.setPosition(pos);
 	corpo.setSize(tam);
-	corpo.setFillColor(cor);
-	texture.loadFromFile("assets/brownPlatform.png");
-	corpo.setTexture(&texture);
+	//corpo.setFillColor(cor);
+	setTextura("assets/chao2.png");
+	
 }

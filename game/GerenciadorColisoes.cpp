@@ -1,9 +1,9 @@
 #include "GerenciadorColisoes.h"
 
-GerenciadorColisoes::GerenciadorColisoes(ListaEntidades* l_personagem, ListaEntidades* l_obstaculos):
+GerenciadorColisoes::GerenciadorColisoes(ListaEntidades* l_personagem, ListaEntidades* l_obstaculos, int qJogadores):
 	lista_obstaculos(l_obstaculos),
 	lista_personagens(l_personagem),
-	qJogadores(0)
+	qJogadores(qJogadores)
 
 {}
 
@@ -52,7 +52,6 @@ void GerenciadorColisoes::colisaoPersonagens()
 	Entidade* aux = nullptr;
 	Vector2f Colisao;
 
-	qJogadores = lista_personagens->contaJogadores();
 	
 	if (qJogadores == 2) {
 		for (int i = 0; i < 2; i++) {
@@ -82,6 +81,7 @@ void GerenciadorColisoes::colisaoPersonagens()
 			aux = lista_personagens->operator[](j);
 
 			Colisao = calculaColisoes(Jogador, aux);
+
 			if (Colisao.x < 0.0f && Colisao.y < 0.0f) {
 				Jogador->Colisao(aux, Colisao);
 				aux->Colisao(Jogador, Colisao);
@@ -91,6 +91,7 @@ void GerenciadorColisoes::colisaoPersonagens()
 	else
 		cout << "PROBLEMA COM CONTAGEM DE JOGADORES ATIVOS " << endl;
 	
+
 }
 
 void GerenciadorColisoes::colisaoPersonagemObstaculos()

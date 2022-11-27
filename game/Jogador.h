@@ -18,15 +18,13 @@ private:
     sf::Clock tempo;
     void iniciar();
 
-    //Textura do jogador
-    sf::Texture texture;
 
     
 public:
     Jogador(int jogador);
     ~Jogador();
 
-    void setTextura();
+    void setTexturaJogador();
     
 
     //Sistema de pontos

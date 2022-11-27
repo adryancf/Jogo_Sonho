@@ -160,19 +160,17 @@ void Jogo::controleFases()
             fase1->Executar();
             fase1->verificaTerminoFase();
 
-            cout << "ENTREI FASE 1" << endl;
         }
 
         else
         {
-            cout << "ENTREI NO SEGUNDO IF" << endl;
-            pGrafico->setEstado(ID::fase2);
+            if(pGrafico->getEstado() == ID::fase1)
+                pGrafico->setEstado(ID::fase2);
 
-            if (fase2)
+            else if (fase2)
             {
                 if (fase2->getAtiva())
                 {
-                    cout << "ENTREI FASE 2" << endl;
                     fase2->Executar();
                     fase2->verificaTerminoFase();
 
@@ -251,19 +249,15 @@ void Jogo::Executar()
 
         else if (estado == ID::fase1 || estado == ID::fase2)
         {
+            pEvento->Executar();
 
-            //if (qJogadores == 0)
-                //pGrafico->setEstado(ID::menuQuantidadeJogadores);
+            pGrafico->atualizaTempo();
+            pGrafico->limpar();
 
-            //else {
-                pGrafico->atualizaTempo();
-                pEvento->Executar();
-                pGrafico->limpar();
+            controleFases();
 
-                controleFases();
-
-                pGrafico->mostrar();
-            //}
+            pGrafico->mostrar();
+           
         }
                
     }

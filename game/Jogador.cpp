@@ -13,7 +13,7 @@ void Jogador::iniciar()
 {
     //Forma Jogador
     corpo.setSize(Vector2f(JOGADOR_X, JOGADOR_Y));
-    this->setTextura();
+    this->setTexturaJogador();
     
     //Atributos Jogador
     setVelocidade(Vector2f(VELOCIDADE_JOGADOR_X, 0.f));
@@ -23,20 +23,15 @@ void Jogador::iniciar()
 
 Jogador::~Jogador(){}
 
-void Jogador::setTextura()
+void Jogador::setTexturaJogador()
 {
     if (tipoJogador == 1)
     {
-        sf::IntRect rect(59, 46, 30, 54);
-        texture.loadFromFile("assets/Idle.png", rect);
-        corpo.setTexture(&texture);
-
+        Entidade::setTextura("assets/wizard1.png");
     }
     else if (tipoJogador == 2)
     {
-        sf::IntRect rect(59, 46, 30, 54);
-        texture.loadFromFile("assets/Idle.png", rect);
-        corpo.setTexture(&texture);
+        Entidade::setTextura("assets/wizard2.png");
     }
 }
 
@@ -62,7 +57,6 @@ void Jogador::Executar()
     //cout << " Pontos Jogador1: " << pontuacao_j1 << endl;
     //cout << " Pontos Jogador2: " << pontuacao_j2 << endl;
     cout << q_vida << endl;
-    cout << "POSICAO JOGADOR em x: " << getPosicao().x << "  POSICAO JOGADOR em y: " << getPosicao().y << endl;
     Mover();
 
 }
@@ -124,11 +118,5 @@ void Jogador::Colisao(Entidade* entidade, Vector2f inter_colisao)
 
 }
 
-/*
-void Jogador::setTextura()
-{
-    textura->loadFromFile("assets/mushroom.PNG");
-}
-*/
 
 

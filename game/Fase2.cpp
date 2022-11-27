@@ -204,6 +204,9 @@ void Fase2::criarHydra()
 
 void Fase2::Executar()
 {
+
+	//pGrafico->desenhar(fundo);
+
 	lista_obstaculos->renderElementos();
 	lista_personagem->renderElementos();
 

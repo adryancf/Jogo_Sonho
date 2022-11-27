@@ -11,7 +11,7 @@ Espinho::Espinho(const sf::Vector2f tam, const sf::Vector2f pos): clock_espinho(
 	corpo.setSize(tam);
 	
 	//corpo.setFillColor(sf::Color::White);
-	texture.loadFromFile("assets/Cactus.png");
+	texture.loadFromFile("assets/espinho.png");
 	corpo.setTexture(&texture);
 
 	setDano(0.5f);

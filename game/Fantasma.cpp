@@ -26,8 +26,8 @@ void Fantasma::inicializaVariaveis()
 
 
     sf::IntRect rect(1, 4, 30, 27);
-    texture.loadFromFile("assets/ghost-Sheet.png", rect);
-    corpo.setTexture(&texture);
+    setTextura("assets/fantasma.png", rect);
+    
 }
 
 const float Fantasma::getTempoAtaque() const

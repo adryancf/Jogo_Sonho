@@ -12,7 +12,8 @@ Fase::Fase(Jogador *j1, Jogador* j2): fundo(Vector2f(RESOLUCAO_X, RESOLUCAO_Y)),
 	lista_obstaculos(nullptr),
 	lista_personagem(nullptr),
 	tempo_fase(0.f)
-{}
+{
+}
 
 Fase::~Fase()
 {
@@ -36,7 +37,7 @@ void Fase::setFundo(string path_fundo)
 
 void Fase::setFundo(string path_fundo, IntRect rect)
 {
-	img_fundo.loadFromFile("assets/Idle.png", rect);
+	img_fundo.loadFromFile(path_fundo, rect);
 	fundo.setTexture(&img_fundo);
 }
 
@@ -72,16 +73,21 @@ void Fase::criarLista()
 	lista_personagem = new ListaEntidades;
 	lista_obstaculos = new ListaEntidades;
 
+	int qJogadores = 0;
+
 	if (j1 != nullptr) {
 		lista_personagem->incluir(j1);
+		qJogadores++;
 		cout << "INCLUI J1 NA LISTA" << endl;
 	}
 	if (j2 != nullptr) {
 		lista_personagem->incluir(j2);
+		qJogadores++;
 		cout << "INCLUI J2 NA LISTA" << endl;
 	}
+
 	//Gerenciador
-	pColisoes = new GerenciadorColisoes(lista_personagem, lista_obstaculos);
+	pColisoes = new GerenciadorColisoes(lista_personagem, lista_obstaculos, qJogadores);
 
 }
 

@@ -114,10 +114,10 @@ void GerenciadorEvento::verificaTeclaSolta(sf::Keyboard::Key tecla)
 {
     //VERIFICAR SE A TECLA FOR SOLTA E ALTERAR A FLAG
     
-    if (tecla == sf::Keyboard::A || tecla == sf::Keyboard::D)
+    if ((tecla == sf::Keyboard::A || tecla == sf::Keyboard::D) && Jogador1 != nullptr)
         Jogador1->setAndando(false);
         
-    else if(tecla == sf::Keyboard::Right || tecla == sf::Keyboard::Left)
+    else if((tecla == sf::Keyboard::Right || tecla == sf::Keyboard::Left) && Jogador2 != nullptr)
         Jogador2->setAndando(false);
 }
 

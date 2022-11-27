@@ -6,10 +6,8 @@ Hydra::Hydra(Jogador* p1, Jogador* p2): Inimigo(), posHydra(Vector2f(0.0f, 0.0f)
 	player2 = p2;
 
 	jogadoresAtivos = verficaJogadoresAtivos(p1, p2);
-	cout << "Hydra: Jogadores ativos: " << jogadoresAtivos << endl;
 
 	id = ID::hydra;
-
 
 	inicializa();
 }
@@ -24,7 +22,7 @@ void Hydra::inicializa()
 {
 	//Forma Hydra
 	corpo.setSize(Vector2f(HYDRA_X, HYDRA_Y));
-	//corpo.setFillColor(Color::Blue);
+	//setTextura()
 
 	//Atributos Hydra
 	setVelocidade(Vector2f(0.3f, 0.f));
@@ -37,12 +35,6 @@ void Hydra::inicializa()
 	raio_deteccao.x = 300.f;
 	raio_deteccao.y = 300.f;
 
-	std::string st = "assets/MaskDude.png";
-
-	//texture.loadFromFile("assets/MaskDude.png");
-	texture.loadFromFile(st);
-	corpo.setTexture(&texture);
-	//corpo.setSize(sf::Vector2f(70.0f, 70.0f));
 }
 
 void Hydra::Mover()

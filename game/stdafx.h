@@ -37,11 +37,11 @@
 //TAMANHOS
 
 #define JOGADOR_X 50.f
-#define JOGADOR_Y 50.f
+#define JOGADOR_Y 60.f
 #define VELOCIDADE_JOGADOR_X 1.5f
 
-#define FANTASMA_X 60.f
-#define FANTASMA_Y 60.f
+#define FANTASMA_X 40.f
+#define FANTASMA_Y 40.f
 
 #define HYDRA_X 40.f
 #define HYDRA_Y 40.f
@@ -54,8 +54,8 @@
 
 #define CAIXA_TAM 40.f
 
-#define ESPINHO_X 50.F
-#define ESPINHO_Y 15.F
+#define ESPINHO_X 40.F
+#define ESPINHO_Y 20.F
 
 
 

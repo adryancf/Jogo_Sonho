@@ -28,7 +28,7 @@ Fase1::Fase1(Jogador* j1, Jogador* j2): Fase(j1, j2), fantasma(nullptr)
 	//Inicializa todas as entidades da fase
 	criar_entidades();
 
-	//setFundo("assets/Background.png");
+	//setFundo("assets/Bg.png");
 	
 	//Zera os pontos no começo da fase (pode ser so com uma instancia de jogador pois é uma variavel static)
 	this->j1->setPontos(0, 0);
@@ -199,10 +199,8 @@ void Fase1::criarCaixa()
 //Percorre a lista de entidades
 void Fase1::Executar()
 {
-	//desenha fundo
 	//pGrafico->desenhar(fundo);
-
-
+	
 	//Desenha todas as entidades
 	lista_obstaculos->renderElementos();
 	lista_personagem->renderElementos();

@@ -13,7 +13,7 @@ private:
 	int qJogadores;
 
 public:
-	GerenciadorColisoes(ListaEntidades* l_personagem, ListaEntidades* l_obstaculos);
+	GerenciadorColisoes(ListaEntidades* l_personagem, ListaEntidades* l_obstaculos, int qJogadores);
 	~GerenciadorColisoes();
 
 	sf::Vector2f calculaColisoes(Entidade* ent1, Entidade* ent2);
