@@ -88,27 +88,21 @@ void Menu::loop_events() {
             //Iniciar jogo
             else if (pos == 1)
             {
-                //window->close();
                 //simplesmente seta o estado como fase1
                 pGrafico->setEstado(ID::fase1);
-                //std::cout << "estado setado para fase1" << std::endl;
             }
             //Inicia a fase2
             else if (pos == 2)
             {
                 pGrafico->setEstado(ID::fase2);
 
-                //cout << "Estado: " << pGrafico->getEstado() << endl;
-
-                //window->close();
+                
             }
             //Leaderboard
             else if (pos == 3)
             {
                 pGrafico->setEstado(ID::leaderboard);
 
-                //cout << "Estado: " << pGrafico->getEstado() << endl;
-                //window->close();
             }
 
             std::cout << options[pos] << '\n';

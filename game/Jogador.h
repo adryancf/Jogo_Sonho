@@ -9,7 +9,11 @@ private:
     //sf::Texture tex_jogador;
     //sf::Sprite sprite_jogador;
 
-    static int pontuacao;
+    static int pontuacao_j1;
+    static int pontuacao_j2;
+
+    //Indica qual jogador ele é (Pode ser um ou dois)
+    int tipoJogador;
 
     sf::Clock tempo;
     void iniciar();
@@ -22,16 +26,12 @@ public:
     Jogador(int jogador);
     ~Jogador();
 
-    void setTextura(int i);
+    void setTextura();
     
 
     //Sistema de pontos
-    void verificaPontos(Entidade* inimigo);
-    void ganhaPontos(int pontos);
-    void ganhaPontos();
-    void perdePontos(int pontos);
-    void perdePontos();
-    static const int getPontos();
+    static void setPontos(int pontos_j1, int pontos_j2);
+    static const int getPontos(int tipoJogador);
 
     //Redefinindo função do ataque
     virtual void atacar(Entidade* adversario, float dano);

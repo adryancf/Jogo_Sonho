@@ -14,8 +14,10 @@
 		projetil,
 		menuPrincipal,
 		menuPause,
+		menuQuantidadeJogadores,
 		fase1,
 		fase2,
 		leaderboard
+
 	};
 

@@ -1,53 +1,43 @@
 #include "Jogador.h"
 
-int Jogador::pontuacao = 0;
+int Jogador::pontuacao_j1 = 0;
+int Jogador::pontuacao_j2 = 0;
 
-Jogador::Jogador(int jogador):Personagens(), tempo()
+Jogador::Jogador(int jogador):Personagens(), tempo(), tipoJogador(jogador)
 {
     id = ID::jogador;
     iniciar();
-
-    this->setTextura(jogador);
-
-
-    //corpo.setSize(sf::Vector2f(70.0f, 70.0f));
 }
 
 void Jogador::iniciar()
 {
-    //Atributos Jogador
+    //Forma Jogador
     corpo.setSize(Vector2f(JOGADOR_X, JOGADOR_Y));
+    this->setTextura();
+    
+    //Atributos Jogador
     setVelocidade(Vector2f(VELOCIDADE_JOGADOR_X, 0.f));
     setQuantidadeVida(20.0);
     setDano(3.0);
 }
+
 Jogador::~Jogador(){}
 
-void Jogador::setTextura(int i)
+void Jogador::setTextura()
 {
-    if (i == 1)
+    if (tipoJogador == 1)
     {
         sf::IntRect rect(59, 46, 30, 54);
         texture.loadFromFile("assets/Idle.png", rect);
         corpo.setTexture(&texture);
 
     }
-    else if (i == 2)
+    else if (tipoJogador == 2)
     {
         sf::IntRect rect(59, 46, 30, 54);
         texture.loadFromFile("assets/Idle.png", rect);
         corpo.setTexture(&texture);
     }
-}
-
-
-void Jogador::atacar(Entidade* adversario, float dano)
-{
-    Personagens* adv = static_cast<Personagens*>(adversario);
-    adv->perdeVida(dano);
-
-    if (adv->getQuantidadeVida() <= 0.f)
-        ganhaPontos();
 }
 
 void Jogador::Mover()
@@ -69,7 +59,9 @@ void Jogador::Mover()
 void Jogador::Executar()
 {
     verificaVida();
-    cout << " Pontos Jogador: " << pontuacao << endl;
+    //cout << " Pontos Jogador1: " << pontuacao_j1 << endl;
+    //cout << " Pontos Jogador2: " << pontuacao_j2 << endl;
+    cout << q_vida << endl;
     Mover();
 
 }
@@ -91,39 +83,37 @@ void Jogador::andar(int i)
     }
 }
 
-void Jogador::verificaPontos(Entidade* inimigo)
+void Jogador::atacar(Entidade* adversario, float dano)
 {
-    //SE O INIMIGO TA MORTO = PONTO
-    if (inimigo->getVisivel() == false)
-    {
-        pontuacao++;
+    Personagens* adv = static_cast<Personagens*>(adversario);
+    adv->perdeVida(dano);
+
+    if (adv->getQuantidadeVida() <= 0.f) {
+
+        if (tipoJogador == 1)
+            ++pontuacao_j1;
+
+        else if (tipoJogador == 2)
+            ++pontuacao_j2;
     }
-
+        
 }
 
-void Jogador::ganhaPontos(int pontos)
+//PONTOS
+
+void Jogador::setPontos(int pontos_j1, int pontos_j2)
 {
-    pontuacao = pontos;
+    pontuacao_j1 = pontos_j1;
+    pontuacao_j2 = pontos_j2;
 }
 
-void Jogador::ganhaPontos()
+const int Jogador::getPontos(int tipoJogador)
 {
-    ++pontuacao;
-}
+    if (tipoJogador == 1)
+        return pontuacao_j1;
 
-void Jogador::perdePontos(int pontos)
-{
-    pontuacao -= pontos;
-}
-
-void Jogador::perdePontos()
-{
-    pontuacao--;
-}
-
-const int Jogador::getPontos()
-{
-    return pontuacao;
+    else if (tipoJogador == 2)
+        return pontuacao_j2;
 }
 
 //GERENCIADOR DE COLIS�ES

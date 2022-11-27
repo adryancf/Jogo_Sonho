@@ -1,12 +1,7 @@
 #include "Entidade.h"
 
-/*
-ID Entidade::getId() const
-{
-    return id;
-}
-*/
-Entidade::Entidade(ID idd) : corpo(Vector2f(70.f, 70.f)),
+
+Entidade::Entidade(ID idd): corpo(Vector2f(70.f, 70.f)),
     Ente(),
     colisaoPlataforma(false),
     gravidade(true), 
