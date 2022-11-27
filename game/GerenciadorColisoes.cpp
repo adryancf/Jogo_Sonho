@@ -2,7 +2,8 @@
 
 GerenciadorColisoes::GerenciadorColisoes(ListaEntidades* l_personagem, ListaEntidades* l_obstaculos):
 	lista_obstaculos(l_obstaculos),
-	lista_personagens(l_personagem)
+	lista_personagens(l_personagem),
+	qJogadores(0)
 
 {}
 
@@ -47,16 +48,36 @@ void GerenciadorColisoes::colisaoPersonagens()
 {
 	//COLISAO ENTRE PERSONAGEM E JOGADOR (FAZER ISSO)
 	Entidade* Jogador = nullptr;
-	
+
 	Entidade* aux = nullptr;
 	Vector2f Colisao;
 
+	qJogadores = lista_personagens->contaJogadores();
 	
-	for (int i = 0; i < 2; i++) {
-		Jogador = lista_personagens->operator[](i);
+	if (qJogadores == 2) {
+		for (int i = 0; i < 2; i++) {
+			Jogador = lista_personagens->operator[](i);
+
+			//Verifica se houve colis�o (NAO TEM PROBLEMA SE OS JOGADORES SE COLIDIREM)
+			for (int j = i + 1; j < lista_personagens->getTamanhoLista(); j++) {
+
+				aux = lista_personagens->operator[](j);
+
+				Colisao = calculaColisoes(Jogador, aux);
+				if (Colisao.x < 0.0f && Colisao.y < 0.0f) {
+					Jogador->Colisao(aux, Colisao);
+					aux->Colisao(Jogador, Colisao);
+				}
+			}
+		}
+	}
+	
+	else if (qJogadores == 1)
+	{
+		Jogador = lista_personagens->getJogador();
 
 		//Verifica se houve colis�o (NAO TEM PROBLEMA SE OS JOGADORES SE COLIDIREM)
-		for (int j = i+1; j < lista_personagens->getTamanhoLista(); j++) {
+		for (int j = 1; j < lista_personagens->getTamanhoLista(); j++) {
 
 			aux = lista_personagens->operator[](j);
 
@@ -67,7 +88,9 @@ void GerenciadorColisoes::colisaoPersonagens()
 			}
 		}
 	}
-
+	else
+		cout << "PROBLEMA COM CONTAGEM DE JOGADORES ATIVOS " << endl;
+	
 }
 
 void GerenciadorColisoes::colisaoPersonagemObstaculos()

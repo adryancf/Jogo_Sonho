@@ -57,6 +57,21 @@ int ListaEntidades::contaEntidadesMortas()
 	return entidades;
 }
 
+int ListaEntidades::contaJogadores()
+{
+	//PERCORRE A LISTA E RETORNA NUMERO DE JOGADORES 
+	int q = 0;
+
+	for (int i = 0; i < getTamanhoLista(); i++)
+	{
+		if (listEnt[i]->getId() == ID::jogador)
+		{
+			q++;
+		}
+	}
+	return q;
+}
+
 Entidade* ListaEntidades::getJogador()
 {
 	for (int i = 0; i < getTamanhoLista(); i++)

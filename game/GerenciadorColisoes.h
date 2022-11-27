@@ -10,6 +10,8 @@ private:
 	ListaEntidades* lista_obstaculos;
 	ListaEntidades* lista_personagens;
 
+	int qJogadores;
+
 public:
 	GerenciadorColisoes(ListaEntidades* l_personagem, ListaEntidades* l_obstaculos);
 	~GerenciadorColisoes();

@@ -1,6 +1,6 @@
 #include "GerenciadorEventos.h"
 
-#define TAM_PULO_JOGADOR 0.003f
+#define TAM_PULO_JOGADOR 0.004f
 
 GerenciadorEvento* GerenciadorEvento::pEvento = nullptr;
 
@@ -79,6 +79,7 @@ void GerenciadorEvento::verificaTeclaPressionada(sf::Keyboard::Key tecla)
 {
     if (tecla == sf::Keyboard::Escape) {
         pGrafico->setEstado(ID::menuPause);
+
     }
 
     //CONTROLE JOGADOR 1
@@ -130,7 +131,7 @@ void GerenciadorEvento::Executar()
     {
     
         if (event.type == sf::Event::KeyPressed) {
-            verificaTeclaPressionada(event.key.code);
+            verificaTeclaPressionada();
         }
 
         else if (event.type == Event::KeyReleased) {

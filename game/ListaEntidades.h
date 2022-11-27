@@ -10,7 +10,6 @@ class ListaEntidades
 private:
 	Lista<Entidade> listEnt;
 
-
 public:
 	ListaEntidades();
 	~ListaEntidades();
@@ -18,6 +17,7 @@ public:
 	void renderElementos();
 	bool verificaEntidadesVisiveis();
 	int contaEntidadesMortas();
+	int contaJogadores();
 
 	Entidade* getJogador();
 	const int getTamanhoLista();
@@ -26,7 +26,7 @@ public:
 
 	void remover(Entidade* pE);
 	void removerTudo();
-	void removerTudoExcetoJogador(); //pensar num nome melhor
+	void removerTudoExcetoJogador();
 
 	const Lista<Entidade>* getList();
 
