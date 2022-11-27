@@ -88,6 +88,7 @@ void MenuJogadores::loop_events() {
                     pGrafico->setEstado(ID::fase1);
                 else
                     pGrafico->setEstado(ID::fase2);
+
                 pGrafico->setUmJogador(true);
             }
             //Inicia a fase com 2 jogadores
@@ -97,6 +98,7 @@ void MenuJogadores::loop_events() {
                     pGrafico->setEstado(ID::fase1);
                 else
                     pGrafico->setEstado(ID::fase2);
+
                 pGrafico->setUmJogador(false);
             }
             //Numero aleatorio de jogadores 1 ou 2

@@ -59,12 +59,16 @@ const bool Personagens::getVida() const
 void Personagens::verificaVida()
 {
     if (q_vida <= 0 || verificarPosInvalidaEmY()) {
-        
+        cout << "PERSONAGEM MORTO" << endl;
+        //cout << q_vida << endl;
+
         vivo = false;
         visivel = false;
 
         //Tira ele do campo de visao para evitar colisoes indesejaveis
         setPosEntidade(Vector2f(-2000.f, -2000.f));
+
+        cout << "MOVI ELE" << endl;
         gravidade = false;
     }
 }
@@ -74,6 +78,8 @@ void Personagens::perdeVida()
     //DA PARA SUBSTITUIR POR UMA SOBRECARGA DE OPERADOR --
     if (vivo)
         q_vida--;
+
+    cout << "PERDI VIDA" << endl;
 }
 
 void Personagens::perdeVida(float dano)

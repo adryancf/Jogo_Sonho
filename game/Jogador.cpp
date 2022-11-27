@@ -62,6 +62,7 @@ void Jogador::Executar()
     //cout << " Pontos Jogador1: " << pontuacao_j1 << endl;
     //cout << " Pontos Jogador2: " << pontuacao_j2 << endl;
     cout << q_vida << endl;
+    cout << "POSICAO JOGADOR em x: " << getPosicao().x << "  POSICAO JOGADOR em y: " << getPosicao().y << endl;
     Mover();
 
 }

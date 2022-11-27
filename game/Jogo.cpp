@@ -21,7 +21,16 @@ Jogo::~Jogo()
     if(menu)
         delete menu;
 
+    if (menuj)
+        delete menuj;
+
+    if (menup)
+        delete menup;
+
     menu = nullptr;
+    menuj = nullptr;
+    menup = nullptr;
+
     Jogador1 = nullptr;
     Jogador2 = nullptr;
 }
@@ -143,23 +152,27 @@ void Jogo::controleFases()
         iniciaFase2();
         cout << "CRIEI FASE 2" << endl;
     }
-
+   
     else if (Jogador1 && Jogador1->getVida() == true || Jogador2 && Jogador2->getVida() == true) {
 
         if (fase1 && fase1->getAtiva())
         {
             fase1->Executar();
             fase1->verificaTerminoFase();
+
+            cout << "ENTREI FASE 1" << endl;
         }
 
         else
         {
+            cout << "ENTREI NO SEGUNDO IF" << endl;
             pGrafico->setEstado(ID::fase2);
 
             if (fase2)
             {
                 if (fase2->getAtiva())
                 {
+                    cout << "ENTREI FASE 2" << endl;
                     fase2->Executar();
                     fase2->verificaTerminoFase();
 
@@ -177,6 +190,9 @@ void Jogo::controleFases()
 
                 }
             }
+            else
+                cout << "NAO TEM FASE 2" << endl;
+
         }
     }
 
@@ -205,21 +221,32 @@ void Jogo::Executar()
     //LOOP DE EXECUCAO DO PROGRAMA
     while (pGrafico->isWindowOpen())
     {
+
         ID estado = pGrafico->getEstado();
         
         if (estado == ID::menuPrincipal)
         {
+            if (fase1)
+                deletaFase1();
+            if (fase2)
+                deletaFase2();
+
             menu->run_menu();
+            pGrafico->atualizaTempo();
+
         }
         else if (estado == ID::menuPause)
         {
             menup->run_menu();
+            pGrafico->atualizaTempo();
+
         }
 
         else if (estado == ID::menuJogadores)
         {
             //qJogadores = menu->run_menu_escolha (retorna um int de escolha)
             menuj->run_menu();
+            pGrafico->atualizaTempo();
         }
 
         else if (estado == ID::fase1 || estado == ID::fase2)
@@ -229,8 +256,8 @@ void Jogo::Executar()
                 //pGrafico->setEstado(ID::menuQuantidadeJogadores);
 
             //else {
-                pEvento->Executar();
                 pGrafico->atualizaTempo();
+                pEvento->Executar();
                 pGrafico->limpar();
 
                 controleFases();

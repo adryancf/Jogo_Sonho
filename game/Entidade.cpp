@@ -122,6 +122,7 @@ void Entidade::movGravidade()
         speed.y += acelaracao * GerenciadorGrafico::dt;
 
         corpo.move(Vector2f(0.0f, speed.y));
+        cout << "TO DESCENDO" << endl;
     }
 }
 

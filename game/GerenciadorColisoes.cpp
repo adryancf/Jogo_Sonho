@@ -42,6 +42,7 @@ void GerenciadorColisoes::verificaColisoes()
 	
 }
 
+//ARRUMAR ESSA QUESTAO DE DOIS OU UM JOGADOR
 void GerenciadorColisoes::colisaoPersonagens()
 {
 	//COLISAO ENTRE PERSONAGEM E JOGADOR (FAZER ISSO)

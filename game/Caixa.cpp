@@ -60,7 +60,7 @@ void Caixa::Colisao(Entidade* entidade, Vector2f inter_colisao)
 	else {
 		if (verificarPosInvalida() || entidade->getId() == ID::caixa) {
 			ehFixa = true;
-			cout << "entrei" << endl;
+			cout << "entrei CAIXA.CPP" << endl;
 		}
 		else {
 			if(entidade->getId() == ID::jogador || entidade->getId() == ID::plataforma)

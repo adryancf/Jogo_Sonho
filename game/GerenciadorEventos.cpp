@@ -47,6 +47,8 @@ void GerenciadorEvento::verificaTeclaPressionada()
 {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
         pGrafico->setEstado(ID::menuPause);
+        cout << "entrei no pause" << endl;
+
     }
 
     //CONTROLE JOGADOR 1
