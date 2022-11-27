@@ -42,6 +42,8 @@ void Jogo::iniciaFase1()
     if(pGrafico->getUmJogador() == false)
         Jogador2 = new Jogador(2);
 
+    //if(qJogadores == 2) (TIRAR COMENTARIOS COM O MENU DE OPCOES IMPLEMENTADO)
+    
     pEvento->setJogador1(Jogador1);
     pEvento->setJogador2(Jogador2);
 
@@ -95,6 +97,8 @@ void Jogo::iniciaFase2()
         if(pGrafico->getUmJogador() == false)
             Jogador2 = new Jogador(2);
 
+        //if(qJogadores == 2) (TIRAR COMENTARIOS COM O MENU DE OPCOES IMPLEMENTADO)
+        
         //Zera os pontos
         Jogador1->setPontos(0, 0);
     }

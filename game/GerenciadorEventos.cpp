@@ -1,6 +1,6 @@
 #include "GerenciadorEventos.h"
 
-#define TAM_PULO_JOGADOR 0.1f
+#define TAM_PULO_JOGADOR 0.003f
 
 GerenciadorEvento* GerenciadorEvento::pEvento = nullptr;
 
