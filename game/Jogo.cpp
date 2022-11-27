@@ -1,14 +1,18 @@
 #include "Jogo.h"
 #include "conio.h"
-
-
-GerenciadorEvento* Jogo::pEvento = GerenciadorEvento::getGerenciadorEvento();
-
-
-Jogo::Jogo() : Ente(), fase2(nullptr), fase1(nullptr)
+Jogo::Jogo() : Ente(), pEvento(pEvento->getGerenciadorEvento()), fase2(nullptr), fase1(nullptr)
 {
-    
+    //estado = Estado;
+
+    //Alocando ele dinamic�mente (O NEW � O EQUIVALENTE AO MALLOC EM C)
+   
+    if (!fase1)
+        cout << "!fase1 eh verdadeiro" << endl;
+
+    std::cout << "Constutora de jogo iniciada" << std::endl;
     iniciarMenu();
+
+    //iniciaFase1();
     Executar();
 
     //Inicializando a textura
@@ -20,19 +24,10 @@ Jogo::Jogo() : Ente(), fase2(nullptr), fase1(nullptr)
 Jogo::~Jogo()
 {
     //Jogador vai ser deletado na destrutora da lista
-    delete menu;
 
-    menu = nullptr;
     Jogador1 = nullptr;
-
 }
 
-
-void Jogo::iniciarMenu()
-{
-    if (!menu)
-        menu = new Menu();
-}
 
 
 void Jogo::iniciaFase1()
@@ -44,7 +39,6 @@ void Jogo::iniciaFase1()
     pEvento->setJogador2(Jogador2);
 
     fase1 = new Fase1(Jogador1, Jogador2);
-
 }
 
 
@@ -62,17 +56,14 @@ void Jogo::deletaFase1()
 
 void Jogo::iniciaFase2()
 {
-    //CAso ja exista Jogadores
-    if (Jogador1 && Jogador2) {
+    if (fase1)
+        deletaFase1();
 
+    if (Jogador1 && Jogador2) {
         Vector2<bool> jogadoresVivos;
         jogadoresVivos.x = Jogador1->getVida();
         jogadoresVivos.y = Jogador2->getVida();
 
-        if (fase1) {
-            cout << "TEMPO DE EXECUÇÃO FASE: " << fase1->tempoFase() << endl;
-            deletaFase1();
-        }
 
         if (jogadoresVivos.x == true)
             Jogador1 = new Jogador(1);
@@ -82,12 +73,6 @@ void Jogo::iniciaFase2()
     }
 
     else {
-
-        if (fase1) {
-            cout << "TEMPO DE EXECUÇÃO FASE: " << fase1->tempoFase() << endl;
-            deletaFase1();
-        }
-
         Jogador1 = new Jogador(1);
         Jogador2 = new Jogador(2);
     }
@@ -112,7 +97,7 @@ void Jogo::deletaFase2()
 
 void Jogo::controleFases()
 {
-    //CRIAÇÃO DAS FASES
+
     if (!fase1 && pGrafico->getEstado() == ID::fase1) {
         iniciaFase1();
         cout << "CRIEI FASE 1" << endl;
@@ -122,16 +107,6 @@ void Jogo::controleFases()
         iniciaFase2();
         cout << "CRIEI FASE 2" << endl;
     }
-
-
-    /*    FUNCIONAMENTO DA FASE
-    *     Se há jogador vivo a fase continua.
-    *     Se a fase1 ja estiver acabada ou nao esta em execucao, a fase2 eh executada.
-    *     Quando instancia a fase2, se a fase1 existir ela eh deletada
-    *     Quando acabada a fase2 ela eh deletada
-    *     Quando os dois jogadores morrem, as duas fases se deletam
-    */
-
 
     else if (Jogador1 && Jogador1->getVida() == true || Jogador2 && Jogador2->getVida() == true) {
 
@@ -145,23 +120,19 @@ void Jogo::controleFases()
         {
             pGrafico->setEstado(ID::fase2);
 
-            if (fase2) {
-                if (fase2->getAtiva()) {
-                    fase2->Executar();
-                    fase2->verificaTerminoFase();
-                }
-                else if (!fase2->getAtiva())
-                {
-                    cout << "FIM DO JOGO!" << endl;
-                    //Caso a fase termine, volta ao menu principal
-                    pGrafico->setEstado(ID::menuPrincipal);
-                    deletaFase2();
+            if (fase2 == nullptr)
+                iniciaFase2();
 
-                }
+            else if (fase2->getAtiva()) {
+                fase2->Executar();
+                fase2->verificaTerminoFase();
+            }
+            else {
+                pGrafico->setEstado(ID::menuPrincipal);
+                deletaFase2();
             }
         }
     }
-
     else {
 
         if (fase1)
@@ -169,45 +140,107 @@ void Jogo::controleFases()
         if (fase2)
             deletaFase2();
 
-        cout << "FIM DO JOGO!" << endl; 
-
-        //tela de gameOver
+        //deletar
+        cout << "FIM DO JOGO!" << endl; //tela de gameOver
         //tempo e uma imagem
-        pGrafico->setEstado(ID::menuPrincipal);
-
-        //pGrafico->fecharJanela();
-
+        pGrafico->fecharJanela();
     }
 }
 
 
+
+void Jogo::iniciarMenu()
+{
+    std::cout << "Menu Principal iniciado." << std::endl;
+    menu = new Menu();
+}
+
+/*
+void Jogo::setEstado(ID id)
+{
+    estado = id;
+}
+*/
+
+/*
+ID Jogo::getEstado()
+{
+    return estado;
+}
+*/
+
 void Jogo::Executar()
 {
     
-    //LOOP DE EXECUCAO DO PROGRAMA
+    //std::cout << "Entrou no loop executar / loop principal." << std::endl;
+
+    //LOOP DE EXECU��O DO PROGRAMA
     while (pGrafico->isWindowOpen())
     {
+        //pEvento->Executar();
+
+        //pGrafico->atualizaTempo();
+
+        //pGrafico->limpar();
 
         ID estado = pGrafico->getEstado();
-      
+        //std::cout << "Estado: " << estado << std::endl;
+
+        //getch();
+
+
         if (estado == ID::menuPrincipal)
         {
+            //std::cout << "Menu Principal is running." << std::endl;
             menu->run_menu();
         }
-
         else if (estado == ID::menuPause)
         {
 
         }
 
-        else if (estado == ID::fase1 || estado == ID::fase2)
+        else if (estado == ID::fase1)
         {
+            //std::cout << "Fase1 is running" << std::endl;
             pEvento->Executar();
+            //std::cout << "pEvento->executar com sucesso" << std::endl;
             pGrafico->atualizaTempo();
+            //std::cout << "Tempo atualizado com sucesso" << std::endl;
             pGrafico->limpar();
+            //std::cout << "Grafico limpo com sucesso" << std::endl;
+
+
+            
             controleFases();
+            //std::cout << "controleFases realizado com sucesso" << std::endl;
+
+
+
+
             pGrafico->mostrar();
         }
+        else if (estado == ID::fase2)
+        {
+            //std::cout << "Fase1 is running" << std::endl;
+            pEvento->Executar();
+            //std::cout << "pEvento->executar com sucesso" << std::endl;
+            pGrafico->atualizaTempo();
+            //std::cout << "Tempo atualizado com sucesso" << std::endl;
+            pGrafico->limpar();
+            //std::cout << "Grafico limpo com sucesso" << std::endl;
+
+
+
+            controleFases();
+            //std::cout << "controleFases realizado com sucesso" << std::endl;
+
+            pGrafico->mostrar();
+        }
+  
+        //Desenho as entidades da fase na tela e gerencio as colisoes entre elas dentro de cada fase
+        //controleFases();
+
+        //7pGrafico->mostrar();
                
     }
 

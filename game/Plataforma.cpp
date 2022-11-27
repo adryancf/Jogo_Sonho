@@ -2,15 +2,10 @@
 
 Plataforma::Plataforma(const Vector2f tam, const Vector2f pos)
 {
-	corpo.setPosition(pos);
-	corpo.setSize(tam);
-	corpo.setFillColor(Color::Green);
+	cor = sf::Color::Red;
+	this->setVariaveis(tam, pos);
 
 	id = ID::plataforma;
-	//sf::IntRect rect(478, 35, 1050, 452);
-	texture.loadFromFile("assets/brownPlatform.png");
-	corpo.setTexture(&texture);
-
 }
 
 Plataforma::Plataforma()
@@ -28,6 +23,7 @@ void Plataforma::Executar()
 	anulaGravidade();
 }
 
+//A plataforma jamais ataca
 void Plataforma::atacar(Entidade* adversario, float dano)
 {
 }
@@ -36,4 +32,14 @@ void Plataforma::Colisao(Entidade* entidade, Vector2f inter_colisao)
 {
 	if (entidade->getId() == jogador)
 		entidade->setVelocidade(Vector2f(VELOCIDADE_JOGADOR_X, entidade->getVelocidade().y));
+}
+
+//define as variaveis - corpo - textura
+void Plataforma::setVariaveis(const Vector2f tam, const Vector2f pos)
+{
+	corpo.setPosition(pos);
+	corpo.setSize(tam);
+	corpo.setFillColor(cor);
+	texture.loadFromFile("assets/brownPlatform.png");
+	corpo.setTexture(&texture);
 }

@@ -1,40 +1,37 @@
 #include "Caixa.h"
 
-Caixa::Caixa() : fixa(true)
+Caixa::Caixa() : ehFixa(true)
 {
+	id = ID::caixa;
 }
 
 Caixa::Caixa(const sf::Vector2f tam, const sf::Vector2f pos, bool estado_caixa):
-	fixa(estado_caixa)
+	ehFixa(estado_caixa)
 {
 	corpo.setPosition(pos);
 	corpo.setSize(tam);
 	//corpo.setFillColor(sf::Color::Red);
-	sf::IntRect rect(9, 22, 29, 24);
-	texture.loadFromFile("assets/washingmachine.png", rect);
+	sf::IntRect rect(199, 23, 34, 23);
+	texture.loadFromFile("assets/wm.png", rect);
 	corpo.setTexture(&texture);
 
 	id = ID::caixa;
-
-	/*
-	texture.loadFromFile("assets/NinjaFrog.png");
-	corpo.setTexture(&texture);
-	corpo.setSize(sf::Vector2f(80.0f, 80.0f));
-	*/
 }
 
 Caixa::~Caixa()
 {
 }
 
+//define o estado da caixa: fixa ou nao : true ou false
 void Caixa::setEstadoCaixa(bool estado_caixa)
 {
-	fixa = estado_caixa;
+	ehFixa = estado_caixa;
 }
 
+//retorna o estado da caixa: fixa ou nao : true ou false
 const bool Caixa::getEstadoCaixa()
 {
-	return fixa;
+	return ehFixa;
 }
 
 
@@ -43,10 +40,12 @@ void Caixa::Executar()
 	movGravidade();
 }
 
+//a caixa nao ataca nada
 void Caixa::atacar(Entidade* adversario, float dano)
 {
 }
 
+//trata a colisao da caixa com o jogador
 void Caixa::Colisao(Entidade* entidade, Vector2f inter_colisao)
 {
 	if (entidade->getId() == jogador && entidade->getVelocidade().x != VELOCIDADE_JOGADOR_X) {
@@ -54,13 +53,13 @@ void Caixa::Colisao(Entidade* entidade, Vector2f inter_colisao)
 	}
 
 
-	if (fixa) {
+	if (ehFixa) {
 		if (entidade->getId() == ID::plataforma || entidade->getId() == ID::caixa || entidade->getId() == ID::espinho)
 			corrigeColisoes(entidade, inter_colisao);
 	}
 	else {
 		if (verificarPosInvalida() || entidade->getId() == ID::caixa) {
-			fixa = true;
+			ehFixa = true;
 			cout << "entrei" << endl;
 		}
 		else {

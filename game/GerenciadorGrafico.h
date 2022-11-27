@@ -27,7 +27,6 @@ private:
 	/* Singlton */
 	static GerenciadorGrafico* pGrafico;
 	GerenciadorGrafico();
-
 public:
 	static float dt;
 
@@ -36,15 +35,15 @@ public:
 	sf::RenderWindow* getWindow();
 	void limpar();
 	void desenhar(sf::RectangleShape corpo);
-	void desenhar(sf::Sprite p);
-	void desenhar(sf::Text t);
+	//void desenhar(sf::Sprite p);
+	//void desenhar(sf::Text t);
 	void mostrar();
 	void fecharJanela();
 	const bool isWindowOpen();
 
 	void atualizaTempo();
 
-	void setEstado(ID id);
-	ID getEstado();
+	void setEstado(const ID id);
+	const ID getEstado() const;
 };
 

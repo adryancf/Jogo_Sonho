@@ -3,19 +3,14 @@
 Fantasma::Fantasma(): Inimigo(), tempo_de_ataque(1.0)
 {
     id = ID::fantasma;
-    inicializa();
-
-    sf::IntRect rect(1, 4, 30, 27);
-    texture.loadFromFile("assets/ghost-Sheet.png", rect);
-    corpo.setTexture(&texture);
-    //corpo.setSize(sf::Vector2f(60.0f, 60.0f));
+    inicializaVariaveis();
 }
 
 Fantasma::~Fantasma()
 {
 }
 
-void Fantasma::inicializa()
+void Fantasma::inicializaVariaveis()
 {
     //Forma Fantasma
     corpo.setSize(Vector2f(FANTASMA_X, FANTASMA_Y));
@@ -29,6 +24,10 @@ void Fantasma::inicializa()
     repulsao_direita = Vector2f(30.f, 0.f);
     repulsao_esquerda = Vector2f(-30.f, 0.f);
 
+
+    sf::IntRect rect(1, 4, 30, 27);
+    texture.loadFromFile("assets/ghost-Sheet.png", rect);
+    corpo.setTexture(&texture);
 }
 
 const float Fantasma::getTempoAtaque() const

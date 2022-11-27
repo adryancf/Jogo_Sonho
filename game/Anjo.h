@@ -29,7 +29,7 @@ public:
 	const Projetil* getProjetil();
 	virtual void atirar_projetil();
 
-	void inicializa();
+	void inicializaVariaveis();
 
 	virtual void Mover();
 	virtual void Executar();

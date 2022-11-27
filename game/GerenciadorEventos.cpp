@@ -1,6 +1,6 @@
 #include "GerenciadorEventos.h"
 
-#define TAM_PULO_JOGADOR 0.004f
+#define TAM_PULO_JOGADOR 0.1f
 
 GerenciadorEvento* GerenciadorEvento::pEvento = nullptr;
 
@@ -70,9 +70,7 @@ void GerenciadorEvento::verificaTeclaPressionada()
 
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && Jogador2 != nullptr) {
         Jogador2->pular(TAM_PULO_JOGADOR);
-    }
-
-        
+    }   
 }
 
 void GerenciadorEvento::verificaTeclaPressionada(sf::Keyboard::Key tecla)

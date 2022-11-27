@@ -1,12 +1,6 @@
 #include "Fase.h"
 
-
-
-Fase::Fase(Jogador *j1, Jogador* j2): fundo(Vector2f(RESOLUCAO_X, RESOLUCAO_Y)),
-	numero_instancias(0), 
-	j1(j1), 
-	j2(j2),
-	relogio_fase(),
+Fase::Fase(Jogador *j1, Jogador* j2): numero_instancias(0), j1(j1), j2(j2),
 	plataforma_fase(nullptr), 
 	caixa(nullptr), 
 	ativa(true), 
@@ -23,23 +17,6 @@ Fase::~Fase()
 	lista_personagem = nullptr;
 	j1 = nullptr;
 	j2 = nullptr;
-}
-
-const float Fase::tempoFase()
-{
-	return (relogio_fase.getElapsedTime().asSeconds());
-}
-
-void Fase::setFundo(string path_fundo)
-{
-	img_fundo.loadFromFile(path_fundo);
-	fundo.setTexture(&img_fundo);
-}
-
-void Fase::setFundo(string path_fundo, IntRect rect)
-{
-	img_fundo.loadFromFile("assets/Idle.png", rect);
-	fundo.setTexture(&img_fundo);
 }
 
 int Fase::gerarNumeroAleatorio(int min, int max)
@@ -98,7 +75,7 @@ void Fase::deletaListas()
 		delete pColisoes;
 
 	else
-		cout << "Nao � poss�vel deletar ponteiro null (pColisoes - Fase.cpp)" << endl;
+		cout << "Nao eh possivel deletar ponteiro null (pColisoes - Fase.cpp)" << endl;
 	
 	if (lista_personagem) {
 		lista_personagem->removerTudo();
@@ -108,7 +85,7 @@ void Fase::deletaListas()
 	}
 
 	else
-		cout << "Nao � poss�vel deletar ponteiro null (lista_personagens - Fase.cpp)" << endl;
+		cout << "Nao eh possivel deletar ponteiro null (lista_personagens - Fase.cpp)" << endl;
 
 	if (lista_obstaculos) {
 		lista_obstaculos->removerTudo();
@@ -119,7 +96,7 @@ void Fase::deletaListas()
 	}
 
 	else
-		cout << "Nao � poss�vel deletar ponteiro null (lista_obstaculos - Fase.cpp)" << endl;
+		cout << "Nao eh possivel deletar ponteiro null (lista_obstaculos - Fase.cpp)" << endl;
 	
 }
 

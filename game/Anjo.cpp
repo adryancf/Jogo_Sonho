@@ -16,17 +16,11 @@ Anjo::Anjo(Jogador* p1, Jogador* p2, Projetil* b):
 
     projetil->setPortador(this);
 
-    inicializa();
+    inicializaVariaveis();
     
     sf::IntRect rect(83, 29, 25, 35);
     texture.loadFromFile("assets/Run-Sheet.png", rect);
     corpo.setTexture(&texture);
-    //corpo.setSize(sf::Vector2f(70.0f, 70.0f));
-
-    //texture.loadFromFile("assets/VirtualGuy.png");
-    //corpo.setTexture(&texture);
-    //corpo.setSize(sf::Vector2f(70.0f, 70.0f));
-
 }
 
 Anjo::~Anjo()
@@ -38,7 +32,8 @@ Anjo::~Anjo()
         projetil = nullptr;
 }
 
-void Anjo::inicializa()
+//
+void Anjo::inicializaVariaveis()
 {
     //Forma Anjo
     corpo.setSize(Vector2f(ANJO_X, ANJO_Y));
@@ -59,39 +54,28 @@ void Anjo::inicializa()
         projetil->setDano(0.0f);
 }
 
+//define que a variavel alvo recebe o parâmetro alvo (ptr)
 void Anjo::setAlvo(Personagens* alvo)
 {
     this->alvo = alvo;
 }
 
+//retorna um ponteiro para alvo
 const Personagens* Anjo::getAlvo() const
 {
     return alvo;
 }
 
+//retorna um ponteiro para projetil
 const Projetil* Anjo::getProjetil()
 {
     return projetil;
 }
 
 
-
+//define se o alvo esta a esquerda ou a direita
 void Anjo::EncontraPosAlvo()
 {
-    /*
-    if (player1 && player2) {
-        //Encontra a posicao do alvo mais proximo e pra que lado ele esta
-        alvo = verificaMaisProximo(player1, player2, getPosicao());
-    }
-    else {
-        if (player1)
-            alvo = player1;
-        else if (player2)
-            alvo = player2;
-
-    }
-    */
-
     if (jogadoresAtivos == "Dois")
         alvo = verificaMaisProximo(player1, player2, getPosicao());
 
@@ -115,11 +99,11 @@ void Anjo::EncontraPosAlvo()
     
 }
 
-
+//atira o projetil referente a pos o alvo
 void Anjo::atirar_projetil()
 {
       
-    //Lan�a de 1 em 1s
+    //Lanca de 1 em 1s
     
     //Liberar projetil
     if (estaNoRaio || projetil->getRepouso() == false) {
@@ -132,6 +116,7 @@ void Anjo::atirar_projetil()
     
 }
 
+//O anjo de movimenta 
 void Anjo::Mover()
 {
     movGravidade();
@@ -139,6 +124,7 @@ void Anjo::Mover()
     qualPerseguir(getPosicao());
 
 }
+
 
 void Anjo::Executar()
 {
@@ -148,49 +134,50 @@ void Anjo::Executar()
 
 }
 
+//
 void Anjo::Colisao(Entidade* entidade, Vector2f inter_colisao)
 {
 	ID id_entidade = entidade->getId();
 
-    if (id_entidade == jogador) {
+    if (id_entidade == jogador)
+    {
 
-        //Ataque (S� ataca quando o jogador nao tiver em cima)
+        //Ataque (So ataca quando o jogador nao tiver em cima)
         Personagens* jogador = static_cast<Personagens*>(entidade);
 
         jogadorEmCima = jogador->getEmCima();
 
-        if (!jogadorEmCima) {
+        if (!jogadorEmCima)
+        {
+            if (jogador->getEstadoMovimentoJogador() == true)
+            {
 
-            if (jogador->getEstadoMovimentoJogador() == true) {
-
-                if (jogador->getOlhar()) {
+                if (jogador->getOlhar())
+                {
                     jogador->movimentaEntidade(repulsao_esquerda, false);
                 }
-                else if (!jogador->getOlhar()) {
+                else if (!jogador->getOlhar())
+                {
                     jogador->movimentaEntidade(repulsao_direita, true);
                 }
             }
             else
             {
-                if (olhandoDireita) {
+                if (olhandoDireita)
+                {
                     jogador->movimentaEntidade(repulsao_direita, true);
-
                 }
-                else if (olhandoEsquerda) {
+                else if (olhandoEsquerda)
+                {
                     jogador->movimentaEntidade(repulsao_esquerda, false);
-
                 }
-
-
             }
             atacar(jogador, dano);
             jogador->atacar(this, jogador->getDano());
-        }
-        
+        }    
     }
     else
         corrigeColisoes(entidade, inter_colisao);
-
 }
 
 

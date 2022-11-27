@@ -16,8 +16,7 @@ Entidade::Entidade(ID idd) : corpo(Vector2f(70.f, 70.f)),
     repulsao_direita(Vector2f(0.0f, 0.0f)),
     repulsao_esquerda(Vector2f(0.0f, 0.0f)),
     dano(0.0f)
-{
-   
+{  
 }
 
 
@@ -57,11 +56,10 @@ void Entidade::setVelocidade(Vector2f velocidade)
     speed = velocidade;
 }
 
-Vector2f Entidade::getVelocidade()
+const Vector2f Entidade::getVelocidade() const
 {
     return speed;
 }
-
 
 void Entidade::setDano(float dano)
 {
@@ -104,7 +102,7 @@ void Entidade::setChao(bool estaNoChao)
     noChao = estaNoChao;
 }
 
-
+//retorna um booleano que define se esta emCima ou nao: true ou false
 const bool Entidade::getEmCima()
 {
     return emCimaEntidade;
@@ -119,7 +117,7 @@ void Entidade::movGravidade()
 
     else{ noChao = false; }
         
-    //Manipula��o da integra��o de Euler = (Velocidade + posicao atual) + acelaracao
+    //Manipulacao da integracao de Euler = (Velocidade + posicao atual) + aceleracao
     //(Velocidade + posicao atual) = corpo.move -> ele soma a posicao atual mais o valor da velocidade
     
     if (gravidade) {
@@ -129,15 +127,7 @@ void Entidade::movGravidade()
         speed.y += acelaracao * GerenciadorGrafico::dt;
 
         corpo.move(Vector2f(0.0f, speed.y));
-
-        /*
-        //tempo eleavdo a 1 (Gravidade = 9.98)
-        double acelaracao = GRAVIDADE * GerenciadorGrafico::dt;
-        speed.y += acelaracao;
-        */
-
     }
-
 }
 
 
@@ -190,7 +180,25 @@ void Entidade::corrigeColisoes(Entidade* a, Vector2f inter)
 
 }
 
+//sem IntRect, seta a textura do corpo, usa try-catch se nao conseguir carregar a textura
+void Entidade::setTextura(std::string str)
+{
+    try
+    {
+        bool v = texture.loadFromFile(str);
+        if (v)
+            cout << "textura carregada com sucesso." << endl;
+        else
+            throw false;
+    }
+    catch (bool s)
+    {
+        cout << "impossivel carregar a textura" << endl;
+        exit(1);
+    }
+}
 
+//define a posicao da entidade
 void Entidade::setPosEntidade(Vector2f pos)
 {
     corpo.setPosition(pos);

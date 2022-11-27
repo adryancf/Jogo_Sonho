@@ -50,6 +50,7 @@ void GerenciadorGrafico::desenhar(sf::RectangleShape corpo)
     window->draw(corpo);
 }
 
+/*
 void GerenciadorGrafico::desenhar(sf::Sprite p)
 {
     window->draw(p);
@@ -59,7 +60,7 @@ void GerenciadorGrafico::desenhar(sf::Text t)
 {
     window->draw(t);
 }
-
+*/
 void GerenciadorGrafico::mostrar()
 {
     window->display();
@@ -83,12 +84,12 @@ void GerenciadorGrafico::atualizaTempo()
 
 }
 
-void GerenciadorGrafico::setEstado(ID id)
+void GerenciadorGrafico::setEstado(const ID id)
 {
     estado = id;
 }
 
-ID GerenciadorGrafico::getEstado()
+const ID GerenciadorGrafico::getEstado() const
 {
     return estado;
 }

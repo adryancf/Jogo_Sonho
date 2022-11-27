@@ -10,10 +10,8 @@ Hydra::Hydra(Jogador* p1, Jogador* p2): Inimigo(), posHydra(Vector2f(0.0f, 0.0f)
 
 	id = ID::hydra;
 
+
 	inicializa();
-	texture.loadFromFile("assets/MaskDude.png");
-	corpo.setTexture(&texture);
-	//corpo.setSize(sf::Vector2f(70.0f, 70.0f));
 }
 
 Hydra::~Hydra()
@@ -38,6 +36,13 @@ void Hydra::inicializa()
 
 	raio_deteccao.x = 300.f;
 	raio_deteccao.y = 300.f;
+
+	std::string st = "assets/MaskDude.png";
+
+	//texture.loadFromFile("assets/MaskDude.png");
+	texture.loadFromFile(st);
+	corpo.setTexture(&texture);
+	//corpo.setSize(sf::Vector2f(70.0f, 70.0f));
 }
 
 void Hydra::Mover()

@@ -3,7 +3,6 @@
 #include "stdafx.h"
 #include "GerenciadorGrafico.h"
 #include "Id.h"
-/* Derivadas = Jogo, Entidade, Fase */
 
 class Ente
 {
@@ -14,12 +13,6 @@ protected:
 	//Todo ENTE tem um ID
 	ID id;
 
-	//Todo ENTE tem uma POSICAO
-
-	//Todo ENTE tem um SHAPE
-
-	//Todo ENTE tem uma TEXTURA
-
 	//Todo ENTE pode ou nao estar VISIVEL
 	bool visivel;
 
@@ -28,21 +21,14 @@ public:
 	Ente(GerenciadorGrafico* pG);
 	~Ente();
 
-	void setWindow(GerenciadorGrafico* pG);
-	GerenciadorGrafico* getGrafico();
-
 	virtual void Executar() = 0;
 
 	//ID
 	void setId(ID Id);
-	ID getId();
-
-	//POSICAO
-
-	//TEXTURA
+	const ID getId() const;
 
 	//VISIBILIDADE
-	void setVisivel(bool s);
+	void setVisivel(bool visivel);
 	const bool getVisivel() const;
 };
 

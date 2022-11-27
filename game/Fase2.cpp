@@ -32,7 +32,6 @@ Fase2::Fase2(Jogador* j1, Jogador* j2): Fase(j1, j2), anjo(nullptr), projetil_an
 		this->j1->setPosEntidade(Vector2f(10.0f, ALTURAP1 - JOGADOR_Y));
 	if(j2 != nullptr)
 		this->j2->setPosEntidade(Vector2f(980.f, ALTURAP3 - JOGADOR_Y));
-
 }
 
 

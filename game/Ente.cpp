@@ -1,8 +1,5 @@
 #include "Ente.h"
 
-//Atributo estatico
-//GerenciadorGrafico* GerenciadorGrafico::pGrafico = pGrafico->getGerenciadorGrafico();
-
 Ente::Ente(): pGrafico(pGrafico->getGerenciadorGrafico())
 {
 	pGrafico->getWindow()->setVerticalSyncEnabled(true);
@@ -21,20 +18,6 @@ Ente::~Ente()
 { 
 }
 
-
-// (Sem uso)
-void Ente::setWindow(GerenciadorGrafico* pG) 
-{ 
-	pGrafico = pG; 
-}
-
-// (Sem uso) | talvez precise do static antes da declaração da funcao
-GerenciadorGrafico* Ente::getGrafico()
-{
-	return pGrafico;
-}
-
-
 //Define o ID
 void Ente::setId(ID Id)
 {
@@ -42,15 +25,15 @@ void Ente::setId(ID Id)
 }
 
 //Retorna o ID
-ID Ente::getId()
+const ID Ente::getId() const
 {
 	return id;
 }
 
 //Def se estah visivel ou nao
-void Ente::setVisivel(bool s)
+void Ente::setVisivel(bool visivel)
 {
-	visivel = s;
+	this->visivel = visivel;
 }
 
 //Retorna o valor do atributo isShowing

@@ -13,22 +13,18 @@ private:
 	Jogador* Jogador1;
 	Jogador* Jogador2;
 
-	static GerenciadorEvento* pEvento;
-
-	//Controle de tempo
-	sf::Clock clock_jogo;
-	float tempo_jogo;
-
+	GerenciadorEvento* pEvento;
 
 	Fase1* fase1;
 	Fase2* fase2;
 	Menu* menu;
-
-
-
+	
+	//O jogo tem um ESTADO
+	//ID estado;
 
 public:
 	Jogo();
+	//Jogo(ID Estado = ID::menuPrincipal);
 	~Jogo();
 
 	void controleFases();
@@ -39,6 +35,12 @@ public:
 	void deletaFase2();
 
 	void iniciarMenu();
+
+	//Metodo para definir o estado
+	void setEstado(ID id);
+
+	//Metodo para retornar o estado
+	ID getEstado();
 
 	void Executar();
 };

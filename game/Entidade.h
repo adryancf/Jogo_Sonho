@@ -14,7 +14,6 @@ protected:
 	//Toda entidade sofre uma velocida (gravidade e movimento)
 	sf::Vector2f speed;
 
-	//Nao sei se seria util esse atributo (pois a posicao do corpo pode ser obtida atraves de um getPosicao())
 	Vector2f posicao;
 
 	//Util para colisoes entre entidades
@@ -48,7 +47,7 @@ public:
 
 	//ATRIBUTOS
 	void setVelocidade(Vector2f velocidade);
-	Vector2f getVelocidade();
+	const Vector2f getVelocidade() const;
 	void setDano(float dano);
 	const float getDano() const;
 
@@ -74,6 +73,8 @@ public:
 	
 	virtual void Executar() = 0;
 	virtual void Colisao(Entidade* entidade, Vector2f inter_colisao) = 0;
+
+	void setTextura(std::string str);
 
 };
 

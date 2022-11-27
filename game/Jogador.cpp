@@ -69,7 +69,7 @@ void Jogador::Mover()
 void Jogador::Executar()
 {
     verificaVida();
-    //cout << " Pontos Jogador: " << pontuacao << endl;
+    cout << " Pontos Jogador: " << pontuacao << endl;
     Mover();
 
 }

@@ -4,10 +4,9 @@
 class Caixa : public Obstaculo
 {
 private:
-	sf::Texture texture;
 
-	//Define a propriedade da Caixa: Fixa ou m�vel
-	bool fixa;
+	//Define a propriedade da Caixa: Fixa ou movel
+	bool ehFixa;
 
 public:
 	Caixa();

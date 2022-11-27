@@ -7,6 +7,7 @@ private:
 
 	//NESSA FASE VAI TER ESPECIFICAMENTE
 	Fantasma* fantasma;
+
 	virtual void criar_entidades();
 
 public:
