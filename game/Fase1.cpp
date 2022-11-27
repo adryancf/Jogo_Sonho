@@ -17,13 +17,25 @@
 #define ALTURAP5 700.f
 #define COMPRIMENTOP5 1000.f
 
+#define ALTURAP6 450.f
+#define COMPRIMENTOP6 200.f
+
+
 
 Fase1::Fase1(Jogador* j1, Jogador* j2): Fase(j1, j2), fantasma(nullptr)
 {
+	
 	//Inicializa todas as entidades da fase
 	criar_entidades();
+
+	//setFundo("assets/Background.png");
+	
+	//Zera os pontos no começo da fase (pode ser so com uma instancia de jogador pois é uma variavel static)
+	this->j1->setPontos(0, 0);
 	this->j1->setPosEntidade(Vector2f(10.0f, ALTURAP1 - JOGADOR_Y));
-	this->j2->setPosEntidade(Vector2f(10.0f, ALTURAP5 - JOGADOR_Y));
+
+	if(j2)
+		this->j2->setPosEntidade(Vector2f(10.0f, ALTURAP5 - JOGADOR_Y));
 
 }
 
@@ -81,7 +93,7 @@ void Fase1::criarFantasma()
 			fantasma->setPosEntidade(Vector2f(gerarNumeroAleatorio(700.0f, 630.f + COMPRIMENTOP4), ALTURAP4 - FANTASMA_Y)); //Quarta Plataforma
 
 		else
-			fantasma->setPosEntidade(Vector2f(gerarNumeroAleatorio(50.0f, 500.f), ALTURAP5 - FANTASMA_Y)); //Quinta Plataforma
+			fantasma->setPosEntidade(Vector2f(gerarNumeroAleatorio(150.0f, 500.f), ALTURAP5 - FANTASMA_Y)); //Quinta Plataforma
 
 
 
@@ -113,7 +125,7 @@ void Fase1::criarHydra()
 			hydra->setPosEntidade(Vector2f(gerarNumeroAleatorio(320.0f, 600.f), ALTURAP3 - HYDRA_Y)); //Terceira Plataforma
 
 		else
-			hydra->setPosEntidade(Vector2f(gerarNumeroAleatorio(20.0f, COMPRIMENTOP5), ALTURAP5 - HYDRA_Y)); //Quinta Plataforma
+			hydra->setPosEntidade(Vector2f(gerarNumeroAleatorio(200.0f, COMPRIMENTOP5), ALTURAP5 - HYDRA_Y)); //Quinta Plataforma
 
 
 	}
@@ -123,6 +135,9 @@ void Fase1::criarHydra()
 //Cria 5 plataformas que formam o cenario da fase
 void Fase1::criarPlataforma()
 {
+	srand(time(nullptr));
+	numero_instancias = gerarNumeroAleatorio(5, 6);
+
 	//ORDEM DE VISUALIZA��O (CIMA PARA BAIXO)
 	plataforma_fase = nullptr;
 
@@ -140,14 +155,18 @@ void Fase1::criarPlataforma()
 
 	plataforma_fase = new Plataforma(Vector2f(COMPRIMENTOP5, ESPESSURA_PLATAFORMA_F1), Vector2f(BORDA_ESQ, ALTURAP5));
 	lista_obstaculos->incluir(plataforma_fase);
-
-
+	
+	if (numero_instancias == 6) {
+		plataforma_fase = new Plataforma(Vector2f(COMPRIMENTOP6, ESPESSURA_PLATAFORMA_F2), Vector2f(BORDA_ESQ, ALTURAP6));
+		lista_obstaculos->incluir(plataforma_fase);
+	}
+	
 }
 
 void Fase1::criarCaixa()
 {
 	srand(time(nullptr));
-
+	numero_instancias = gerarNumeroAleatorio(4, 6);
 
 	caixa = new Caixa(Vector2f(CAIXA_TAM, CAIXA_TAM), Vector2f(gerarNumeroAleatorio(700.f, 800.f), ALTURAP2 - CAIXA_TAM), true); //Segunda plataforma
 	lista_obstaculos->incluir(caixa);
@@ -158,10 +177,22 @@ void Fase1::criarCaixa()
 	caixa = new Caixa(Vector2f(CAIXA_TAM, CAIXA_TAM), Vector2f(630.f, ALTURAP4 - (CAIXA_TAM * 2.f)), true); //Quarta plataforma
 	lista_obstaculos->incluir(caixa);
 
-	caixa = new Caixa(Vector2f(CAIXA_TAM, CAIXA_TAM), Vector2f(gerarNumeroAleatorio(630.f + 40.f, 1200.f), ALTURAP4 - CAIXA_TAM), false); //Quarta plataforma
+	caixa = new Caixa(Vector2f(CAIXA_TAM, CAIXA_TAM), Vector2f(gerarNumeroAleatorio(700.f, 1200.f), ALTURAP4 - CAIXA_TAM), false); //Quarta plataforma
 	lista_obstaculos->incluir(caixa);
 
+	if (numero_instancias == 5)
+	{
+		caixa = new Caixa(Vector2f(CAIXA_TAM, CAIXA_TAM), Vector2f(gerarNumeroAleatorio(100.f, 1000.f), ALTURAP5 - CAIXA_TAM), true);
+		lista_obstaculos->incluir(caixa);
+	}
+	else if (numero_instancias == 6)
+	{
+		caixa = new Caixa(Vector2f(CAIXA_TAM, CAIXA_TAM), Vector2f(gerarNumeroAleatorio(350.f, 900.f), ALTURAP5 - CAIXA_TAM), true); 
+		lista_obstaculos->incluir(caixa);
 
+		caixa = new Caixa(Vector2f(CAIXA_TAM, CAIXA_TAM), Vector2f(gerarNumeroAleatorio(100.f, 300.f), ALTURAP5 - CAIXA_TAM), true); 
+		lista_obstaculos->incluir(caixa);
+	}
 }
 
 
@@ -169,7 +200,7 @@ void Fase1::criarCaixa()
 void Fase1::Executar()
 {
 	//desenha fundo
-	
+	//pGrafico->desenhar(fundo);
 
 
 	//Desenha todas as entidades

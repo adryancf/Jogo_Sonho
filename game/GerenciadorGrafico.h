@@ -17,6 +17,10 @@ private:
 	//Estado
 	ID estado;
 
+	bool umJogador;
+
+	bool fase1;
+
 	//Janela do jogo (criada nessa classe)
 	sf::RenderWindow* window;
 
@@ -45,5 +49,11 @@ public:
 
 	void setEstado(const ID id);
 	const ID getEstado() const;
+
+	void setUmJogador(bool t);
+	const bool getUmJogador() const;
+
+	void setFase1(bool t);
+	const bool getFase1() const;
 };
 

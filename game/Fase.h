@@ -38,6 +38,15 @@ protected:
 	bool ativa;
 	virtual void criar_entidades() = 0;
 
+	//Background
+	RectangleShape fundo;
+	Texture img_fundo;
+
+	//Tempo do Jogo
+	sf::Clock relogio_fase;
+	float tempo_fase;
+
+
 public:
 	Fase(Jogador *j1, Jogador* j2);
 	~Fase();
@@ -45,12 +54,16 @@ public:
 	//Features
 	int gerarNumeroAleatorio(int min, int max);
 	int gerarNumeroAleatorio(float min, float max);
+	const float tempoFase();
 
-	//Controle da execu��o da fase
+	//Background
+	void setFundo(string path_fundo);
+	void setFundo(string path_fundo, IntRect rect);
+
+	//Controle da execucao da fase
 	void verificaTerminoFase();
 	const bool getAtiva();
 
-	void pontuacaoJogador();
 	virtual void Executar() = 0;
 
 	//Listas

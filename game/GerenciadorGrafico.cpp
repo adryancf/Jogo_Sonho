@@ -7,7 +7,7 @@
 GerenciadorGrafico* GerenciadorGrafico::pGrafico = nullptr;
 float GerenciadorGrafico::dt = 0;
 
-GerenciadorGrafico::GerenciadorGrafico(): estado(ID::menuPrincipal),
+GerenciadorGrafico::GerenciadorGrafico(): estado(ID::menuPrincipal), umJogador(true), fase1(false),
     window(new sf::RenderWindow(sf::VideoMode(RESOLUCAO_X, RESOLUCAO_Y), "Jogo")),
     clock()
 {
@@ -92,5 +92,25 @@ void GerenciadorGrafico::setEstado(const ID id)
 const ID GerenciadorGrafico::getEstado() const
 {
     return estado;
+}
+
+void GerenciadorGrafico::setUmJogador(bool t)
+{
+    this->umJogador = t;
+}
+
+const bool GerenciadorGrafico::getUmJogador() const
+{
+    return umJogador;
+}
+
+void GerenciadorGrafico::setFase1(bool t)
+{
+    fase1 = t;
+}
+
+const bool GerenciadorGrafico::getFase1() const
+{
+    return fase1;
 }
 

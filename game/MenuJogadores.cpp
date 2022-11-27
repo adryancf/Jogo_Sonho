@@ -1,6 +1,5 @@
-#include "Menu.h"
-
-Menu::Menu() : Ente(), window(pGrafico->getWindow())
+#include "MenuJogadores.h"
+MenuJogadores::MenuJogadores() : Ente(), window(pGrafico->getWindow())
 {
     //std::cout << "Construtora menu iniciada." << std::endl;
     //window = new sf::RenderWindow();
@@ -12,15 +11,15 @@ Menu::Menu() : Ente(), window(pGrafico->getWindow())
     set_values();
 }
 
-Menu::~Menu() {
-   // delete window;
-    //delete winclose;
+MenuJogadores::~MenuJogadores() {
+    // delete window;
+     //delete winclose;
     delete font;
     delete image;
     delete bg;
 }
 
-void Menu::set_values() {
+void MenuJogadores::set_values() {
     //window->create(sf::VideoMode(1280, 720), "Menu SFML", sf::Style::Titlebar | sf::Style::Close);
     //window->setPosition(sf::Vector2i(0, 0));
     //std::cout << "Setando os valores do menu" << std::endl;
@@ -34,9 +33,9 @@ void Menu::set_values() {
     //pos_mouse = { 0,0 };
     //mouse_coord = { 0, 0 };
 
-    options = { "Jogo", "Fase1", "Fase2", "Leaderboard", "Quit" };
+    options = { "Sonho++", "1 Jogador", "2 Jogadores", "Aleatório", "Voltar" };
     texts.resize(5);
-    coords = { {590,40},{620,191},{610,282},{590,370},{623,457} };
+    coords = { {590,40},{590,191},{590,282},{590,370},{623,457} };
     sizes = { 20,28,24,24,24 };
 
     for (std::size_t i{}; i < texts.size(); ++i) {
@@ -51,7 +50,7 @@ void Menu::set_values() {
 
     //std::cout << "Valores do menu setados." << std::endl;
 }
-void Menu::loop_events() {
+void MenuJogadores::loop_events() {
     sf::Event event;
     while (window->pollEvent(event)) {
         if (event.type == sf::Event::Closed) {
@@ -81,27 +80,32 @@ void Menu::loop_events() {
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && !theselect) {
             theselect = true;
-            //Quit
+            //Volta ao menuPrincipal
             if (pos == 4) {
-                window->close();
+                pGrafico->setEstado(ID::menuPrincipal);
             }
-            //Iniciar jogo
+            //Inicia a fase com 1 jogador
             else if (pos == 1)
             {
-                pGrafico->setEstado(ID::menuJogadores);
-                pGrafico->setFase1(true);
+                if (pGrafico->getFase1() == true)
+                    pGrafico->setEstado(ID::fase1);
+                else
+                    pGrafico->setEstado(ID::fase2);
+                pGrafico->setUmJogador(true);
             }
-            //Inicia a fase2
+            //Inicia a fase com 2 jogadores
             else if (pos == 2)
             {
-                pGrafico->setEstado(ID::menuJogadores);
-                pGrafico->setFase1(false);
-                
+                if (pGrafico->getFase1() == true)
+                    pGrafico->setEstado(ID::fase1);
+                else
+                    pGrafico->setEstado(ID::fase2);
+                pGrafico->setUmJogador(false);
             }
-            //Leaderboard
+            //Numero aleatorio de jogadores 1 ou 2
             else if (pos == 3)
             {
-                pGrafico->setEstado(ID::leaderboard);
+                pGrafico->setEstado(ID::aleatorio);
 
             }
 
@@ -109,7 +113,7 @@ void Menu::loop_events() {
         }
     }
 }
-void Menu::draw_all() {
+void MenuJogadores::draw_all() {
     window->clear();
     window->draw(*bg);
     for (auto t : texts) {
@@ -118,14 +122,14 @@ void Menu::draw_all() {
     window->display();
 }
 
-void Menu::run_menu() {
-    while (window->isOpen() && pGrafico->getEstado() == ID::menuPrincipal)
+void MenuJogadores::run_menu() {
+    while (window->isOpen() && pGrafico->getEstado() == ID::menuJogadores)
     {
         loop_events();
         draw_all();
     }
 }
-void Menu::Executar()
+void MenuJogadores::Executar()
 {
     run_menu();
     //draw_all();

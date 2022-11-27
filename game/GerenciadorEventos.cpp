@@ -46,7 +46,7 @@ void GerenciadorEvento::setJogador2(Jogador* j)
 void GerenciadorEvento::verificaTeclaPressionada()
 {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
-        pGrafico->fecharJanela();
+        pGrafico->setEstado(ID::menuPause);
     }
 
     //CONTROLE JOGADOR 1
@@ -76,7 +76,7 @@ void GerenciadorEvento::verificaTeclaPressionada()
 void GerenciadorEvento::verificaTeclaPressionada(sf::Keyboard::Key tecla)
 {
     if (tecla == sf::Keyboard::Escape) {
-        pGrafico->fecharJanela();
+        pGrafico->setEstado(ID::menuPause);
     }
 
     //CONTROLE JOGADOR 1

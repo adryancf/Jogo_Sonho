@@ -16,6 +16,10 @@
 		menuPause,
 		fase1,
 		fase2,
-		leaderboard
+		leaderboard,
+		menuJogadores,
+		aleatorio,
+		jogar1,
+		jogar2
 	};
 

@@ -1,13 +1,12 @@
 #pragma once
 #include "Ente.h"
-
-class Menu : public Ente
+class MenuJogadores : public Ente
 {
 private:
 	//Como eh derivado do ENTE jah tem o posicao
 	int pos;
 	bool pressed, theselect;
-	
+
 
 	//Conhece a JANELA
 	sf::RenderWindow* window;
@@ -35,8 +34,8 @@ protected:
 	void loop_events();
 	void draw_all();
 public:
-	Menu();
-	~Menu();
+	MenuJogadores();
+	~MenuJogadores();
 	void run_menu();
 
 	//redefinindo a executar

@@ -3,6 +3,8 @@
 #include "Fase2.h"
 #include "GerenciadorEventos.h"
 #include "Menu.h"
+#include "MenuJogadores.h"
+#include "MenuPause.h"
 
 using namespace std;
 using namespace sf;
@@ -13,18 +15,20 @@ private:
 	Jogador* Jogador1;
 	Jogador* Jogador2;
 
-	GerenciadorEvento* pEvento;
+	static GerenciadorEvento* pEvento;
 
 	Fase1* fase1;
 	Fase2* fase2;
 	Menu* menu;
-	
-	//O jogo tem um ESTADO
-	//ID estado;
+	MenuJogadores* menuj;
+	MenuPause* menup;
+
+	//2: DOIS JOGADORES | 1: UM JOGADOR
+	int qJogadores;
+
 
 public:
 	Jogo();
-	//Jogo(ID Estado = ID::menuPrincipal);
 	~Jogo();
 
 	void controleFases();
@@ -35,12 +39,6 @@ public:
 	void deletaFase2();
 
 	void iniciarMenu();
-
-	//Metodo para definir o estado
-	void setEstado(ID id);
-
-	//Metodo para retornar o estado
-	ID getEstado();
 
 	void Executar();
 };
