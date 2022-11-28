@@ -129,7 +129,7 @@ void Projetil::Executar()
 		movGravidade();
 }
 
-void Projetil::Colisao(Entidade* entidade, Vector2f inter_colisao)
+void Projetil::reagirColisao(Entidade* entidade, Vector2f inter_colisao)
 {
 
 	corrigeColisoes(entidade, inter_colisao);

@@ -18,7 +18,7 @@ public:
 
 	virtual void Executar();
 	virtual void atacar(Entidade* adversario, float dano);
-	virtual void Colisao(Entidade* entidade, Vector2f inter_colisao);
+	virtual void reagirColisao(Entidade* entidade, Vector2f inter_colisao);
 
 };
 

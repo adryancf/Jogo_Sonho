@@ -134,7 +134,7 @@ void Anjo::Executar()
 }
 
 //
-void Anjo::Colisao(Entidade* entidade, Vector2f inter_colisao)
+void Anjo::reagirColisao(Entidade* entidade, Vector2f inter_colisao)
 {
 	ID id_entidade = entidade->getId();
 

@@ -46,7 +46,7 @@ void Caixa::atacar(Entidade* adversario, float dano)
 }
 
 //trata a colisao da caixa com o jogador
-void Caixa::Colisao(Entidade* entidade, Vector2f inter_colisao)
+void Caixa::reagirColisao(Entidade* entidade, Vector2f inter_colisao)
 {
 	if (entidade->getId() == jogador && entidade->getVelocidade().x != VELOCIDADE_JOGADOR_X) {
 		entidade->setVelocidade(Vector2f(VELOCIDADE_JOGADOR_X, entidade->getVelocidade().y));

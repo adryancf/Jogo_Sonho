@@ -72,7 +72,7 @@ public:
 	void corrigeColisoes(Entidade* a, Vector2f inter);
 	
 	virtual void Executar() = 0;
-	virtual void Colisao(Entidade* entidade, Vector2f inter_colisao) = 0;
+	virtual void reagirColisao(Entidade* entidade, Vector2f inter_colisao) = 0;
 
 	void setTextura(std::string str);
 	void setTextura(std::string str, sf::IntRect rect);

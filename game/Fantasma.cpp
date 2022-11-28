@@ -54,7 +54,7 @@ void Fantasma::Executar()
     Mover();
 }
 
-void Fantasma::Colisao(Entidade* entidade, Vector2f inter_colisao)
+void Fantasma::reagirColisao(Entidade* entidade, Vector2f inter_colisao)
 {
     ID id_entidade = entidade->getId();
 

@@ -16,7 +16,7 @@ public:
 
 	virtual void Mover();
 	virtual void Executar();
-	virtual void Colisao(Entidade* entidade, Vector2f inter_colisao);
+	virtual void reagirColisao(Entidade* entidade, Vector2f inter_colisao);
 };
 
 //Como funciona a Hydra

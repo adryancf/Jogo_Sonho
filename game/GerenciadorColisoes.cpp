@@ -64,8 +64,8 @@ void GerenciadorColisoes::colisaoPersonagens()
 
 				Colisao = calculaColisoes(Jogador, aux);
 				if (Colisao.x < 0.0f && Colisao.y < 0.0f) {
-					Jogador->Colisao(aux, Colisao);
-					aux->Colisao(Jogador, Colisao);
+					Jogador->reagirColisao(aux, Colisao);
+					aux->reagirColisao(Jogador, Colisao);
 				}
 			}
 		}
@@ -83,8 +83,8 @@ void GerenciadorColisoes::colisaoPersonagens()
 			Colisao = calculaColisoes(Jogador, aux);
 
 			if (Colisao.x < 0.0f && Colisao.y < 0.0f) {
-				Jogador->Colisao(aux, Colisao);
-				aux->Colisao(Jogador, Colisao);
+				Jogador->reagirColisao(aux, Colisao);
+				aux->reagirColisao(Jogador, Colisao);
 			}
 		}
 	}
@@ -131,8 +131,8 @@ void GerenciadorColisoes::colisaoPersonagemObstaculos()
 		if(vector_colisoes[i].second->getId() == ID::plataforma)
 			vector_colisoes[i].first->setColisaoPlataforma(true);
 
-		vector_colisoes[i].first->Colisao(vector_colisoes[i].second, valor_colisao[i]);
-		vector_colisoes[i].second->Colisao(vector_colisoes[i].first, valor_colisao[i]);
+		vector_colisoes[i].first->reagirColisao(vector_colisoes[i].second, valor_colisao[i]);
+		vector_colisoes[i].second->reagirColisao(vector_colisoes[i].first, valor_colisao[i]);
 
 	}
 
@@ -156,8 +156,8 @@ void GerenciadorColisoes::colisaoObstaculos()
 			Colisao = calculaColisoes(aux1, aux2);
 
 			if (Colisao.x < 0.0f && Colisao.y < 0.0f) {
-				aux1->Colisao(aux2, Colisao);
-				aux2->Colisao(aux1, Colisao);
+				aux1->reagirColisao(aux2, Colisao);
+				aux2->reagirColisao(aux1, Colisao);
 			}
 		}
 	}

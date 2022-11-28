@@ -38,7 +38,7 @@ public:
     void andar(int i);
     
     //Colisao
-    virtual void Colisao(Entidade* entidade, Vector2f inter_colisao);
+    virtual void reagirColisao(Entidade* entidade, Vector2f inter_colisao);
 
     //Atualiza
     virtual void Executar();

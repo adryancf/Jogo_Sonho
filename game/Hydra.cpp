@@ -58,7 +58,7 @@ void Hydra::Executar()
 	Mover();
 }
 
-void Hydra::Colisao(Entidade* entidade, Vector2f inter_colisao)
+void Hydra::reagirColisao(Entidade* entidade, Vector2f inter_colisao)
 {
 	ID id_entidade = entidade->getId();
 

@@ -33,7 +33,7 @@ void Espinho::atacar(Entidade* adversario, float dano)
 	}
 }
 
-void Espinho::Colisao(Entidade* entidade, Vector2f inter_colisao)
+void Espinho::reagirColisao(Entidade* entidade, Vector2f inter_colisao)
 {
 	countdown = clock_espinho.getElapsedTime().asSeconds();
 

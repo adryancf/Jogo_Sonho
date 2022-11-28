@@ -112,7 +112,7 @@ const int Jogador::getPontos(int tipoJogador)
 }
 
 //GERENCIADOR DE COLIS�ES
-void Jogador::Colisao(Entidade* entidade, Vector2f inter_colisao)
+void Jogador::reagirColisao(Entidade* entidade, Vector2f inter_colisao)
 {
     corrigeColisoes(entidade, inter_colisao);
 
