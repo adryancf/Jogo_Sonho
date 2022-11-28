@@ -1,6 +1,6 @@
-#include "Anjo.h"
+#include "Ceifador.h"
 
-Anjo::Anjo(Jogador* p1, Jogador* p2, Projetil* b): 
+Ceifador::Ceifador(Jogador* p1, Jogador* p2, Projetil* b):
     Inimigo(), 
     projetil(b),
     tempo_atk(1.0f),
@@ -12,7 +12,7 @@ Anjo::Anjo(Jogador* p1, Jogador* p2, Projetil* b):
     jogadoresAtivos = verficaJogadoresAtivos(p1, p2);
     cout << "Anjo: Jogadores ativos: " << jogadoresAtivos << endl;
 
-    id = ID::anjo;
+    id = ID::ceifador;
 
     projetil->setPortador(this);
 
@@ -20,7 +20,7 @@ Anjo::Anjo(Jogador* p1, Jogador* p2, Projetil* b):
     
 }
 
-Anjo::~Anjo()
+Ceifador::~Ceifador()
 {
     if (alvo)
         alvo = nullptr;
@@ -30,7 +30,7 @@ Anjo::~Anjo()
 }
 
 //
-void Anjo::inicializaVariaveis()
+void Ceifador::inicializaVariaveis()
 {
     //Forma Anjo
     corpo.setSize(Vector2f(ANJO_X, ANJO_Y));
@@ -54,26 +54,26 @@ void Anjo::inicializaVariaveis()
 }
 
 //define que a variavel alvo recebe o parâmetro alvo (ptr)
-void Anjo::setAlvo(Personagens* alvo)
+void Ceifador::setAlvo(Personagens* alvo)
 {
     this->alvo = alvo;
 }
 
 //retorna um ponteiro para alvo
-const Personagens* Anjo::getAlvo() const
+const Personagens* Ceifador::getAlvo() const
 {
     return alvo;
 }
 
 //retorna um ponteiro para projetil
-const Projetil* Anjo::getProjetil()
+const Projetil* Ceifador::getProjetil()
 {
     return projetil;
 }
 
 
 //define se o alvo esta a esquerda ou a direita
-void Anjo::EncontraPosAlvo()
+void Ceifador::EncontraPosAlvo()
 {
     if (jogadoresAtivos == "Dois")
         alvo = verificaMaisProximo(player1, player2, getPosicao());
@@ -99,7 +99,7 @@ void Anjo::EncontraPosAlvo()
 }
 
 //atira o projetil referente a pos o alvo
-void Anjo::atirar_projetil()
+void Ceifador::atirar_projetil()
 {
       
     //Lanca de 1 em 1s
@@ -116,7 +116,7 @@ void Anjo::atirar_projetil()
 }
 
 //O anjo de movimenta 
-void Anjo::Mover()
+void Ceifador::Mover()
 {
     movGravidade();
 
@@ -125,7 +125,7 @@ void Anjo::Mover()
 }
 
 
-void Anjo::Executar()
+void Ceifador::Executar()
 {
     verificaVida();
     Mover();
@@ -134,7 +134,7 @@ void Anjo::Executar()
 }
 
 //
-void Anjo::reagirColisao(Entidade* entidade, Vector2f inter_colisao)
+void Ceifador::reagirColisao(Entidade* entidade, Vector2f inter_colisao)
 {
 	ID id_entidade = entidade->getId();
 

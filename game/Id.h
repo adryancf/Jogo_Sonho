@@ -4,7 +4,7 @@
 		vazio = 0,
 		jogador,
 		hydra,
-		anjo,
+		ceifador,
 		fantasma,
 		caixa,
 		espinho,

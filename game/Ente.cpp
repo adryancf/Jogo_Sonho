@@ -1,6 +1,8 @@
 #include "Ente.h"
 
-Ente::Ente(): pGrafico(pGrafico->getGerenciadorGrafico())
+GerenciadorGrafico* Ente::pGrafico = GerenciadorGrafico::getGerenciadorGrafico();
+
+Ente::Ente()
 {
 	pGrafico->getWindow()->setVerticalSyncEnabled(true);
 	visivel = true;

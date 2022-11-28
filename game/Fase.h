@@ -5,7 +5,7 @@
 #include "Hydra.h"
 #include "Jogador.h"
 #include "Fantasma.h"
-#include "Anjo.h"
+#include "Ceifador.h"
 #include "Plataforma.h"
 #include "Caixa.h"
 #include "Espinho.h" //inclui personagem

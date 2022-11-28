@@ -27,7 +27,7 @@
 #define COMPRIMENTOP8 300.f
 
 
-Fase2::Fase2(Jogador* j1, Jogador* j2): Fase(j1, j2), anjo(nullptr), projetil_anjo(nullptr)
+Fase2::Fase2(Jogador* j1, Jogador* j2): Fase(j1, j2), ceifador(nullptr), projetil_ceifador(nullptr)
 {
 	criar_entidades();
 	if(j1 != nullptr)
@@ -40,8 +40,8 @@ Fase2::Fase2(Jogador* j1, Jogador* j2): Fase(j1, j2), anjo(nullptr), projetil_an
 Fase2::~Fase2()
 {
 	deletaListas();
-	anjo = nullptr;
-	projetil_anjo = nullptr;
+	ceifador = nullptr;
+	projetil_ceifador = nullptr;
 }
 
 void Fase2::criar_entidades()
@@ -52,7 +52,7 @@ void Fase2::criar_entidades()
 	criaEspinhos();
 	criarCaixa();
 
-	criarAnjo();
+	criarCeifador();
 	criarHydra();
 
 }
@@ -134,7 +134,7 @@ void Fase2::criarCaixa()
 	lista_obstaculos->incluir(caixa);
 }
 
-void Fase2::criarAnjo()
+void Fase2::criarCeifador()
 {
 
 	srand(time(NULL));
@@ -147,22 +147,22 @@ void Fase2::criarAnjo()
 	//Numero aleatorio de instancias
 	for (int i = 0; i < numero_instancias; i++)
 	{
-		anjo = nullptr;
-		projetil_anjo = nullptr;
+		ceifador = nullptr;
+		projetil_ceifador = nullptr;
 
-		projetil_anjo = new Projetil();
-		lista_personagem->incluir(projetil_anjo);
+		projetil_ceifador = new Projetil();
+		lista_personagem->incluir(projetil_ceifador);
 
-		anjo = new Anjo(j1, j2, projetil_anjo);
-		lista_personagem->incluir(anjo);
+		ceifador = new Ceifador(j1, j2, projetil_ceifador);
+		lista_personagem->incluir(ceifador);
 
 
 		//Posicao
 		if (i == 0)
-			anjo->setPosEntidade(Vector2f(gerarNumeroAleatorio(750.F, 1000.F), ALTURAP6 - ANJO_Y)); //Sexta Plataforma
+			ceifador->setPosEntidade(Vector2f(gerarNumeroAleatorio(750.F, 1000.F), ALTURAP6 - ANJO_Y)); //Sexta Plataforma
 
 		else
-			anjo->setPosEntidade(Vector2f(gerarNumeroAleatorio(450.0f, COMPRIMENTOP7), ALTURAP7 - ANJO_Y)); //Setima Plataforma
+			ceifador->setPosEntidade(Vector2f(gerarNumeroAleatorio(450.0f, COMPRIMENTOP7), ALTURAP7 - ANJO_Y)); //Setima Plataforma
 
 
 	}

@@ -8,7 +8,7 @@ class Ente
 {
 protected:
 	//Todo ENTE deve conhecer a parte Gráfica do jogo (Janela - SFML)
-	GerenciadorGrafico* pGrafico;
+	static GerenciadorGrafico* pGrafico;
 
 	//Todo ENTE tem um ID
 	ID id;

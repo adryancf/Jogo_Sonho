@@ -3,7 +3,7 @@
 #include "Inimigo.h"
 #include "Projetil.h"
 
-class Anjo: public Inimigo
+class Ceifador: public Inimigo
 {
 private:
 	//Crio o projetil na fase, pois precico inclui-lo na lista de personagens
@@ -18,8 +18,8 @@ private:
 	string direcao_alvo;
 
 public:
-	Anjo(Jogador* p1, Jogador* p2, Projetil* b);
-	~Anjo();
+	Ceifador(Jogador* p1, Jogador* p2, Projetil* b);
+	~Ceifador();
 
 	void setAlvo(Personagens* alvo);
 	const Personagens* getAlvo() const;
