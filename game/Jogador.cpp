@@ -18,7 +18,7 @@ void Jogador::iniciar()
     //Atributos Jogador
     setVelocidade(Vector2f(VELOCIDADE_JOGADOR_X, 0.f));
     setQuantidadeVida(20.0);
-    setDano(3.0);
+    setDano(5.0);
 }
 
 Jogador::~Jogador(){}

@@ -35,7 +35,6 @@
 
 
 //TAMANHOS
-
 #define JOGADOR_X 50.f
 #define JOGADOR_Y 60.f
 #define VELOCIDADE_JOGADOR_X 1.5f
@@ -43,21 +42,19 @@
 #define FANTASMA_X 40.f
 #define FANTASMA_Y 40.f
 
-#define HYDRA_X 40.f
+#define HYDRA_X 30.f
 #define HYDRA_Y 40.f
 
-#define ANJO_X 30.f
-#define ANJO_Y 70.f
+#define ANJO_X 50.f
+#define ANJO_Y 60.f
 
 #define ESPESSURA_PLATAFORMA_F1 20.f
 #define ESPESSURA_PLATAFORMA_F2 25.f
 
 #define CAIXA_TAM 40.f
 
-#define ESPINHO_X 40.F
-#define ESPINHO_Y 20.F
-
-
+#define ESPINHO_X 60.F
+#define ESPINHO_Y 30.F
 
 
 //Using

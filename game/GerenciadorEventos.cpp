@@ -70,7 +70,7 @@ void GerenciadorEvento::verificaTeclaPressionada()
         Jogador2->andar(4);
     }
 
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && Jogador2 != nullptr) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && Jogador2 != nullptr) {
         Jogador2->pular(TAM_PULO_JOGADOR);
     }   
 }

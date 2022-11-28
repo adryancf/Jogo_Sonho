@@ -8,7 +8,7 @@ GerenciadorGrafico* GerenciadorGrafico::pGrafico = nullptr;
 float GerenciadorGrafico::dt = 0;
 
 GerenciadorGrafico::GerenciadorGrafico(): estado(ID::menuPrincipal), umJogador(true), fase1(false),
-    window(new sf::RenderWindow(sf::VideoMode(RESOLUCAO_X, RESOLUCAO_Y), "Jogo")),
+    window(new sf::RenderWindow(sf::VideoMode(RESOLUCAO_X, RESOLUCAO_Y), "Sonho++")),
     clock()
 {
     if (window == nullptr) {

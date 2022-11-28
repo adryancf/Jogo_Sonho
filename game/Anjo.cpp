@@ -18,9 +18,6 @@ Anjo::Anjo(Jogador* p1, Jogador* p2, Projetil* b):
 
     inicializaVariaveis();
     
-    sf::IntRect rect(83, 29, 25, 35);
-    texture.loadFromFile("assets/Run-Sheet.png", rect);
-    corpo.setTexture(&texture);
 }
 
 Anjo::~Anjo()
@@ -37,11 +34,11 @@ void Anjo::inicializaVariaveis()
 {
     //Forma Anjo
     corpo.setSize(Vector2f(ANJO_X, ANJO_Y));
-    setColor(Color::Cyan);
+    this->setTextura("assets/chefao2.png");
 
     //Atributos Anjo
     setVelocidade(Vector2f(0.5f, 0.f));
-    setQuantidadeVida(15.0);
+    setQuantidadeVida(10.0);
 
     raio_deteccao = Vector2f(500.f, JOGADOR_Y);
 
@@ -49,9 +46,11 @@ void Anjo::inicializaVariaveis()
     repulsao_esquerda = Vector2f(-50.f, 0.f);
 
     //Dano Fisico
-    //setDano(1.5f);
+    setDano(1.5f);
+
     if (projetil)
-        projetil->setDano(0.0f);
+        projetil->setDano(2.f);
+
 }
 
 //define que a variavel alvo recebe o parâmetro alvo (ptr)

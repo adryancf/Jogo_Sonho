@@ -7,6 +7,7 @@ Hydra::Hydra(Jogador* p1, Jogador* p2): Inimigo(), posHydra(Vector2f(0.0f, 0.0f)
 
 	jogadoresAtivos = verficaJogadoresAtivos(p1, p2);
 
+	setTextura("assets/Attack.png");
 	id = ID::hydra;
 
 	inicializa();

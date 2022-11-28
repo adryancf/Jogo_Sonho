@@ -28,7 +28,7 @@ void MenuPrincipal::set_values()
 
     bg->setTexture(*image);
 
-    options = { "Jogo", "Fase1", "Fase2", "Leaderboard", "Quit" };
+    options = { "Sonho++", "Fase1", "Fase2", "Leaderboard", "Quit" };
     texts.resize(5);
     coords = { {590,40},{620,191},{610,282},{590,370},{623,457} };
     sizes = { 20,28,24,24,24 };

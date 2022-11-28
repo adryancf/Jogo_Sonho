@@ -1,5 +1,7 @@
 #pragma once
 #include "Menu.h"
+using namespace Menus;
+
 class MenuJogadores : public Menu
 {
 protected:

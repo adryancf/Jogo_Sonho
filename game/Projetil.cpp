@@ -4,7 +4,6 @@ Projetil::Projetil():portador(nullptr), repouso(true), t()
 {
 	//Forma Projetil
 	corpo.setSize(Vector2f(10.f, 5.f));
-	corpo.setFillColor(Color::Magenta);
 
 	//Atributos Projetil
 	setVelocidade(Vector2f(5.0f, 0.f));
@@ -12,6 +11,8 @@ Projetil::Projetil():portador(nullptr), repouso(true), t()
 
 	id = ID::projetil;
 
+
+	setTextura("assets/projetil.png");
 	estadoInicial();
 
 }

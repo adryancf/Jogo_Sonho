@@ -1,6 +1,6 @@
 #include "MenuPause.h"
 
-MenuPause::MenuPause() : Menu()
+MenuPause::MenuPause() : Menus::Menu()
 {
     set_values();
 
