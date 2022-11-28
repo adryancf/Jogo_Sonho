@@ -15,6 +15,7 @@
 #include <math.h>
 #include <cmath>
 #include <string>
+#include <stack>
 
 
 //Talvez seja interessante definir as caracteristicas padroes da janela, inimigos e etc aqui.

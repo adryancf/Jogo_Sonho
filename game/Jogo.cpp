@@ -7,13 +7,14 @@ GerenciadorEvento * Jogo::pEvento = GerenciadorEvento::getGerenciadorEvento();
 Jogo::Jogo(): Ente(), 
     fase2(nullptr), 
     fase1(nullptr), 
-    qJogadores(0),
     Jogador1(nullptr),
     Jogador2(nullptr),
-    menu(nullptr)
+    menu(nullptr),
+    pilha_ranking()
 {
     iniciarMenu();
     Executar();
+    
 }
 
 Jogo::~Jogo()
@@ -43,6 +44,46 @@ void Jogo::iniciarMenu()
     menuj = new MenuJogadores();
     menup = new MenuPause();
     pGrafico->setEstado(ID::menuPrincipal);
+}
+
+void Jogo::inputPontosJogadores()
+{
+    int pontos_j1 = 0;
+    int pontos_j2 = 0;
+
+    if (Jogador1)
+        pontos_j1 = Jogador1->getPontos(1);
+
+    if(Jogador2)
+        pontos_j2 = Jogador2->getPontos(2);
+
+    pilha_ranking.push(make_pair(pontos_j1, pontos_j2));
+
+}
+
+void Jogo::imprimePontosJogadores()
+{
+    std::stack<pair<int, int>> pilha_auxiliar;
+
+    while(!pilha_ranking.empty())
+    {
+        pilha_auxiliar.push(make_pair(pilha_ranking.top().first, pilha_ranking.top().second));
+
+        cout << "Pontos Jogador1: " << pilha_auxiliar.top().first << " Pontos Jogador2: " << pilha_auxiliar.top().second << endl;
+        
+
+        pilha_ranking.pop();
+
+    }
+    while (!pilha_auxiliar.empty())
+    {
+        pilha_ranking.push(make_pair(pilha_auxiliar.top().first, pilha_auxiliar.top().second));
+        pilha_auxiliar.pop();
+
+    }
+    cout << "Imprecao finalizada!" << endl;
+    pGrafico->setEstado(ID::menuPrincipal);
+
 }
 
 void Jogo::iniciaFase1()
@@ -179,12 +220,11 @@ void Jogo::controleFases()
                 {
                     cout << "GANHOOO JOGO! " << endl;
 
+                    inputPontosJogadores();
+
                     //Caso a fase termine, volta ao menu principal
                     pGrafico->setEstado(ID::menuPrincipal);
                     deletaFase2();
-
-                    //PRECISA DEFINIR DE NOVO QUANTOS JOGADORES O USUARIO QUER CONTROLAR
-                    qJogadores = 0;
 
                 }
             }
@@ -207,8 +247,6 @@ void Jogo::controleFases()
         //Tempo e uma imagem
         pGrafico->setEstado(ID::menuPrincipal);
 
-        //PRECISA DEFINIR DE NOVO QUANTOS JOGADORES O USUARIO QUER CONTROLAR
-        qJogadores = 0;
     }
 }
 
@@ -245,6 +283,11 @@ void Jogo::Executar()
             //qJogadores = menu->run_menu_escolha (retorna um int de escolha)
             menuj->run_menu();
             pGrafico->atualizaTempo();
+        }
+
+        else if (estado == ID::leaderboard)
+        {
+            imprimePontosJogadores();
         }
 
         else if (estado == ID::fase1 || estado == ID::fase2)

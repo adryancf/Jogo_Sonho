@@ -24,9 +24,8 @@ private:
 	MenuPrincipal* menu;
 	MenuJogadores* menuj;
 	MenuPause* menup;
-
-	//2: DOIS JOGADORES | 1: UM JOGADOR
-	int qJogadores;
+	
+	std::stack<pair<int, int>> pilha_ranking;
 
 
 public:
@@ -41,6 +40,9 @@ public:
 	void deletaFase2();
 
 	void iniciarMenu();
+
+	void inputPontosJogadores();
+	void imprimePontosJogadores();
 
 	void Executar();
 };
