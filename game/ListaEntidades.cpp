@@ -80,6 +80,8 @@ Entidade* ListaEntidades::getJogador()
 		{
 			return listEnt[i];
 		}
+		else
+			cout << "NAO TEM JOGADOR NA LISTA" << endl;
 	}
 }
 

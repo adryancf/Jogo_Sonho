@@ -167,6 +167,8 @@ const bool Personagens::getOlhar()
         return true;
     else if (olhandoEsquerda)
         return false;
+    else
+        cout << "Nao esta olhando para lugar nenhum" << endl;
 }
 
 

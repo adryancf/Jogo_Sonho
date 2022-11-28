@@ -162,7 +162,7 @@ void Fase2::criarCeifador()
 			ceifador->setPosEntidade(Vector2f(gerarNumeroAleatorio(750.F, 1000.F), ALTURAP6 - ANJO_Y)); //Sexta Plataforma
 
 		else
-			ceifador->setPosEntidade(Vector2f(gerarNumeroAleatorio(450.0f, COMPRIMENTOP7), ALTURAP7 - ANJO_Y)); //Setima Plataforma
+			ceifador->setPosEntidade(Vector2f(gerarNumeroAleatorio(450.0f, 1100.f), ALTURAP7 - ANJO_Y)); //Setima Plataforma
 
 
 	}

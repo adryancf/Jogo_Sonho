@@ -109,6 +109,8 @@ const int Jogador::getPontos(int tipoJogador)
 
     else if (tipoJogador == 2)
         return pontuacao_j2;
+    else
+        cout << "NAO TEM PONTOS" << endl;
 }
 
 //GERENCIADOR DE COLIS�ES
