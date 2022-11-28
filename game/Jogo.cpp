@@ -63,6 +63,8 @@ void Jogo::inputPontosJogadores()
 
 void Jogo::imprimePontosJogadores()
 {
+    cout << "---- RANKING SONHO++ ----" << endl;
+
     std::stack<pair<int, int>> pilha_auxiliar;
 
     while(!pilha_ranking.empty())
@@ -81,7 +83,6 @@ void Jogo::imprimePontosJogadores()
         pilha_auxiliar.pop();
 
     }
-    cout << "Imprecao finalizada!" << endl;
     pGrafico->setEstado(ID::menuPrincipal);
 
 }
@@ -125,7 +126,6 @@ void Jogo::iniciaFase2()
         jogadoresVivos.y = Jogador2->getVida();
 
         if (fase1) {
-            cout << "TEMPO DE EXECUÇÃO FASE: " << fase1->tempoFase() << endl;
             deletaFase1();
         }
 
@@ -139,7 +139,6 @@ void Jogo::iniciaFase2()
     else {
 
         if (fase1) {
-            cout << "TEMPO DE EXECUÇÃO FASE: " << fase1->tempoFase() << endl;
             deletaFase1();
         }
 

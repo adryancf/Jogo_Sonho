@@ -42,10 +42,6 @@ protected:
 	RectangleShape fundo;
 	Texture img_fundo;
 
-	//Tempo do Jogo
-	sf::Clock relogio_fase;
-	float tempo_fase;
-
 
 public:
 	Fase(Jogador *j1, Jogador* j2);
@@ -54,11 +50,7 @@ public:
 	//Features
 	int gerarNumeroAleatorio(int min, int max);
 	int gerarNumeroAleatorio(float min, float max);
-	const float tempoFase();
 
-	//Background
-	void setFundo(string path_fundo);
-	void setFundo(string path_fundo, IntRect rect);
 
 	//Controle da execucao da fase
 	void verificaTerminoFase();

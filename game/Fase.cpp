@@ -10,8 +10,7 @@ Fase::Fase(Jogador *j1, Jogador* j2): fundo(Vector2f(RESOLUCAO_X, RESOLUCAO_Y)),
 	hydra(nullptr),
 	pColisoes(nullptr),
 	lista_obstaculos(nullptr),
-	lista_personagem(nullptr),
-	tempo_fase(0.f)
+	lista_personagem(nullptr)
 {
 }
 
@@ -24,22 +23,6 @@ Fase::~Fase()
 	j2 = nullptr;
 }
 
-const float Fase::tempoFase()
-{
-	return (relogio_fase.getElapsedTime().asSeconds());
-}
-
-void Fase::setFundo(string path_fundo)
-{
-	img_fundo.loadFromFile(path_fundo);
-	fundo.setTexture(&img_fundo);
-}
-
-void Fase::setFundo(string path_fundo, IntRect rect)
-{
-	img_fundo.loadFromFile(path_fundo, rect);
-	fundo.setTexture(&img_fundo);
-}
 
 int Fase::gerarNumeroAleatorio(int min, int max)
 {
