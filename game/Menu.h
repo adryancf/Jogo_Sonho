@@ -1,5 +1,9 @@
 #pragma once
 #include "Ente.h"
+
+/* Referencias */
+//Implementação Baseada nesse video: https://www.youtube.com/watch?v=h8-Q4eu3Qt4&t=1169s
+
 namespace Menus {
 	class Menu : public Ente
 	{
