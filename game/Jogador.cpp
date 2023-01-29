@@ -46,8 +46,6 @@ void Jogador::Mover()
 
         else if(olhandoEsquerda)
             movimentaEntidade(Vector2f(-speed.x, 0.f), false);
-
-
     }
 }
 

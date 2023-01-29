@@ -17,7 +17,7 @@ void Fantasma::inicializaVariaveis()
     //setColor(Color::Red);
 
     //Atributos Fantasma
-    setVelocidade(Vector2f(0.6f, 0.f));
+    setVelocidade(Vector2f(4.0f, 0.f));
     setQuantidadeVida(3.0);
     setDano(0.5);
 

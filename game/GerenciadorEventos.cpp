@@ -1,6 +1,6 @@
 #include "GerenciadorEventos.h"
 
-#define TAM_PULO_JOGADOR 0.004f
+#define TAM_PULO_JOGADOR 0.05f
 
 GerenciadorEvento* GerenciadorEvento::pEvento = nullptr;
 
@@ -133,10 +133,13 @@ void GerenciadorEvento::Executar()
         if (event.type == sf::Event::KeyPressed) {
             verificaTeclaPressionada();
         }
+        
 
         else if (event.type == Event::KeyReleased) {
             verificaTeclaSolta(event.key.code);
         }
+        
+       
         else if (event.type == Event::Closed) {
             pGrafico->fecharJanela();
         } 

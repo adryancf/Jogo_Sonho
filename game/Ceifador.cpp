@@ -37,7 +37,7 @@ void Ceifador::inicializaVariaveis()
     this->setTextura("assets/chefao2.png");
 
     //Atributos Anjo
-    setVelocidade(Vector2f(0.5f, 0.f));
+    setVelocidade(Vector2f(2.0f, 0.f));
     setQuantidadeVida(10.0);
 
     raio_deteccao = Vector2f(500.f, JOGADOR_Y);

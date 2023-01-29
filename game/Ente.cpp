@@ -4,7 +4,7 @@ GerenciadorGrafico* Ente::pGrafico = GerenciadorGrafico::getGerenciadorGrafico()
 
 Ente::Ente()
 {
-	pGrafico->getWindow()->setVerticalSyncEnabled(true);
+	//pGrafico->getWindow()->setVerticalSyncEnabled(true);
 	visivel = true;
 	id = ID::vazio;
 }

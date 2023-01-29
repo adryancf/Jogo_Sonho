@@ -38,7 +38,7 @@
 //TAMANHOS
 #define JOGADOR_X 50.f
 #define JOGADOR_Y 60.f
-#define VELOCIDADE_JOGADOR_X 1.5f
+#define VELOCIDADE_JOGADOR_X 5.5f
 
 #define FANTASMA_X 40.f
 #define FANTASMA_Y 40.f

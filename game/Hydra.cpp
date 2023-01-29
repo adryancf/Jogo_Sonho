@@ -26,7 +26,7 @@ void Hydra::inicializa()
 	//setTextura()
 
 	//Atributos Hydra
-	setVelocidade(Vector2f(0.3f, 0.f));
+	setVelocidade(Vector2f(3.0f, 0.f));
 	setQuantidadeVida(4.0);
 	setDano(1.0);
 
