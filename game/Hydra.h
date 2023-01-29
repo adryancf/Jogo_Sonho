@@ -6,18 +6,17 @@ class Hydra: public Inimigo
 {
 private:
 	Vector2f posHydra;
+	//sf::Texture texture;
 
 public:
-	Hydra(Jogador* p);
+	Hydra(Jogador* p1, Jogador* p2);
 	~Hydra();
 
 	void inicializa();
 
 	virtual void Mover();
 	virtual void Executar();
-	virtual void Colisao(Entidade* entidade, Vector2f inter_colisao);
-
-
+	virtual void reagirColisao(Entidade* entidade, Vector2f inter_colisao);
 };
 
 //Como funciona a Hydra

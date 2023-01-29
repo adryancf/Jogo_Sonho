@@ -5,8 +5,8 @@ class Caixa : public Obstaculo
 {
 private:
 
-	//Define a propriedade da Caixa: Fixa ou móvel
-	bool fixa;
+	//Define a propriedade da Caixa: Fixa ou movel
+	bool ehFixa;
 
 public:
 	Caixa();
@@ -18,7 +18,7 @@ public:
 
 	virtual void Executar();
 	virtual void atacar(Entidade* adversario, float dano);
-	virtual void Colisao(Entidade* entidade, Vector2f inter_colisao);
+	virtual void reagirColisao(Entidade* entidade, Vector2f inter_colisao);
 
 };
 

@@ -1,44 +1,45 @@
-
-#include "Jogo.h"
-
-int main()
-{
-    Jogo jogo;
-
-    return 0;
-
-    //MENU DE SELEÇÃO
-    /* 
-    int op_menu = -1;
-
-    while (op_menu != 2)
+#include "Menu.h"
+namespace Menus {
+    Menu::Menu() : Ente()
     {
 
-        cout << "-------------- EXECUTAR -------------- \n" << endl;
+        font = new sf::Font();
+        image = new sf::Texture();
+        bg = new sf::Sprite();
 
-        cout << "Informe sua opção: " << endl;
-        cout << "1 - Jogar" << endl;
-        cout << "2 - Sair" << endl;
-        cin >> op_menu;
+    }
+
+    Menu::~Menu()
+    {
+        delete font;
+        delete image;
+        delete bg;
+    }
 
 
-        switch (op_menu) 
+    void Menu::draw_all()
+    {
+        pGrafico->limpar();
+        pGrafico->desenhar(*bg);
+
+        for (auto t : texts) {
+            pGrafico->desenhar(t);
+        }
+
+        pGrafico->mostrar();
+
+    }
+
+    void Menu::run_menu() {
+        while (pGrafico->isWindowOpen() && pGrafico->getEstado() == ID::menuPrincipal)
         {
-
-        case 1: { jogo.executar(); fflush(stdin); getchar(); }
-              break;
-
-        case 2: { cout << "FIm..." << endl; getchar(); }
-              break;
-
-        default: { cout << " Caractere Inválido!" << endl; getchar(); }
-
+            loop_events();
+            draw_all();
         }
     }
-    */
 
-    
+    void Menu::Executar()
+    {
+        run_menu();
+    }
 }
-
-
-

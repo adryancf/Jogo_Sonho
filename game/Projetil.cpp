@@ -4,14 +4,15 @@ Projetil::Projetil():portador(nullptr), repouso(true), t()
 {
 	//Forma Projetil
 	corpo.setSize(Vector2f(10.f, 5.f));
-	corpo.setFillColor(Color::Magenta);
 
 	//Atributos Projetil
-	setVelocidade(Vector2f(5.0f, 0.f));
+	setVelocidade(Vector2f(10.0f, 0.f));
 	dano = 3.5f;
 
 	id = ID::projetil;
 
+
+	setTextura("assets/projetil.png");
 	estadoInicial();
 
 }
@@ -102,10 +103,10 @@ void Projetil::atirar(string direcao, float tempo)
 
 		//Aqui dentro para ele nao mudar a direcao no meio da trajetoria
 		if (direcao == "direita")
-			speed.x = 5.0f;
+			speed.x = 10.0f;
 
 		else if (direcao == "esquerda")
-			speed.x = -5.0f;
+			speed.x = -10.0f;
 
 		corpo.move(speed);
 	}
@@ -128,7 +129,7 @@ void Projetil::Executar()
 		movGravidade();
 }
 
-void Projetil::Colisao(Entidade* entidade, Vector2f inter_colisao)
+void Projetil::reagirColisao(Entidade* entidade, Vector2f inter_colisao)
 {
 
 	corrigeColisoes(entidade, inter_colisao);

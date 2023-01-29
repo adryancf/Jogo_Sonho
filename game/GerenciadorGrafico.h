@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include <SFML/Graphics.hpp>
-
+#include "Id.h"
 
 
 /* PADRAO DE PROJETO SINGLETON */
@@ -14,6 +14,13 @@ class GerenciadorGrafico
 {
 private:
 	
+	//Estado
+	ID estado;
+
+	bool umJogador;
+
+	bool fase1;
+
 	//Janela do jogo (criada nessa classe)
 	sf::RenderWindow* window;
 
@@ -24,7 +31,6 @@ private:
 	/* Singlton */
 	static GerenciadorGrafico* pGrafico;
 	GerenciadorGrafico();
-
 public:
 	static float dt;
 
@@ -33,14 +39,22 @@ public:
 	sf::RenderWindow* getWindow();
 	void limpar();
 	void desenhar(sf::RectangleShape corpo);
+	void desenhar(sf::Sprite corpo);
+	void desenhar(sf::Text t);
 	void mostrar();
 	void fecharJanela();
 	const bool isWindowOpen();
+	const bool verificaEventos(sf::Event evento);
 
 	void atualizaTempo();
 
+	void setEstado(const ID id);
+	const ID getEstado() const;
 
+	void setUmJogador(bool t);
+	const bool getUmJogador() const;
 
-
+	void setFase1(bool t);
+	const bool getFase1() const;
 };
 

@@ -1,8 +1,13 @@
 #include "Hydra.h"
 
-Hydra::Hydra(Jogador* p): Inimigo(), posHydra(Vector2f(0.0f, 0.0f))
+Hydra::Hydra(Jogador* p1, Jogador* p2): Inimigo(), posHydra(Vector2f(0.0f, 0.0f))
 {
-	player = p;
+	player1 = p1;
+	player2 = p2;
+
+	jogadoresAtivos = verficaJogadoresAtivos(p1, p2);
+
+	setTextura("assets/Attack.png");
 	id = ID::hydra;
 
 	inicializa();
@@ -10,43 +15,38 @@ Hydra::Hydra(Jogador* p): Inimigo(), posHydra(Vector2f(0.0f, 0.0f))
 
 Hydra::~Hydra()
 {
-	player = nullptr;
+	player1 = nullptr;
+	player2 = nullptr;
 }
 
 void Hydra::inicializa()
 {
 	//Forma Hydra
 	corpo.setSize(Vector2f(HYDRA_X, HYDRA_Y));
-	corpo.setFillColor(Color::Blue);
+	//setTextura()
 
 	//Atributos Hydra
-	setVelocidade(Vector2f(0.3f, 0.f));
+	setVelocidade(Vector2f(3.0f, 0.f));
 	setQuantidadeVida(4.0);
 	setDano(1.0);
 
-	repulsao = Vector2f(15.f, 0.f);
+	repulsao_direita = Vector2f(40.f, 0.f);
+	repulsao_esquerda = Vector2f(-40.f, 0.f);
 
 	raio_deteccao.x = 300.f;
 	raio_deteccao.y = 300.f;
+
 }
 
 void Hydra::Mover()
 {
 	movGravidade();
+	posHydra = corpo.getPosition();
 
-	//Verifica se com a repulsao causada pela colisao entre os dois, o jogador pode andar ainda
-	podePerseguir(player);
-
-	if (atacou == true && podeAndar == true)
+	if (atacou)
 	{
-		Vector2f posJogador = player->getCorpo().getPosition();
-		posHydra = corpo.getPosition();
-
-		if ((fabs(posJogador.x - posHydra.x) <= raio_deteccao.x)
-			&& (fabs(posJogador.y - posHydra.y) <= raio_deteccao.y)) {
-
-			PersegueJogador(posJogador, posHydra);
-		}
+		//Decide qual inimigo perseguir (Se houver dois ativos ele ver qual esta mais proximo, e no caso de um sï¿½ ele o persegue)
+		qualPerseguir(posHydra);
 	}
 
 }
@@ -58,18 +58,40 @@ void Hydra::Executar()
 	Mover();
 }
 
-void Hydra::Colisao(Entidade* entidade, Vector2f inter_colisao)
+void Hydra::reagirColisao(Entidade* entidade, Vector2f inter_colisao)
 {
 	ID id_entidade = entidade->getId();
 
 	//Nao corrige colisao com o jogador, pois la ele ja chama essa funcao
 	if (id_entidade == ID::jogador) {
 		atacou = true;
-	
-		//Ataque (Só ataca quando o jogador nao tiver em cima)
-		Personagens* jogador = static_cast<Personagens*>(entidade);
-		if(jogador->getEmCima() == false)
+
+		//Ataque (Sï¿½ ataca quando o jogador nao tiver em cima)
+		Jogador* jogador = static_cast<Jogador*>(entidade);
+
+		jogadorEmCima = jogador->getEmCima();
+
+		if (!jogadorEmCima) {
+			//Se o jogador estiver em movimento
+			
+
+			if (jogador->getOlhar()) {
+				jogador->movimentaEntidade(repulsao_esquerda, false);
+			}
+			else if (!jogador->getOlhar()) {
+				jogador->movimentaEntidade(repulsao_direita, true);
+			}
+			
 			atacar(jogador, dano);
+		}
+
+		else if (jogadorEmCima) {
+			//JOGADOR ATACA A ENTIDADE
+			jogador->atacar(this, jogador->getDano());
+		}
+			
+
+
 	}
 
 	else

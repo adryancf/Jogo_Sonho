@@ -10,7 +10,8 @@ Personagens::Personagens(const float vida):
     vivo(true),
     atacou(false),
     podeAndar(true),
-    direcaoMovimento("Nenhuma")
+    direcaoMovimento("Nenhuma"),
+    andando(false)
 {
     this->q_vida = vida;
 }
@@ -57,15 +58,14 @@ const bool Personagens::getVida() const
 
 void Personagens::verificaVida()
 {
-    
+    if (q_vida <= 0 || verificarPosInvalidaEmY()) {
 
-    if (q_vida <= 0 || verificarPosInvalida()) {
-        
         vivo = false;
         visivel = false;
 
         //Tira ele do campo de visao para evitar colisoes indesejaveis
         setPosEntidade(Vector2f(-2000.f, -2000.f));
+
         gravidade = false;
     }
 }
@@ -75,6 +75,7 @@ void Personagens::perdeVida()
     //DA PARA SUBSTITUIR POR UMA SOBRECARGA DE OPERADOR --
     if (vivo)
         q_vida--;
+
 }
 
 void Personagens::perdeVida(float dano)
@@ -143,21 +144,31 @@ const Vector2<bool> Personagens::getPodeAndar()
     return vetor_resposta;
 }
 
-const Vector2<bool> Personagens::getOlhar()
+const bool Personagens::getPodeAndarDireita()
 {
-    Vector2<bool> vetor_resposta;
+    if (podeAndarDireita)
+        return true;
+    else
+        return false;
+}
+
+const bool Personagens::getPodeAndarEsquerda()
+{
+    if (podeAndarEsquerda)
+        return true;
+    else
+        return false;
+}
+
+const bool Personagens::getOlhar()
+{
 
     if (olhandoDireita)
-        vetor_resposta.x = true;
+        return true;
+    else if (olhandoEsquerda)
+        return false;
     else
-        vetor_resposta.x = false;
-
-    if (olhandoEsquerda)
-        vetor_resposta.y = true;
-    else
-        vetor_resposta.y = false;
-
-    return vetor_resposta;
+        cout << "Nao esta olhando para lugar nenhum" << endl;
 }
 
 
@@ -171,7 +182,7 @@ void Personagens::setDirecaoMovimento(string direcao)
 
 void Personagens::pular(double tam_pulo)
 {
-    if (noChao || emCima) {
+    if (noChao || emCimaEntidade) {
         podePular = true;
     } else {
         podePular = false;
@@ -182,9 +193,19 @@ void Personagens::pular(double tam_pulo)
         //a alura do pulo vai ser determinada pela equação de torricelli
         speed.y = -sqrt(2.0 * GRAVIDADE * tam_pulo);
         noChao = false;
-        emCima = false;
+        emCimaEntidade = false;
     }
 
+}
+
+void Personagens::setAndando(bool estado_do_jogador)
+{
+    andando = estado_do_jogador;
+}
+
+const bool Personagens::getEstadoMovimentoJogador()
+{
+    return andando;
 }
 
 

@@ -1,8 +1,9 @@
 #include "GerenciadorColisoes.h"
 
-GerenciadorColisoes::GerenciadorColisoes(ListaEntidades* l_personagem, ListaEntidades* l_obstaculos):
+GerenciadorColisoes::GerenciadorColisoes(ListaEntidades* l_personagem, ListaEntidades* l_obstaculos, int qJogadores):
 	lista_obstaculos(l_obstaculos),
-	lista_personagens(l_personagem)
+	lista_personagens(l_personagem),
+	qJogadores(qJogadores)
 
 {}
 
@@ -42,27 +43,54 @@ void GerenciadorColisoes::verificaColisoes()
 	
 }
 
+//ARRUMAR ESSA QUESTAO DE DOIS OU UM JOGADOR
 void GerenciadorColisoes::colisaoPersonagens()
 {
 	//COLISAO ENTRE PERSONAGEM E JOGADOR (FAZER ISSO)
-	Entidade* Jogador1 = nullptr;
+	Entidade* Jogador = nullptr;
+
 	Entidade* aux = nullptr;
 	Vector2f Colisao;
 
-	Jogador1 = lista_personagens->getJogador();
+	
+	if (qJogadores == 2) {
+		for (int i = 0; i < 2; i++) {
+			Jogador = lista_personagens->operator[](i);
 
-	//Verifica se houve colisão
-	for (int j = 1; j < lista_personagens->getTamanhoLista(); j++) {
+			//Verifica se houve colisï¿½o (NAO TEM PROBLEMA SE OS JOGADORES SE COLIDIREM)
+			for (int j = i + 1; j < lista_personagens->getTamanhoLista(); j++) {
 
-		aux = lista_personagens->operator[](j);
+				aux = lista_personagens->operator[](j);
 
-		Colisao = calculaColisoes(Jogador1, aux);
-		if (Colisao.x < 0.0f && Colisao.y < 0.0f) {
-			Jogador1->Colisao(aux, Colisao);
-			aux->Colisao(Jogador1, Colisao);
+				Colisao = calculaColisoes(Jogador, aux);
+				if (Colisao.x < 0.0f && Colisao.y < 0.0f) {
+					Jogador->reagirColisao(aux, Colisao);
+					aux->reagirColisao(Jogador, Colisao);
+				}
+			}
 		}
 	}
+	
+	else if (qJogadores == 1)
+	{
+		Jogador = lista_personagens->getJogador();
 
+		//Verifica se houve colisï¿½o (NAO TEM PROBLEMA SE OS JOGADORES SE COLIDIREM)
+		for (int j = 1; j < lista_personagens->getTamanhoLista(); j++) {
+
+			aux = lista_personagens->operator[](j);
+
+			Colisao = calculaColisoes(Jogador, aux);
+
+			if (Colisao.x < 0.0f && Colisao.y < 0.0f) {
+				Jogador->reagirColisao(aux, Colisao);
+				aux->reagirColisao(Jogador, Colisao);
+			}
+		}
+	}
+	else
+		cout << "PROBLEMA COM CONTAGEM DE JOGADORES ATIVOS " << endl;
+	
 
 }
 
@@ -76,7 +104,7 @@ void GerenciadorColisoes::colisaoPersonagemObstaculos()
 	vector <pair<Entidade*, Entidade*>> vector_colisoes;
 	vector <Vector2f> valor_colisao;
 
-	//Verifico a colisão entre os personagens e os obstaculos
+	//Verifico a colisï¿½o entre os personagens e os obstaculos
 	for (unsigned int i = 0; i < lista_personagens->getTamanhoLista(); i++)
 	{
 		aux1 = lista_personagens->operator[](i);
@@ -103,8 +131,8 @@ void GerenciadorColisoes::colisaoPersonagemObstaculos()
 		if(vector_colisoes[i].second->getId() == ID::plataforma)
 			vector_colisoes[i].first->setColisaoPlataforma(true);
 
-		vector_colisoes[i].first->Colisao(vector_colisoes[i].second, valor_colisao[i]);
-		vector_colisoes[i].second->Colisao(vector_colisoes[i].first, valor_colisao[i]);
+		vector_colisoes[i].first->reagirColisao(vector_colisoes[i].second, valor_colisao[i]);
+		vector_colisoes[i].second->reagirColisao(vector_colisoes[i].first, valor_colisao[i]);
 
 	}
 
@@ -120,7 +148,7 @@ void GerenciadorColisoes::colisaoObstaculos()
 
 		aux1 = lista_obstaculos->operator[](i);
 
-		//Verifica se houve colisão
+		//Verifica se houve colisï¿½o
 		for (int j = i+1; j < lista_obstaculos->getTamanhoLista(); j++) {
 
 			aux2 = lista_obstaculos->operator[](j);
@@ -128,8 +156,8 @@ void GerenciadorColisoes::colisaoObstaculos()
 			Colisao = calculaColisoes(aux1, aux2);
 
 			if (Colisao.x < 0.0f && Colisao.y < 0.0f) {
-				aux1->Colisao(aux2, Colisao);
-				aux2->Colisao(aux1, Colisao);
+				aux1->reagirColisao(aux2, Colisao);
+				aux2->reagirColisao(aux1, Colisao);
 			}
 		}
 	}

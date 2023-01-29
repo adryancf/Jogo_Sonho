@@ -6,18 +6,18 @@ class Fase2: public Fase
 private:
 
 	//NESSA FASE VAI TER ESPECIFICAMENTE
-	Anjo* anjo;
-	Projetil* projetil_anjo;
+	Ceifador* ceifador;
+	Projetil* projetil_ceifador;
 	Espinho* espinho;
 
 	virtual void criar_entidades();
 
 public:
-	Fase2(Jogador* j1);
+	Fase2(Jogador* j1, Jogador* j2);
 	~Fase2();
 
 	//Personagem
-	void criarAnjo();
+	void criarCeifador();
 
 	//Obstaculo
 	void criaEspinhos();
