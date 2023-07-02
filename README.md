@@ -22,5 +22,8 @@ Já o cenário desses combates é simples: um local silencioso e escuro. Apenas 
 
 [![jogo.png](https://i.postimg.cc/D0tp28c9/jogo.png)](https://postimg.cc/YLzzR2ZR)
 
+## Video
+https://youtu.be/kEEG3j1MlCI
+
  
  
